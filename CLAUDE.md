@@ -4,6 +4,12 @@ This folder is a [HyperFrames](https://hyperframes.heygen.com) video: HTML, CSS 
 animations (GSAP by default) that the `hyperframes` CLI previews in the browser and renders to
 MP4.
 
+## Edit drop folder — check first
+
+All edits for this project are dropped in `ai-video-editing/`. Before starting work, look there
+for new notes and media, apply them to the composition, and move used media into `assets/`
+when it becomes part of the video. See `ai-video-editing/README.md`.
+
 ## Skills — read these first
 
 **Invoke the relevant skill before writing or modifying compositions.** Skills encode framework-specific patterns (e.g., `window.__timelines` registration, `data-*` attribute semantics, shader-compatible CSS rules) that generic web docs don't cover, so compositions written without them break.
