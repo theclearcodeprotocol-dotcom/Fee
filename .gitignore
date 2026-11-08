@@ -9,3 +9,6 @@ renders/
 # Third-party reference videos and analysis scratch (not ours to redistribute)
 references/
 .analysis/
+*.mov
+*.MOV
+*.MP4
