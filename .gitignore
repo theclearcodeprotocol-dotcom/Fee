@@ -5,3 +5,7 @@ renders/
 .DS_Store
 # Local secrets written by `elevenlabs onboard`
 /.env.local
+
+# Third-party reference videos and analysis scratch (not ours to redistribute)
+references/
+.analysis/
