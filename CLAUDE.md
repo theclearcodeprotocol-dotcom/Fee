@@ -16,6 +16,18 @@ Every video uses the brand in `brand/BRAND.md` (from `brand/the-clear-code-brand
 red `#AE1F14`, cream `#F2F0E0`, pink `#FFD7DE`; Source Serif 4 Black headings at -0.05em,
 Outfit body; lower-case logo ending in a full stop; `c.` lettermark as watermark.
 
+## Transcripts — ElevenLabs
+
+Transcribe speech with ElevenLabs Speech-to-Text (Scribe), not local whisper:
+
+```bash
+node scripts/elevenlabs-transcribe.mjs ai-video-editing/<clip>.mp4 [--language en] [--speakers]
+```
+
+It saves the raw response and word timings in `ai-video-editing/transcripts/` and imports
+them into `transcript.json`. In cloud sessions on the "Fee" environment the key for
+`api.elevenlabs.io` is added by the network proxy; locally, set `ELEVENLABS_API_KEY`.
+
 ## Skills — read these first
 
 **Invoke the relevant skill before writing or modifying compositions.** Skills encode framework-specific patterns (e.g., `window.__timelines` registration, `data-*` attribute semantics, shader-compatible CSS rules) that generic web docs don't cover, so compositions written without them break.
