@@ -10,6 +10,12 @@ All edits for this project are dropped in `ai-video-editing/`. Before starting w
 for new notes and media, apply them to the composition, and move used media into `assets/`
 when it becomes part of the video. See `ai-video-editing/README.md`.
 
+## Brand — the clear code.
+
+Every video uses the brand in `brand/BRAND.md` (from `brand/the-clear-code-brand-guide.pdf`):
+red `#AE1F14`, cream `#F2F0E0`, pink `#FFD7DE`; Source Serif 4 Black headings at -0.05em,
+Outfit body; lower-case logo ending in a full stop; `c.` lettermark as watermark.
+
 ## Skills — read these first
 
 **Invoke the relevant skill before writing or modifying compositions.** Skills encode framework-specific patterns (e.g., `window.__timelines` registration, `data-*` attribute semantics, shader-compatible CSS rules) that generic web docs don't cover, so compositions written without them break.
