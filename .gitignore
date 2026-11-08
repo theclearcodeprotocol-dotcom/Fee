@@ -12,3 +12,8 @@ references/
 *.mov
 *.MOV
 *.MP4
+
+# video-use scratch output (transcripts and EDLs are kept)
+raw/edit/verify/
+raw/edit/clips_graded/
+raw/edit/animations/*/node_modules/
