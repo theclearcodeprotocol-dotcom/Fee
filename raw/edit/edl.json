@@ -1,0 +1,110 @@
+{
+  "version": 1,
+  "sources": {
+    "take01": "/home/user/Fee/raw/take01.mp4"
+  },
+  "ranges": [
+    {
+      "source": "take01",
+      "start": 23.9,
+      "end": 26.27,
+      "beat": "HOOK/PROBLEM",
+      "quote": "The research exists for anyone to access,",
+      "output_start": 0.0,
+      "output_duration": 2.4
+    },
+    {
+      "source": "take01",
+      "start": 26.56,
+      "end": 28.51,
+      "beat": "HOOK/PROBLEM",
+      "quote": "but it can be stuck behind paywalls,",
+      "output_start": 2.4,
+      "output_duration": 1.967
+    },
+    {
+      "source": "take01",
+      "start": 28.86,
+      "end": 30.11,
+      "beat": "HOOK/PROBLEM",
+      "quote": "filled with medical jargon,",
+      "output_start": 4.367,
+      "output_duration": 1.267
+    },
+    {
+      "source": "take01",
+      "start": 30.3,
+      "end": 33.19,
+      "beat": "HOOK/PROBLEM",
+      "quote": "and drowned out by people wanting to sell something.",
+      "output_start": 5.633,
+      "output_duration": 2.9
+    },
+    {
+      "source": "take01",
+      "start": 0.32,
+      "end": 13.53,
+      "beat": "WHO IT'S FOR",
+      "quote": "If you work with skin every day, then Clear Evidence was built for you. It was built for the skin specialists that work with different skin concerns from aging to acne. Skin specialists that want their education and skincare advice to be based on clinical evidence",
+      "output_start": 8.533,
+      "output_duration": 13.233
+    },
+    {
+      "source": "take01",
+      "start": 13.8,
+      "end": 19.07,
+      "beat": "WHO IT'S FOR",
+      "quote": "and not brand bias. But they don't have time to read any academic journals, but they want what's in them,",
+      "output_start": 21.767,
+      "output_duration": 5.3
+    },
+    {
+      "source": "take01",
+      "start": 19.2,
+      "end": 23.49,
+      "beat": "WHO IT'S FOR",
+      "quote": "and want your clients to trust your advice to stand out from a crowded industry.",
+      "output_start": 27.067,
+      "output_duration": 4.3
+    },
+    {
+      "source": "take01",
+      "start": 33.2,
+      "end": 34.75,
+      "beat": "WHAT MEMBERS GET",
+      "quote": "Every month, members get",
+      "output_start": 31.367,
+      "output_duration": 1.567
+    },
+    {
+      "source": "take01",
+      "start": 35.08,
+      "end": 35.81,
+      "beat": "WHAT MEMBERS GET",
+      "quote": "research",
+      "output_start": 32.933,
+      "output_duration": 0.733
+    },
+    {
+      "source": "take01",
+      "start": 36.12,
+      "end": 47.41,
+      "beat": "WHAT MEMBERS GET",
+      "quote": "in plain English. Each paper only takes five minutes to read, is graded by how strong the evidence is, and ends with three key takeaways that you can use in the clinic the same day.",
+      "output_start": 33.667,
+      "output_duration": 11.3
+    },
+    {
+      "source": "take01",
+      "start": 47.64,
+      "end": 52.41,
+      "beat": "CTA",
+      "quote": "To continue your education without the overwhelm, then the link is in our bio to join us.",
+      "output_start": 44.967,
+      "output_duration": 4.8
+    }
+  ],
+  "grade": "eq=contrast=1.04:saturation=1.05:gamma=1.02,colorbalance=rm=0.03:bm=-0.03:rh=0.02:bh=-0.02",
+  "overlays": [],
+  "total_duration_s": 49.767
+}

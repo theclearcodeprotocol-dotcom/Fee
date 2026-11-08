@@ -25,6 +25,31 @@ video override them.
    adds punch-ins, captions, pop-ups, SFX and optional music, then renders.
 3. Always show the plan (takes, hook, graphics map) and wait for the user's OK before cutting.
 
+### Pipeline (proven on clear-evidence-01)
+
+```bash
+python helpers/transcribe.py raw/<clip>.mp4 --language en   # video-use, cached in raw/edit/transcripts/
+python3 scripts/build_edl.py        # sections + gap removal -> raw/edit/edl.json (edit SECTIONS per video)
+~/Developer/video-use/.venv/bin/python scripts/cut_segments.py  # full-res cut -> assets/footage/<clip>-cut.mp4
+python3 scripts/retime_words.py     # word timings on the cut's timeline (probed segment lengths)
+python3 scripts/build_comp.py       # edits/<name>/index.html: framing, captions, pop-ups, SFX
+cd edits/<name> && npx hyperframes check && npx hyperframes snapshot --at ...
+npx hyperframes render . -o ../../exports/<name>_render.mp4
+python3 scripts/qc_cuts.py exports/<name>_render.mp4   # every-cut strips, pop check, loudness
+```
+
+- Cut at **full source resolution** (video-use's `render.py` downsizes to 1080 wide, which
+  softens punch-ins); HyperFrames scales to 1080x1920 at render.
+- iPhone footage is often **HDR (HLG)**: tonemap to SDR during the cut (video-use's
+  `TONEMAP_CHAIN`).
+- Load GSAP from the **local copy** `assets/vendor/gsap-3.15.0.min.js` — the render browser
+  can't reach the CDN.
+- **Burned-in text** in the source (titles typed in the phone's camera app): scan a 1 fps
+  sheet first and cover it with a headline pill placed over it (`.cover`) for as long as it
+  shows.
+- Place the top-zone pop-ups by the **actual head position**: look at a frame at each
+  framing. Pop-ups may overlap hair, never the eyes or mouth.
+
 ## 1. Cuts and pacing
 
 - **No dead air.** Remove every pause over ~150 ms, every filler (um, uh, er, "like" used as

@@ -17,3 +17,8 @@ references/
 raw/edit/verify/
 raw/edit/clips_graded/
 raw/edit/animations/*/node_modules/
+
+# HyperFrames render scratch
+exports/work-*/
+exports/.*hf-transaction*/
+edits/*/.hyperframes/
