@@ -18,8 +18,8 @@ def jump(t):  # largest sample-to-sample step within +-15 ms of t, relative to l
 tiles = []
 for k, t in enumerate(cuts):
     f = out / f"cut{k:02d}.jpg"
-    subprocess.run(["ffmpeg", "-v", "error", "-y", "-ss", f"{t - 0.1:.3f}", "-i", str(video), "-frames:v", "5",
-                    "-vf", "scale=216:-1,tile=5x1", str(f)], check=True)
+    subprocess.run(["ffmpeg", "-v", "error", "-y", "-ss", f"{t - 0.1:.3f}", "-i", str(video), "-t", "0.2",
+                    "-vf", "fps=25,scale=216:-1,tile=5x1", "-frames:v", "1", str(f)], check=True)
     tiles.append(f)
     print(f"cut {k:02d} @ {t:6.3f}s  audio step/RMS = {jump(t):5.2f}")
 # one sheet with all cut strips stacked
