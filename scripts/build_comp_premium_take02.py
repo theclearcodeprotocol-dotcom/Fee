@@ -135,8 +135,10 @@ def seg_end(t):
 
 # full-frame premium pages over the take endings where the speaker leans toward the phone
 pages = []
-def page(word_, after, eyebrow, title, tone="cream"):
+def page(word_, after, eyebrow, title, tone="cream", from_seg_start=False):
     a = at(word_, after) - 0.03; e = seg_end(a + 0.04)
+    if from_seg_start:  # cover the whole take (lean runs through it)
+        a = next(s_["start"] for s_ in SEGS if s_["start"] <= a + 0.04 < s_["end"])
     n[0] += 1
     pops.append(f'<div id="pg{n[0]}" class="clip pop page {tone}" data-start="{a:.3f}" data-duration="{e - a:.3f}" '
                 f'data-track-index="{3 + n[0]}" data-track-kind="graphics" data-layout-allow-overlap data-layout-allow-occlusion>'
@@ -165,7 +167,7 @@ pops.append(f'<div id="pg{n[0]}" class="clip pop page red" data-start="{rs:.3f}"
 # 2 written for clinicians
 a1, _ = page("audience", R["R2"], "Written for", "a medical audience.", "red")
 pop(R["R2"], a1 - R["R2"], panel("Reason two", "Written for clinicians", cls="slim"), sound="click-soft")
-page("terminology", R["R2"], "Medical jargon", "statistics &amp;<br>terminology")
+page("terminology", R["R2"], "Medical jargon", "statistics &amp;<br>terminology", from_seg_start=True)
 # 3 it keeps moving
 mn = at("may", R["R3"] + 1)
 pop(R["R3"], mn - R["R3"] - 0.05, panel("Reason three", "It keeps moving", cls="slim"), sound="click-soft")
@@ -184,6 +186,13 @@ pop(cm - 0.05, SOL - cm - 0.4, word("commercial interest", "strike").replace('cl
 page("evidence", SOL, "Introducing", "Clear Evidence.", "red")
 pr, gr, fv, sp = at("peerreviewed", SOL), at("graded"), at("five"), at("sponsors")
 e1, _ = page("english", SOL, "Every paper", "in plain English.")
+# lean toward the camera through "peer-reviewed research" (user flagged ~0:42): full-frame page, card after it
+pr_end = next(s_["end"] for s_ in SEGS if s_["start"] <= pr < s_["end"])
+n[0] += 1
+pops.append(f'<div id="pg{n[0]}" class="clip pop page cream" data-start="{pr - 0.08:.3f}" data-duration="{pr_end - pr + 0.08:.3f}" '
+            f'data-track-index="{3 + n[0]}" data-track-kind="graphics" data-layout-allow-overlap data-layout-allow-occlusion>'
+            f'<div class="pg"><div class="pg-eyebrow">Every month, members get</div><div class="pg-title">peer-reviewed<br>research.</div></div></div>')
+pr = pr_end + 0.05
 pop(pr - 0.05, e1 - pr + 0.02, card('<span class="mark">c.</span>Monthly paper', """<div class="tx c-title">Does niacinamide fade dark spots?</div>
   <div class="tx c-line">Short answer: yes, at 4–5%.</div>"""), sound="click-soft")
 pop(gr - 0.05, fv - gr - 0.1, card("Evidence strength", f"""<div class="bars">
