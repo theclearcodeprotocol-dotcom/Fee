@@ -10,6 +10,9 @@ the clear code. brand (`brand/BRAND.md`). Base: Loren's calm structure and capti
 plus Justyn's hook techniques. These are the defaults; the user's notes for a specific
 video override them.
 
+**Premium look:** when the user asks for the premium / premium bold style, keep this
+skill's pacing, cut and hook rules and take the look from `premium-bold-style`.
+
 ## Deliverable
 
 - 1080x1920, 30 fps, H.264 MP4, saved to `exports/`.
