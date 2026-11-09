@@ -155,6 +155,13 @@ pop(pw - 0.05, th - pw - 0.05, card("Dermatology journal", """<div class="tx c-t
   <div class="tx c-row"><span class="lock"></span><span>Purchase article</span><span class="price">£30.00</span></div>"""), sound="click-soft")
 pop(th - 0.05, R["R2"] - th - 0.1, '<div class="in numeral"><span class="tx n">£30</span><span class="tx n-unit">per paper</span></div>',
     reveal="rise", sound="whoosh-short", vol=0.18)
+# lean toward the camera (hand into frame) from the end of "research" through "sits behind" (user flagged ~0:09)
+rs = at("research", R["R1"]) + 0.05
+an = next(s_["start"] for s_ in SEGS if s_["start"] <= at("an", rs) < s_["end"])
+n[0] += 1
+pops.append(f'<div id="pg{n[0]}" class="clip pop page red" data-start="{rs:.3f}" data-duration="{an - rs:.3f}" '
+            f'data-track-index="{3 + n[0]}" data-track-kind="graphics" data-layout-allow-overlap data-layout-allow-occlusion>'
+            f'<div class="pg"><div class="pg-eyebrow">Peer-reviewed research</div><div class="pg-title">sits behind<br>a paywall.</div></div></div>')
 # 2 written for clinicians
 a1, _ = page("audience", R["R2"], "Written for", "a medical audience.", "red")
 pop(R["R2"], a1 - R["R2"], panel("Reason two", "Written for clinicians", cls="slim"), sound="click-soft")
