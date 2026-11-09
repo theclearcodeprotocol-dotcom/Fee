@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1080, height=1920" />
+<script src="vendor/gsap-3.15.0.min.js"></script>
+<style>
+@font-face { font-family: "Source Serif 4"; font-weight: 900; font-style: normal; src: url("fonts/source-serif-4-latin-900-normal.woff2") format("woff2"); }
+@font-face { font-family: "Source Serif 4"; font-weight: 900; font-style: italic; src: url("fonts/source-serif-4-latin-900-italic.woff2") format("woff2"); }
+:root { --red:#ae1f14; --cream:#f2f0e0; --pink:#ffd7de; --white:#fff; --serif:"Source Serif 4", serif; --sans:"Outfit", sans-serif; }
+* { margin:0; padding:0; box-sizing:border-box; }
+html, body { width:1080px; height:1920px; overflow:hidden; background:#000; }
+#root { position:relative; width:1080px; height:1920px; overflow:hidden; }
+#cam { position:absolute; inset:0; transform-origin:35% 30%; will-change:transform, filter; }
+#footage { position:absolute; inset:0; width:1080px; height:1920px; object-fit:cover; }
+
+/* captions */
+#captions { position:absolute; inset:0; pointer-events:none; }
+.cap { position:absolute; left:0; right:0; top:1340px; text-align:center; opacity:0; visibility:hidden; }
+.pill { display:inline-block; max-width:900px; background:var(--cream); color:var(--red); font:700 52px/1.18 var(--sans);
+  padding:14px 28px 16px; border-radius:999px; box-shadow:0 6px 18px rgba(0,0,0,.18); letter-spacing:-0.01em; }
+.chip { background:var(--red); color:var(--pink); border-radius:10px; padding:0 10px 2px; margin:0 2px; }
+
+/* pop-ups: each .pop is a full-frame clip; .in is the positioned element */
+.pop { pointer-events:none; }
+.pop .in { position:absolute; left:0; right:0; margin-inline:auto; width:fit-content; top:110px; }
+.pop .in.cover { top:262px; }
+/* right-hand zone beside the face (face sits upper-left in this framing) */
+.pop .in.side { left:auto; right:34px; margin:0; top:430px; max-width:520px; }
+.side.card { width:520px !important; padding:24px 28px; }
+.side.bignum { font-size:170px; top:470px; }
+.side.stamp { font-size:66px; top:520px; }
+.bignum.top4 { font-size:130px; top:110px; }
+.reason { display:flex; align-items:center; gap:18px; background:var(--red); color:var(--cream); border-radius:999px;
+  padding:10px 34px 12px 12px; box-shadow:0 12px 30px rgba(0,0,0,.25); white-space:nowrap; }
+.reason .num { display:grid; place-items:center; width:92px; height:92px; border-radius:50%; background:var(--pink); color:var(--red);
+  font:900 70px/1 var(--serif); padding-bottom:8px; }
+.reason .lab { font:900 52px/1 var(--serif); letter-spacing:-0.04em; }  /* sits over the source's burned-in title (y≈300-345) */
+.headline { background:var(--red); color:var(--cream); border-radius:22px; padding:22px 40px 26px; text-align:center; white-space:nowrap;
+  box-shadow:0 14px 34px rgba(0,0,0,.25); }
+.h-main { font:900 76px/1.02 var(--serif); letter-spacing:-0.05em; }
+.h-sub { font:600 36px/1.2 var(--sans); color:var(--pink); margin-top:8px; }
+.card { background:var(--cream); color:var(--red); border:8px solid var(--cream); border-radius:28px;
+  box-shadow:0 18px 40px rgba(0,0,0,.28); padding:30px 36px; max-width:840px; }
+.paywall { rotate:-2deg; width:820px !important; }
+.pw-journal { font:600 28px var(--sans); letter-spacing:.08em; text-transform:uppercase; opacity:.75; }
+.pw-title { font:900 42px/1.08 var(--serif); letter-spacing:-0.03em; margin:10px 0 18px; }
+.pw-lock { display:flex; align-items:center; gap:16px; background:var(--red); color:var(--cream); border-radius:14px;
+  padding:14px 22px; font:500 32px var(--sans); }
+.pw-lock b { font-weight:800; color:var(--pink); }
+.lock { width:30px; height:24px; background:var(--pink); border-radius:5px; position:relative; margin-top:12px; }
+.lock::before { content:""; position:absolute; left:5px; top:-16px; width:20px; height:20px; border:5px solid var(--pink);
+  border-bottom:none; border-radius:12px 12px 0 0; box-sizing:border-box; }
+.jargon { rotate:2deg; width:800px !important; }
+.j-label { display:inline-block; background:var(--red); color:var(--pink); font:700 30px var(--sans); border-radius:999px; padding:6px 20px; margin-bottom:14px; }
+.jargon p { font:400 31px/1.35 var(--serif); color:#5a3a33; filter:blur(1.2px); }
+.jargon mark { background:var(--pink); color:var(--red); filter:none; }
+.stamp { top:150px; font:800 92px/1 var(--sans); text-transform:uppercase; color:var(--red); border:9px solid var(--red);
+  border-radius:16px; padding:14px 30px 18px; white-space:nowrap; background:rgba(242,240,224,.82); rotate:-8deg; letter-spacing:.02em; }
+.list.two { display:flex; align-items:center; justify-content:center; gap:28px; width:auto; padding:24px 40px; }
+.list.two .row { font:900 64px var(--serif); letter-spacing:-0.04em; opacity:0; }
+.list.two .arrow { font:700 56px var(--sans); }
+.list.three { width:780px !important; }
+.l-head { display:inline-block; background:var(--red); color:var(--pink); font:700 30px var(--sans); border-radius:999px; padding:8px 22px; margin-bottom:16px; }
+.list.three .row { font:600 36px/1.5 var(--sans); opacity:0; }
+.stack { width:760px !important; height:360px; }
+.jr { position:absolute; width:236px; height:320px; background:var(--cream); border:6px solid var(--cream); border-radius:18px;
+  box-shadow:0 14px 30px rgba(0,0,0,.25); display:flex; align-items:flex-end; padding:22px; }
+.jr::before { content:""; position:absolute; left:0; right:0; top:0; height:120px; background:var(--red); border-radius:12px 12px 0 0; }
+.jr span { font:900 28px/1.05 var(--serif); letter-spacing:-0.03em; color:var(--red); }
+.j1 { left:0; top:30px; rotate:-6deg; } .j2 { left:262px; top:0; rotate:1deg; } .j3 { left:524px; top:30px; rotate:6deg; }
+.accent { top:150px; font:900 italic 150px/1 var(--serif); color:var(--pink); letter-spacing:-0.04em; white-space:nowrap;
+  text-shadow:0 8px 26px rgba(0,0,0,.35); }
+.sp { position:absolute; color:var(--cream); font-style:normal; font-size:52px; }
+.s1 { left:-60px; top:-10px; } .s2 { right:-56px; top:20px; font-size:40px; } .s3 { right:30px; bottom:-40px; font-size:34px; }
+.paper { rotate:-1.5deg; width:840px !important; }
+.pp-head { display:flex; align-items:center; gap:14px; font:600 28px var(--sans); letter-spacing:.04em; }
+.pp-mark { display:inline-grid; place-items:center; width:52px; height:52px; border-radius:50%; background:var(--red); color:var(--pink);
+  font:900 34px/1 var(--serif); padding-bottom:6px; }
+.pp-title { font:900 50px/1.04 var(--serif); letter-spacing:-0.04em; margin:14px 0 12px; }
+.pp-line { font:400 30px/1.35 var(--sans); color:#5a3a33; }
+.bignum { top:120px; font:900 210px/1 var(--serif); letter-spacing:-0.05em; color:var(--red); -webkit-text-stroke:20px var(--cream);
+  paint-order:stroke fill; rotate:-3deg; white-space:nowrap; filter:drop-shadow(0 10px 24px rgba(0,0,0,.3)); }
+.grade { width:780px !important; }
+.g-label { font:700 30px var(--sans); text-transform:uppercase; letter-spacing:.08em; margin-bottom:16px; }
+.g-bars { display:flex; gap:14px; }
+.g { flex:1; text-align:center; font:600 32px var(--sans); padding:18px 0; border-radius:14px; border:4px solid rgba(174,31,20,.3); color:rgba(174,31,20,.5); }
+.g.on.lit { background:var(--red); color:var(--pink); border-color:var(--red); }
+.bio { top:150px; display:flex; align-items:center; gap:18px; background:var(--red); color:var(--cream); font:800 64px var(--sans);
+  border-radius:999px; padding:18px 44px 22px; box-shadow:0 14px 34px rgba(0,0,0,.25); white-space:nowrap; }
+.arrow-up { color:var(--pink); font-size:70px; }
+.side.bignum { font-size:140px; top:470px; right:44px; }
+.side.stamp { font-size:50px; top:520px; right:44px; padding:10px 22px 14px; border-width:7px; }
+.headline { white-space:normal; max-width:980px; }
+.headline .h-main { font-size:68px; }
+.side.card .pw-title, .side.card .pp-title { font-size:40px; }
+.side.card .g { font-size:28px; }
+</style>
+</head>
+<body>
+<div id="root" data-composition-id="main" data-start="0" data-duration="57.667" data-width="1080" data-height="1920">
+  <div id="cam">
+    <video id="footage" class="clip" src="footage/take02-cut.mp4" data-start="0" data-duration="57.667" data-track-index="0"
+      playsinline data-has-audio="true"></video>
+  </div>
+  <div id="p1" class="clip pop " data-start="0.000" data-duration="4.710" data-track-index="3" data-track-kind="graphics" data-layout-allow-overlap><div class="in headline"><div class="h-main">Skincare evidence isn't easy to find.</div></div></div><div id="p2" class="clip pop " data-start="4.710" data-duration="1.223" data-track-index="4" data-track-kind="graphics" data-layout-allow-overlap><div class="in bignum top4">4 reasons</div></div><div id="p3" class="clip pop " data-start="6.033" data-duration="9.384" data-track-index="5" data-track-kind="graphics" data-layout-allow-overlap><div class="in reason"><span class="num">1</span><span class="lab">Paywalls</span></div></div><div id="p4" class="clip pop " data-start="15.467" data-duration="5.950" data-track-index="6" data-track-kind="graphics" data-layout-allow-overlap><div class="in reason"><span class="num">2</span><span class="lab">Written for clinicians</span></div></div><div id="p5" class="clip pop " data-start="21.467" data-duration="5.550" data-track-index="7" data-track-kind="graphics" data-layout-allow-overlap><div class="in reason"><span class="num">3</span><span class="lab">It keeps moving</span></div></div><div id="p6" class="clip pop " data-start="27.067" data-duration="9.883" data-track-index="8" data-track-kind="graphics" data-layout-allow-overlap><div class="in reason"><span class="num">4</span><span class="lab">Commercial interest</span></div></div><div id="p7" class="clip pop " data-start="10.983" data-duration="2.874" data-track-index="9" data-track-kind="graphics" data-layout-allow-overlap><div class="in side card paywall">
+  <div class="pw-journal">British Journal of Dermatology</div>
+  <div class="pw-title">Niacinamide and hyper&shy;pigmentation: a trial</div>
+  <div class="pw-lock"><span class="lock"></span><span>Purchase <b>£30.00</b></span></div></div></div><div id="p8" class="clip pop " data-start="13.957" data-duration="1.360" data-track-index="10" data-track-kind="graphics" data-layout-allow-overlap><div class="in side bignum">£30</div></div><div id="p9" class="clip pop " data-start="17.917" data-duration="3.400" data-track-index="11" data-track-kind="graphics" data-layout-allow-overlap><div class="in side card jargon">
+  <div class="j-label">statistics &amp; terminology</div>
+  <p data-layout-ignore>…transepidermal water loss attenuated via filaggrin upregulation; heterogeneity
+  (I² = 74%) precluded pooled <mark>odds ratio</mark> estimation…</p></div></div><div id="p10" class="clip pop " data-start="26.123" data-duration="0.794" data-track-index="12" data-track-kind="graphics" data-layout-allow-overlap><div class="in side stamp">outdated</div></div><div id="p11" class="clip pop " data-start="28.437" data-duration="4.120" data-track-index="13" data-track-kind="graphics" data-layout-allow-overlap><div class="in side card list three">
+  <div class="l-head">where we learn</div>
+  <div class="row" data-at="28.487">brands</div>
+  <div class="row" data-at="29.273">distributors</div>
+  <div class="row" data-at="30.573">social media</div></div></div><div id="p12" class="clip pop " data-start="34.217" data-duration="2.633" data-track-index="14" data-track-kind="graphics" data-layout-allow-overlap><div class="in side stamp">sponsored</div></div><div id="p13" class="clip pop " data-start="38.750" data-duration="2.400" data-track-index="15" data-track-kind="graphics" data-layout-allow-overlap><div class="in headline"><div class="h-main">Clear Evidence</div><div class="h-sub">made for skin specialists</div></div></div><div id="p14" class="clip pop " data-start="41.337" data-duration="4.286" data-track-index="16" data-track-kind="graphics" data-layout-allow-overlap><div class="in side card paper">
+  <div class="pp-head"><span class="pp-mark">c.</span><span>Monthly paper</span></div>
+  <div class="pp-title">Does niacinamide fade dark spots?</div>
+  <div class="pp-line">Short answer: yes, at 4–5%.</div></div></div><div id="p15" class="clip pop " data-start="45.723" data-duration="3.460" data-track-index="17" data-track-kind="graphics" data-layout-allow-overlap><div class="in side card grade">
+  <div class="g-label">Evidence strength</div>
+  <div class="g-bars"><div class="g on" data-at="46.123">strong</div><div class="g">moderate</div><div class="g">weak</div></div></div></div><div id="p16" class="clip pop " data-start="49.283" data-duration="1.437" data-track-index="18" data-track-kind="graphics" data-layout-allow-overlap><div class="in side bignum">5 min</div></div><div id="p17" class="clip pop " data-start="50.870" data-duration="1.680" data-track-index="19" data-track-kind="graphics" data-layout-allow-overlap><div class="in side stamp">no brand deals</div></div><div id="p18" class="clip pop " data-start="55.050" data-duration="2.597" data-track-index="20" data-track-kind="graphics" data-layout-allow-overlap><div class="in bio"><span class="arrow-up">↑</span>link in bio</div></div>
+  <div id="captions" class="clip" data-start="0" data-duration="57.667" data-track-index="1" data-track-kind="captions" data-layout-allow-overlap>
+    <div class="cap" id="cap0"><span class="pill">The skincare industry isn&#x27;t designed</span></div><div class="cap" id="cap1"><span class="pill">to make evidence easy to</span></div><div class="cap" id="cap2"><span class="pill">find, and here&#x27;s <span class="chip">four</span> reasons</span></div><div class="cap" id="cap3"><span class="pill">why.</span></div><div class="cap" id="cap4"><span class="pill"><span class="chip">Paywalls.</span></span></div><div class="cap" id="cap5"><span class="pill">Most</span></div><div class="cap" id="cap6"><span class="pill">peer-reviewed research</span></div><div class="cap" id="cap7"><span class="pill">sits behind</span></div><div class="cap" id="cap8"><span class="pill">an academic <span class="chip">paywall,</span></span></div><div class="cap" id="cap9"><span class="pill">with one paper</span></div><div class="cap" id="cap10"><span class="pill">costing</span></div><div class="cap" id="cap11"><span class="pill">at least <span class="chip">thirty pounds</span> to</span></div><div class="cap" id="cap12"><span class="pill">read.</span></div><div class="cap" id="cap13"><span class="pill">And when you do get</span></div><div class="cap" id="cap14"><span class="pill">access,</span></div><div class="cap" id="cap15"><span class="pill">it&#x27;s written</span></div><div class="cap" id="cap16"><span class="pill">for a <span class="chip">medical</span> audience.</span></div><div class="cap" id="cap17"><span class="pill">It&#x27;s full of <span class="chip">statistics</span> and</span></div><div class="cap" id="cap18"><span class="pill">terminology</span></div><div class="cap" id="cap19"><span class="pill">And the evidence just keeps</span></div><div class="cap" id="cap20"><span class="pill">on <span class="chip">moving.</span></span></div><div class="cap" id="cap21"><span class="pill">So what was best practice</span></div><div class="cap" id="cap22"><span class="pill">when you first trained</span></div><div class="cap" id="cap23"><span class="pill">may not be now.</span></div><div class="cap" id="cap24"><span class="pill">So most of us rely</span></div><div class="cap" id="cap25"><span class="pill">on <span class="chip">brands,</span></span></div><div class="cap" id="cap26"><span class="pill"><span class="chip">distributors,</span></span></div><div class="cap" id="cap27"><span class="pill">and <span class="chip">social media</span> for our</span></div><div class="cap" id="cap28"><span class="pill">information.</span></div><div class="cap" id="cap29"><span class="pill">But every one of them</span></div><div class="cap" id="cap30"><span class="pill">has a <span class="chip">commercial</span> interest in</span></div><div class="cap" id="cap31"><span class="pill">what they recommend.</span></div><div class="cap" id="cap32"><span class="pill">this is why</span></div><div class="cap" id="cap33"><span class="pill">I created <span class="chip">Clear Evidence.</span></span></div><div class="cap" id="cap34"><span class="pill">Every month,</span></div><div class="cap" id="cap35"><span class="pill">members get peer-reviewed research</span></div><div class="cap" id="cap36"><span class="pill">that&#x27;s translated into <span class="chip">plain English</span></span></div><div class="cap" id="cap37"><span class="pill">and then <span class="chip">graded</span> by how</span></div><div class="cap" id="cap38"><span class="pill">strong the evidence is.</span></div><div class="cap" id="cap39"><span class="pill">And each paper takes five</span></div><div class="cap" id="cap40"><span class="pill">minutes to read,</span></div><div class="cap" id="cap41"><span class="pill">with no <span class="chip">sponsors</span> and no</span></div><div class="cap" id="cap42"><span class="pill">brand deals.</span></div><div class="cap" id="cap43"><span class="pill">So if you wanna receive</span></div><div class="cap" id="cap44"><span class="pill">the evidence without any of</span></div><div class="cap" id="cap45"><span class="pill">these barriers,</span></div><div class="cap" id="cap46"><span class="pill">then the link is in</span></div><div class="cap" id="cap47"><span class="pill">our <span class="chip">bio</span> to join us</span></div>
+  </div>
+  <audio id="sfx0" class="clip" src="sfx/pop.mp3" data-start="4.624" data-duration="0.720" data-volume="0.35" data-track-index="40"></audio><audio id="sfx1" class="clip" src="sfx/pop.mp3" data-start="5.947" data-duration="0.720" data-volume="0.35" data-track-index="41"></audio><audio id="sfx2" class="clip" src="sfx/pop.mp3" data-start="15.381" data-duration="0.720" data-volume="0.35" data-track-index="42"></audio><audio id="sfx3" class="clip" src="sfx/pop.mp3" data-start="21.381" data-duration="0.720" data-volume="0.35" data-track-index="43"></audio><audio id="sfx4" class="clip" src="sfx/pop.mp3" data-start="26.981" data-duration="0.720" data-volume="0.35" data-track-index="44"></audio><audio id="sfx5" class="clip" src="sfx/click.mp3" data-start="10.944" data-duration="0.370" data-volume="0.35" data-track-index="45"></audio><audio id="sfx6" class="clip" src="sfx/pop.mp3" data-start="13.871" data-duration="0.720" data-volume="0.35" data-track-index="46"></audio><audio id="sfx7" class="clip" src="sfx/pop.mp3" data-start="17.831" data-duration="0.720" data-volume="0.35" data-track-index="47"></audio><audio id="sfx8" class="clip" src="sfx/impact-bass-1.mp3" data-start="26.083" data-duration="2.120" data-volume="0.3" data-track-index="48"></audio><audio id="sfx9" class="clip" src="sfx/pop.mp3" data-start="28.351" data-duration="0.720" data-volume="0.35" data-track-index="49"></audio><audio id="sfx10" class="clip" src="sfx/impact-bass-1.mp3" data-start="34.177" data-duration="2.120" data-volume="0.3" data-track-index="50"></audio><audio id="sfx11" class="clip" src="sfx/pop.mp3" data-start="38.664" data-duration="0.720" data-volume="0.35" data-track-index="51"></audio><audio id="sfx12" class="clip" src="sfx/pop.mp3" data-start="41.251" data-duration="0.720" data-volume="0.35" data-track-index="52"></audio><audio id="sfx13" class="clip" src="sfx/click.mp3" data-start="45.684" data-duration="0.370" data-volume="0.35" data-track-index="53"></audio><audio id="sfx14" class="clip" src="sfx/pop.mp3" data-start="49.197" data-duration="0.720" data-volume="0.35" data-track-index="54"></audio><audio id="sfx15" class="clip" src="sfx/impact-bass-1.mp3" data-start="50.830" data-duration="2.120" data-volume="0.3" data-track-index="55"></audio><audio id="sfx16" class="clip" src="sfx/pop.mp3" data-start="54.964" data-duration="0.720" data-volume="0.35" data-track-index="56"></audio><audio id="sfx17" class="clip" src="sfx/whoosh.mp3" data-start="5.884" data-duration="0.570" data-volume="0.4" data-track-index="57"></audio><audio id="sfx18" class="clip" src="sfx/whoosh-short.mp3" data-start="36.851" data-duration="0.570" data-volume="0.4" data-track-index="58"></audio>
+</div>
+<script>
+window.__timelines = window.__timelines || {};
+const tl = gsap.timeline({ paused: true });
+tl.set("#cam", { scale: 1, y: 0, filter: "blur(0px)" }, 0);
+function whip(t, sc) {
+  tl.to("#cam", { scale: "+=0.22", y: -140, filter: "blur(22px)", duration: 0.13, ease: "power2.in" }, t - 0.13);
+  tl.fromTo("#cam", { scale: sc + 0.22, y: 140, filter: "blur(22px)" }, { scale: sc, y: 0, filter: "blur(0px)", duration: 0.16, ease: "power2.out", immediateRender: false }, t);
+}
+function cap(sel, s, e) {
+  tl.set(sel, { visibility: "visible" }, s);
+  tl.fromTo(sel, { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.12, ease: "power2.out", immediateRender: false }, s);
+  tl.to(sel, { opacity: 0, duration: 0.08, ease: "power2.in" }, e - 0.08);
+  tl.set(sel, { opacity: 0, visibility: "hidden" }, e);
+}
+tl.set("#cam", { scale: 1.0 }, 0.000);
+whip(6.033, 1.1);
+tl.set("#cam", { scale: 1.2 }, 6.900);
+tl.set("#cam", { scale: 1.1 }, 9.000);
+tl.set("#cam", { scale: 1.0 }, 10.133);
+tl.set("#cam", { scale: 1.2 }, 11.600);
+tl.set("#cam", { scale: 1.0 }, 13.467);
+tl.set("#cam", { scale: 1.1 }, 15.467);
+tl.set("#cam", { scale: 1.2 }, 19.233);
+tl.set("#cam", { scale: 1.1 }, 21.467);
+tl.set("#cam", { scale: 1.0 }, 23.600);
+tl.set("#cam", { scale: 1.2 }, 26.133);
+tl.set("#cam", { scale: 1.0 }, 27.067);
+tl.set("#cam", { scale: 1.1 }, 29.233);
+tl.set("#cam", { scale: 1.2 }, 32.667);
+whip(37.000, 1.1);
+tl.set("#cam", { scale: 1.0 }, 37.900);
+tl.set("#cam", { scale: 1.2 }, 39.967);
+tl.set("#cam", { scale: 1.0 }, 42.967);
+tl.set("#cam", { scale: 1.1 }, 45.433);
+tl.set("#cam", { scale: 1.2 }, 48.133);
+tl.set("#cam", { scale: 1.1 }, 50.500);
+tl.set("#cam", { scale: 1.0 }, 52.700);
+tl.to("#cam", { scale: 1.26, duration: 0.15, ease: "power3.out" }, 34.267);
+tl.to("#p1 .in", { opacity: 0, duration: 0.18, ease: "power2.in" }, 4.510);
+tl.fromTo("#p2 .in", { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(3)", immediateRender: false }, 4.710);
+tl.to("#p2 .in", { opacity: 0, duration: 0.18, ease: "power2.in" }, 5.733);
+tl.fromTo("#p3 .in", { opacity: 0, y: 40, scale: 0.92 }, { opacity: 1, y: 0, scale: 1, duration: 0.32, ease: "back.out(2)", immediateRender: false }, 6.033);
+tl.to("#p3 .in", { opacity: 0, duration: 0.18, ease: "power2.in" }, 15.217);
+tl.fromTo("#p4 .in", { opacity: 0, y: 40, scale: 0.92 }, { opacity: 1, y: 0, scale: 1, duration: 0.32, ease: "back.out(2)", immediateRender: false }, 15.467);
+tl.to("#p4 .in", { opacity: 0, duration: 0.18, ease: "power2.in" }, 21.217);
+tl.fromTo("#p5 .in", { opacity: 0, y: 40, scale: 0.92 }, { opacity: 1, y: 0, scale: 1, duration: 0.32, ease: "back.out(2)", immediateRender: false }, 21.467);
+tl.to("#p5 .in", { opacity: 0, duration: 0.18, ease: "power2.in" }, 26.817);
+tl.fromTo("#p6 .in", { opacity: 0, y: 40, scale: 0.92 }, { opacity: 1, y: 0, scale: 1, duration: 0.32, ease: "back.out(2)", immediateRender: false }, 27.067);
+tl.to("#p6 .in", { opacity: 0, duration: 0.18, ease: "power2.in" }, 36.750);
+tl.fromTo("#p7 .in", { opacity: 0, y: 40, scale: 0.92 }, { opacity: 1, y: 0, scale: 1, duration: 0.32, ease: "back.out(2)", immediateRender: false }, 10.983);
+tl.to("#p7 .in", { opacity: 0, duration: 0.18, ease: "power2.in" }, 13.657);
+tl.fromTo("#p8 .in", { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(3)", immediateRender: false }, 13.957);
+tl.to("#p8 .in", { opacity: 0, duration: 0.18, ease: "power2.in" }, 15.117);
+tl.fromTo("#p9 .in", { opacity: 0, y: 40, scale: 0.92 }, { opacity: 1, y: 0, scale: 1, duration: 0.32, ease: "back.out(2)", immediateRender: false }, 17.917);
+tl.to("#p9 .in", { opacity: 0, duration: 0.18, ease: "power2.in" }, 21.117);
+tl.fromTo("#p10 .in", { opacity: 0, scale: 1.6 }, { opacity: 1, scale: 1, duration: 0.12, ease: "power4.in", immediateRender: false }, 26.123);
+tl.to("#p10 .in", { opacity: 0, duration: 0.18, ease: "power2.in" }, 26.717);
+tl.fromTo("#p11 .in", { opacity: 0, y: 40, scale: 0.92 }, { opacity: 1, y: 0, scale: 1, duration: 0.32, ease: "back.out(2)", immediateRender: false }, 28.437);
+tl.to("#p11 .in", { opacity: 0, duration: 0.18, ease: "power2.in" }, 32.357);
+tl.fromTo("#p12 .in", { opacity: 0, scale: 1.6 }, { opacity: 1, scale: 1, duration: 0.12, ease: "power4.in", immediateRender: false }, 34.217);
+tl.to("#p12 .in", { opacity: 0, duration: 0.18, ease: "power2.in" }, 36.650);
+tl.fromTo("#p13 .in", { opacity: 0, y: 40, scale: 0.92 }, { opacity: 1, y: 0, scale: 1, duration: 0.32, ease: "back.out(2)", immediateRender: false }, 38.750);
+tl.to("#p13 .in", { opacity: 0, duration: 0.18, ease: "power2.in" }, 40.950);
+tl.fromTo("#p14 .in", { opacity: 0, y: 40, scale: 0.92 }, { opacity: 1, y: 0, scale: 1, duration: 0.32, ease: "back.out(2)", immediateRender: false }, 41.337);
+tl.to("#p14 .in", { opacity: 0, duration: 0.18, ease: "power2.in" }, 45.423);
+tl.fromTo("#p15 .in", { opacity: 0, y: 40, scale: 0.92 }, { opacity: 1, y: 0, scale: 1, duration: 0.32, ease: "back.out(2)", immediateRender: false }, 45.723);
+tl.to("#p15 .in", { opacity: 0, duration: 0.18, ease: "power2.in" }, 48.983);
+tl.fromTo("#p16 .in", { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(3)", immediateRender: false }, 49.283);
+tl.to("#p16 .in", { opacity: 0, duration: 0.18, ease: "power2.in" }, 50.520);
+tl.fromTo("#p17 .in", { opacity: 0, scale: 1.6 }, { opacity: 1, scale: 1, duration: 0.12, ease: "power4.in", immediateRender: false }, 50.870);
+tl.to("#p17 .in", { opacity: 0, duration: 0.18, ease: "power2.in" }, 52.350);
+tl.fromTo("#p18 .in", { opacity: 0, y: 40, scale: 0.92 }, { opacity: 1, y: 0, scale: 1, duration: 0.32, ease: "back.out(2)", immediateRender: false }, 55.050);
+tl.to("#p18 .in", { opacity: 0, duration: 0.18, ease: "power2.in" }, 57.447);
+// staged reveals inside cards
+document.querySelectorAll("[data-at]").forEach((el) => {
+  const t = parseFloat(el.dataset.at);
+  if (el.classList.contains("g")) tl.set(el, { className: "g on lit" }, t);
+  else tl.fromTo(el, { opacity: 0, x: -24 }, { opacity: 1, x: 0, duration: 0.25, ease: "power2.out", immediateRender: false }, t);
+});
+document.querySelectorAll(".sp").forEach((el, i) => {
+  const host = el.closest(".pop"); const s = parseFloat(host.dataset.start);
+  tl.fromTo(el, { scale: 0.3, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.3, ease: "back.out(3)", immediateRender: false }, s + 0.1 + (i % 3) * 0.12);
+});
+cap("#cap0", 0.100, 2.170);
+cap("#cap1", 2.170, 3.750);
+cap("#cap2", 3.750, 5.650);
+cap("#cap3", 5.650, 6.023);
+cap("#cap4", 6.023, 6.890);
+cap("#cap5", 6.890, 7.310);
+cap("#cap6", 7.310, 8.990);
+cap("#cap7", 8.990, 10.123);
+cap("#cap8", 10.123, 11.590);
+cap("#cap9", 11.590, 12.750);
+cap("#cap10", 12.750, 13.457);
+cap("#cap11", 13.457, 15.017);
+cap("#cap12", 15.017, 15.457);
+cap("#cap13", 15.457, 16.277);
+cap("#cap14", 16.277, 16.897);
+cap("#cap15", 16.897, 17.637);
+cap("#cap16", 17.637, 19.223);
+cap("#cap17", 19.223, 20.563);
+cap("#cap18", 20.563, 21.457);
+cap("#cap19", 21.457, 22.737);
+cap("#cap20", 22.737, 23.590);
+cap("#cap21", 23.590, 24.810);
+cap("#cap22", 24.810, 26.123);
+cap("#cap23", 26.123, 27.057);
+cap("#cap24", 27.057, 28.237);
+cap("#cap25", 28.237, 29.223);
+cap("#cap26", 29.223, 30.243);
+cap("#cap27", 30.243, 31.763);
+cap("#cap28", 31.763, 32.657);
+cap("#cap29", 32.657, 33.717);
+cap("#cap30", 33.717, 35.817);
+cap("#cap31", 35.817, 36.990);
+cap("#cap32", 36.990, 37.890);
+cap("#cap33", 37.890, 39.957);
+cap("#cap34", 39.957, 40.697);
+cap("#cap35", 40.697, 42.957);
+cap("#cap36", 42.957, 45.423);
+cap("#cap37", 45.423, 46.803);
+cap("#cap38", 46.803, 48.123);
+cap("#cap39", 48.123, 49.583);
+cap("#cap40", 49.583, 50.490);
+cap("#cap41", 50.490, 51.911);
+cap("#cap42", 51.911, 52.690);
+cap("#cap43", 52.690, 53.650);
+cap("#cap44", 53.650, 54.850);
+cap("#cap45", 54.850, 55.630);
+cap("#cap46", 55.630, 56.450);
+cap("#cap47", 56.450, 57.580);
+window.__timelines["main"] = tl;
+tl.seek(0);
+</script>
+</body>
+</html>

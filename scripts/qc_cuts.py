@@ -1,10 +1,11 @@
 """QC a render at every cut: 5-frame strip (-0.1..+0.1 s) + a 0.3 s waveform around the cut,
 plus loudness/true peak and the biggest sample-to-sample jump near each cut (audio pop check).
-Usage: python3 scripts/qc_cuts.py exports/<file>.mp4"""
+Usage: python3 scripts/qc_cuts.py exports/<file>.mp4 <clip>"""
 import json, subprocess, sys, array
 from pathlib import Path
-video = Path(sys.argv[1]); out = Path("raw/edit/verify/qc"); out.mkdir(parents=True, exist_ok=True)
-segs = json.load(open("assets/footage/take01-cut.words.json"))["segments"]
+video = Path(sys.argv[1]); CLIP = sys.argv[2] if len(sys.argv) > 2 else "take01"
+out = Path(f"raw/edit/verify/qc/{CLIP}"); out.mkdir(parents=True, exist_ok=True)
+segs = json.load(open(f"assets/footage/{CLIP}-cut.words.json"))["segments"]
 cuts = [s["start"] for s in segs[1:]]
 sr = 48000
 pcm = subprocess.run(["ffmpeg", "-v", "error", "-i", str(video), "-ac", "1", "-ar", str(sr), "-f", "s16le", "-"],

@@ -1,0 +1,1292 @@
+{
+ "segments": [
+  {
+   "i": 0,
+   "start": 0.0,
+   "end": 6.033,
+   "beat": "HOOK"
+  },
+  {
+   "i": 1,
+   "start": 6.033,
+   "end": 6.9,
+   "beat": "R1 PAYWALLS"
+  },
+  {
+   "i": 2,
+   "start": 6.9,
+   "end": 9.0,
+   "beat": "R1 PAYWALLS"
+  },
+  {
+   "i": 3,
+   "start": 9.0,
+   "end": 10.133,
+   "beat": "R1 PAYWALLS"
+  },
+  {
+   "i": 4,
+   "start": 10.133,
+   "end": 11.6,
+   "beat": "R1 PAYWALLS"
+  },
+  {
+   "i": 5,
+   "start": 11.6,
+   "end": 13.467,
+   "beat": "R1 PAYWALLS"
+  },
+  {
+   "i": 6,
+   "start": 13.467,
+   "end": 15.467,
+   "beat": "R1 PAYWALLS"
+  },
+  {
+   "i": 7,
+   "start": 15.467,
+   "end": 19.233,
+   "beat": "R2 JARGON"
+  },
+  {
+   "i": 8,
+   "start": 19.233,
+   "end": 21.467,
+   "beat": "R2 JARGON"
+  },
+  {
+   "i": 9,
+   "start": 21.467,
+   "end": 23.6,
+   "beat": "R3 MOVING"
+  },
+  {
+   "i": 10,
+   "start": 23.6,
+   "end": 26.133,
+   "beat": "R3 MOVING"
+  },
+  {
+   "i": 11,
+   "start": 26.133,
+   "end": 27.067,
+   "beat": "R3 MOVING"
+  },
+  {
+   "i": 12,
+   "start": 27.067,
+   "end": 29.233,
+   "beat": "R4 COMMERCIAL"
+  },
+  {
+   "i": 13,
+   "start": 29.233,
+   "end": 32.667,
+   "beat": "R4 COMMERCIAL"
+  },
+  {
+   "i": 14,
+   "start": 32.667,
+   "end": 37.0,
+   "beat": "R4 COMMERCIAL"
+  },
+  {
+   "i": 15,
+   "start": 37.0,
+   "end": 37.9,
+   "beat": "SOLUTION"
+  },
+  {
+   "i": 16,
+   "start": 37.9,
+   "end": 39.967,
+   "beat": "SOLUTION"
+  },
+  {
+   "i": 17,
+   "start": 39.967,
+   "end": 42.967,
+   "beat": "SOLUTION"
+  },
+  {
+   "i": 18,
+   "start": 42.967,
+   "end": 45.433,
+   "beat": "SOLUTION"
+  },
+  {
+   "i": 19,
+   "start": 45.433,
+   "end": 48.133,
+   "beat": "SOLUTION"
+  },
+  {
+   "i": 20,
+   "start": 48.133,
+   "end": 50.5,
+   "beat": "SOLUTION"
+  },
+  {
+   "i": 21,
+   "start": 50.5,
+   "end": 52.7,
+   "beat": "SOLUTION"
+  },
+  {
+   "i": 22,
+   "start": 52.7,
+   "end": 57.667,
+   "beat": "CTA"
+  }
+ ],
+ "words": [
+  {
+   "id": "w0",
+   "text": "The",
+   "start": 0.04,
+   "end": 0.14,
+   "seg": 0
+  },
+  {
+   "id": "w1",
+   "text": "skincare",
+   "start": 0.18,
+   "end": 0.64,
+   "seg": 0
+  },
+  {
+   "id": "w2",
+   "text": "industry",
+   "start": 0.68,
+   "end": 1.2,
+   "seg": 0
+  },
+  {
+   "id": "w3",
+   "text": "isn't",
+   "start": 1.26,
+   "end": 1.48,
+   "seg": 0
+  },
+  {
+   "id": "w4",
+   "text": "designed",
+   "start": 1.52,
+   "end": 2.14,
+   "seg": 0
+  },
+  {
+   "id": "w5",
+   "text": "to",
+   "start": 2.22,
+   "end": 2.36,
+   "seg": 0
+  },
+  {
+   "id": "w6",
+   "text": "make",
+   "start": 2.42,
+   "end": 2.72,
+   "seg": 0
+  },
+  {
+   "id": "w7",
+   "text": "evidence",
+   "start": 2.78,
+   "end": 3.22,
+   "seg": 0
+  },
+  {
+   "id": "w8",
+   "text": "easy",
+   "start": 3.36,
+   "end": 3.6,
+   "seg": 0
+  },
+  {
+   "id": "w9",
+   "text": "to",
+   "start": 3.64,
+   "end": 3.74,
+   "seg": 0
+  },
+  {
+   "id": "w10",
+   "text": "find,",
+   "start": 3.8,
+   "end": 4.18,
+   "seg": 0
+  },
+  {
+   "id": "w11",
+   "text": "and",
+   "start": 4.24,
+   "end": 4.34,
+   "seg": 0
+  },
+  {
+   "id": "w12",
+   "text": "here's",
+   "start": 4.4,
+   "end": 4.7,
+   "seg": 0
+  },
+  {
+   "id": "w13",
+   "text": "four",
+   "start": 4.76,
+   "end": 4.98,
+   "seg": 0
+  },
+  {
+   "id": "w14",
+   "text": "reasons",
+   "start": 5.1,
+   "end": 5.58,
+   "seg": 0
+  },
+  {
+   "id": "w15",
+   "text": "why.",
+   "start": 5.7,
+   "end": 5.96,
+   "seg": 0
+  },
+  {
+   "id": "w16",
+   "text": "Paywalls.",
+   "start": 6.073,
+   "end": 6.813,
+   "seg": 1
+  },
+  {
+   "id": "w17",
+   "text": "Most",
+   "start": 6.94,
+   "end": 7.2,
+   "seg": 2
+  },
+  {
+   "id": "w18",
+   "text": "peer-reviewed",
+   "start": 7.36,
+   "end": 8.08,
+   "seg": 2
+  },
+  {
+   "id": "w19",
+   "text": "research",
+   "start": 8.18,
+   "end": 8.92,
+   "seg": 2
+  },
+  {
+   "id": "w20",
+   "text": "sits",
+   "start": 9.04,
+   "end": 9.34,
+   "seg": 3
+  },
+  {
+   "id": "w21",
+   "text": "behind",
+   "start": 9.38,
+   "end": 10.06,
+   "seg": 3
+  },
+  {
+   "id": "w22",
+   "text": "an",
+   "start": 10.173,
+   "end": 10.313,
+   "seg": 4
+  },
+  {
+   "id": "w23",
+   "text": "academic",
+   "start": 10.393,
+   "end": 10.893,
+   "seg": 4
+  },
+  {
+   "id": "w24",
+   "text": "paywall,",
+   "start": 11.033,
+   "end": 11.513,
+   "seg": 4
+  },
+  {
+   "id": "w25",
+   "text": "with",
+   "start": 11.64,
+   "end": 11.8,
+   "seg": 5
+  },
+  {
+   "id": "w26",
+   "text": "one",
+   "start": 11.86,
+   "end": 12.02,
+   "seg": 5
+  },
+  {
+   "id": "w27",
+   "text": "paper",
+   "start": 12.16,
+   "end": 12.6,
+   "seg": 5
+  },
+  {
+   "id": "w28",
+   "text": "costing",
+   "start": 12.8,
+   "end": 13.38,
+   "seg": 5
+  },
+  {
+   "id": "w29",
+   "text": "at",
+   "start": 13.507,
+   "end": 13.627,
+   "seg": 6
+  },
+  {
+   "id": "w30",
+   "text": "least",
+   "start": 13.687,
+   "end": 13.947,
+   "seg": 6
+  },
+  {
+   "id": "w31",
+   "text": "thirty",
+   "start": 14.007,
+   "end": 14.347,
+   "seg": 6
+  },
+  {
+   "id": "w32",
+   "text": "pounds",
+   "start": 14.487,
+   "end": 14.867,
+   "seg": 6
+  },
+  {
+   "id": "w33",
+   "text": "to",
+   "start": 14.927,
+   "end": 15.007,
+   "seg": 6
+  },
+  {
+   "id": "w34",
+   "text": "read.",
+   "start": 15.067,
+   "end": 15.367,
+   "seg": 6
+  },
+  {
+   "id": "w35",
+   "text": "And",
+   "start": 15.507,
+   "end": 15.587,
+   "seg": 7
+  },
+  {
+   "id": "w36",
+   "text": "when",
+   "start": 15.607,
+   "end": 15.727,
+   "seg": 7
+  },
+  {
+   "id": "w37",
+   "text": "you",
+   "start": 15.767,
+   "end": 15.867,
+   "seg": 7
+  },
+  {
+   "id": "w38",
+   "text": "do",
+   "start": 15.907,
+   "end": 16.067,
+   "seg": 7
+  },
+  {
+   "id": "w39",
+   "text": "get",
+   "start": 16.107,
+   "end": 16.247,
+   "seg": 7
+  },
+  {
+   "id": "w40",
+   "text": "access,",
+   "start": 16.327,
+   "end": 16.787,
+   "seg": 7
+  },
+  {
+   "id": "w41",
+   "text": "it's",
+   "start": 16.947,
+   "end": 17.127,
+   "seg": 7
+  },
+  {
+   "id": "w42",
+   "text": "written",
+   "start": 17.147,
+   "end": 17.527,
+   "seg": 7
+  },
+  {
+   "id": "w43",
+   "text": "for",
+   "start": 17.687,
+   "end": 17.827,
+   "seg": 7
+  },
+  {
+   "id": "w44",
+   "text": "a",
+   "start": 17.887,
+   "end": 17.927,
+   "seg": 7
+  },
+  {
+   "id": "w45",
+   "text": "medical",
+   "start": 17.967,
+   "end": 18.307,
+   "seg": 7
+  },
+  {
+   "id": "w46",
+   "text": "audience.",
+   "start": 18.447,
+   "end": 19.147,
+   "seg": 7
+  },
+  {
+   "id": "w47",
+   "text": "It's",
+   "start": 19.273,
+   "end": 19.453,
+   "seg": 8
+  },
+  {
+   "id": "w48",
+   "text": "full",
+   "start": 19.493,
+   "end": 19.593,
+   "seg": 8
+  },
+  {
+   "id": "w49",
+   "text": "of",
+   "start": 19.633,
+   "end": 19.693,
+   "seg": 8
+  },
+  {
+   "id": "w50",
+   "text": "statistics",
+   "start": 19.753,
+   "end": 20.413,
+   "seg": 8
+  },
+  {
+   "id": "w51",
+   "text": "and",
+   "start": 20.433,
+   "end": 20.533,
+   "seg": 8
+  },
+  {
+   "id": "w52",
+   "text": "terminology",
+   "start": 20.613,
+   "end": 21.373,
+   "seg": 8
+  },
+  {
+   "id": "w53",
+   "text": "And",
+   "start": 21.507,
+   "end": 21.607,
+   "seg": 9
+  },
+  {
+   "id": "w54",
+   "text": "the",
+   "start": 21.627,
+   "end": 21.727,
+   "seg": 9
+  },
+  {
+   "id": "w55",
+   "text": "evidence",
+   "start": 21.787,
+   "end": 22.207,
+   "seg": 9
+  },
+  {
+   "id": "w56",
+   "text": "just",
+   "start": 22.287,
+   "end": 22.447,
+   "seg": 9
+  },
+  {
+   "id": "w57",
+   "text": "keeps",
+   "start": 22.487,
+   "end": 22.747,
+   "seg": 9
+  },
+  {
+   "id": "w58",
+   "text": "on",
+   "start": 22.787,
+   "end": 22.907,
+   "seg": 9
+  },
+  {
+   "id": "w59",
+   "text": "moving.",
+   "start": 22.967,
+   "end": 23.527,
+   "seg": 9
+  },
+  {
+   "id": "w60",
+   "text": "So",
+   "start": 23.64,
+   "end": 23.76,
+   "seg": 10
+  },
+  {
+   "id": "w61",
+   "text": "what",
+   "start": 23.8,
+   "end": 23.94,
+   "seg": 10
+  },
+  {
+   "id": "w62",
+   "text": "was",
+   "start": 23.98,
+   "end": 24.12,
+   "seg": 10
+  },
+  {
+   "id": "w63",
+   "text": "best",
+   "start": 24.16,
+   "end": 24.34,
+   "seg": 10
+  },
+  {
+   "id": "w64",
+   "text": "practice",
+   "start": 24.44,
+   "end": 24.82,
+   "seg": 10
+  },
+  {
+   "id": "w65",
+   "text": "when",
+   "start": 24.86,
+   "end": 24.98,
+   "seg": 10
+  },
+  {
+   "id": "w66",
+   "text": "you",
+   "start": 25.02,
+   "end": 25.14,
+   "seg": 10
+  },
+  {
+   "id": "w67",
+   "text": "first",
+   "start": 25.2,
+   "end": 25.48,
+   "seg": 10
+  },
+  {
+   "id": "w68",
+   "text": "trained",
+   "start": 25.58,
+   "end": 26.06,
+   "seg": 10
+  },
+  {
+   "id": "w69",
+   "text": "may",
+   "start": 26.173,
+   "end": 26.353,
+   "seg": 11
+  },
+  {
+   "id": "w70",
+   "text": "not",
+   "start": 26.393,
+   "end": 26.573,
+   "seg": 11
+  },
+  {
+   "id": "w71",
+   "text": "be",
+   "start": 26.613,
+   "end": 26.733,
+   "seg": 11
+  },
+  {
+   "id": "w72",
+   "text": "now.",
+   "start": 26.773,
+   "end": 26.993,
+   "seg": 11
+  },
+  {
+   "id": "w73",
+   "text": "So",
+   "start": 27.107,
+   "end": 27.247,
+   "seg": 12
+  },
+  {
+   "id": "w74",
+   "text": "most",
+   "start": 27.307,
+   "end": 27.547,
+   "seg": 12
+  },
+  {
+   "id": "w75",
+   "text": "of",
+   "start": 27.587,
+   "end": 27.647,
+   "seg": 12
+  },
+  {
+   "id": "w76",
+   "text": "us",
+   "start": 27.687,
+   "end": 27.827,
+   "seg": 12
+  },
+  {
+   "id": "w77",
+   "text": "rely",
+   "start": 27.907,
+   "end": 28.227,
+   "seg": 12
+  },
+  {
+   "id": "w78",
+   "text": "on",
+   "start": 28.287,
+   "end": 28.447,
+   "seg": 12
+  },
+  {
+   "id": "w79",
+   "text": "brands,",
+   "start": 28.487,
+   "end": 29.147,
+   "seg": 12
+  },
+  {
+   "id": "w80",
+   "text": "distributors,",
+   "start": 29.273,
+   "end": 30.093,
+   "seg": 13
+  },
+  {
+   "id": "w81",
+   "text": "and",
+   "start": 30.293,
+   "end": 30.453,
+   "seg": 13
+  },
+  {
+   "id": "w82",
+   "text": "social",
+   "start": 30.573,
+   "end": 30.873,
+   "seg": 13
+  },
+  {
+   "id": "w83",
+   "text": "media",
+   "start": 30.913,
+   "end": 31.293,
+   "seg": 13
+  },
+  {
+   "id": "w84",
+   "text": "for",
+   "start": 31.393,
+   "end": 31.533,
+   "seg": 13
+  },
+  {
+   "id": "w85",
+   "text": "our",
+   "start": 31.593,
+   "end": 31.753,
+   "seg": 13
+  },
+  {
+   "id": "w86",
+   "text": "information.",
+   "start": 31.813,
+   "end": 32.573,
+   "seg": 13
+  },
+  {
+   "id": "w87",
+   "text": "But",
+   "start": 32.707,
+   "end": 32.827,
+   "seg": 14
+  },
+  {
+   "id": "w88",
+   "text": "every",
+   "start": 32.887,
+   "end": 33.087,
+   "seg": 14
+  },
+  {
+   "id": "w89",
+   "text": "one",
+   "start": 33.187,
+   "end": 33.287,
+   "seg": 14
+  },
+  {
+   "id": "w90",
+   "text": "of",
+   "start": 33.327,
+   "end": 33.427,
+   "seg": 14
+  },
+  {
+   "id": "w91",
+   "text": "them",
+   "start": 33.487,
+   "end": 33.687,
+   "seg": 14
+  },
+  {
+   "id": "w92",
+   "text": "has",
+   "start": 33.767,
+   "end": 34.047,
+   "seg": 14
+  },
+  {
+   "id": "w93",
+   "text": "a",
+   "start": 34.107,
+   "end": 34.207,
+   "seg": 14
+  },
+  {
+   "id": "w94",
+   "text": "commercial",
+   "start": 34.267,
+   "end": 34.827,
+   "seg": 14
+  },
+  {
+   "id": "w95",
+   "text": "interest",
+   "start": 34.887,
+   "end": 35.527,
+   "seg": 14
+  },
+  {
+   "id": "w96",
+   "text": "in",
+   "start": 35.667,
+   "end": 35.787,
+   "seg": 14
+  },
+  {
+   "id": "w97",
+   "text": "what",
+   "start": 35.867,
+   "end": 36.047,
+   "seg": 14
+  },
+  {
+   "id": "w98",
+   "text": "they",
+   "start": 36.087,
+   "end": 36.187,
+   "seg": 14
+  },
+  {
+   "id": "w99",
+   "text": "recommend.",
+   "start": 36.227,
+   "end": 36.907,
+   "seg": 14
+  },
+  {
+   "id": "w100",
+   "text": "this",
+   "start": 37.04,
+   "end": 37.16,
+   "seg": 15
+  },
+  {
+   "id": "w101",
+   "text": "is",
+   "start": 37.2,
+   "end": 37.32,
+   "seg": 15
+  },
+  {
+   "id": "w102",
+   "text": "why",
+   "start": 37.38,
+   "end": 37.82,
+   "seg": 15
+  },
+  {
+   "id": "w103",
+   "text": "I",
+   "start": 37.94,
+   "end": 38.06,
+   "seg": 16
+  },
+  {
+   "id": "w104",
+   "text": "created",
+   "start": 38.12,
+   "end": 38.68,
+   "seg": 16
+  },
+  {
+   "id": "w105",
+   "text": "Clear",
+   "start": 38.8,
+   "end": 39.0,
+   "seg": 16
+  },
+  {
+   "id": "w106",
+   "text": "Evidence.",
+   "start": 39.1,
+   "end": 39.88,
+   "seg": 16
+  },
+  {
+   "id": "w107",
+   "text": "Every",
+   "start": 40.007,
+   "end": 40.207,
+   "seg": 17
+  },
+  {
+   "id": "w108",
+   "text": "month,",
+   "start": 40.307,
+   "end": 40.647,
+   "seg": 17
+  },
+  {
+   "id": "w109",
+   "text": "members",
+   "start": 40.747,
+   "end": 41.067,
+   "seg": 17
+  },
+  {
+   "id": "w110",
+   "text": "get",
+   "start": 41.147,
+   "end": 41.307,
+   "seg": 17
+  },
+  {
+   "id": "w111",
+   "text": "peer-reviewed",
+   "start": 41.387,
+   "end": 42.067,
+   "seg": 17
+  },
+  {
+   "id": "w112",
+   "text": "research",
+   "start": 42.147,
+   "end": 42.887,
+   "seg": 17
+  },
+  {
+   "id": "w113",
+   "text": "that's",
+   "start": 43.007,
+   "end": 43.247,
+   "seg": 18
+  },
+  {
+   "id": "w114",
+   "text": "translated",
+   "start": 43.307,
+   "end": 44.007,
+   "seg": 18
+  },
+  {
+   "id": "w115",
+   "text": "into",
+   "start": 44.087,
+   "end": 44.307,
+   "seg": 18
+  },
+  {
+   "id": "w116",
+   "text": "plain",
+   "start": 44.347,
+   "end": 44.627,
+   "seg": 18
+  },
+  {
+   "id": "w117",
+   "text": "English",
+   "start": 44.687,
+   "end": 45.347,
+   "seg": 18
+  },
+  {
+   "id": "w118",
+   "text": "and",
+   "start": 45.473,
+   "end": 45.553,
+   "seg": 19
+  },
+  {
+   "id": "w119",
+   "text": "then",
+   "start": 45.573,
+   "end": 45.733,
+   "seg": 19
+  },
+  {
+   "id": "w120",
+   "text": "graded",
+   "start": 45.773,
+   "end": 46.293,
+   "seg": 19
+  },
+  {
+   "id": "w121",
+   "text": "by",
+   "start": 46.333,
+   "end": 46.493,
+   "seg": 19
+  },
+  {
+   "id": "w122",
+   "text": "how",
+   "start": 46.573,
+   "end": 46.773,
+   "seg": 19
+  },
+  {
+   "id": "w123",
+   "text": "strong",
+   "start": 46.853,
+   "end": 47.113,
+   "seg": 19
+  },
+  {
+   "id": "w124",
+   "text": "the",
+   "start": 47.153,
+   "end": 47.233,
+   "seg": 19
+  },
+  {
+   "id": "w125",
+   "text": "evidence",
+   "start": 47.273,
+   "end": 47.713,
+   "seg": 19
+  },
+  {
+   "id": "w126",
+   "text": "is.",
+   "start": 47.793,
+   "end": 48.053,
+   "seg": 19
+  },
+  {
+   "id": "w127",
+   "text": "And",
+   "start": 48.173,
+   "end": 48.313,
+   "seg": 20
+  },
+  {
+   "id": "w128",
+   "text": "each",
+   "start": 48.373,
+   "end": 48.613,
+   "seg": 20
+  },
+  {
+   "id": "w129",
+   "text": "paper",
+   "start": 48.673,
+   "end": 48.973,
+   "seg": 20
+  },
+  {
+   "id": "w130",
+   "text": "takes",
+   "start": 49.033,
+   "end": 49.273,
+   "seg": 20
+  },
+  {
+   "id": "w131",
+   "text": "five",
+   "start": 49.333,
+   "end": 49.573,
+   "seg": 20
+  },
+  {
+   "id": "w132",
+   "text": "minutes",
+   "start": 49.633,
+   "end": 49.852,
+   "seg": 20
+  },
+  {
+   "id": "w133",
+   "text": "to",
+   "start": 49.893,
+   "end": 49.972,
+   "seg": 20
+  },
+  {
+   "id": "w134",
+   "text": "read,",
+   "start": 50.032,
+   "end": 50.412,
+   "seg": 20
+  },
+  {
+   "id": "w135",
+   "text": "with",
+   "start": 50.54,
+   "end": 50.701,
+   "seg": 21
+  },
+  {
+   "id": "w136",
+   "text": "no",
+   "start": 50.741,
+   "end": 50.86,
+   "seg": 21
+  },
+  {
+   "id": "w137",
+   "text": "sponsors",
+   "start": 50.92,
+   "end": 51.501,
+   "seg": 21
+  },
+  {
+   "id": "w138",
+   "text": "and",
+   "start": 51.581,
+   "end": 51.701,
+   "seg": 21
+  },
+  {
+   "id": "w139",
+   "text": "no",
+   "start": 51.741,
+   "end": 51.861,
+   "seg": 21
+  },
+  {
+   "id": "w140",
+   "text": "brand",
+   "start": 51.961,
+   "end": 52.181,
+   "seg": 21
+  },
+  {
+   "id": "w141",
+   "text": "deals.",
+   "start": 52.241,
+   "end": 52.601,
+   "seg": 21
+  },
+  {
+   "id": "w142",
+   "text": "So",
+   "start": 52.74,
+   "end": 52.8,
+   "seg": 22
+  },
+  {
+   "id": "w143",
+   "text": "if",
+   "start": 52.86,
+   "end": 52.92,
+   "seg": 22
+  },
+  {
+   "id": "w144",
+   "text": "you",
+   "start": 52.96,
+   "end": 53.02,
+   "seg": 22
+  },
+  {
+   "id": "w145",
+   "text": "wanna",
+   "start": 53.06,
+   "end": 53.24,
+   "seg": 22
+  },
+  {
+   "id": "w146",
+   "text": "receive",
+   "start": 53.28,
+   "end": 53.66,
+   "seg": 22
+  },
+  {
+   "id": "w147",
+   "text": "the",
+   "start": 53.7,
+   "end": 53.76,
+   "seg": 22
+  },
+  {
+   "id": "w148",
+   "text": "evidence",
+   "start": 53.8,
+   "end": 54.18,
+   "seg": 22
+  },
+  {
+   "id": "w149",
+   "text": "without",
+   "start": 54.2,
+   "end": 54.58,
+   "seg": 22
+  },
+  {
+   "id": "w150",
+   "text": "any",
+   "start": 54.62,
+   "end": 54.74,
+   "seg": 22
+  },
+  {
+   "id": "w151",
+   "text": "of",
+   "start": 54.76,
+   "end": 54.84,
+   "seg": 22
+  },
+  {
+   "id": "w152",
+   "text": "these",
+   "start": 54.9,
+   "end": 55.06,
+   "seg": 22
+  },
+  {
+   "id": "w153",
+   "text": "barriers,",
+   "start": 55.1,
+   "end": 55.58,
+   "seg": 22
+  },
+  {
+   "id": "w154",
+   "text": "then",
+   "start": 55.68,
+   "end": 55.78,
+   "seg": 22
+  },
+  {
+   "id": "w155",
+   "text": "the",
+   "start": 55.82,
+   "end": 55.9,
+   "seg": 22
+  },
+  {
+   "id": "w156",
+   "text": "link",
+   "start": 55.94,
+   "end": 56.16,
+   "seg": 22
+  },
+  {
+   "id": "w157",
+   "text": "is",
+   "start": 56.22,
+   "end": 56.3,
+   "seg": 22
+  },
+  {
+   "id": "w158",
+   "text": "in",
+   "start": 56.36,
+   "end": 56.44,
+   "seg": 22
+  },
+  {
+   "id": "w159",
+   "text": "our",
+   "start": 56.5,
+   "end": 56.62,
+   "seg": 22
+  },
+  {
+   "id": "w160",
+   "text": "bio",
+   "start": 56.66,
+   "end": 56.92,
+   "seg": 22
+  },
+  {
+   "id": "w161",
+   "text": "to",
+   "start": 56.96,
+   "end": 57.04,
+   "seg": 22
+  },
+  {
+   "id": "w162",
+   "text": "join",
+   "start": 57.08,
+   "end": 57.28,
+   "seg": 22
+  },
+  {
+   "id": "w163",
+   "text": "us",
+   "start": 57.36,
+   "end": 57.58,
+   "seg": 22
+  }
+ ]
+}

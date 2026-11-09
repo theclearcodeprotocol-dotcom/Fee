@@ -5,8 +5,9 @@ from pathlib import Path
 sys.path.insert(0, str(Path.home() / "Developer/video-use/helpers"))
 from render import TONEMAP_CHAIN, is_hdr_source  # reuse video-use's tonemap
 
-edit = Path("raw/edit"); seg_dir = edit / "clips_graded"; seg_dir.mkdir(parents=True, exist_ok=True)
-edl = json.load(open(edit / "edl.json"))
+CLIP = sys.argv[1] if len(sys.argv) > 1 else "take01"
+edit = Path("raw/edit"); seg_dir = edit / "clips_graded" / CLIP; seg_dir.mkdir(parents=True, exist_ok=True)
+edl = json.load(open(edit / f"edl_{CLIP}.json"))
 paths = []
 for i, r in enumerate(edl["ranges"]):
     src = Path(edl["sources"][r["source"]]); dur = r["end"] - r["start"]
@@ -20,5 +21,5 @@ for i, r in enumerate(edl["ranges"]):
 lst = seg_dir / "concat.txt"; lst.write_text("".join(f"file '{p.resolve()}'\n" for p in paths))
 Path("assets/footage").mkdir(parents=True, exist_ok=True)
 subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-f", "concat", "-safe", "0", "-i", str(lst), "-c", "copy",
-                "-movflags", "+faststart", "assets/footage/take01-cut.mp4"], check=True)
-print("wrote assets/footage/take01-cut.mp4")
+                "-movflags", "+faststart", f"assets/footage/{CLIP}-cut.mp4"], check=True)
+print(f"wrote assets/footage/{CLIP}-cut.mp4")
