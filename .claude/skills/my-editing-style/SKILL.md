@@ -35,9 +35,13 @@ python3 scripts/retime_words.py     # word timings on the cut's timeline (probed
 python3 scripts/build_comp.py       # edits/<name>/index.html: framing, captions, pop-ups, SFX
 cd edits/<name> && npx hyperframes check && npx hyperframes snapshot --at ...
 npx hyperframes render . -o ../../exports/<name>_render.mp4
-python3 scripts/qc_cuts.py exports/<name>_render.mp4   # every-cut strips, pop check, loudness
+python3 scripts/qc_cuts.py exports/<name>_render.mp4 <clip>   # every-cut strips, pop check, loudness
+python3 scripts/sync_check.py exports/<name>_render.mp4 <clip>  # lip sync vs the raw source, must say SYNC OK
 ```
 
+- **Lip sync:** the cut's audio is built as one continuous PCM track, each segment padded or trimmed to
+  exactly its video length, then muxed once. Concatenating AAC segments drifted the rendered audio up to
+  170 ms behind the lips. Always run `sync_check.py` on the render before delivering.
 - Cut at **full source resolution** (video-use's `render.py` downsizes to 1080 wide, which
   softens punch-ins); HyperFrames scales to 1080x1920 at render.
 - iPhone footage is often **HDR (HLG)**: tonemap to SDR during the cut (video-use's
@@ -192,6 +196,7 @@ Keep this ready but don't add it by default.
 
 Run all of video-use's self-eval, plus:
 
+- `sync_check.py` on the render says SYNC OK (every offset within one frame, 33 ms).
 - `npm run check` passes, and `npx hyperframes snapshot` at every cut ±0.2 s, at each
   pop-up's landing frame, and at 0, 1, 2 and 3 s.
 - At every cut: no visual jump that looks like a mistake (a framing change must happen),
