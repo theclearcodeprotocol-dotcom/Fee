@@ -51,6 +51,12 @@ python3 scripts/sync_check.py exports/<name>_render.mp4 <clip>  # lip sync vs th
 - **Burned-in text** in the source (titles typed in the phone's camera app): scan a 1 fps
   sheet first and cover it with a headline pill placed over it (`.cover`) for as long as it
   shows.
+- **Leaning toward the phone** at take ends (to stop recording) or settling at take starts:
+  run `python3 scripts/lean_check.py <clip>` (OpenCV 4.x face tracking; flags edges where the face
+  grows or shifts >12% vs the take's settled middle). If the lean happens during the last word,
+  cover it with a full-screen brand card showing that word (cream ground, red Source Serif 4 Black,
+  `c.` mark) from the word's start to the cut — the voice carries on underneath. If it happens after
+  the last word, tighten the tail pad instead.
 - Place the top-zone pop-ups by the **actual head position**: look at a frame at each
   framing. Pop-ups may overlap hair, never the eyes or mouth.
 

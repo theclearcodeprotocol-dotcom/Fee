@@ -27,7 +27,9 @@ CLIPS = {  # (beat, first word start, last word end) in source seconds, in outpu
     ],
 }
 SECTIONS = CLIPS[CLIP]
-GAP, PRE, POST = 0.15, 0.04, 0.07
+GAP = 0.15
+# cut pads (lead-in, tail); take02 is tighter: you lean toward the phone right after your last word
+PRE, POST = {"take02": (0.03, 0.04)}.get(CLIP, (0.04, 0.07))
 ranges = []
 for beat, a, b in SECTIONS:
     ws = [w for w in words if w["start"] >= a - 0.01 and w["start"] <= b + 0.01]

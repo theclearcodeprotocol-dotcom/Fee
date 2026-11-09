@@ -168,7 +168,9 @@ pop(mn - 0.05, R["R4"] - mn - 0.1, '<div class="in side stamp">outdated</div>', 
 # R4: who we rely on, then the stamp
 br, di, so = at("brands"), at("distributors"), at("social")
 bu = at("but", br)
-pop(br - 0.05, bu - br - 0.1, f"""<div class="in side card list three">
+br_end = next(s["end"] for s in SEGS if s["start"] <= br < s["end"])  # cover card hides the lean until here
+br = br_end
+pop(br, bu - br - 0.1, f"""<div class="in side card list three">
   <div class="l-head">where we learn</div>
   <div class="row" data-at="{br:.3f}">brands</div>
   <div class="row" data-at="{di:.3f}">distributors</div>
@@ -193,6 +195,20 @@ pop(fv - 0.05, sp - fv - 0.15, '<div class="in side bignum">5 min</div>', enter=
 pop(sp - 0.05, CTA - sp - 0.1, '<div class="in side stamp">no brand deals</div>', enter="slam", sound="impact-bass-1", vol=0.3)
 lk = at("barriers")
 pop(lk - 0.05, TOTAL - lk + 0.03, '<div class="in bio"><span class="arrow-up">↑</span>link in bio</div>', sound="pop")
+
+
+# Full-screen cards over the take endings where the speaker leans toward the phone to stop recording
+# (found with scripts/lean_check.py). Voice carries on underneath; the next take starts clean.
+def seg_end(t):
+    return next(s["end"] for s in SEGS if s["start"] <= t < s["end"])
+for word, after, text in [("audience", 15.0, "medical audience."), ("terminology", 17.0, "terminology"),
+                          ("brands", 25.0, "brands,"), ("evidence", SOL, "Clear Evidence."), ("english", SOL, "plain English")]:
+    ws = at(word, after)
+    a = ws - 0.03; e = seg_end(ws + 0.01)
+    n[0] += 1
+    pops.append(f'<div id="cv{n[0]}" class="clip pop covercard" data-start="{a:.3f}" data-duration="{e - a:.3f}" '
+                f'data-track-index="{2 + n[0]}" data-track-kind="graphics" data-layout-allow-overlap data-layout-allow-occlusion>'
+                f'<div class="cc"><span class="cc-mark">c.</span><span class="cc-word">{text}</span></div></div>')
 
 # whoosh on each whip (alternate takes)
 for i, t in enumerate(WHIPS):
@@ -305,6 +321,11 @@ html, body {{ width:1080px; height:1920px; overflow:hidden; background:#000; }}
 .headline .h-main {{ font-size:68px; }}
 .side.card .pw-title, .side.card .pp-title {{ font-size:40px; }}
 .side.card .g {{ font-size:28px; }}
+.covercard {{ z-index:50; }}
+.cc {{ position:absolute; inset:0; background:var(--cream); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:30px; }}
+.cc-word {{ font:900 136px/1 var(--serif); letter-spacing:-0.05em; color:var(--red); text-align:center; padding:0 60px; }}
+.cc-mark {{ font:900 60px/1 var(--serif); color:var(--pink); background:var(--red); width:110px; height:110px; border-radius:50%;
+  display:grid; place-items:center; padding-bottom:10px; }}
 </style>
 </head>
 <body>

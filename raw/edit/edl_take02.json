@@ -6,213 +6,231 @@
   "ranges": [
     {
       "source": "take02",
-      "start": 0.18,
-      "end": 6.21,
+      "start": 0.19,
+      "end": 6.18,
       "beat": "HOOK",
       "quote": "The skincare industry isn't designed to make evidence easy to find, and here's four reasons why.",
       "output_start": 0.0,
-      "output_duration": 6.033
+      "output_duration": 6.0
     },
     {
       "source": "take02",
-      "start": 9.82,
-      "end": 10.67,
+      "start": 9.83,
+      "end": 10.64,
       "beat": "R1 PAYWALLS",
       "quote": "Paywalls.",
-      "output_start": 6.033,
-      "output_duration": 0.867
+      "output_start": 6.0,
+      "output_duration": 0.833
     },
     {
       "source": "take02",
-      "start": 17.5,
-      "end": 19.59,
+      "start": 17.51,
+      "end": 19.56,
       "beat": "R1 PAYWALLS",
       "quote": "Most peer-reviewed research",
-      "output_start": 6.9,
-      "output_duration": 2.1
-    },
-    {
-      "source": "take02",
-      "start": 19.76,
-      "end": 20.89,
-      "beat": "R1 PAYWALLS",
-      "quote": "sits behind",
-      "output_start": 9.0,
-      "output_duration": 1.133
-    },
-    {
-      "source": "take02",
-      "start": 26.46,
-      "end": 27.91,
-      "beat": "R1 PAYWALLS",
-      "quote": "an academic paywall,",
-      "output_start": 10.133,
-      "output_duration": 1.467
-    },
-    {
-      "source": "take02",
-      "start": 35.14,
-      "end": 36.99,
-      "beat": "R1 PAYWALLS",
-      "quote": "with one paper costing",
-      "output_start": 11.6,
-      "output_duration": 1.867
-    },
-    {
-      "source": "take02",
-      "start": 37.22,
-      "end": 39.19,
-      "beat": "R1 PAYWALLS",
-      "quote": "at least thirty pounds to read.",
-      "output_start": 13.467,
-      "output_duration": 2.0
-    },
-    {
-      "source": "take02",
-      "start": 79.54,
-      "end": 83.29,
-      "beat": "R2 JARGON",
-      "quote": "And when you do get access, it's written for a medical audience.",
-      "output_start": 15.467,
-      "output_duration": 3.767
-    },
-    {
-      "source": "take02",
-      "start": 87.32,
-      "end": 89.53,
-      "beat": "R2 JARGON",
-      "quote": "It's full of statistics and terminology",
-      "output_start": 19.233,
-      "output_duration": 2.233
-    },
-    {
-      "source": "take02",
-      "start": 116.96,
-      "end": 119.09,
-      "beat": "R3 MOVING",
-      "quote": "And the evidence just keeps on moving.",
-      "output_start": 21.467,
-      "output_duration": 2.133
-    },
-    {
-      "source": "take02",
-      "start": 149.72,
-      "end": 152.25,
-      "beat": "R3 MOVING",
-      "quote": "So what was best practice when you first trained",
-      "output_start": 23.6,
-      "output_duration": 2.533
-    },
-    {
-      "source": "take02",
-      "start": 152.4,
-      "end": 153.33,
-      "beat": "R3 MOVING",
-      "quote": "may not be now.",
-      "output_start": 26.133,
-      "output_duration": 0.933
-    },
-    {
-      "source": "take02",
-      "start": 156.52,
-      "end": 158.67,
-      "beat": "R4 COMMERCIAL",
-      "quote": "So most of us rely on brands,",
-      "output_start": 27.067,
-      "output_duration": 2.167
-    },
-    {
-      "source": "take02",
-      "start": 166.28,
-      "end": 169.69,
-      "beat": "R4 COMMERCIAL",
-      "quote": "distributors, and social media for our information.",
-      "output_start": 29.233,
-      "output_duration": 3.433
-    },
-    {
-      "source": "take02",
-      "start": 195.46,
-      "end": 199.77,
-      "beat": "R4 COMMERCIAL",
-      "quote": "But every one of them has a commercial interest in what they recommend.",
-      "output_start": 32.667,
-      "output_duration": 4.333
-    },
-    {
-      "source": "take02",
-      "start": 205.24,
-      "end": 206.13,
-      "beat": "SOLUTION",
-      "quote": "this is why",
-      "output_start": 37.0,
-      "output_duration": 0.9
-    },
-    {
-      "source": "take02",
-      "start": 206.26,
-      "end": 208.31,
-      "beat": "SOLUTION",
-      "quote": "I created Clear Evidence.",
-      "output_start": 37.9,
+      "output_start": 6.833,
       "output_duration": 2.067
     },
     {
       "source": "take02",
-      "start": 226.96,
-      "end": 229.95,
-      "beat": "SOLUTION",
-      "quote": "Every month, members get peer-reviewed research",
-      "output_start": 39.967,
-      "output_duration": 3.0
+      "start": 19.77,
+      "end": 20.86,
+      "beat": "R1 PAYWALLS",
+      "quote": "sits behind",
+      "output_start": 8.9,
+      "output_duration": 1.1
     },
     {
       "source": "take02",
-      "start": 235.52,
-      "end": 237.97,
-      "beat": "SOLUTION",
-      "quote": "that's translated into plain English",
-      "output_start": 42.967,
-      "output_duration": 2.467
+      "start": 26.47,
+      "end": 27.88,
+      "beat": "R1 PAYWALLS",
+      "quote": "an academic paywall,",
+      "output_start": 10.0,
+      "output_duration": 1.433
     },
     {
       "source": "take02",
-      "start": 242.62,
-      "end": 245.31,
-      "beat": "SOLUTION",
-      "quote": "and then graded by how strong the evidence is.",
-      "output_start": 45.433,
-      "output_duration": 2.7
+      "start": 35.15,
+      "end": 36.18,
+      "beat": "R1 PAYWALLS",
+      "quote": "with one paper",
+      "output_start": 11.433,
+      "output_duration": 1.033
     },
     {
       "source": "take02",
-      "start": 254.68,
-      "end": 257.029,
-      "beat": "SOLUTION",
-      "quote": "And each paper takes five minutes to read,",
-      "output_start": 48.133,
-      "output_duration": 2.367
+      "start": 36.31,
+      "end": 36.96,
+      "beat": "R1 PAYWALLS",
+      "quote": "costing",
+      "output_start": 12.467,
+      "output_duration": 0.667
     },
     {
       "source": "take02",
-      "start": 261.479,
-      "end": 263.65,
-      "beat": "SOLUTION",
-      "quote": "with no sponsors and no brand deals.",
-      "output_start": 50.5,
+      "start": 37.23,
+      "end": 39.16,
+      "beat": "R1 PAYWALLS",
+      "quote": "at least thirty pounds to read.",
+      "output_start": 13.133,
+      "output_duration": 1.933
+    },
+    {
+      "source": "take02",
+      "start": 79.55,
+      "end": 83.26,
+      "beat": "R2 JARGON",
+      "quote": "And when you do get access, it's written for a medical audience.",
+      "output_start": 15.067,
+      "output_duration": 3.733
+    },
+    {
+      "source": "take02",
+      "start": 87.33,
+      "end": 89.5,
+      "beat": "R2 JARGON",
+      "quote": "It's full of statistics and terminology",
+      "output_start": 18.8,
       "output_duration": 2.2
     },
     {
       "source": "take02",
-      "start": 278.44,
-      "end": 283.39,
+      "start": 116.97,
+      "end": 119.06,
+      "beat": "R3 MOVING",
+      "quote": "And the evidence just keeps on moving.",
+      "output_start": 21.0,
+      "output_duration": 2.1
+    },
+    {
+      "source": "take02",
+      "start": 149.73,
+      "end": 152.22,
+      "beat": "R3 MOVING",
+      "quote": "So what was best practice when you first trained",
+      "output_start": 23.1,
+      "output_duration": 2.5
+    },
+    {
+      "source": "take02",
+      "start": 152.41,
+      "end": 153.3,
+      "beat": "R3 MOVING",
+      "quote": "may not be now.",
+      "output_start": 25.6,
+      "output_duration": 0.9
+    },
+    {
+      "source": "take02",
+      "start": 156.53,
+      "end": 158.64,
+      "beat": "R4 COMMERCIAL",
+      "quote": "So most of us rely on brands,",
+      "output_start": 26.5,
+      "output_duration": 2.133
+    },
+    {
+      "source": "take02",
+      "start": 166.29,
+      "end": 167.18,
+      "beat": "R4 COMMERCIAL",
+      "quote": "distributors,",
+      "output_start": 28.633,
+      "output_duration": 0.9
+    },
+    {
+      "source": "take02",
+      "start": 167.31,
+      "end": 169.66,
+      "beat": "R4 COMMERCIAL",
+      "quote": "and social media for our information.",
+      "output_start": 29.533,
+      "output_duration": 2.367
+    },
+    {
+      "source": "take02",
+      "start": 195.47,
+      "end": 199.74,
+      "beat": "R4 COMMERCIAL",
+      "quote": "But every one of them has a commercial interest in what they recommend.",
+      "output_start": 31.9,
+      "output_duration": 4.3
+    },
+    {
+      "source": "take02",
+      "start": 205.25,
+      "end": 206.1,
+      "beat": "SOLUTION",
+      "quote": "this is why",
+      "output_start": 36.2,
+      "output_duration": 0.867
+    },
+    {
+      "source": "take02",
+      "start": 206.27,
+      "end": 208.28,
+      "beat": "SOLUTION",
+      "quote": "I created Clear Evidence.",
+      "output_start": 37.067,
+      "output_duration": 2.033
+    },
+    {
+      "source": "take02",
+      "start": 226.97,
+      "end": 229.92,
+      "beat": "SOLUTION",
+      "quote": "Every month, members get peer-reviewed research",
+      "output_start": 39.1,
+      "output_duration": 2.967
+    },
+    {
+      "source": "take02",
+      "start": 235.53,
+      "end": 237.94,
+      "beat": "SOLUTION",
+      "quote": "that's translated into plain English",
+      "output_start": 42.067,
+      "output_duration": 2.433
+    },
+    {
+      "source": "take02",
+      "start": 242.63,
+      "end": 245.28,
+      "beat": "SOLUTION",
+      "quote": "and then graded by how strong the evidence is.",
+      "output_start": 44.5,
+      "output_duration": 2.667
+    },
+    {
+      "source": "take02",
+      "start": 254.69,
+      "end": 256.999,
+      "beat": "SOLUTION",
+      "quote": "And each paper takes five minutes to read,",
+      "output_start": 47.167,
+      "output_duration": 2.333
+    },
+    {
+      "source": "take02",
+      "start": 261.489,
+      "end": 263.62,
+      "beat": "SOLUTION",
+      "quote": "with no sponsors and no brand deals.",
+      "output_start": 49.5,
+      "output_duration": 2.133
+    },
+    {
+      "source": "take02",
+      "start": 278.45,
+      "end": 283.36,
       "beat": "CTA",
       "quote": "So if you wanna receive the evidence without any of these barriers, then the link is in our bio to join us",
-      "output_start": 52.7,
-      "output_duration": 4.967
+      "output_start": 51.633,
+      "output_duration": 4.933
     }
   ],
   "grade": "eq=contrast=1.04:saturation=1.05:gamma=1.02,colorbalance=rm=0.03:bm=-0.03:rh=0.02:bh=-0.02",
   "overlays": [],
-  "total_duration_s": 57.667
+  "total_duration_s": 56.567
 }

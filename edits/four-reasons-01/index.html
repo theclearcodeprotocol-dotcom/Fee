@@ -95,34 +95,39 @@ html, body { width:1080px; height:1920px; overflow:hidden; background:#000; }
 .headline .h-main { font-size:68px; }
 .side.card .pw-title, .side.card .pp-title { font-size:40px; }
 .side.card .g { font-size:28px; }
+.covercard { z-index:50; }
+.cc { position:absolute; inset:0; background:var(--cream); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:30px; }
+.cc-word { font:900 136px/1 var(--serif); letter-spacing:-0.05em; color:var(--red); text-align:center; padding:0 60px; }
+.cc-mark { font:900 60px/1 var(--serif); color:var(--pink); background:var(--red); width:110px; height:110px; border-radius:50%;
+  display:grid; place-items:center; padding-bottom:10px; }
 </style>
 </head>
 <body>
-<div id="root" data-composition-id="main" data-start="0" data-duration="57.667" data-width="1080" data-height="1920">
+<div id="root" data-composition-id="main" data-start="0" data-duration="56.567" data-width="1080" data-height="1920">
   <div id="cam">
-    <video id="footage" class="clip" src="footage/take02-cut.mp4" data-start="0" data-duration="57.667" data-track-index="0"
+    <video id="footage" class="clip" src="footage/take02-cut.mp4" data-start="0" data-duration="56.567" data-track-index="0"
       playsinline data-has-audio="true"></video>
   </div>
-  <div id="p1" class="clip pop " data-start="0.000" data-duration="4.710" data-track-index="3" data-track-kind="graphics" data-layout-allow-overlap><div class="in headline"><div class="h-main">Skincare evidence isn't easy to find.</div></div></div><div id="p2" class="clip pop " data-start="4.710" data-duration="1.223" data-track-index="4" data-track-kind="graphics" data-layout-allow-overlap><div class="in bignum top4">4 reasons</div></div><div id="p3" class="clip pop " data-start="6.033" data-duration="9.384" data-track-index="5" data-track-kind="graphics" data-layout-allow-overlap><div class="in reason"><span class="num">1</span><span class="lab">Paywalls</span></div></div><div id="p4" class="clip pop " data-start="15.467" data-duration="5.950" data-track-index="6" data-track-kind="graphics" data-layout-allow-overlap><div class="in reason"><span class="num">2</span><span class="lab">Written for clinicians</span></div></div><div id="p5" class="clip pop " data-start="21.467" data-duration="5.550" data-track-index="7" data-track-kind="graphics" data-layout-allow-overlap><div class="in reason"><span class="num">3</span><span class="lab">It keeps moving</span></div></div><div id="p6" class="clip pop " data-start="27.067" data-duration="9.883" data-track-index="8" data-track-kind="graphics" data-layout-allow-overlap><div class="in reason"><span class="num">4</span><span class="lab">Commercial interest</span></div></div><div id="p7" class="clip pop " data-start="10.983" data-duration="2.874" data-track-index="9" data-track-kind="graphics" data-layout-allow-overlap><div class="in side card paywall">
+  <div id="p1" class="clip pop " data-start="0.000" data-duration="4.700" data-track-index="3" data-track-kind="graphics" data-layout-allow-overlap><div class="in headline"><div class="h-main">Skincare evidence isn't easy to find.</div></div></div><div id="p2" class="clip pop " data-start="4.700" data-duration="1.200" data-track-index="4" data-track-kind="graphics" data-layout-allow-overlap><div class="in bignum top4">4 reasons</div></div><div id="p3" class="clip pop " data-start="6.000" data-duration="9.017" data-track-index="5" data-track-kind="graphics" data-layout-allow-overlap><div class="in reason"><span class="num">1</span><span class="lab">Paywalls</span></div></div><div id="p4" class="clip pop " data-start="15.067" data-duration="5.883" data-track-index="6" data-track-kind="graphics" data-layout-allow-overlap><div class="in reason"><span class="num">2</span><span class="lab">Written for clinicians</span></div></div><div id="p5" class="clip pop " data-start="21.000" data-duration="5.450" data-track-index="7" data-track-kind="graphics" data-layout-allow-overlap><div class="in reason"><span class="num">3</span><span class="lab">It keeps moving</span></div></div><div id="p6" class="clip pop " data-start="26.500" data-duration="9.650" data-track-index="8" data-track-kind="graphics" data-layout-allow-overlap><div class="in reason"><span class="num">4</span><span class="lab">Commercial interest</span></div></div><div id="p7" class="clip pop " data-start="10.840" data-duration="2.673" data-track-index="9" data-track-kind="graphics" data-layout-allow-overlap><div class="in side card paywall">
   <div class="pw-journal">British Journal of Dermatology</div>
   <div class="pw-title">Niacinamide and hyper&shy;pigmentation: a trial</div>
-  <div class="pw-lock"><span class="lock"></span><span>Purchase <b>£30.00</b></span></div></div></div><div id="p8" class="clip pop " data-start="13.957" data-duration="1.360" data-track-index="10" data-track-kind="graphics" data-layout-allow-overlap><div class="in side bignum">£30</div></div><div id="p9" class="clip pop " data-start="17.917" data-duration="3.400" data-track-index="11" data-track-kind="graphics" data-layout-allow-overlap><div class="in side card jargon">
+  <div class="pw-lock"><span class="lock"></span><span>Purchase <b>£30.00</b></span></div></div></div><div id="p8" class="clip pop " data-start="13.613" data-duration="1.304" data-track-index="10" data-track-kind="graphics" data-layout-allow-overlap><div class="in side bignum">£30</div></div><div id="p9" class="clip pop " data-start="17.507" data-duration="3.343" data-track-index="11" data-track-kind="graphics" data-layout-allow-overlap><div class="in side card jargon">
   <div class="j-label">statistics &amp; terminology</div>
   <p data-layout-ignore>…transepidermal water loss attenuated via filaggrin upregulation; heterogeneity
-  (I² = 74%) precluded pooled <mark>odds ratio</mark> estimation…</p></div></div><div id="p10" class="clip pop " data-start="26.123" data-duration="0.794" data-track-index="12" data-track-kind="graphics" data-layout-allow-overlap><div class="in side stamp">outdated</div></div><div id="p11" class="clip pop " data-start="28.437" data-duration="4.120" data-track-index="13" data-track-kind="graphics" data-layout-allow-overlap><div class="in side card list three">
+  (I² = 74%) precluded pooled <mark>odds ratio</mark> estimation…</p></div></div><div id="p10" class="clip pop " data-start="25.580" data-duration="0.770" data-track-index="12" data-track-kind="graphics" data-layout-allow-overlap><div class="in side stamp">outdated</div></div><div id="p11" class="clip pop " data-start="28.633" data-duration="3.197" data-track-index="13" data-track-kind="graphics" data-layout-allow-overlap><div class="in side card list three">
   <div class="l-head">where we learn</div>
-  <div class="row" data-at="28.487">brands</div>
-  <div class="row" data-at="29.273">distributors</div>
-  <div class="row" data-at="30.573">social media</div></div></div><div id="p12" class="clip pop " data-start="34.217" data-duration="2.633" data-track-index="14" data-track-kind="graphics" data-layout-allow-overlap><div class="in side stamp">sponsored</div></div><div id="p13" class="clip pop " data-start="38.750" data-duration="2.400" data-track-index="15" data-track-kind="graphics" data-layout-allow-overlap><div class="in headline"><div class="h-main">Clear Evidence</div><div class="h-sub">made for skin specialists</div></div></div><div id="p14" class="clip pop " data-start="41.337" data-duration="4.286" data-track-index="16" data-track-kind="graphics" data-layout-allow-overlap><div class="in side card paper">
+  <div class="row" data-at="28.633">brands</div>
+  <div class="row" data-at="28.663">distributors</div>
+  <div class="row" data-at="29.843">social media</div></div></div><div id="p12" class="clip pop " data-start="33.440" data-duration="2.610" data-track-index="14" data-track-kind="graphics" data-layout-allow-overlap><div class="in side stamp">sponsored</div></div><div id="p13" class="clip pop " data-start="37.907" data-duration="2.400" data-track-index="15" data-track-kind="graphics" data-layout-allow-overlap><div class="in headline"><div class="h-main">Clear Evidence</div><div class="h-sub">made for skin specialists</div></div></div><div id="p14" class="clip pop " data-start="40.460" data-duration="4.220" data-track-index="16" data-track-kind="graphics" data-layout-allow-overlap><div class="in side card paper">
   <div class="pp-head"><span class="pp-mark">c.</span><span>Monthly paper</span></div>
   <div class="pp-title">Does niacinamide fade dark spots?</div>
-  <div class="pp-line">Short answer: yes, at 4–5%.</div></div></div><div id="p15" class="clip pop " data-start="45.723" data-duration="3.460" data-track-index="17" data-track-kind="graphics" data-layout-allow-overlap><div class="in side card grade">
+  <div class="pp-line">Short answer: yes, at 4–5%.</div></div></div><div id="p15" class="clip pop " data-start="44.780" data-duration="3.427" data-track-index="17" data-track-kind="graphics" data-layout-allow-overlap><div class="in side card grade">
   <div class="g-label">Evidence strength</div>
-  <div class="g-bars"><div class="g on" data-at="46.123">strong</div><div class="g">moderate</div><div class="g">weak</div></div></div></div><div id="p16" class="clip pop " data-start="49.283" data-duration="1.437" data-track-index="18" data-track-kind="graphics" data-layout-allow-overlap><div class="in side bignum">5 min</div></div><div id="p17" class="clip pop " data-start="50.870" data-duration="1.680" data-track-index="19" data-track-kind="graphics" data-layout-allow-overlap><div class="in side stamp">no brand deals</div></div><div id="p18" class="clip pop " data-start="55.050" data-duration="2.597" data-track-index="20" data-track-kind="graphics" data-layout-allow-overlap><div class="in bio"><span class="arrow-up">↑</span>link in bio</div></div>
-  <div id="captions" class="clip" data-start="0" data-duration="57.667" data-track-index="1" data-track-kind="captions" data-layout-allow-overlap>
+  <div class="g-bars"><div class="g on" data-at="45.180">strong</div><div class="g">moderate</div><div class="g">weak</div></div></div></div><div id="p16" class="clip pop " data-start="48.307" data-duration="1.403" data-track-index="18" data-track-kind="graphics" data-layout-allow-overlap><div class="in side bignum">5 min</div></div><div id="p17" class="clip pop " data-start="49.860" data-duration="1.623" data-track-index="19" data-track-kind="graphics" data-layout-allow-overlap><div class="in side stamp">no brand deals</div></div><div id="p18" class="clip pop " data-start="53.973" data-duration="2.574" data-track-index="20" data-track-kind="graphics" data-layout-allow-overlap><div class="in bio"><span class="arrow-up">↑</span>link in bio</div></div><div id="cv19" class="clip pop covercard" data-start="18.007" data-duration="0.793" data-track-index="21" data-track-kind="graphics" data-layout-allow-overlap data-layout-allow-occlusion><div class="cc"><span class="cc-mark">c.</span><span class="cc-word">medical audience.</span></div></div><div id="cv20" class="clip pop covercard" data-start="20.140" data-duration="0.860" data-track-index="22" data-track-kind="graphics" data-layout-allow-overlap data-layout-allow-occlusion><div class="cc"><span class="cc-mark">c.</span><span class="cc-word">terminology</span></div></div><div id="cv21" class="clip pop covercard" data-start="27.880" data-duration="0.753" data-track-index="23" data-track-kind="graphics" data-layout-allow-overlap data-layout-allow-occlusion><div class="cc"><span class="cc-mark">c.</span><span class="cc-word">brands,</span></div></div><div id="cv22" class="clip pop covercard" data-start="38.227" data-duration="0.873" data-track-index="24" data-track-kind="graphics" data-layout-allow-overlap data-layout-allow-occlusion><div class="cc"><span class="cc-mark">c.</span><span class="cc-word">Clear Evidence.</span></div></div><div id="cv23" class="clip pop covercard" data-start="43.747" data-duration="0.753" data-track-index="25" data-track-kind="graphics" data-layout-allow-overlap data-layout-allow-occlusion><div class="cc"><span class="cc-mark">c.</span><span class="cc-word">plain English</span></div></div>
+  <div id="captions" class="clip" data-start="0" data-duration="56.567" data-track-index="1" data-track-kind="captions" data-layout-allow-overlap>
     <div class="cap" id="cap0"><span class="pill">The skincare industry isn&#x27;t designed</span></div><div class="cap" id="cap1"><span class="pill">to make evidence easy to</span></div><div class="cap" id="cap2"><span class="pill">find, and here&#x27;s <span class="chip">four</span> reasons</span></div><div class="cap" id="cap3"><span class="pill">why.</span></div><div class="cap" id="cap4"><span class="pill"><span class="chip">Paywalls.</span></span></div><div class="cap" id="cap5"><span class="pill">Most</span></div><div class="cap" id="cap6"><span class="pill">peer-reviewed research</span></div><div class="cap" id="cap7"><span class="pill">sits behind</span></div><div class="cap" id="cap8"><span class="pill">an academic <span class="chip">paywall,</span></span></div><div class="cap" id="cap9"><span class="pill">with one paper</span></div><div class="cap" id="cap10"><span class="pill">costing</span></div><div class="cap" id="cap11"><span class="pill">at least <span class="chip">thirty pounds</span> to</span></div><div class="cap" id="cap12"><span class="pill">read.</span></div><div class="cap" id="cap13"><span class="pill">And when you do get</span></div><div class="cap" id="cap14"><span class="pill">access,</span></div><div class="cap" id="cap15"><span class="pill">it&#x27;s written</span></div><div class="cap" id="cap16"><span class="pill">for a <span class="chip">medical</span> audience.</span></div><div class="cap" id="cap17"><span class="pill">It&#x27;s full of <span class="chip">statistics</span> and</span></div><div class="cap" id="cap18"><span class="pill">terminology</span></div><div class="cap" id="cap19"><span class="pill">And the evidence just keeps</span></div><div class="cap" id="cap20"><span class="pill">on <span class="chip">moving.</span></span></div><div class="cap" id="cap21"><span class="pill">So what was best practice</span></div><div class="cap" id="cap22"><span class="pill">when you first trained</span></div><div class="cap" id="cap23"><span class="pill">may not be now.</span></div><div class="cap" id="cap24"><span class="pill">So most of us rely</span></div><div class="cap" id="cap25"><span class="pill">on <span class="chip">brands,</span></span></div><div class="cap" id="cap26"><span class="pill"><span class="chip">distributors,</span></span></div><div class="cap" id="cap27"><span class="pill">and <span class="chip">social media</span> for our</span></div><div class="cap" id="cap28"><span class="pill">information.</span></div><div class="cap" id="cap29"><span class="pill">But every one of them</span></div><div class="cap" id="cap30"><span class="pill">has a <span class="chip">commercial</span> interest in</span></div><div class="cap" id="cap31"><span class="pill">what they recommend.</span></div><div class="cap" id="cap32"><span class="pill">this is why</span></div><div class="cap" id="cap33"><span class="pill">I created <span class="chip">Clear Evidence.</span></span></div><div class="cap" id="cap34"><span class="pill">Every month,</span></div><div class="cap" id="cap35"><span class="pill">members get peer-reviewed research</span></div><div class="cap" id="cap36"><span class="pill">that&#x27;s translated into <span class="chip">plain English</span></span></div><div class="cap" id="cap37"><span class="pill">and then <span class="chip">graded</span> by how</span></div><div class="cap" id="cap38"><span class="pill">strong the evidence is.</span></div><div class="cap" id="cap39"><span class="pill">And each paper takes five</span></div><div class="cap" id="cap40"><span class="pill">minutes to read,</span></div><div class="cap" id="cap41"><span class="pill">with no <span class="chip">sponsors</span> and no</span></div><div class="cap" id="cap42"><span class="pill">brand deals.</span></div><div class="cap" id="cap43"><span class="pill">So if you wanna receive</span></div><div class="cap" id="cap44"><span class="pill">the evidence without any of</span></div><div class="cap" id="cap45"><span class="pill">these barriers,</span></div><div class="cap" id="cap46"><span class="pill">then the link is in</span></div><div class="cap" id="cap47"><span class="pill">our <span class="chip">bio</span> to join us</span></div>
   </div>
-  <audio id="sfx0" class="clip" src="sfx/pop.mp3" data-start="4.624" data-duration="0.720" data-volume="0.35" data-track-index="40"></audio><audio id="sfx1" class="clip" src="sfx/pop.mp3" data-start="5.947" data-duration="0.720" data-volume="0.35" data-track-index="41"></audio><audio id="sfx2" class="clip" src="sfx/pop.mp3" data-start="15.381" data-duration="0.720" data-volume="0.35" data-track-index="42"></audio><audio id="sfx3" class="clip" src="sfx/pop.mp3" data-start="21.381" data-duration="0.720" data-volume="0.35" data-track-index="43"></audio><audio id="sfx4" class="clip" src="sfx/pop.mp3" data-start="26.981" data-duration="0.720" data-volume="0.35" data-track-index="44"></audio><audio id="sfx5" class="clip" src="sfx/click.mp3" data-start="10.944" data-duration="0.370" data-volume="0.35" data-track-index="45"></audio><audio id="sfx6" class="clip" src="sfx/pop.mp3" data-start="13.871" data-duration="0.720" data-volume="0.35" data-track-index="46"></audio><audio id="sfx7" class="clip" src="sfx/pop.mp3" data-start="17.831" data-duration="0.720" data-volume="0.35" data-track-index="47"></audio><audio id="sfx8" class="clip" src="sfx/impact-bass-1.mp3" data-start="26.083" data-duration="2.120" data-volume="0.3" data-track-index="48"></audio><audio id="sfx9" class="clip" src="sfx/pop.mp3" data-start="28.351" data-duration="0.720" data-volume="0.35" data-track-index="49"></audio><audio id="sfx10" class="clip" src="sfx/impact-bass-1.mp3" data-start="34.177" data-duration="2.120" data-volume="0.3" data-track-index="50"></audio><audio id="sfx11" class="clip" src="sfx/pop.mp3" data-start="38.664" data-duration="0.720" data-volume="0.35" data-track-index="51"></audio><audio id="sfx12" class="clip" src="sfx/pop.mp3" data-start="41.251" data-duration="0.720" data-volume="0.35" data-track-index="52"></audio><audio id="sfx13" class="clip" src="sfx/click.mp3" data-start="45.684" data-duration="0.370" data-volume="0.35" data-track-index="53"></audio><audio id="sfx14" class="clip" src="sfx/pop.mp3" data-start="49.197" data-duration="0.720" data-volume="0.35" data-track-index="54"></audio><audio id="sfx15" class="clip" src="sfx/impact-bass-1.mp3" data-start="50.830" data-duration="2.120" data-volume="0.3" data-track-index="55"></audio><audio id="sfx16" class="clip" src="sfx/pop.mp3" data-start="54.964" data-duration="0.720" data-volume="0.35" data-track-index="56"></audio><audio id="sfx17" class="clip" src="sfx/whoosh.mp3" data-start="5.884" data-duration="0.570" data-volume="0.4" data-track-index="57"></audio><audio id="sfx18" class="clip" src="sfx/whoosh-short.mp3" data-start="36.851" data-duration="0.570" data-volume="0.4" data-track-index="58"></audio>
+  <audio id="sfx0" class="clip" src="sfx/pop.mp3" data-start="4.614" data-duration="0.720" data-volume="0.35" data-track-index="40"></audio><audio id="sfx1" class="clip" src="sfx/pop.mp3" data-start="5.914" data-duration="0.720" data-volume="0.35" data-track-index="41"></audio><audio id="sfx2" class="clip" src="sfx/pop.mp3" data-start="14.981" data-duration="0.720" data-volume="0.35" data-track-index="42"></audio><audio id="sfx3" class="clip" src="sfx/pop.mp3" data-start="20.914" data-duration="0.720" data-volume="0.35" data-track-index="43"></audio><audio id="sfx4" class="clip" src="sfx/pop.mp3" data-start="26.414" data-duration="0.720" data-volume="0.35" data-track-index="44"></audio><audio id="sfx5" class="clip" src="sfx/click.mp3" data-start="10.801" data-duration="0.370" data-volume="0.35" data-track-index="45"></audio><audio id="sfx6" class="clip" src="sfx/pop.mp3" data-start="13.527" data-duration="0.720" data-volume="0.35" data-track-index="46"></audio><audio id="sfx7" class="clip" src="sfx/pop.mp3" data-start="17.421" data-duration="0.720" data-volume="0.35" data-track-index="47"></audio><audio id="sfx8" class="clip" src="sfx/impact-bass-1.mp3" data-start="25.540" data-duration="2.120" data-volume="0.3" data-track-index="48"></audio><audio id="sfx9" class="clip" src="sfx/pop.mp3" data-start="28.547" data-duration="0.720" data-volume="0.35" data-track-index="49"></audio><audio id="sfx10" class="clip" src="sfx/impact-bass-1.mp3" data-start="33.400" data-duration="2.120" data-volume="0.3" data-track-index="50"></audio><audio id="sfx11" class="clip" src="sfx/pop.mp3" data-start="37.821" data-duration="0.720" data-volume="0.35" data-track-index="51"></audio><audio id="sfx12" class="clip" src="sfx/pop.mp3" data-start="40.374" data-duration="0.720" data-volume="0.35" data-track-index="52"></audio><audio id="sfx13" class="clip" src="sfx/click.mp3" data-start="44.741" data-duration="0.370" data-volume="0.35" data-track-index="53"></audio><audio id="sfx14" class="clip" src="sfx/pop.mp3" data-start="48.221" data-duration="0.720" data-volume="0.35" data-track-index="54"></audio><audio id="sfx15" class="clip" src="sfx/impact-bass-1.mp3" data-start="49.820" data-duration="2.120" data-volume="0.3" data-track-index="55"></audio><audio id="sfx16" class="clip" src="sfx/pop.mp3" data-start="53.887" data-duration="0.720" data-volume="0.35" data-track-index="56"></audio><audio id="sfx17" class="clip" src="sfx/whoosh.mp3" data-start="5.851" data-duration="0.570" data-volume="0.4" data-track-index="57"></audio><audio id="sfx18" class="clip" src="sfx/whoosh-short.mp3" data-start="36.051" data-duration="0.570" data-volume="0.4" data-track-index="58"></audio>
 </div>
 <script>
 window.__timelines = window.__timelines || {};
@@ -139,64 +144,66 @@ function cap(sel, s, e) {
   tl.set(sel, { opacity: 0, visibility: "hidden" }, e);
 }
 tl.set("#cam", { scale: 1.0 }, 0.000);
-whip(6.033, 1.1);
-tl.set("#cam", { scale: 1.2 }, 6.900);
-tl.set("#cam", { scale: 1.1 }, 9.000);
-tl.set("#cam", { scale: 1.0 }, 10.133);
-tl.set("#cam", { scale: 1.2 }, 11.600);
-tl.set("#cam", { scale: 1.0 }, 13.467);
-tl.set("#cam", { scale: 1.1 }, 15.467);
-tl.set("#cam", { scale: 1.2 }, 19.233);
-tl.set("#cam", { scale: 1.1 }, 21.467);
-tl.set("#cam", { scale: 1.0 }, 23.600);
-tl.set("#cam", { scale: 1.2 }, 26.133);
-tl.set("#cam", { scale: 1.0 }, 27.067);
-tl.set("#cam", { scale: 1.1 }, 29.233);
-tl.set("#cam", { scale: 1.2 }, 32.667);
-whip(37.000, 1.1);
-tl.set("#cam", { scale: 1.0 }, 37.900);
-tl.set("#cam", { scale: 1.2 }, 39.967);
-tl.set("#cam", { scale: 1.0 }, 42.967);
-tl.set("#cam", { scale: 1.1 }, 45.433);
-tl.set("#cam", { scale: 1.2 }, 48.133);
-tl.set("#cam", { scale: 1.1 }, 50.500);
-tl.set("#cam", { scale: 1.0 }, 52.700);
-tl.to("#cam", { scale: 1.26, duration: 0.15, ease: "power3.out" }, 34.267);
-tl.to("#p1 .in", { opacity: 0, duration: 0.18, ease: "power2.in" }, 4.510);
-tl.fromTo("#p2 .in", { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(3)", immediateRender: false }, 4.710);
-tl.to("#p2 .in", { opacity: 0, duration: 0.18, ease: "power2.in" }, 5.733);
-tl.fromTo("#p3 .in", { opacity: 0, y: 40, scale: 0.92 }, { opacity: 1, y: 0, scale: 1, duration: 0.32, ease: "back.out(2)", immediateRender: false }, 6.033);
-tl.to("#p3 .in", { opacity: 0, duration: 0.18, ease: "power2.in" }, 15.217);
-tl.fromTo("#p4 .in", { opacity: 0, y: 40, scale: 0.92 }, { opacity: 1, y: 0, scale: 1, duration: 0.32, ease: "back.out(2)", immediateRender: false }, 15.467);
-tl.to("#p4 .in", { opacity: 0, duration: 0.18, ease: "power2.in" }, 21.217);
-tl.fromTo("#p5 .in", { opacity: 0, y: 40, scale: 0.92 }, { opacity: 1, y: 0, scale: 1, duration: 0.32, ease: "back.out(2)", immediateRender: false }, 21.467);
-tl.to("#p5 .in", { opacity: 0, duration: 0.18, ease: "power2.in" }, 26.817);
-tl.fromTo("#p6 .in", { opacity: 0, y: 40, scale: 0.92 }, { opacity: 1, y: 0, scale: 1, duration: 0.32, ease: "back.out(2)", immediateRender: false }, 27.067);
-tl.to("#p6 .in", { opacity: 0, duration: 0.18, ease: "power2.in" }, 36.750);
-tl.fromTo("#p7 .in", { opacity: 0, y: 40, scale: 0.92 }, { opacity: 1, y: 0, scale: 1, duration: 0.32, ease: "back.out(2)", immediateRender: false }, 10.983);
-tl.to("#p7 .in", { opacity: 0, duration: 0.18, ease: "power2.in" }, 13.657);
-tl.fromTo("#p8 .in", { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(3)", immediateRender: false }, 13.957);
-tl.to("#p8 .in", { opacity: 0, duration: 0.18, ease: "power2.in" }, 15.117);
-tl.fromTo("#p9 .in", { opacity: 0, y: 40, scale: 0.92 }, { opacity: 1, y: 0, scale: 1, duration: 0.32, ease: "back.out(2)", immediateRender: false }, 17.917);
-tl.to("#p9 .in", { opacity: 0, duration: 0.18, ease: "power2.in" }, 21.117);
-tl.fromTo("#p10 .in", { opacity: 0, scale: 1.6 }, { opacity: 1, scale: 1, duration: 0.12, ease: "power4.in", immediateRender: false }, 26.123);
-tl.to("#p10 .in", { opacity: 0, duration: 0.18, ease: "power2.in" }, 26.717);
-tl.fromTo("#p11 .in", { opacity: 0, y: 40, scale: 0.92 }, { opacity: 1, y: 0, scale: 1, duration: 0.32, ease: "back.out(2)", immediateRender: false }, 28.437);
-tl.to("#p11 .in", { opacity: 0, duration: 0.18, ease: "power2.in" }, 32.357);
-tl.fromTo("#p12 .in", { opacity: 0, scale: 1.6 }, { opacity: 1, scale: 1, duration: 0.12, ease: "power4.in", immediateRender: false }, 34.217);
-tl.to("#p12 .in", { opacity: 0, duration: 0.18, ease: "power2.in" }, 36.650);
-tl.fromTo("#p13 .in", { opacity: 0, y: 40, scale: 0.92 }, { opacity: 1, y: 0, scale: 1, duration: 0.32, ease: "back.out(2)", immediateRender: false }, 38.750);
-tl.to("#p13 .in", { opacity: 0, duration: 0.18, ease: "power2.in" }, 40.950);
-tl.fromTo("#p14 .in", { opacity: 0, y: 40, scale: 0.92 }, { opacity: 1, y: 0, scale: 1, duration: 0.32, ease: "back.out(2)", immediateRender: false }, 41.337);
-tl.to("#p14 .in", { opacity: 0, duration: 0.18, ease: "power2.in" }, 45.423);
-tl.fromTo("#p15 .in", { opacity: 0, y: 40, scale: 0.92 }, { opacity: 1, y: 0, scale: 1, duration: 0.32, ease: "back.out(2)", immediateRender: false }, 45.723);
-tl.to("#p15 .in", { opacity: 0, duration: 0.18, ease: "power2.in" }, 48.983);
-tl.fromTo("#p16 .in", { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(3)", immediateRender: false }, 49.283);
-tl.to("#p16 .in", { opacity: 0, duration: 0.18, ease: "power2.in" }, 50.520);
-tl.fromTo("#p17 .in", { opacity: 0, scale: 1.6 }, { opacity: 1, scale: 1, duration: 0.12, ease: "power4.in", immediateRender: false }, 50.870);
-tl.to("#p17 .in", { opacity: 0, duration: 0.18, ease: "power2.in" }, 52.350);
-tl.fromTo("#p18 .in", { opacity: 0, y: 40, scale: 0.92 }, { opacity: 1, y: 0, scale: 1, duration: 0.32, ease: "back.out(2)", immediateRender: false }, 55.050);
-tl.to("#p18 .in", { opacity: 0, duration: 0.18, ease: "power2.in" }, 57.447);
+whip(6.000, 1.1);
+tl.set("#cam", { scale: 1.2 }, 6.833);
+tl.set("#cam", { scale: 1.1 }, 8.900);
+tl.set("#cam", { scale: 1.0 }, 10.000);
+tl.set("#cam", { scale: 1.2 }, 11.433);
+tl.set("#cam", { scale: 1.0 }, 12.467);
+tl.set("#cam", { scale: 1.1 }, 13.133);
+tl.set("#cam", { scale: 1.2 }, 15.067);
+tl.set("#cam", { scale: 1.1 }, 18.800);
+tl.set("#cam", { scale: 1.0 }, 21.000);
+tl.set("#cam", { scale: 1.2 }, 23.100);
+tl.set("#cam", { scale: 1.0 }, 25.600);
+tl.set("#cam", { scale: 1.1 }, 26.500);
+tl.set("#cam", { scale: 1.2 }, 28.633);
+tl.set("#cam", { scale: 1.1 }, 29.533);
+tl.set("#cam", { scale: 1.0 }, 31.900);
+whip(36.200, 1.2);
+tl.set("#cam", { scale: 1.0 }, 37.067);
+tl.set("#cam", { scale: 1.1 }, 39.100);
+tl.set("#cam", { scale: 1.2 }, 42.067);
+tl.set("#cam", { scale: 1.1 }, 44.500);
+tl.set("#cam", { scale: 1.0 }, 47.167);
+tl.set("#cam", { scale: 1.2 }, 49.500);
+tl.set("#cam", { scale: 1.0 }, 51.633);
+tl.to("#cam", { scale: 1.06, duration: 0.15, ease: "power3.out" }, 33.490);
+tl.to("#p1 .in", { opacity: 0, duration: 0.18, ease: "power2.in" }, 4.500);
+tl.fromTo("#p2 .in", { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(3)", immediateRender: false }, 4.700);
+tl.to("#p2 .in", { opacity: 0, duration: 0.18, ease: "power2.in" }, 5.700);
+tl.fromTo("#p3 .in", { opacity: 0, y: 40, scale: 0.92 }, { opacity: 1, y: 0, scale: 1, duration: 0.32, ease: "back.out(2)", immediateRender: false }, 6.000);
+tl.to("#p3 .in", { opacity: 0, duration: 0.18, ease: "power2.in" }, 14.817);
+tl.fromTo("#p4 .in", { opacity: 0, y: 40, scale: 0.92 }, { opacity: 1, y: 0, scale: 1, duration: 0.32, ease: "back.out(2)", immediateRender: false }, 15.067);
+tl.to("#p4 .in", { opacity: 0, duration: 0.18, ease: "power2.in" }, 20.750);
+tl.fromTo("#p5 .in", { opacity: 0, y: 40, scale: 0.92 }, { opacity: 1, y: 0, scale: 1, duration: 0.32, ease: "back.out(2)", immediateRender: false }, 21.000);
+tl.to("#p5 .in", { opacity: 0, duration: 0.18, ease: "power2.in" }, 26.250);
+tl.fromTo("#p6 .in", { opacity: 0, y: 40, scale: 0.92 }, { opacity: 1, y: 0, scale: 1, duration: 0.32, ease: "back.out(2)", immediateRender: false }, 26.500);
+tl.to("#p6 .in", { opacity: 0, duration: 0.18, ease: "power2.in" }, 35.950);
+tl.fromTo("#p7 .in", { opacity: 0, y: 40, scale: 0.92 }, { opacity: 1, y: 0, scale: 1, duration: 0.32, ease: "back.out(2)", immediateRender: false }, 10.840);
+tl.to("#p7 .in", { opacity: 0, duration: 0.18, ease: "power2.in" }, 13.313);
+tl.fromTo("#p8 .in", { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(3)", immediateRender: false }, 13.613);
+tl.to("#p8 .in", { opacity: 0, duration: 0.18, ease: "power2.in" }, 14.717);
+tl.fromTo("#p9 .in", { opacity: 0, y: 40, scale: 0.92 }, { opacity: 1, y: 0, scale: 1, duration: 0.32, ease: "back.out(2)", immediateRender: false }, 17.507);
+tl.to("#p9 .in", { opacity: 0, duration: 0.18, ease: "power2.in" }, 20.650);
+tl.fromTo("#p10 .in", { opacity: 0, scale: 1.6 }, { opacity: 1, scale: 1, duration: 0.12, ease: "power4.in", immediateRender: false }, 25.580);
+tl.to("#p10 .in", { opacity: 0, duration: 0.18, ease: "power2.in" }, 26.150);
+tl.fromTo("#p11 .in", { opacity: 0, y: 40, scale: 0.92 }, { opacity: 1, y: 0, scale: 1, duration: 0.32, ease: "back.out(2)", immediateRender: false }, 28.633);
+tl.to("#p11 .in", { opacity: 0, duration: 0.18, ease: "power2.in" }, 31.630);
+tl.fromTo("#p12 .in", { opacity: 0, scale: 1.6 }, { opacity: 1, scale: 1, duration: 0.12, ease: "power4.in", immediateRender: false }, 33.440);
+tl.to("#p12 .in", { opacity: 0, duration: 0.18, ease: "power2.in" }, 35.850);
+tl.fromTo("#p13 .in", { opacity: 0, y: 40, scale: 0.92 }, { opacity: 1, y: 0, scale: 1, duration: 0.32, ease: "back.out(2)", immediateRender: false }, 37.907);
+tl.to("#p13 .in", { opacity: 0, duration: 0.18, ease: "power2.in" }, 40.107);
+tl.fromTo("#p14 .in", { opacity: 0, y: 40, scale: 0.92 }, { opacity: 1, y: 0, scale: 1, duration: 0.32, ease: "back.out(2)", immediateRender: false }, 40.460);
+tl.to("#p14 .in", { opacity: 0, duration: 0.18, ease: "power2.in" }, 44.480);
+tl.fromTo("#p15 .in", { opacity: 0, y: 40, scale: 0.92 }, { opacity: 1, y: 0, scale: 1, duration: 0.32, ease: "back.out(2)", immediateRender: false }, 44.780);
+tl.to("#p15 .in", { opacity: 0, duration: 0.18, ease: "power2.in" }, 48.007);
+tl.fromTo("#p16 .in", { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(3)", immediateRender: false }, 48.307);
+tl.to("#p16 .in", { opacity: 0, duration: 0.18, ease: "power2.in" }, 49.510);
+tl.fromTo("#p17 .in", { opacity: 0, scale: 1.6 }, { opacity: 1, scale: 1, duration: 0.12, ease: "power4.in", immediateRender: false }, 49.860);
+tl.to("#p17 .in", { opacity: 0, duration: 0.18, ease: "power2.in" }, 51.283);
+tl.fromTo("#p18 .in", { opacity: 0, y: 40, scale: 0.92 }, { opacity: 1, y: 0, scale: 1, duration: 0.32, ease: "back.out(2)", immediateRender: false }, 53.973);
+tl.to("#p18 .in", { opacity: 0, duration: 0.18, ease: "power2.in" }, 56.347);
 // staged reveals inside cards
 document.querySelectorAll("[data-at]").forEach((el) => {
   const t = parseFloat(el.dataset.at);
@@ -207,54 +214,54 @@ document.querySelectorAll(".sp").forEach((el, i) => {
   const host = el.closest(".pop"); const s = parseFloat(host.dataset.start);
   tl.fromTo(el, { scale: 0.3, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.3, ease: "back.out(3)", immediateRender: false }, s + 0.1 + (i % 3) * 0.12);
 });
-cap("#cap0", 0.100, 2.170);
-cap("#cap1", 2.170, 3.750);
-cap("#cap2", 3.750, 5.650);
-cap("#cap3", 5.650, 6.023);
-cap("#cap4", 6.023, 6.890);
-cap("#cap5", 6.890, 7.310);
-cap("#cap6", 7.310, 8.990);
-cap("#cap7", 8.990, 10.123);
-cap("#cap8", 10.123, 11.590);
-cap("#cap9", 11.590, 12.750);
-cap("#cap10", 12.750, 13.457);
-cap("#cap11", 13.457, 15.017);
-cap("#cap12", 15.017, 15.457);
-cap("#cap13", 15.457, 16.277);
-cap("#cap14", 16.277, 16.897);
-cap("#cap15", 16.897, 17.637);
-cap("#cap16", 17.637, 19.223);
-cap("#cap17", 19.223, 20.563);
-cap("#cap18", 20.563, 21.457);
-cap("#cap19", 21.457, 22.737);
-cap("#cap20", 22.737, 23.590);
-cap("#cap21", 23.590, 24.810);
-cap("#cap22", 24.810, 26.123);
-cap("#cap23", 26.123, 27.057);
-cap("#cap24", 27.057, 28.237);
-cap("#cap25", 28.237, 29.223);
-cap("#cap26", 29.223, 30.243);
-cap("#cap27", 30.243, 31.763);
-cap("#cap28", 31.763, 32.657);
-cap("#cap29", 32.657, 33.717);
-cap("#cap30", 33.717, 35.817);
-cap("#cap31", 35.817, 36.990);
-cap("#cap32", 36.990, 37.890);
-cap("#cap33", 37.890, 39.957);
-cap("#cap34", 39.957, 40.697);
-cap("#cap35", 40.697, 42.957);
-cap("#cap36", 42.957, 45.423);
-cap("#cap37", 45.423, 46.803);
-cap("#cap38", 46.803, 48.123);
-cap("#cap39", 48.123, 49.583);
-cap("#cap40", 49.583, 50.490);
-cap("#cap41", 50.490, 51.911);
-cap("#cap42", 51.911, 52.690);
-cap("#cap43", 52.690, 53.650);
-cap("#cap44", 53.650, 54.850);
-cap("#cap45", 54.850, 55.630);
-cap("#cap46", 55.630, 56.450);
-cap("#cap47", 56.450, 57.580);
+cap("#cap0", 0.100, 2.160);
+cap("#cap1", 2.160, 3.740);
+cap("#cap2", 3.740, 5.640);
+cap("#cap3", 5.640, 5.980);
+cap("#cap4", 5.980, 6.813);
+cap("#cap5", 6.813, 7.233);
+cap("#cap6", 7.233, 8.880);
+cap("#cap7", 8.880, 9.980);
+cap("#cap8", 9.980, 11.413);
+cap("#cap9", 11.413, 12.447);
+cap("#cap10", 12.447, 13.113);
+cap("#cap11", 13.113, 14.673);
+cap("#cap12", 14.673, 15.047);
+cap("#cap13", 15.047, 15.867);
+cap("#cap14", 15.867, 16.487);
+cap("#cap15", 16.487, 17.227);
+cap("#cap16", 17.227, 18.780);
+cap("#cap17", 18.780, 20.120);
+cap("#cap18", 20.120, 20.980);
+cap("#cap19", 20.980, 22.260);
+cap("#cap20", 22.260, 23.080);
+cap("#cap21", 23.080, 24.300);
+cap("#cap22", 24.300, 25.580);
+cap("#cap23", 25.580, 26.480);
+cap("#cap24", 26.480, 27.660);
+cap("#cap25", 27.660, 28.613);
+cap("#cap26", 28.613, 29.513);
+cap("#cap27", 29.513, 31.033);
+cap("#cap28", 31.033, 31.880);
+cap("#cap29", 31.880, 32.940);
+cap("#cap30", 32.940, 35.040);
+cap("#cap31", 35.040, 36.180);
+cap("#cap32", 36.180, 37.047);
+cap("#cap33", 37.047, 39.080);
+cap("#cap34", 39.080, 39.820);
+cap("#cap35", 39.820, 42.047);
+cap("#cap36", 42.047, 44.480);
+cap("#cap37", 44.480, 45.860);
+cap("#cap38", 45.860, 47.147);
+cap("#cap39", 47.147, 48.607);
+cap("#cap40", 48.607, 49.480);
+cap("#cap41", 49.480, 50.901);
+cap("#cap42", 50.901, 51.613);
+cap("#cap43", 51.613, 52.573);
+cap("#cap44", 52.573, 53.773);
+cap("#cap45", 53.773, 54.553);
+cap("#cap46", 54.553, 55.373);
+cap("#cap47", 55.373, 56.503);
 window.__timelines["main"] = tl;
 tl.seek(0);
 </script>
