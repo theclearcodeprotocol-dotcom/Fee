@@ -60,6 +60,10 @@ python3 scripts/sync_check.py exports/<name>_render.mp4 <clip>  # lip sync vs th
   cover it with a full-screen brand card showing that word (cream ground, red Source Serif 4 Black,
   `c.` mark) from the word's start to the cut — the voice carries on underneath. If it happens after
   the last word, tighten the tail pad instead.
+- **Before rendering, scan for every lean toward the camera** (not just take ends):
+  `~/Developer/video-use/.venv/bin/python scripts/lean_scan.py assets/footage/<clip>-cut.mp4 <clip> edits/<name>/index.html`
+  measures the face (eye distance) in every frame and lists stretches >10% closer than normal that no
+  full-frame page covers yet. Cover each one (from the start of the lean to the cut) before rendering.
 - **Blemishes (a crumb, a fleck) near the mouth:** `scripts/decrumb.py` tracks the face with
   MediaPipe landmarks (run with `~/Developer/video-use/.venv/bin/python`; needs `libegl1` and the
   face_landmarker.task model) and inpaints small spots just outside the chosen lip corner (DECRUMB_SIDE=left|right; this video: left, a pale fleck above the upper lip),
