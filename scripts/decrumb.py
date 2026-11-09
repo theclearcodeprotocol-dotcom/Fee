@@ -1,4 +1,5 @@
-"""Remove a small blemish (a crumb) just outside the screen-right corner of the mouth, frame by frame.
+"""Remove a small blemish (a crumb) just outside one corner of the mouth, frame by frame.
+SIDE = "left" or "right" as seen on screen (env DECRUMB_SIDE, default left).
 
 Per frame: MediaPipe face landmarks -> screen-right mouth corner + outer-lip outline -> look for a
 small spot (darker or redder than the skin around it) within a few pixels of the corner, outside the
@@ -8,15 +9,16 @@ Run with video-use's venv (has mediapipe + opencv 4.x):
   ~/Developer/video-use/.venv/bin/python scripts/decrumb.py test <video> <out.jpg> t1 t2 ...
   ~/Developer/video-use/.venv/bin/python scripts/decrumb.py run  <in.mp4> <out.mp4>
 """
-import subprocess, sys
+import os, subprocess, sys
 import cv2, numpy as np
 import mediapipe as mp
 from mediapipe.tasks.python import BaseOptions, vision
 
 MODEL = "/tmp/claude-0/-home-user-Fee/a401bdd6-02e2-5bd3-8112-f561f52de111/scratchpad/face_landmarker.task"
 LIPS_OUTER = [61, 146, 91, 181, 84, 17, 314, 405, 321, 375, 291, 409, 270, 269, 267, 0, 37, 39, 40, 185]
+SIDE = os.environ.get("DECRUMB_SIDE", "left")
 R_SPOT = 15         # search radius around the corner (px at 1080 wide)
-MAX_AREA = 70       # anything bigger is not a crumb
+MAX_AREA = 160      # anything bigger is not a crumb
 
 
 def landmarker(video_mode):
@@ -33,27 +35,31 @@ def fix(fr, res):
     H, W = fr.shape[:2]
     pts = np.array([(p.x * W, p.y * H) for p in res.face_landmarks[0]])
     a, b = pts[61], pts[291]
-    corner, other = (a, b) if a[0] > b[0] else (b, a)        # screen-right corner
+    right, left = (a, b) if a[0] > b[0] else (b, a)
+    corner, other = (left, right) if SIDE == "left" else (right, left)  # the chosen on-screen corner
     lip_poly = pts[LIPS_OUTER].astype(np.int32)
-    out_dir = (corner - other) / (np.linalg.norm(corner - other) + 1e-6)
-    centre = corner + out_dir * 5                             # just beyond the corner, in the crease
+    # the crumb: a pale fleck on the skin just above the chosen corner of the upper lip
+    inward = (other - corner) / (np.linalg.norm(other - corner) + 1e-6)   # toward the mouth centre
+    up = np.array([inward[1], -inward[0]]) if inward[0] > 0 else np.array([-inward[1], inward[0]])
+    if up[1] > 0: up = -up                                                 # make sure it points up
+    centre = corner + inward * 6 + up * 28
     cx, cy = int(centre[0]), int(centre[1])
-    x0, y0, x1, y1 = max(cx - 40, 0), max(cy - 40, 0), min(cx + 40, W), min(cy + 40, H)
+    x0, y0, x1, y1 = max(cx - 45, 0), max(cy - 45, 0), min(cx + 45, W), min(cy + 45, H)
     roi = fr[y0:y1, x0:x1]
     lab = cv2.cvtColor(roi, cv2.COLOR_BGR2LAB).astype(np.float32)
-    L, A = lab[..., 0], lab[..., 1]
-    Lb, Ab = cv2.GaussianBlur(L, (0, 0), 5), cv2.GaussianBlur(A, (0, 0), 5)
-    spot = ((Lb - L) > 8) | ((A - Ab) > 5)
+    L = lab[..., 0]
+    Lb = cv2.GaussianBlur(L, (0, 0), 4)
+    spot = (L - Lb) > 5                                                   # lighter than the skin around it
     lipmask = np.zeros(roi.shape[:2], np.uint8)
     cv2.fillPoly(lipmask, [lip_poly - [x0, y0]], 1)
-    lipmask = cv2.dilate(lipmask, np.ones((5, 5), np.uint8))
+    lipmask = cv2.dilate(lipmask, np.ones((7, 7), np.uint8))
     near = np.zeros_like(lipmask)
-    cv2.circle(near, (cx - x0, cy - y0), R_SPOT, 1, -1)
+    cv2.ellipse(near, (cx - x0, cy - y0), (14, 26), 0, 0, 360, 1, -1)
     m = (spot & (near > 0) & (lipmask == 0)).astype(np.uint8)
     n, cc, st, _ = cv2.connectedComponentsWithStats(m)
     keep = np.zeros_like(m)
     for j in range(1, n):
-        if 2 <= st[j, cv2.CC_STAT_AREA] <= MAX_AREA:
+        if 3 <= st[j, cv2.CC_STAT_AREA] <= MAX_AREA:
             keep[cc == j] = 1
     info = {"corner": (int(corner[0]), int(corner[1])), "px": int(keep.sum())}
     if not keep.any():
@@ -78,8 +84,9 @@ if sys.argv[1] == "test":
             continue
         X, Y = info["corner"]
         def z(im):
-            return cv2.resize(im[Y - 45:Y + 45, X - 75:X + 45], (360, 270), interpolation=cv2.INTER_CUBIC)
-        pair = np.hstack([z(fr), np.full((270, 6, 3), 255, np.uint8), z(out)])
+            x0 = X - 20 if SIDE == "left" else X - 50
+            return cv2.resize(im[Y - 55:Y + 15, x0:x0 + 70], (300, 300), interpolation=cv2.INTER_CUBIC)
+        pair = np.hstack([z(fr), np.full((300, 6, 3), 255, np.uint8), z(out)])
         cv2.putText(pair, f"{t}s  before | after  ({info['px']} px)", (5, 18), 0, 0.5, (0, 255, 255), 1)
         tiles.append(pair)
     cv2.imwrite(sys.argv[3], np.vstack(tiles)); print(len(tiles), "pairs")
