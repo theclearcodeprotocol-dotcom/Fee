@@ -60,6 +60,11 @@ python3 scripts/sync_check.py exports/<name>_render.mp4 <clip>  # lip sync vs th
   cover it with a full-screen brand card showing that word (cream ground, red Source Serif 4 Black,
   `c.` mark) from the word's start to the cut — the voice carries on underneath. If it happens after
   the last word, tighten the tail pad instead.
+- **Blemishes (a crumb, a fleck) near the mouth:** `scripts/decrumb.py` tracks the face with
+  MediaPipe landmarks (run with `~/Developer/video-use/.venv/bin/python`; needs `libegl1` and the
+  face_landmarker.task model) and inpaints small spots just outside the screen-right lip corner,
+  frame by frame. Run `test` first and check the before/after zooms, then `run` on the cut to make
+  `<clip>-cut-clean.mp4`, then `sync_check.py` it. Adjust the search side/radius for other spots.
 - Place the top-zone pop-ups by the **actual head position**: look at a frame at each
   framing. Pop-ups may overlap hair, never the eyes or mouth.
 
