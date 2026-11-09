@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1080, height=1920" />
+<script src="vendor/gsap-3.15.0.min.js"></script>
+<style>
+@font-face { font-family: "Source Serif 4"; font-weight: 900; font-style: normal; src: url("fonts/source-serif-4-latin-900-normal.woff2") format("woff2"); }
+:root { --red:#ae1f14; --cream:#f2f0e0; --pink:#ffd7de; --ink:#5a3a33; --serif:"Source Serif 4", serif; --sans:"Outfit", sans-serif; }
+* { margin:0; padding:0; box-sizing:border-box; }
+html, body { width:1080px; height:1920px; overflow:hidden; background:#000; }
+#root { position:relative; width:1080px; height:1920px; overflow:hidden; }
+#cam { position:absolute; inset:0; transform-origin:50% 36%; will-change:transform; }
+#footage { position:absolute; inset:0; width:1080px; height:1920px; object-fit:cover; }
+
+/* captions: smaller, lighter, no chips */
+#captions { position:absolute; inset:0; pointer-events:none; }
+.cap { position:absolute; left:0; right:0; top:1360px; text-align:center; opacity:0; visibility:hidden; }
+.pill { display:inline-block; max-width:860px; background:rgba(242,240,224,.92); color:var(--red); font:500 44px/1.2 var(--sans);
+  padding:12px 26px 14px; border-radius:999px; box-shadow:0 4px 12px rgba(0,0,0,.12); }
+.pill b { font-weight:700; }
+
+/* pop-ups: flat, upright, cream */
+.pop { pointer-events:none; }
+.pop .in { position:absolute; left:0; right:0; margin-inline:auto; width:fit-content; top:140px; }
+.pop .in.cover { top:262px; min-width:760px; }  /* over the source's burned-in title (y≈300-345) */
+.headline { background:var(--cream); color:var(--red); border-radius:18px; padding:18px 34px 22px; text-align:center; white-space:nowrap;
+  box-shadow:0 6px 18px rgba(0,0,0,.14); }
+.h-main { font:900 60px/1.04 var(--serif); letter-spacing:-0.05em; }
+.h-sub { font:500 32px/1.2 var(--sans); color:var(--ink); margin-top:6px; }
+.card { background:var(--cream); color:var(--red); border-radius:24px; box-shadow:0 8px 24px rgba(0,0,0,.16);
+  padding:28px 34px; width:760px !important; }
+.c-label { display:flex; align-items:center; gap:12px; font:600 28px var(--sans); letter-spacing:.06em; text-transform:uppercase; color:var(--ink); opacity:.8; }
+.c-title { font:900 42px/1.08 var(--serif); letter-spacing:-0.04em; margin:12px 0 14px; }
+.c-row { display:flex; align-items:center; gap:14px; font:500 30px var(--sans); color:var(--red); border-top:2px solid rgba(174,31,20,.18); padding-top:14px; }
+.c-line { font:400 30px/1.35 var(--sans); color:var(--ink); }
+.card p { font:400 30px/1.4 var(--serif); color:var(--ink); margin-top:10px; }
+.lock { width:24px; height:20px; background:var(--red); border-radius:4px; position:relative; margin-top:10px; }
+.lock::before { content:""; position:absolute; left:4px; top:-13px; width:16px; height:16px; border:4px solid var(--red);
+  border-bottom:none; border-radius:10px 10px 0 0; box-sizing:border-box; }
+.mark { display:inline-grid; place-items:center; width:44px; height:44px; border-radius:50%; background:var(--red); color:var(--cream);
+  font:900 30px/1 var(--serif); padding-bottom:4px; letter-spacing:0; }
+.list .row { font:500 34px/1.3 var(--sans); color:var(--red); padding:12px 0; border-top:2px solid rgba(174,31,20,.15); opacity:0; }
+.list .c-label { margin-bottom:6px; }
+.tag { background:var(--cream); color:var(--red); font:600 40px var(--sans); border-radius:999px; padding:14px 34px 16px;
+  box-shadow:0 6px 18px rgba(0,0,0,.14); white-space:nowrap; }
+</style>
+</head>
+<body>
+<div id="root" data-composition-id="main" data-start="0" data-duration="49.767" data-width="1080" data-height="1920">
+  <div id="cam">
+    <video id="footage" class="clip" src="footage/take01-cut.mp4" data-start="0" data-duration="49.767" data-track-index="0"
+      playsinline data-has-audio="true"></video>
+  </div>
+  <div id="p1" class="clip pop" data-start="0.000" data-duration="2.870" data-track-index="3" data-track-kind="graphics" data-layout-allow-overlap><div class="in headline"><div class="h-main">The research exists.</div></div></div><div id="p2" class="clip pop" data-start="2.870" data-duration="1.437" data-track-index="4" data-track-kind="graphics" data-layout-allow-overlap><div class="in card">
+  <div class="c-label">Dermatology journal</div>
+  <div class="c-title">Retinoids &amp; photoageing: a trial</div>
+  <div class="c-row"><span class="lock"></span>Purchase article · $39.95</div></div></div><div id="p3" class="clip pop" data-start="4.357" data-duration="4.026" data-track-index="5" data-track-kind="graphics" data-layout-allow-overlap><div class="in card">
+  <div class="c-label">Medical jargon</div>
+  <p data-layout-ignore>…transepidermal water loss was attenuated via upregulation of filaggrin and ceramide
+  synthase expression in the stratum corneum…</p></div></div><div id="p4" class="clip pop" data-start="8.533" data-duration="1.710" data-track-index="6" data-track-kind="graphics" data-layout-allow-overlap><div class="in headline cover"><div class="h-main">Work with skin every day?</div></div></div><div id="p5" class="clip pop" data-start="10.243" data-duration="2.100" data-track-index="7" data-track-kind="graphics" data-layout-allow-overlap><div class="in headline cover"><div class="h-main">Clear Evidence</div><div class="h-sub">built for skin specialists</div></div></div><div id="p6" class="clip pop" data-start="22.157" data-duration="1.800" data-track-index="8" data-track-kind="graphics" data-layout-allow-overlap><div class="in tag">Evidence, not brand bias</div></div><div id="p7" class="clip pop" data-start="33.817" data-duration="2.020" data-track-index="9" data-track-kind="graphics" data-layout-allow-overlap><div class="in card">
+  <div class="c-label"><span class="mark">c.</span>Clear Evidence · Monthly paper</div>
+  <div class="c-title">Does niacinamide really fade dark spots?</div>
+  <div class="c-line">Short answer: yes, at 4–5%.</div></div></div><div id="p8" class="clip pop" data-start="35.937" data-duration="9.500" data-track-index="10" data-track-kind="graphics" data-layout-allow-overlap><div class="in card list">
+  <div class="c-label">Every paper</div>
+  <div class="row" data-at="35.987">5-minute read</div>
+  <div class="row" data-at="37.187">Graded by strength of evidence</div>
+  <div class="row" data-at="40.707">3 key takeaways for the clinic</div></div></div><div id="p9" class="clip pop" data-start="47.327" data-duration="2.420" data-track-index="11" data-track-kind="graphics" data-layout-allow-overlap><div class="in tag">Link in bio</div></div>
+  <div id="captions" class="clip" data-start="0" data-duration="49.767" data-track-index="1" data-track-kind="captions" data-layout-allow-overlap>
+    <div class="cap" id="cap0"><span class="pill">The research exists for anyone</span></div><div class="cap" id="cap1"><span class="pill">to access,</span></div><div class="cap" id="cap2"><span class="pill">but it can be stuck</span></div><div class="cap" id="cap3"><span class="pill">behind <b>paywalls,</b></span></div><div class="cap" id="cap4"><span class="pill">filled with medical <b>jargon,</b></span></div><div class="cap" id="cap5"><span class="pill">and drowned out by people</span></div><div class="cap" id="cap6"><span class="pill">wanting to sell something.</span></div><div class="cap" id="cap7"><span class="pill">If you work with skin</span></div><div class="cap" id="cap8"><span class="pill">every day,</span></div><div class="cap" id="cap9"><span class="pill">then <b>Clear Evidence</b> was built</span></div><div class="cap" id="cap10"><span class="pill">for you.</span></div><div class="cap" id="cap11"><span class="pill">It was built for the</span></div><div class="cap" id="cap12"><span class="pill">skin specialists that work with</span></div><div class="cap" id="cap13"><span class="pill">different skin concerns from aging</span></div><div class="cap" id="cap14"><span class="pill">to acne.</span></div><div class="cap" id="cap15"><span class="pill">Skin specialists that want their</span></div><div class="cap" id="cap16"><span class="pill">education and skincare advice to</span></div><div class="cap" id="cap17"><span class="pill">be based on clinical evidence</span></div><div class="cap" id="cap18"><span class="pill">and not <b>brand bias.</b></span></div><div class="cap" id="cap19"><span class="pill">But they don&#x27;t have time</span></div><div class="cap" id="cap20"><span class="pill">to read any academic journals,</span></div><div class="cap" id="cap21"><span class="pill">but they want what&#x27;s in</span></div><div class="cap" id="cap22"><span class="pill">them,</span></div><div class="cap" id="cap23"><span class="pill">and want your clients to</span></div><div class="cap" id="cap24"><span class="pill">trust your advice</span></div><div class="cap" id="cap25"><span class="pill">to stand out from a</span></div><div class="cap" id="cap26"><span class="pill">crowded industry.</span></div><div class="cap" id="cap27"><span class="pill">Every month,</span></div><div class="cap" id="cap28"><span class="pill">members get</span></div><div class="cap" id="cap29"><span class="pill">research</span></div><div class="cap" id="cap30"><span class="pill">in <b>plain English.</b></span></div><div class="cap" id="cap31"><span class="pill">Each paper only takes five</span></div><div class="cap" id="cap32"><span class="pill">minutes to read,</span></div><div class="cap" id="cap33"><span class="pill">is graded by how strong</span></div><div class="cap" id="cap34"><span class="pill">the evidence is,</span></div><div class="cap" id="cap35"><span class="pill">and ends with <b>three</b> key</span></div><div class="cap" id="cap36"><span class="pill">takeaways</span></div><div class="cap" id="cap37"><span class="pill">that you can use in</span></div><div class="cap" id="cap38"><span class="pill">the clinic the same day.</span></div><div class="cap" id="cap39"><span class="pill">To continue your education without</span></div><div class="cap" id="cap40"><span class="pill">the overwhelm,</span></div><div class="cap" id="cap41"><span class="pill">then the link is in</span></div><div class="cap" id="cap42"><span class="pill">our <b>bio</b> to join us.</span></div>
+  </div>
+  <audio id="sfx0" class="clip" src="sfx/click-soft.mp3" data-start="2.947" data-duration="0.366" data-volume="0.18" data-track-index="40"></audio><audio id="sfx1" class="clip" src="sfx/click-soft.mp3" data-start="33.894" data-duration="0.366" data-volume="0.18" data-track-index="41"></audio><audio id="sfx2" class="clip" src="sfx/click-soft.mp3" data-start="36.014" data-duration="0.366" data-volume="0.18" data-track-index="42"></audio><audio id="sfx3" class="clip" src="sfx/click-soft.mp3" data-start="47.404" data-duration="0.366" data-volume="0.18" data-track-index="43"></audio>
+</div>
+<script>
+window.__timelines = window.__timelines || {};
+const tl = gsap.timeline({ paused: true });
+tl.set("#cam", { scale: 1 }, 0);
+function cap(sel, s, e) {
+  tl.set(sel, { visibility: "visible" }, s);
+  tl.fromTo(sel, { opacity: 0 }, { opacity: 1, duration: 0.15, ease: "power1.out", immediateRender: false }, s);
+  tl.to(sel, { opacity: 0, duration: 0.1, ease: "power1.in" }, e - 0.1);
+  tl.set(sel, { opacity: 0, visibility: "hidden" }, e);
+}
+tl.set("#cam", { scale: 1.0 }, 0.000);
+tl.set("#cam", { scale: 1.08 }, 2.400);
+tl.set("#cam", { scale: 1.0 }, 4.367);
+tl.set("#cam", { scale: 1.08 }, 5.633);
+tl.set("#cam", { scale: 1.0 }, 8.533);
+tl.set("#cam", { scale: 1.08 }, 12.533);
+tl.set("#cam", { scale: 1.0 }, 21.767);
+tl.set("#cam", { scale: 1.08 }, 27.067);
+tl.set("#cam", { scale: 1.0 }, 31.367);
+tl.set("#cam", { scale: 1.08 }, 32.933);
+tl.set("#cam", { scale: 1.0 }, 33.667);
+tl.set("#cam", { scale: 1.08 }, 44.967);
+tl.to("#p1 .in", { opacity: 0, duration: 0.3, ease: "power1.in" }, 2.550);
+tl.fromTo("#p2 .in", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.45, ease: "power2.out", immediateRender: false }, 2.870);
+tl.to("#p2 .in", { opacity: 0, duration: 0.3, ease: "power1.in" }, 3.987);
+tl.fromTo("#p3 .in", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.45, ease: "power2.out", immediateRender: false }, 4.357);
+tl.to("#p3 .in", { opacity: 0, duration: 0.3, ease: "power1.in" }, 8.063);
+tl.fromTo("#p4 .in", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.45, ease: "power2.out", immediateRender: false }, 8.533);
+tl.to("#p4 .in", { opacity: 0, duration: 0.3, ease: "power1.in" }, 9.923);
+tl.fromTo("#p5 .in", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.45, ease: "power2.out", immediateRender: false }, 10.243);
+tl.to("#p5 .in", { opacity: 0, duration: 0.3, ease: "power1.in" }, 12.023);
+tl.fromTo("#p6 .in", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.45, ease: "power2.out", immediateRender: false }, 22.157);
+tl.to("#p6 .in", { opacity: 0, duration: 0.3, ease: "power1.in" }, 23.637);
+tl.fromTo("#p7 .in", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.45, ease: "power2.out", immediateRender: false }, 33.817);
+tl.to("#p7 .in", { opacity: 0, duration: 0.3, ease: "power1.in" }, 35.517);
+tl.fromTo("#p8 .in", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.45, ease: "power2.out", immediateRender: false }, 35.937);
+tl.to("#p8 .in", { opacity: 0, duration: 0.3, ease: "power1.in" }, 45.117);
+tl.fromTo("#p9 .in", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.45, ease: "power2.out", immediateRender: false }, 47.327);
+tl.to("#p9 .in", { opacity: 0, duration: 0.3, ease: "power1.in" }, 49.427);
+document.querySelectorAll("[data-at]").forEach((el) => {
+  tl.fromTo(el, { opacity: 0 }, { opacity: 1, duration: 0.35, ease: "power1.out", immediateRender: false }, parseFloat(el.dataset.at));
+});
+cap("#cap0", 0.100, 1.570);
+cap("#cap1", 1.570, 2.390);
+cap("#cap2", 2.390, 3.130);
+cap("#cap3", 3.130, 4.357);
+cap("#cap4", 4.357, 5.623);
+cap("#cap5", 5.623, 7.083);
+cap("#cap6", 7.083, 8.523);
+cap("#cap7", 8.523, 9.483);
+cap("#cap8", 9.483, 10.063);
+cap("#cap9", 10.063, 11.423);
+cap("#cap10", 11.423, 11.843);
+cap("#cap11", 11.843, 12.523);
+cap("#cap12", 12.523, 14.023);
+cap("#cap13", 14.023, 16.223);
+cap("#cap14", 16.223, 16.703);
+cap("#cap15", 16.703, 18.183);
+cap("#cap16", 18.183, 20.063);
+cap("#cap17", 20.063, 21.757);
+cap("#cap18", 21.757, 22.877);
+cap("#cap19", 22.877, 23.996);
+cap("#cap20", 23.996, 25.877);
+cap("#cap21", 25.877, 26.817);
+cap("#cap22", 26.817, 27.057);
+cap("#cap23", 27.057, 28.077);
+cap("#cap24", 28.077, 29.317);
+cap("#cap25", 29.317, 30.217);
+cap("#cap26", 30.217, 31.357);
+cap("#cap27", 31.357, 32.117);
+cap("#cap28", 32.117, 32.923);
+cap("#cap29", 32.923, 33.657);
+cap("#cap30", 33.657, 34.537);
+cap("#cap31", 34.537, 36.217);
+cap("#cap32", 36.217, 36.957);
+cap("#cap33", 36.957, 38.477);
+cap("#cap34", 38.477, 39.597);
+cap("#cap35", 39.597, 41.277);
+cap("#cap36", 41.277, 42.237);
+cap("#cap37", 42.237, 43.257);
+cap("#cap38", 43.257, 44.957);
+cap("#cap39", 44.957, 46.897);
+cap("#cap40", 46.897, 47.777);
+cap("#cap41", 47.777, 48.697);
+cap("#cap42", 48.697, 49.667);
+window.__timelines["main"] = tl;
+tl.seek(0);
+</script>
+</body>
+</html>

@@ -2,7 +2,8 @@
 + 30 ms audio fades), then lossless concat. Keeps 1440x2560 so HyperFrames punch-ins stay sharp."""
 import json, subprocess, sys
 from pathlib import Path
-sys.path.insert(0, str(Path.home() / "Developer/video-use/helpers"))
+for _p in ("Developer/video-use/helpers", ".claude/skills/video-use/helpers"):
+    sys.path.insert(0, str(Path.home() / _p))
 from render import TONEMAP_CHAIN, is_hdr_source  # reuse video-use's tonemap
 
 CLIP = sys.argv[1] if len(sys.argv) > 1 else "take01"
