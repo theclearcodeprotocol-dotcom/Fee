@@ -78,6 +78,10 @@ python3 scripts/sync_check.py exports/<name>_render.mp4 <clip>  # lip sync vs th
   take; a glance under ~0.3 s at a word's end → hold the last good frame for those frames (same frame
   count, so sync is untouched); longer → a full-frame brand page over it with the voice underneath (on
   launch-step2 the whole CTA sits on a red end page). Re-check the fixed footage before rendering.
+  The scan alone misses blink-glances: run `scripts/eye_hold.py <cut> <out> <model> 0.80 --report`, which flags every
+  frame whose lid gap is under 80% of the local median, then without `--report` it holds the nearest on-lens frames
+  over each dip (frame count unchanged). Run it twice, then look at face-tracked eye crops at 10 fps for the whole
+  video; narrowed eyes from a smile with the iris on the lens are fine, a closing or lowered lid is not.
 - Place the top-zone pop-ups by the **actual head position**: look at a frame at each
   framing. Pop-ups may overlap hair, never the eyes or mouth.
 

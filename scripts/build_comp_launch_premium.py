@@ -289,7 +289,7 @@ html, body {{ width:1080px; height:1920px; overflow:hidden; background:#000; }}
 <body>
 <div id="root" data-composition-id="main" data-start="0" data-duration="{TOTAL:.3f}" data-width="1080" data-height="1920">
   <div id="cam">
-    <video id="footage" class="clip" src="footage/launch-step2-cut-eyes.mp4" data-start="0" data-duration="{TOTAL:.3f}" data-track-index="0"
+    <video id="footage" class="clip" src="footage/launch-step2-cut-eyes4.mp4" data-start="0" data-duration="{TOTAL:.3f}" data-track-index="0"
       playsinline data-has-audio="true"></video>
   </div>
   <div id="scrim" class="clip" data-start="0" data-duration="{TOTAL:.3f}" data-track-index="1" data-track-kind="graphics" data-layout-allow-overlap></div>
