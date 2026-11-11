@@ -33,6 +33,7 @@ export type ScriptQueueFile = { queue: ScriptQueueItem[] };
 type Files = {
   hooks: HooksFile;
   analytics: AnalyticsFile;
+  "analytics-tiktok": AnalyticsFile;
   competitors: CompetitorsFile;
   scheduled: ScheduledFile;
   calendar: CalendarFile;
@@ -66,7 +67,7 @@ export function mutate<K extends keyof Files, R = void>(name: K, fn: (file: File
 }
 
 export const getHooks = () => read("hooks");
-export const getAnalytics = () => read("analytics");
+export const getAnalytics = (platform: "instagram" | "tiktok" = "instagram") => read(platform === "tiktok" ? "analytics-tiktok" : "analytics");
 export const getCompetitors = () => read("competitors");
 export const getScheduled = () => read("scheduled");
 export const getCalendar = () => read("calendar");

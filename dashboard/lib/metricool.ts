@@ -12,6 +12,11 @@ export const METRICOOL = {
   /** analytics request #2 — keep this order */
   reelMetrics: ["IGRE02", "IGRE03", "IGRE04", "IGRE06", "IGRE23", "IGRE12", "IGRE21", "IGRE07", "IGRE11", "IGRE27", "IGRE30"],
   // date+time, text, reel id, url, views, saved, shares, comments, reach, retention %, skip rate %
+  /** TikTok daily — keep this order: video views, followers gained, likes, shares */
+  tiktokEvolutionMetrics: ["TKEV12", "TKEV16", "TKEV13", "TKEV15"],
+  /** TikTok videos — keep this order */
+  tiktokVideoMetrics: ["TKPO02", "TKPO05", "TKPO03", "TKPO07", "TKPO08", "TKPO09", "TKPO10", "TKPO11", "TKPO13", "TKPO16"],
+  // date+time, description, url, views, likes, comments, shares, reach, watched-to-end %, For You %
   /** competitor accounts — keep this order */
   competitorMetrics: ["IGCO02", "IGCO03", "IGCO07"], // handle, display name, followers
   /** competitor reels — keep this order */

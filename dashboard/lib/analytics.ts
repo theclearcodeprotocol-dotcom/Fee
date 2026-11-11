@@ -12,7 +12,7 @@ import type { AnalyticsFile, DailyMetric, Reel } from "./types.ts";
 export const HEATER_MULTIPLE = 2;
 export const RANGES = [7, 30, 90] as const;
 export type Range = (typeof RANGES)[number];
-export type MetricKey = "views" | "saves" | "follows" | "dms";
+export type MetricKey = "views" | "saves" | "follows" | "dms" | "likes" | "shares";
 
 const DAY = 864e5;
 
@@ -107,6 +107,11 @@ export function popNote(reel: Reel, all: Reel[]): string {
   if (reel.skipRate !== undefined && skips.length >= 3 && reel.skipRate <= median(skips) * 0.8) {
     return `only ${reel.skipRate.toFixed(0)}% swiped away in the first 3s (you usually lose ${median(skips).toFixed(0)}%) — ${hook} held them.`;
   }
+  // TikTok: a video people watched to the end far more than usual
+  const full = all.flatMap((r) => (r.fullWatchRate !== undefined ? [r.fullWatchRate] : []));
+  if (reel.fullWatchRate !== undefined && full.length >= 3 && reel.fullWatchRate >= median(full) * 1.3) {
+    return `${reel.fullWatchRate.toFixed(0)}% watched to the end (you usually get ${median(full).toFixed(0)}%) — ${hook} kept them to the last second.`;
+  }
   const rate = (r: Reel, k: (typeof RATES)[number]["key"]) => r[k] / Math.max(1, r.views);
   const ratios = RATES
     // skip rates the source doesn't report (Metricool has no per-reel follows)
@@ -122,6 +127,13 @@ export function heaterStats(h: HeaterInfo, all: Reel[]) {
   const r = h.reel;
   const pct = (n: number) => `${((n / r.views) * 100).toFixed(2)}%`;
   const med = (k: "saves" | "shares" | "follows" | "comments") => `${((median(all.map((x) => x[k] / x.views)) || 0) * 100).toFixed(2)}%`;
+  const full = r.fullWatchRate !== undefined ? `; watched to the end ${r.fullWatchRate}% vs median ${median(all.flatMap((x) => (x.fullWatchRate !== undefined ? [x.fullWatchRate] : []))).toFixed(1)}%` : "";
+  const fy = r.forYouRate !== undefined ? `; ${r.forYouRate}% of views from For You` : "";
   const skip = r.skipRate !== undefined ? `; skip rate (swiped away in 3s) ${r.skipRate}% vs median ${median(all.flatMap((x) => (x.skipRate !== undefined ? [x.skipRate] : []))).toFixed(1)}%` : "";
-  return `views ${r.views} (${h.multiple?.toFixed(1) ?? "?"}× 30-day median)${skip}; save rate ${pct(r.saves)} vs median ${med("saves")}; share rate ${pct(r.shares)} vs ${med("shares")}; follow rate ${pct(r.follows)} vs ${med("follows")}; comment rate ${pct(r.comments)} vs ${med("comments")}`;
+  // only the rates this platform actually reports (TikTok has no saves or per-video follows)
+  const rates = (["saves", "shares", "follows", "comments"] as const)
+    .filter((k) => all.some((x) => x[k] > 0))
+    .map((k) => `${k.slice(0, -1)} rate ${pct(r[k])} vs median ${med(k)}`)
+    .join("; ");
+  return `views ${r.views} (${h.multiple?.toFixed(1) ?? "?"}× 30-day median)${skip}${full}${fy}${rates ? `; ${rates}` : ""}`;
 }

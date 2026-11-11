@@ -70,8 +70,12 @@ export interface ScriptQueueItem {
 export interface DailyMetric {
   date: string; // YYYY-MM-DD
   views: number;
-  saves: number;
+  /** Instagram only — Metricool has no TikTok saves */
+  saves?: number;
   follows: number;
+  /** TikTok (Metricool): likes and shares across your videos that day */
+  likes?: number;
+  shares?: number;
   /** DM conversations with activity that day — only from the direct Instagram API; Metricool has no DM data */
   dms?: number;
 }
@@ -89,13 +93,20 @@ export interface Reel {
   reach?: number;
   /** average % of the reel watched (Metricool) */
   retention?: number;
-  /** % who swiped away in the first 3 seconds (Metricool) */
+  /** % who swiped away in the first 3 seconds (Metricool, Instagram) */
   skipRate?: number;
+  /** TikTok: likes, % who watched to the end, % of views from the For You feed */
+  likes?: number;
+  fullWatchRate?: number;
+  forYouRate?: number;
   url?: string;
   /** one-line "why it popped", written by Claude during the analytics pull */
   note?: string;
 }
 
+export type AnalyticsPlatform = "instagram" | "tiktok";
+
+/** data/analytics.json (Instagram) and data/analytics-tiktok.json (TikTok) share this shape */
 export interface AnalyticsFile {
   meta: DataMeta;
   handle: string;

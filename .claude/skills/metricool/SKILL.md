@@ -16,7 +16,7 @@ The dashboard can't reach Metricool itself. You can, through the Metricool conne
 - Everything here runs on the user's existing Claude and Metricool accounts. Don't suggest paid
   add-ons (Claude API key, Apify); the user has asked not to take on new subscriptions.
 
-## pull — Instagram analytics → analytics page
+## pull — Instagram + TikTok analytics → analytics page
 
 1. Call `getAnalyticsDataByMetrics` with brandId `7976989`, `from` = 180 days ago, `to` = now,
    and metrics **exactly in this order**: `["IGEV05","IGEV29","IGEV15","IGEV43"]`.
@@ -25,16 +25,26 @@ The dashboard can't reach Metricool itself. You can, through the Metricool conne
    `["IGRE02","IGRE03","IGRE04","IGRE06","IGRE23","IGRE12","IGRE21","IGRE07","IGRE11","IGRE27","IGRE30"]`.
    Save the raw response to `dashboard/data/metricool/reels.json`. Write it with a small
    `node -e` script and `JSON.stringify`, so captions with quotes and emoji stay valid JSON.
-3. Run `npm run -s metricool:import`.
-4. If it lists heaters needing a note:
+3. TikTok, for the same dates. Call it twice more, with metrics **exactly in these
+   orders**:
+   - `["TKEV12","TKEV16","TKEV13","TKEV15"]`: save the raw response to
+     `dashboard/data/metricool/tiktok-evolution.json`.
+   - `["TKPO02","TKPO05","TKPO03","TKPO07","TKPO08","TKPO09","TKPO10","TKPO11","TKPO13","TKPO16"]`:
+     save it to `dashboard/data/metricool/tiktok-videos.json`, written with `node -e` and
+     `JSON.stringify`.
+4. Run `npm run -s metricool:import`. It updates `data/analytics.json` (Instagram) and
+   `data/analytics-tiktok.json` (TikTok).
+5. If it lists heaters needing a note:
    - Write one line per reel (under 18 words, lower-case) saying what most likely made it
      pop. Base it only on the stats printed (skip rate, save/share/comment rates against the
      medians) and the hook.
-   - Set it as `note` on that reel in `dashboard/data/analytics.json`.
-5. Tell the user the date range now covered, the number of reels, and any new heaters with
+   - Set it as `note` on that reel or video, in the file the import named.
+6. Tell the user, for each platform, the date range now covered, the number of reels, and any new heaters with
    their notes.
 
-Metricool provides no DM numbers and no per-reel follows. The page says so; don't invent them.
+Metricool provides no DM numbers, no per-reel follows and no TikTok saves. The page says so;
+don't invent them. TikTok (@theclearcode_acne) was connected on 11 Nov 2026, so its history
+starts around then.
 
 ## competitors — Metricool competitor reels → competitor tracker
 

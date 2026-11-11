@@ -7,7 +7,7 @@ CLAUDE.md, and none of that project's rules (GSAP timelines, `npm run check`) ap
 | Page | Route | Data | Filled by |
 |---|---|---|---|
 | hook vault | `/hooks` | `data/hooks.json`, `data/script-queue.json` | "add hook", `npm run hooks:transcribe`, "save to hook vault" on the competitor page |
-| analytics | `/analytics?range=7\|30\|90` | `data/analytics.json` | **Metricool**, via `/metricool pull` in Claude Code (`../.claude/skills/metricool/SKILL.md`) |
+| analytics | `/analytics?platform=instagram\|tiktok&range=7\|30\|90` | `data/analytics.json` (Instagram), `data/analytics-tiktok.json` (TikTok) | **Metricool**, via `/metricool pull` in Claude Code (`../.claude/skills/metricool/SKILL.md`) |
 | competitor tracker | `/competitors` | `data/competitors.json` | **screenshots** of competitors' Instagram reels tabs, read by Claude with the `/competitors` skill (`../.claude/skills/competitors/SKILL.md`), plus the "add reel" button. Free. Metricool (`/metricool competitors`) only if a plan with competitor tracking is added; Apify `scrape:competitors` is a paid alternative |
 | scheduler | `/scheduler` | `data/scheduled.json` | "schedule with claude" (from calendar entries), then your approval, then `/metricool send`, and Metricool publishes |
 | content calendar | `/calendar?month=YYYY-MM` | `data/calendar.json` + `../content/scripts/*.md` | the `/script` skill (`../.claude/skills/script/SKILL.md`), "quick post" |
@@ -47,8 +47,15 @@ the bridge:
   `mark`/`skip`, and the post becomes `in_metricool`.
   - `ready` refuses to run while `scheduled.json` holds sample data, and skips placeholder
     media links.
+- **TikTok analytics** (@theclearcode_acne, connected 11 Nov 2026): the same
+  `/metricool pull` fetches the TikTok daily and per-video metrics, and `metricool:import`
+  writes `data/analytics-tiktok.json`. The page's Instagram/TikTok switch shows:
+  - daily: views, follows, likes, shares
+  - per video: likes, shares, comments, watched-to-the-end % (used in the "what made it pop"
+    notes) and the share of views from For You
 - **What Metricool doesn't have:**
   - DM numbers. The DM card says so; it doesn't invent a number.
+  - TikTok saves.
   - Per-reel follows.
   - Any history from before the account was connected. History starts 2 Nov 2026.
 - **What it adds:** per-reel skip rate (the share who swiped away in the first 3 seconds),
