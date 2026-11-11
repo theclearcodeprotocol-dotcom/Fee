@@ -6,10 +6,10 @@
 #   scripts/install-schedule.sh --remove  # take them out again
 #
 #   06:40 daily     trending:fetch       12 sources, tagged
-#   07:00 daily     trending:slack       top 5 hook-worthy items to slack
 #
 # Analytics, competitors and posting go through Metricool, which Claude reaches
 # with `/metricool` (see CLAUDE.md) — no extra subscriptions. Paid alternatives:
+#   --slack   also send the 07:00 Slack digest (needs SLACK_WEBHOOK_URL in .env.local)
 #   --apify   also install the Sunday 06:00 Apify competitor scrape (needs APIFY_TOKEN)
 #   --direct  also install analytics:fetch (05:30) and publish:due (5 min) for the
 #             direct Instagram/TikTok APIs
@@ -25,7 +25,9 @@ RUN="cd \"$DIR\" && PATH=\"$PATH\" npm run -s"
 
 DIRECT=0
 APIFY=0
+SLACK=0
 for a in "$@"; do
+  [ "$a" = "--slack" ] && SLACK=1
   [ "$a" = "--direct" ] && DIRECT=1
   [ "$a" = "--apify" ] && APIFY=1
 done
@@ -33,7 +35,9 @@ done
 block() {
   echo "$BEGIN"
   echo "40 6 * * *  $RUN trending:fetch     >> \"$DIR/logs/trending.log\" 2>&1"
-  echo "0 7 * * *   $RUN trending:slack     >> \"$DIR/logs/slack.log\" 2>&1"
+  if [ "$SLACK" = 1 ]; then
+    echo "0 7 * * *   $RUN trending:slack     >> \"$DIR/logs/slack.log\" 2>&1"
+  fi
   if [ "$APIFY" = 1 ]; then
     echo "0 6 * * 0   $RUN scrape:competitors >> \"$DIR/logs/competitors.log\" 2>&1"
   fi

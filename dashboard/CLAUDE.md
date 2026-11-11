@@ -16,7 +16,8 @@ CLAUDE.md, and none of that project's rules (GSAP timelines, `npm run check`) ap
 ## Cost rule: no new subscriptions
 
 The owner has asked for no new paid services. Everything runs on what they already have:
-Claude (subscription), Metricool, ElevenLabs and a free Slack webhook. That means:
+Claude (subscription), Metricool and ElevenLabs. The owner chose not to use Slack (11 Nov
+2026): the 7am digest is off by default and the top 5 stay on the trending page. That means:
 
 - **Captions** are written by Claude inside `/script`, stored on the calendar entry
   (`captions`), and used as-is by the scheduler. `ANTHROPIC_API_KEY` is optional. Without it,
@@ -121,7 +122,7 @@ npm run competitors:add -- file.json # used by /competitors (screenshots)
 npm run scrape:competitors
 npm run trending:fetch
 npm run trending:slack [-- --print]
-npm run schedule:install            # daily trending pull + 7am Slack (crontab)
+npm run schedule:install            # daily 06:40 trending pull (crontab); add `-- --slack` for the 7am Slack digest
 npm run schedule:remove
 ```
 
