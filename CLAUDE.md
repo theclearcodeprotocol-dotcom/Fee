@@ -28,7 +28,10 @@ apply there. The `/script` skill (`.claude/skills/script/`) writes reel scripts 
 (`.claude/skills/metricool/`) pulls Instagram analytics into the dashboard and sends approved
 posts to Metricool. The `/competitors` skill (`.claude/skills/competitors/`) fills the
 competitor tracker from screenshots of other creators' Instagram reels tabs. The `/trending`
-skill (`.claude/skills/trending/`) pulls the day's AI news into it.
+skill (`.claude/skills/trending/`) pulls the day's AI news into it. The `/edit` skill
+(`.claude/skills/edit-reel/`) joins the video editor to Cleo: clip from the "Cleo - to edit"
+Google Drive folder, then edit in the house style, then save to "Cleo - ready to post", then
+attach to the post in Cleo's scheduler.
 
 ## Transcripts — ElevenLabs
 
