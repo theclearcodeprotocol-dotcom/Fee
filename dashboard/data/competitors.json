@@ -1,0 +1,233 @@
+{
+  "meta": {
+    "sample": true,
+    "source": "sample generator — run `npm run scrape:competitors` with APIFY_TOKEN",
+    "updatedAt": "2026-11-11T09:00:00.000Z"
+  },
+  "creators": [
+    {
+      "handle": "@techtok.demo",
+      "name": "techtok",
+      "niche": "ai tools",
+      "followers": 412000,
+      "medianViews": 85000
+    },
+    {
+      "handle": "@aidaily.demo",
+      "name": "ai daily",
+      "niche": "ai news",
+      "followers": 268000,
+      "medianViews": 54000
+    },
+    {
+      "handle": "@nocodenina.demo",
+      "name": "no-code nina",
+      "niche": "no-code",
+      "followers": 131000,
+      "medianViews": 31000
+    },
+    {
+      "handle": "@promptlab.demo",
+      "name": "prompt lab",
+      "niche": "prompting",
+      "followers": 590000,
+      "medianViews": 120000
+    },
+    {
+      "handle": "@founderfiles.demo",
+      "name": "founder files",
+      "niche": "ai for business",
+      "followers": 98000,
+      "medianViews": 22000
+    },
+    {
+      "handle": "@careercode.demo",
+      "name": "career code",
+      "niche": "tech careers",
+      "followers": 204000,
+      "medianViews": 40000
+    }
+  ],
+  "reels": [
+    {
+      "id": "comp_0_0",
+      "creator": "@techtok.demo",
+      "hook": "the ai feature apple didn't announce on stage",
+      "caption": "sample caption — replaced by the weekly scrape",
+      "views": 521309,
+      "likes": 26179,
+      "comments": 3037,
+      "postedAt": "2026-11-10T09:00:00.000Z"
+    },
+    {
+      "id": "comp_0_1",
+      "creator": "@techtok.demo",
+      "hook": "i let an ai agent run my business for a week",
+      "caption": "sample caption — replaced by the weekly scrape",
+      "views": 111263,
+      "likes": 5195,
+      "comments": 366,
+      "postedAt": "2026-11-07T09:00:00.000Z"
+    },
+    {
+      "id": "comp_0_2",
+      "creator": "@techtok.demo",
+      "hook": "stop paying for these 4 ai tools",
+      "caption": "sample caption — replaced by the weekly scrape",
+      "views": 139498,
+      "likes": 6319,
+      "comments": 374,
+      "postedAt": "2026-11-09T09:00:00.000Z"
+    },
+    {
+      "id": "comp_1_0",
+      "creator": "@aidaily.demo",
+      "hook": "stop paying for these 4 ai tools",
+      "caption": "sample caption — replaced by the weekly scrape",
+      "views": 396347,
+      "likes": 16304,
+      "comments": 1079,
+      "postedAt": "2026-11-10T09:00:00.000Z"
+    },
+    {
+      "id": "comp_1_1",
+      "creator": "@aidaily.demo",
+      "hook": "this prompt saved me 10 hours this week",
+      "caption": "sample caption — replaced by the weekly scrape",
+      "views": 91179,
+      "likes": 5121,
+      "comments": 183,
+      "postedAt": "2026-11-08T09:00:00.000Z"
+    },
+    {
+      "id": "comp_1_2",
+      "creator": "@aidaily.demo",
+      "hook": "google just made this free for everyone",
+      "caption": "sample caption — replaced by the weekly scrape",
+      "views": 74877,
+      "likes": 3777,
+      "comments": 228,
+      "postedAt": "2026-11-08T09:00:00.000Z"
+    },
+    {
+      "id": "comp_2_0",
+      "creator": "@nocodenina.demo",
+      "hook": "google just made this free for everyone",
+      "caption": "sample caption — replaced by the weekly scrape",
+      "views": 246971,
+      "likes": 12578,
+      "comments": 692,
+      "postedAt": "2026-11-09T09:00:00.000Z"
+    },
+    {
+      "id": "comp_2_1",
+      "creator": "@nocodenina.demo",
+      "hook": "the one setting that makes chatgpt 2x smarter",
+      "caption": "sample caption — replaced by the weekly scrape",
+      "views": 53892,
+      "likes": 3453,
+      "comments": 123,
+      "postedAt": "2026-11-07T09:00:00.000Z"
+    },
+    {
+      "id": "comp_2_2",
+      "creator": "@nocodenina.demo",
+      "hook": "ai can now watch your screen. here's how to use it",
+      "caption": "sample caption — replaced by the weekly scrape",
+      "views": 23491,
+      "likes": 1137,
+      "comments": 78,
+      "postedAt": "2026-11-10T09:00:00.000Z"
+    },
+    {
+      "id": "comp_3_0",
+      "creator": "@promptlab.demo",
+      "hook": "ai can now watch your screen. here's how to use it",
+      "caption": "sample caption — replaced by the weekly scrape",
+      "views": 676723,
+      "likes": 28821,
+      "comments": 2881,
+      "postedAt": "2026-11-08T09:00:00.000Z"
+    },
+    {
+      "id": "comp_3_1",
+      "creator": "@promptlab.demo",
+      "hook": "i tried every ai note-taker so you don't have to",
+      "caption": "sample caption — replaced by the weekly scrape",
+      "views": 170002,
+      "likes": 10980,
+      "comments": 681,
+      "postedAt": "2026-11-08T09:00:00.000Z"
+    },
+    {
+      "id": "comp_3_2",
+      "creator": "@promptlab.demo",
+      "hook": "what nobody tells you about learning ai in 2026",
+      "caption": "sample caption — replaced by the weekly scrape",
+      "views": 201006,
+      "likes": 15988,
+      "comments": 529,
+      "postedAt": "2026-11-08T09:00:00.000Z"
+    },
+    {
+      "id": "comp_4_0",
+      "creator": "@founderfiles.demo",
+      "hook": "what nobody tells you about learning ai in 2026",
+      "caption": "sample caption — replaced by the weekly scrape",
+      "views": 70127,
+      "likes": 5441,
+      "comments": 353,
+      "postedAt": "2026-11-06T09:00:00.000Z"
+    },
+    {
+      "id": "comp_4_1",
+      "creator": "@founderfiles.demo",
+      "hook": "this is the cheapest way to build an app right now",
+      "caption": "sample caption — replaced by the weekly scrape",
+      "views": 21530,
+      "likes": 1081,
+      "comments": 83,
+      "postedAt": "2026-11-09T09:00:00.000Z"
+    },
+    {
+      "id": "comp_4_2",
+      "creator": "@founderfiles.demo",
+      "hook": "3 ai jobs that didn't exist last year",
+      "caption": "sample caption — replaced by the weekly scrape",
+      "views": 45092,
+      "likes": 4005,
+      "comments": 155,
+      "postedAt": "2026-11-11T09:00:00.000Z"
+    },
+    {
+      "id": "comp_5_0",
+      "creator": "@careercode.demo",
+      "hook": "3 ai jobs that didn't exist last year",
+      "caption": "sample caption — replaced by the weekly scrape",
+      "views": 160307,
+      "likes": 11622,
+      "comments": 520,
+      "postedAt": "2026-11-09T09:00:00.000Z"
+    },
+    {
+      "id": "comp_5_1",
+      "creator": "@careercode.demo",
+      "hook": "you're using claude wrong (do this instead)",
+      "caption": "sample caption — replaced by the weekly scrape",
+      "views": 44049,
+      "likes": 3588,
+      "comments": 130,
+      "postedAt": "2026-11-08T09:00:00.000Z"
+    },
+    {
+      "id": "comp_5_2",
+      "creator": "@careercode.demo",
+      "hook": "the ai feature apple didn't announce on stage",
+      "caption": "sample caption — replaced by the weekly scrape",
+      "views": 46720,
+      "likes": 3037,
+      "comments": 216,
+      "postedAt": "2026-11-10T09:00:00.000Z"
+    }
+  ]
+}

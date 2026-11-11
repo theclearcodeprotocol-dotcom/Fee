@@ -1,0 +1,172 @@
+{
+  "meta": {
+    "sample": true,
+    "source": "sample generator — add hooks from the vault or POST /api/hooks",
+    "updatedAt": "2026-11-11T09:00:00.000Z"
+  },
+  "hooks": [
+    {
+      "id": "hook_001",
+      "savedAt": "2026-11-10T09:00:00.000Z",
+      "transcript": "Stop using ChatGPT like Google. Here's what it's actually for.",
+      "template": "Stop using [tool] like [familiar thing]. Here's what it's actually for.",
+      "format": "contrarian",
+      "creator": "@aidaily.demo",
+      "platform": "instagram",
+      "views": 1240000,
+      "tags": [
+        "ai tools",
+        "mindset"
+      ]
+    },
+    {
+      "id": "hook_002",
+      "savedAt": "2026-11-08T09:00:00.000Z",
+      "transcript": "I replaced 4 apps with one prompt, and I'm never going back.",
+      "template": "I replaced [number] [things] with one [simple fix], and I'm never going back.",
+      "format": "result-first",
+      "creator": "@nocodenina.demo",
+      "platform": "tiktok",
+      "views": 880000,
+      "tags": [
+        "productivity"
+      ]
+    },
+    {
+      "id": "hook_003",
+      "savedAt": "2026-11-06T09:00:00.000Z",
+      "transcript": "3 AI tools that feel illegal to know about.",
+      "template": "[number] [category] that feel illegal to know about.",
+      "format": "listicle",
+      "creator": "@techtok.demo",
+      "platform": "instagram",
+      "views": 2100000,
+      "tags": [
+        "ai tools",
+        "list"
+      ]
+    },
+    {
+      "id": "hook_004",
+      "savedAt": "2026-11-04T09:00:00.000Z",
+      "transcript": "POV: you finally understand what an AI agent is.",
+      "template": "POV: you finally understand [confusing concept].",
+      "format": "pov",
+      "creator": "@theclearcode",
+      "platform": "instagram",
+      "views": 410000,
+      "tags": [
+        "explainer"
+      ]
+    },
+    {
+      "id": "hook_005",
+      "savedAt": "2026-11-02T09:00:00.000Z",
+      "transcript": "Nobody is talking about the most useful feature in Claude.",
+      "template": "Nobody is talking about the most useful feature in [product].",
+      "format": "curiosity",
+      "creator": "@founderfiles.demo",
+      "platform": "tiktok",
+      "views": 960000,
+      "tags": [
+        "ai tools",
+        "hidden feature"
+      ]
+    },
+    {
+      "id": "hook_006",
+      "savedAt": "2026-10-31T09:00:00.000Z",
+      "transcript": "If you're a woman in tech, save this before your next salary review.",
+      "template": "If you're [specific audience], save this before your next [high-stakes moment].",
+      "format": "callout",
+      "creator": "@careercode.demo",
+      "platform": "instagram",
+      "views": 650000,
+      "tags": [
+        "career",
+        "save bait"
+      ]
+    },
+    {
+      "id": "hook_007",
+      "savedAt": "2026-10-29T09:00:00.000Z",
+      "transcript": "Last year I couldn't write a line of code. Last week I shipped an app.",
+      "template": "Last [time] I couldn't [skill]. Last [short time] I [impressive result].",
+      "format": "story",
+      "creator": "@nocodenina.demo",
+      "platform": "youtube",
+      "views": 1530000,
+      "tags": [
+        "transformation"
+      ]
+    },
+    {
+      "id": "hook_008",
+      "savedAt": "2026-10-27T09:00:00.000Z",
+      "transcript": "Here's how to make AI write in your voice in under 60 seconds.",
+      "template": "Here's how to [desired outcome] in under [short time].",
+      "format": "how-to",
+      "creator": "@aidaily.demo",
+      "platform": "instagram",
+      "views": 720000,
+      "tags": [
+        "prompting",
+        "tutorial"
+      ]
+    },
+    {
+      "id": "hook_009",
+      "savedAt": "2026-10-25T09:00:00.000Z",
+      "transcript": "This is why your prompts give you boring answers.",
+      "template": "This is why your [thing] gives you [bad result].",
+      "format": "curiosity",
+      "creator": "@promptlab.demo",
+      "platform": "tiktok",
+      "views": 1050000,
+      "tags": [
+        "prompting"
+      ]
+    },
+    {
+      "id": "hook_010",
+      "savedAt": "2026-10-23T09:00:00.000Z",
+      "transcript": "You don't need to learn to code in 2026. You need to learn this.",
+      "template": "You don't need to [common advice] in [year]. You need to learn this.",
+      "format": "contrarian",
+      "creator": "@techtok.demo",
+      "platform": "instagram",
+      "views": 3400000,
+      "tags": [
+        "career",
+        "hot take"
+      ]
+    },
+    {
+      "id": "hook_011",
+      "savedAt": "2026-10-21T09:00:00.000Z",
+      "transcript": "I asked AI to plan my week and it did something I didn't expect.",
+      "template": "I asked [tool] to [everyday task] and it did something I didn't expect.",
+      "format": "story",
+      "creator": "@founderfiles.demo",
+      "platform": "instagram",
+      "views": 540000,
+      "tags": [
+        "experiment"
+      ]
+    },
+    {
+      "id": "hook_012",
+      "savedAt": "2026-10-19T09:00:00.000Z",
+      "transcript": "5 words that make every AI answer better.",
+      "template": "[number] words that make every [output] better.",
+      "format": "listicle",
+      "creator": "@promptlab.demo",
+      "platform": "tiktok",
+      "views": 2700000,
+      "tags": [
+        "prompting",
+        "list"
+      ]
+    }
+  ]
+}

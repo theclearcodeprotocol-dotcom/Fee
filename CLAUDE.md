@@ -16,6 +16,14 @@ Every video uses the brand in `brand/BRAND.md` (from `brand/the-clear-code-brand
 red `#AE1F14`, cream `#F2F0E0`, pink `#FFD7DE`; Source Serif 4 Black headings at -0.05em,
 Outfit body; lower-case logo ending in a full stop; `c.` lettermark as watermark.
 
+## Content dashboard — `dashboard/`
+
+A separate Next.js app (hook vault, analytics, competitors, scheduler, content calendar,
+trending) lives in `dashboard/` with its own `package.json` and its own
+`dashboard/CLAUDE.md`. Read that file before you work on it; the HyperFrames rules below don't
+apply there. The `/script` skill (`.claude/skills/script/`) writes reel scripts to
+`content/scripts/` and adds them to the dashboard's content calendar.
+
 ## Transcripts — ElevenLabs
 
 Transcribe speech with ElevenLabs Speech-to-Text (Scribe), not local whisper:

@@ -1,0 +1,47 @@
+{
+  "meta": {
+    "sample": true,
+    "source": "dashboard scheduler",
+    "updatedAt": "2026-11-11T09:00:00.000Z"
+  },
+  "posts": [
+    {
+      "id": "post_001",
+      "title": "what an ai agent actually is (part 2)",
+      "brief": "follow-up to the agent explainer: agents vs. chatbots, one everyday example.",
+      "scheduledFor": "2026-11-12T17:30:00.000Z",
+      "platforms": [
+        "instagram",
+        "tiktok",
+        "youtube"
+      ],
+      "captions": {
+        "instagram": "agents, part 2. the difference between a chatbot and an agent is one word: action. save this for later 🧠\n\n#ai #aiagents #theclearcode",
+        "tiktok": "chatbot vs agent — the one-word difference #ai #aiagents",
+        "youtube": "chatbot vs ai agent: the one-word difference"
+      },
+      "status": "scheduled",
+      "createdAt": "2026-11-10T09:00:00.000Z"
+    },
+    {
+      "id": "post_002",
+      "title": "ai news in 30 seconds — week 46",
+      "brief": "weekly roundup from the trending page, top 3 high-potential stories.",
+      "scheduledFor": "2026-11-14T12:00:00.000Z",
+      "platforms": [
+        "instagram",
+        "tiktok",
+        "linkedin",
+        "x"
+      ],
+      "captions": {
+        "instagram": "everything that happened in ai this week, in 30 seconds. which one surprised you? 👇",
+        "tiktok": "ai news in 30 seconds ⏱️ #ainews",
+        "linkedin": "three ai stories from this week worth 30 seconds of your time, and what they mean for how we work.",
+        "x": "ai news in 30 seconds — week 46 🧵"
+      },
+      "status": "scheduled",
+      "createdAt": "2026-11-09T09:00:00.000Z"
+    }
+  ]
+}

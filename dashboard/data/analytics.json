@@ -1,0 +1,340 @@
+{
+  "meta": {
+    "sample": true,
+    "source": "sample generator — connect Instagram Graph API or Metricool",
+    "updatedAt": "2026-11-11T09:00:00.000Z"
+  },
+  "handle": "@theclearcode",
+  "daily": [
+    {
+      "date": "2026-10-15",
+      "views": 11822,
+      "saves": 343,
+      "follows": 39
+    },
+    {
+      "date": "2026-10-16",
+      "views": 12656,
+      "saves": 236,
+      "follows": 35
+    },
+    {
+      "date": "2026-10-17",
+      "views": 10586,
+      "saves": 261,
+      "follows": 35
+    },
+    {
+      "date": "2026-10-18",
+      "views": 14308,
+      "saves": 404,
+      "follows": 40
+    },
+    {
+      "date": "2026-10-19",
+      "views": 11095,
+      "saves": 252,
+      "follows": 26
+    },
+    {
+      "date": "2026-10-20",
+      "views": 11496,
+      "saves": 303,
+      "follows": 43
+    },
+    {
+      "date": "2026-10-21",
+      "views": 35665,
+      "saves": 1039,
+      "follows": 105
+    },
+    {
+      "date": "2026-10-22",
+      "views": 12281,
+      "saves": 321,
+      "follows": 42
+    },
+    {
+      "date": "2026-10-23",
+      "views": 16391,
+      "saves": 447,
+      "follows": 49
+    },
+    {
+      "date": "2026-10-24",
+      "views": 13333,
+      "saves": 364,
+      "follows": 30
+    },
+    {
+      "date": "2026-10-25",
+      "views": 14183,
+      "saves": 421,
+      "follows": 40
+    },
+    {
+      "date": "2026-10-26",
+      "views": 15916,
+      "saves": 463,
+      "follows": 51
+    },
+    {
+      "date": "2026-10-27",
+      "views": 13291,
+      "saves": 245,
+      "follows": 43
+    },
+    {
+      "date": "2026-10-28",
+      "views": 44202,
+      "saves": 1217,
+      "follows": 134
+    },
+    {
+      "date": "2026-10-29",
+      "views": 13565,
+      "saves": 360,
+      "follows": 45
+    },
+    {
+      "date": "2026-10-30",
+      "views": 15436,
+      "saves": 307,
+      "follows": 36
+    },
+    {
+      "date": "2026-10-31",
+      "views": 14193,
+      "saves": 396,
+      "follows": 36
+    },
+    {
+      "date": "2026-11-01",
+      "views": 19038,
+      "saves": 403,
+      "follows": 70
+    },
+    {
+      "date": "2026-11-02",
+      "views": 13827,
+      "saves": 265,
+      "follows": 32
+    },
+    {
+      "date": "2026-11-03",
+      "views": 49213,
+      "saves": 995,
+      "follows": 171
+    },
+    {
+      "date": "2026-11-04",
+      "views": 16515,
+      "saves": 481,
+      "follows": 55
+    },
+    {
+      "date": "2026-11-05",
+      "views": 17295,
+      "saves": 507,
+      "follows": 61
+    },
+    {
+      "date": "2026-11-06",
+      "views": 14141,
+      "saves": 255,
+      "follows": 43
+    },
+    {
+      "date": "2026-11-07",
+      "views": 19124,
+      "saves": 414,
+      "follows": 47
+    },
+    {
+      "date": "2026-11-08",
+      "views": 45692,
+      "saves": 1284,
+      "follows": 153
+    },
+    {
+      "date": "2026-11-09",
+      "views": 18489,
+      "saves": 431,
+      "follows": 50
+    },
+    {
+      "date": "2026-11-10",
+      "views": 49730,
+      "saves": 1029,
+      "follows": 119
+    },
+    {
+      "date": "2026-11-11",
+      "views": 17309,
+      "saves": 493,
+      "follows": 44
+    }
+  ],
+  "reels": [
+    {
+      "id": "reel_001",
+      "title": "what an ai agent actually is",
+      "hook": "you've heard 'agent' 100 times this week. here's what it means.",
+      "postedAt": "2026-10-15T09:00:00.000Z",
+      "views": 12731,
+      "saves": 402,
+      "shares": 132,
+      "follows": 54
+    },
+    {
+      "id": "reel_002",
+      "title": "3 prompts i use every day",
+      "hook": "3 prompts i use every single day, steal them.",
+      "postedAt": "2026-10-17T09:00:00.000Z",
+      "views": 36486,
+      "saves": 1574,
+      "shares": 204,
+      "follows": 107
+    },
+    {
+      "id": "reel_003",
+      "title": "claude vs chatgpt for writing",
+      "hook": "i gave claude and chatgpt the same brief. one was way better.",
+      "postedAt": "2026-10-19T09:00:00.000Z",
+      "views": 130680,
+      "saves": 1995,
+      "shares": 1112,
+      "follows": 553
+    },
+    {
+      "id": "reel_004",
+      "title": "the 60-second voice prompt",
+      "hook": "make ai write like you in 60 seconds.",
+      "postedAt": "2026-10-20T09:00:00.000Z",
+      "views": 24772,
+      "saves": 474,
+      "shares": 127,
+      "follows": 111
+    },
+    {
+      "id": "reel_005",
+      "title": "why your prompts are boring",
+      "hook": "this is why your ai answers sound like a robot.",
+      "postedAt": "2026-10-22T09:00:00.000Z",
+      "views": 16650,
+      "saves": 652,
+      "shares": 109,
+      "follows": 93
+    },
+    {
+      "id": "reel_006",
+      "title": "ai news in 30 seconds",
+      "hook": "everything that happened in ai this week, in 30 seconds.",
+      "postedAt": "2026-10-24T09:00:00.000Z",
+      "views": 36584,
+      "saves": 1001,
+      "shares": 149,
+      "follows": 139
+    },
+    {
+      "id": "reel_007",
+      "title": "automate your inbox",
+      "hook": "i haven't sorted an email by hand in 3 months.",
+      "postedAt": "2026-10-26T09:00:00.000Z",
+      "views": 28180,
+      "saves": 737,
+      "shares": 360,
+      "follows": 136
+    },
+    {
+      "id": "reel_008",
+      "title": "the context window, explained",
+      "hook": "your ai forgets things. here's why.",
+      "postedAt": "2026-10-28T09:00:00.000Z",
+      "views": 20856,
+      "saves": 649,
+      "shares": 269,
+      "follows": 117
+    },
+    {
+      "id": "reel_009",
+      "title": "build a website with no code",
+      "hook": "i built this site in 11 minutes with zero code.",
+      "postedAt": "2026-10-29T09:00:00.000Z",
+      "views": 27689,
+      "saves": 1142,
+      "shares": 313,
+      "follows": 57
+    },
+    {
+      "id": "reel_010",
+      "title": "ai for your skincare routine",
+      "hook": "i asked ai to fix my skincare routine. bye bye, guesswork.",
+      "postedAt": "2026-10-31T09:00:00.000Z",
+      "views": 142596,
+      "saves": 3049,
+      "shares": 1867,
+      "follows": 572
+    },
+    {
+      "id": "reel_011",
+      "title": "stop saying 'please' to chatgpt?",
+      "hook": "does being polite to ai actually change the answer?",
+      "postedAt": "2026-11-02T09:00:00.000Z",
+      "views": 17265,
+      "saves": 352,
+      "shares": 89,
+      "follows": 60
+    },
+    {
+      "id": "reel_012",
+      "title": "my full ai stack 2026",
+      "hook": "every ai tool i pay for, and the ones i cancelled.",
+      "postedAt": "2026-11-04T09:00:00.000Z",
+      "views": 14302,
+      "saves": 473,
+      "shares": 84,
+      "follows": 32
+    },
+    {
+      "id": "reel_013",
+      "title": "make a reel with ai in 5 min",
+      "hook": "this whole reel was edited by ai. can you tell?",
+      "postedAt": "2026-11-06T09:00:00.000Z",
+      "views": 95865,
+      "saves": 2972,
+      "shares": 1126,
+      "follows": 218
+    },
+    {
+      "id": "reel_014",
+      "title": "the prompt that writes prompts",
+      "hook": "the only prompt you need to memorise.",
+      "postedAt": "2026-11-07T09:00:00.000Z",
+      "views": 54531,
+      "saves": 2168,
+      "shares": 436,
+      "follows": 215
+    },
+    {
+      "id": "reel_015",
+      "title": "is ai coming for your job",
+      "hook": "the honest answer to 'will ai take my job'.",
+      "postedAt": "2026-11-09T09:00:00.000Z",
+      "views": 33328,
+      "saves": 808,
+      "shares": 138,
+      "follows": 102
+    },
+    {
+      "id": "reel_016",
+      "title": "hidden chatgpt settings",
+      "hook": "turn this setting on before you use chatgpt again.",
+      "postedAt": "2026-11-11T09:00:00.000Z",
+      "views": 119425,
+      "saves": 2107,
+      "shares": 1392,
+      "follows": 326
+    }
+  ]
+}

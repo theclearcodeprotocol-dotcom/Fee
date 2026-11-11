@@ -1,0 +1,178 @@
+{
+  "meta": {
+    "sample": true,
+    "source": "sample generator — /script appends here",
+    "updatedAt": "2026-11-11T09:00:00.000Z"
+  },
+  "entries": [
+    {
+      "id": "cal_001",
+      "date": "2026-11-02",
+      "title": "the context window, explained",
+      "hook": "your ai forgets things. here's why.",
+      "angle": "analogy: a desk that only fits 10 pages",
+      "platforms": [
+        "instagram",
+        "tiktok",
+        "youtube"
+      ],
+      "status": "posted",
+      "source": "script",
+      "scriptPath": "content/scripts/2026-11-02-the-context-window-explained.md"
+    },
+    {
+      "id": "cal_002",
+      "date": "2026-11-05",
+      "title": "my full ai stack 2026",
+      "hook": "every ai tool i pay for, and the ones i cancelled.",
+      "angle": "receipts on screen; cost per month",
+      "platforms": [
+        "instagram",
+        "tiktok"
+      ],
+      "status": "posted",
+      "source": "script",
+      "scriptPath": "content/scripts/2026-11-05-my-full-ai-stack-2026.md"
+    },
+    {
+      "id": "cal_003",
+      "date": "2026-11-08",
+      "title": "make a reel with ai in 5 min",
+      "hook": "this whole reel was edited by ai. can you tell?",
+      "angle": "reveal the edit timeline at the end",
+      "platforms": [
+        "instagram",
+        "tiktok"
+      ],
+      "status": "posted",
+      "source": "script",
+      "scriptPath": "content/scripts/2026-11-08-make-a-reel-with-ai-in-5-min.md"
+    },
+    {
+      "id": "cal_004",
+      "date": "2026-11-10",
+      "title": "hidden chatgpt settings",
+      "hook": "turn this setting on before you use chatgpt again.",
+      "angle": "screen recording, 3 settings, fast cuts",
+      "platforms": [
+        "instagram",
+        "tiktok",
+        "youtube"
+      ],
+      "status": "edited",
+      "source": "manual"
+    },
+    {
+      "id": "cal_005",
+      "date": "2026-11-12",
+      "title": "what an ai agent actually is, part 2",
+      "hook": "chatbots talk. agents do. here's the difference.",
+      "angle": "one everyday task, done both ways",
+      "platforms": [
+        "instagram",
+        "tiktok"
+      ],
+      "status": "filmed",
+      "source": "script",
+      "scriptPath": "content/scripts/2026-11-12-what-an-ai-agent-actually-is-part-2.md"
+    },
+    {
+      "id": "cal_006",
+      "date": "2026-11-14",
+      "title": "ai news in 30 seconds — week 46",
+      "hook": "everything that happened in ai this week, in 30 seconds.",
+      "angle": "pull top 3 from what's trending",
+      "platforms": [
+        "instagram",
+        "tiktok"
+      ],
+      "status": "scripted",
+      "source": "script",
+      "scriptPath": "content/scripts/2026-11-14-ai-news-in-30-seconds-week-46.md"
+    },
+    {
+      "id": "cal_007",
+      "date": "2026-11-16",
+      "title": "the prompt that writes prompts",
+      "hook": "the only prompt you need to memorise.",
+      "angle": "show before/after answer side by side",
+      "platforms": [
+        "instagram",
+        "tiktok",
+        "youtube"
+      ],
+      "status": "scripted",
+      "source": "script",
+      "scriptPath": "content/scripts/2026-11-16-the-prompt-that-writes-prompts.md"
+    },
+    {
+      "id": "cal_008",
+      "date": "2026-11-19",
+      "title": "is ai coming for your job",
+      "hook": "the honest answer to 'will ai take my job'.",
+      "angle": "contrarian: tasks, not jobs",
+      "platforms": [
+        "instagram",
+        "tiktok"
+      ],
+      "status": "idea",
+      "source": "manual"
+    },
+    {
+      "id": "cal_009",
+      "date": "2026-11-21",
+      "title": "claude vs chatgpt for spreadsheets",
+      "hook": "i gave both the same messy spreadsheet.",
+      "angle": "split screen race",
+      "platforms": [
+        "instagram",
+        "tiktok"
+      ],
+      "status": "idea",
+      "source": "script",
+      "scriptPath": "content/scripts/2026-11-21-claude-vs-chatgpt-for-spreadsheets.md"
+    },
+    {
+      "id": "cal_010",
+      "date": "2026-11-23",
+      "title": "ai for your skincare routine, part 2",
+      "hook": "i let ai read my skincare labels. bye bye, guesswork.",
+      "angle": "brand tie-in: ingredient decoder",
+      "platforms": [
+        "instagram",
+        "tiktok",
+        "youtube"
+      ],
+      "status": "idea",
+      "source": "script",
+      "scriptPath": "content/scripts/2026-11-23-ai-for-your-skincare-routine-part-2.md"
+    },
+    {
+      "id": "cal_011",
+      "date": "2026-11-26",
+      "title": "3 ai tools that feel illegal",
+      "hook": "3 ai tools that feel illegal to know about.",
+      "angle": "hook vault template #3",
+      "platforms": [
+        "instagram",
+        "tiktok"
+      ],
+      "status": "idea",
+      "source": "script",
+      "scriptPath": "content/scripts/2026-11-26-3-ai-tools-that-feel-illegal.md"
+    },
+    {
+      "id": "cal_012",
+      "date": "2026-11-28",
+      "title": "how i script a reel in 10 min",
+      "hook": "my whole scripting process, in one minute.",
+      "angle": "behind the scenes of /script",
+      "platforms": [
+        "instagram",
+        "tiktok"
+      ],
+      "status": "idea",
+      "source": "manual"
+    }
+  ]
+}
