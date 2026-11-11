@@ -60,8 +60,8 @@ asked; don't estimate views.
 Only posts the user approved in the dashboard go out. Never approve a post yourself, and
 never send one that `ready` doesn't list.
 
-1. Call `getBrandSettings` and note which networks are connected (`networksData`). Today
-   only Instagram is connected.
+1. Call `getBrandSettings` and note which networks are connected (`networksData`). As of
+   11 Nov 2026, both are: Instagram @theclearcode_ and TikTok @theclearcode_acne.
 2. Run `npm run -s metricool:posts -- ready`. It prints a JSON list of
    `{ postId, platform, title, blogId, date, info }`. Posts edited since approval are sent
    back for approval automatically and won't appear.

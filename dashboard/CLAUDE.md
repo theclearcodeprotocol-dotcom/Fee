@@ -53,8 +53,9 @@ the bridge:
   - Any history from before the account was connected. History starts 2 Nov 2026.
 - **What it adds:** per-reel skip rate (the share who swiped away in the first 3 seconds),
   used in the table and in the "what made it pop" notes.
-- **TikTok** has to be connected inside Metricool first. Until then, `send` skips TikTok and
-  says why.
+- **TikTok** (@theclearcode_acne) is connected in Metricool as of 11 Nov 2026, so `send`
+  schedules approved posts on both platforms. If a network is ever disconnected, `send`
+  skips it and says why.
 - The direct Instagram/TikTok API code (`scripts/fetch-analytics.ts`, `scripts/publish-due.ts`,
   `lib/publish/*`) is kept as an alternative. It only runs with `IG_ACCESS_TOKEN` /
   `TIKTOK_ACCESS_TOKEN` set, and `schedule:install -- --direct`.
