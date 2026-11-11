@@ -18,14 +18,17 @@ Outfit body; lower-case logo ending in a full stop; `c.` lettermark as watermark
 
 ## Content dashboard — `dashboard/`
 
-A separate Next.js app (hook vault, analytics, competitors, scheduler, content calendar,
+The owner uses the dashboard online, on an iPad: **https://claude.ai/artifact/C377BSo7rK7oopk2gX1C1K**.
+Its source is `dashboard/online/index.html`, and its data is in the page's database, reached
+with the ArtifactData tool. The repo also holds the original Next.js app (hook vault, analytics, competitors, scheduler, content calendar,
 trending) lives in `dashboard/` with its own `package.json` and its own
 `dashboard/CLAUDE.md`. Read that file before you work on it; the HyperFrames rules below don't
 apply there. The `/script` skill (`.claude/skills/script/`) writes reel scripts to
 `content/scripts/` and adds them to the dashboard's content calendar. The `/metricool` skill
 (`.claude/skills/metricool/`) pulls Instagram analytics into the dashboard and sends approved
 posts to Metricool. The `/competitors` skill (`.claude/skills/competitors/`) fills the
-competitor tracker from screenshots of other creators' Instagram reels tabs.
+competitor tracker from screenshots of other creators' Instagram reels tabs. The `/trending`
+skill (`.claude/skills/trending/`) pulls the day's AI news into it.
 
 ## Transcripts — ElevenLabs
 

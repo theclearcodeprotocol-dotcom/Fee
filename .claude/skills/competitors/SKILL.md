@@ -1,58 +1,56 @@
 ---
 name: competitors
-description: Fill the clear code. dashboard's competitor tracker from screenshots of competitors' Instagram profiles and reels tabs (view counts, cover text, follower counts) — the free route, since the Metricool plan has no competitor tracking. Use when the user types /competitors or sends screenshots of other creators' Instagram reels.
+description: Fill the clear code.'s online dashboard competitor tracker from screenshots of competitors' Instagram profiles and reels tabs (view counts, cover text, follower counts) — the free route, since the Metricool plan has no competitor tracking. Use when the user types /competitors or sends screenshots of other creators' Instagram reels.
 ---
 
 # /competitors — competitor reels from screenshots
 
-The user's Metricool plan has no competitor tracking, and they don't want new subscriptions,
-so this is how the competitor tracker gets its data. You read the screenshots yourself (no
-API, no paid tool) and add the reels with `npm run competitors:add`. Work in `dashboard/`.
+The dashboard lives online at **https://claude.ai/artifact/C377BSo7rK7oopk2gX1C1K**. Its
+competitor data is one document, `competitors`/`state` (`{meta, creators, reels}`), in that
+page's database. Read and write it with the **ArtifactData** tool.
+
+You read the screenshots yourself: no API, no paid tool. The user is on an iPad and doesn't
+want new subscriptions.
 
 ## What the user sends
 
 Screenshots from the Instagram app:
 - **Profile header:** the @handle, display name and follower count.
-- **Reels tab** (the grid): each tile shows a play icon with the view count, and usually the
-  cover text, which is the hook.
-- **An open reel** (optional): likes, comments, the caption, sometimes the on-screen text.
+- **Reels tab** (the grid): each tile shows a play/eye icon with the view count, and usually
+  the cover text, which is the hook.
 
-If they type `/competitors` without screenshots, ask for them, in plain words:
-
-1. Open the account in Instagram and screenshot the top of the profile, so the follower
-   count shows.
-2. Tap the reels tab (the play-button icon) and screenshot the grid.
-3. Send those screenshots here. Several accounts at once is fine.
+If they type `/competitors` without screenshots, ask for them in plain words:
+1. Screenshot the top of the profile, so the follower count shows.
+2. Tap the reels tab and screenshot the grid.
+3. Send them here.
 
 ## What to do
 
-1. For each account, read the @handle and the follower count from the header. Convert "12.5K"
-   to 12500 and "1.2M" to 1200000.
-2. For each reel tile in the grid:
-   - **views:** the number by the play icon, converted the same way.
-   - **hook:** the cover's text, exactly as written. If the cover has no readable text, skip
-     that tile rather than guess. The grid shows no spoken words, so don't invent them.
-   - **onScreenText:** the same cover text, if it differs from what you used as the hook.
-3. Keep the **top 5 by views per account**. If the user wants every tile, take them all.
-4. Write a JSON array to `/tmp/competitor-reels.json`, one object per reel:
-   ```json
-   [{ "creator": "@handle", "creatorName": "display name", "followers": 12500,
-      "hook": "cover text", "views": 48000, "source": "screenshot" }]
-   ```
-   Add `likes`, `comments`, `caption`, `url` or `postedAt` only when a screenshot actually
-   shows them. Never estimate a number you can't read. Leave the field out instead.
-5. Run `npm run -s competitors:add -- /tmp/competitor-reels.json`. Adding the same reel again
-   (same account and hook) updates its numbers, so a fresh screenshot next week refreshes the
-   counts. The first real reel replaces the sample data.
-6. Reply with:
+1. **Read the screenshots.** For each account, read the @handle and the follower count
+   ("12.5K" = 12500, "1.2M" = 1200000). For each reel tile, read the **views** by the icon
+   and the **hook**, which is the cover text exactly as written.
+   - Skip tiles with no readable cover text, or whose number is cut off. Never estimate.
+   - Keep the **top 5 by views per account** unless the user wants every tile.
+2. **Write the new reels** to `/tmp/competitor-reels.json`:
+   `[{ "creator": "@handle", "creatorName": "…", "followers": 12500, "hook": "…", "views": 48000 }]`.
+   Add `likes`, `comments`, `url` or `postedAt` only when a screenshot shows them.
+3. **Get the current state.** Use ArtifactData `get` on `competitors`/`state` with
+   `out_dir` = `/tmp/comp`, and note its `version`.
+4. **Merge.** In `dashboard/`, run
+   `node scripts/online/competitors-merge.mjs /tmp/comp/competitors/state.json /tmp/competitor-reels.json > /tmp/comp-merged.json`.
+   The same reel again (same account and hook) updates its numbers.
+5. **Write back.** Use ArtifactData `set` on `competitors`/`state` with `file_path`
+   `/tmp/comp-merged.json` and `if_version`.
+6. **Reply with:**
    - the accounts and reels added or updated
    - the top 3 hooks by views
    - anything you couldn't read, and why
 
-Remind the user once that "save to hook vault" on the competitor page turns any of these into
-a template.
+   Remind the user once that "save to hook vault" on the dashboard turns any of these into a
+   template.
 
-## Keeping it fresh
+There's no automatic weekly scrape on this free route. Suggest sending fresh screenshots of the
+same accounts each Sunday.
 
-There's no automatic weekly scrape on this free route. Suggest that once a week (Sunday works
-well) the user screenshots the same accounts' reels tabs and sends them with `/competitors`.
+Accounts already tracked as of 11 Nov 2026: @functionalskinacademy, @the_skinspecialist and
+@advancedacneacademy. @ell.skinn's reels tab showed no view counts, so none were added.

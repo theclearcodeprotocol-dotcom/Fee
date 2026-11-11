@@ -1,9 +1,17 @@
 ---
 name: script
-description: Write a short-form reel or carousel script for the clear code. (@theclearcode), then put it on the dashboard's content calendar with its date, time, platforms, hook, angle and CTA. Use when the user types /script (with a topic, a --hook from the hook vault, or nothing to take the next queued hook) or asks for a reel/carousel script.
+description: Write a short-form reel or carousel script for the clear code. (@theclearcode), then put it on the online dashboard's content calendar with its date, time, platforms, hook, angle, CTA and captions. Use when the user types /script (with a topic, a --hook from the hook vault, or nothing to take the next queued hook) or asks for a reel/carousel script.
 ---
 
 # /script — write a script and put it on the calendar
+
+The dashboard lives online at **https://claude.ai/artifact/C377BSo7rK7oopk2gX1C1K**, and the
+user opens it on an iPad. Its data is in that page's database: read and write it with the
+**ArtifactData** tool (`url` = that link). Collections used here:
+- `hooks`: the hook vault
+- `scriptQueue`: hooks sent by "use this", one doc per hook id
+- `calendar`: one doc per piece
+- `trending`/`state`: the news
 
 ## Inputs
 
@@ -13,11 +21,11 @@ All are optional; ask only if there's no topic, no `--hook` and an empty queue.
 - `--hook "<template>" --from <hookId>`: sent by the hook vault's "use this" button
 - `--date YYYY-MM-DD`, `--time HH:MM`, `--format reel|carousel`, `--platforms instagram,tiktok`
 
-**No topic and no `--hook`:** take the oldest item in `dashboard/data/script-queue.json`
-(`queue[0]`). It holds a hook template, the original transcript and its niche.
+**No topic and no `--hook`:** use ArtifactData `list` on `scriptQueue` and take the oldest
+item by `queuedAt`. It holds a hook template, the original transcript and its niche.
 
-**After using a queued hook (or a `--from` hook):** remove that item from `queue` in the same
-file.
+**After using a queued hook (or a `--from` hook):** ArtifactData `delete` that
+`scriptQueue` document (its id is the hook id), with `if_version`.
 
 ## 1. Pick the hook
 
@@ -25,8 +33,8 @@ file.
   structure. For example, "[x] just killed [y]" becomes "this protocol just killed the one-size-fits-all acne plan".
   Use the original transcript only to understand why the template worked.
 - **If no template was given:**
-  1. Read `dashboard/data/hooks.json` and favour high-`views` templates in a relevant niche.
-  2. Read `dashboard/data/trending.json`, taking items tagged `"hook potential"` first.
+  1. ArtifactData `list` on `hooks`, favouring high-`views` templates in a relevant niche.
+  2. ArtifactData `get` on `trending`/`state`, taking items tagged `"hook potential"` first.
   3. Write 3 options and choose the strongest.
 - Every hook: under 12 words, lower-case, in the brand voice (`brand/BRAND.md`: between
   professional and playful, feminine, bold, warm).
@@ -36,7 +44,9 @@ file.
 
 ## 2. Write the script
 
-Save it to `content/scripts/<date>-<slug>.md` at the repo root:
+Write the script as Markdown. It goes on the calendar entry's `script` field (step 3), which the
+dashboard's side panel shows. Also save a copy to `content/scripts/<date>-<slug>.md` in the repo
+as a backup:
 
 ```markdown
 ---
@@ -68,26 +78,21 @@ photo post.
 
 **Date and time:**
 - Use `--date`/`--time` if given.
-- Otherwise use the next date after today in `dashboard/data/calendar.json` with no entry,
-  at 18:00. Use 12:30 for carousels.
+- Otherwise use the next date after today with no `calendar` entry, at 18:00 (12:30 for
+  carousels).
 
-**If the dashboard is running**, POST the entry. The server validates it and refreshes the
-calendar and scheduler:
+**Add the entry:** ArtifactData `set` on `calendar`/`cal_<8 random hex>` (a new document, so no
+`if_version`) with:
 
-```bash
-curl -s -X POST http://localhost:3000/api/calendar -H 'content-type: application/json' -d '{
-  "date": "YYYY-MM-DD", "time": "18:00", "title": "...", "format": "reel",
+```json
+{ "id": "cal_…", "date": "YYYY-MM-DD", "time": "18:00", "title": "...", "format": "reel",
   "platforms": ["instagram","tiktok"], "hook": "...", "angle": "...", "cta": "...",
-  "status": "scripted", "source": "script", "scriptPath": "content/scripts/<file>.md",
-  "captions": { "instagram": "...", "tiktok": "..." }
-}'
+  "status": "scripted", "source": "script", "script": "## hook (0–3s)\n...",
+  "captions": { "instagram": "...", "tiktok": "..." } }
 ```
 
-**Otherwise**, edit `dashboard/data/calendar.json` directly:
-- Append to `entries` an object matching `CalendarEntry` in `dashboard/lib/types.ts`.
-- Give it an `id` of the form `cal_<8 random hex>`, with `status: "scripted"` and
-  `source: "script"`.
-- Keep `entries` sorted by date then time.
+**Re-running /script** for the same title and date updates that entry: `get` it, then `set`
+it with `if_version`.
 
 **Captions:** add a `captions` object to the entry, with one caption per platform in
 `platforms`. You write these yourself; the user's Claude subscription covers it, so no API
@@ -101,8 +106,6 @@ key is needed.
 - Write them lower-case, in the same voice. Captions in the entry are used as-is when the
   user clicks "schedule" in the scheduler.
 
-**Re-running /script** for the same title and date updates that entry: reuse its `id`.
-
 The scheduler picks the entry up under "ready to schedule", with your captions. Nothing posts
 until the user approves it and runs `/metricool send`.
 
@@ -110,6 +113,5 @@ until the user approves it and runs `/metricool send`.
 
 Include:
 - the hook, plus the 2 runners-up if you wrote options
-- the file path
 - the calendar slot (date, time, platforms)
 - whether a queued hook was used and removed from the queue

@@ -1,0 +1,900 @@
+<title>The Clear Code Dashboard</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,900&display=swap">
+<style>
+/* Layout: brand-red sidebar (top bar on narrow screens) + cream workspace; one view at a time, routed on the hash.
+   Single light theme on purpose: the brand is a cream ground with red type. */
+:root {
+  --red: #AE1F14;
+  --red-deep: #8A170F;
+  --cream: #F2F0E0;
+  --pink: #FFD7DE;
+  --white: #FFFFFF;
+  --ink: #2A1210;
+  --card: #FAF9F1;
+  --muted: #E9E6D2;
+  --muted-fg: #6E4A45;
+  --line: rgba(174, 31, 20, 0.16);
+  --line-strong: rgba(174, 31, 20, 0.32);
+  --tint-2: #E0737F;
+  --tint-3: #F2A9B5;
+  --ok: #2F6B3A;
+  --display: "Source Serif 4", "Source Serif Pro", Georgia, serif;
+  --body: "Outfit", "Helvetica Neue", Arial, sans-serif;
+  --radius: 14px;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+html, body { background: var(--cream); color: var(--ink); }
+body { font-family: var(--body); font-size: 15px; line-height: 1.5; }
+h1, h2, h3, .display { font-family: var(--display); font-weight: 900; letter-spacing: -0.05em; color: var(--red); margin: 0; text-wrap: balance; }
+button, input, select, textarea { font: inherit; color: inherit; }
+button { cursor: pointer; }
+a { color: var(--red); }
+:focus-visible { outline: 3px solid rgba(174, 31, 20, 0.45); outline-offset: 2px; }
+.tabular { font-variant-numeric: tabular-nums; }
+.label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted-fg); }
+.muted { color: var(--muted-fg); }
+.small { font-size: 13px; }
+
+/* shell */
+.shell { display: flex; min-height: 100%; }
+.side { display: none; }
+.topbar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: var(--red); color: var(--cream);
+  padding-block: 10px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 30; background: var(--red); }
+.topbar .handle { font-family: var(--display); font-weight: 900; letter-spacing: -0.05em; font-size: 22px; }
+.topnav { display: flex; gap: 6px; overflow-x: auto; margin-top: 8px; padding-bottom: 2px; scrollbar-width: none; }
+.topnav a { flex: none; }
+.navlink { display: flex; align-items: center; gap: 10px; padding: 9px 14px; border-radius: 999px; color: var(--cream); text-decoration: none; font-size: 15px; white-space: nowrap; }
+.navlink:hover { background: rgba(255, 255, 255, 0.1); }
+.navlink[aria-current="page"] { background: var(--pink); color: var(--red); font-weight: 500; }
+.navlink svg { width: 18px; height: 18px; flex: none; }
+.main { flex: 1; min-width: 0; }
+.wrap { max-width: 1240px; margin: 0 auto; padding-block: 24px 64px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+@media (min-width: 960px) {
+  .topbar { display: none; }
+  .side { display: flex; flex-direction: column; position: sticky; top: 0; height: 100vh; width: 248px; flex: none; background: var(--red); color: var(--cream);
+    padding-left: env(safe-area-inset-left, 0px); }
+  .side .brand { padding: 28px 24px 24px; }
+  .side .handle { font-family: var(--display); font-weight: 900; letter-spacing: -0.05em; font-size: 27px; line-height: 1; display: block; }
+  .side .sub { display: block; margin-top: 8px; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--pink); }
+  .side nav { display: grid; gap: 4px; padding: 0 12px; }
+  .side .foot { margin-top: auto; display: flex; justify-content: space-between; align-items: flex-end; padding: 20px 24px; border-top: 1px solid rgba(242, 240, 224, 0.16); font-size: 12px; color: rgba(242, 240, 224, 0.75); }
+  .side .mark { font-family: var(--display); font-weight: 900; letter-spacing: -0.05em; font-size: 40px; line-height: 0.8; color: var(--pink); }
+  .wrap { padding-block: 40px 80px; padding-left: 40px; padding-right: max(40px, env(safe-area-inset-right, 0px)); }
+}
+
+/* page header */
+.ph { display: flex; flex-wrap: wrap; gap: 16px; align-items: flex-end; justify-content: space-between; margin-bottom: 20px; }
+.ph h1 { font-size: clamp(36px, 6vw, 54px); line-height: 0.95; }
+.ph p { margin: 8px 0 0; max-width: 62ch; color: var(--muted-fg); }
+.note { display: flex; gap: 10px; align-items: flex-start; border: 1px solid var(--line-strong); background: rgba(255, 215, 222, 0.55); color: var(--red); border-radius: 10px; padding: 10px 12px; margin-bottom: 20px; font-size: 14px; }
+.source { font-size: 12px; color: var(--muted-fg); margin: -8px 0 20px; }
+
+/* controls */
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; min-height: 40px; padding: 8px 16px; border-radius: 999px; border: 1px solid transparent; background: var(--red); color: var(--cream); font-weight: 500; font-size: 14px; white-space: nowrap; }
+.btn:hover { background: var(--red-deep); }
+.btn[disabled] { opacity: 0.5; cursor: default; }
+.btn.secondary { background: var(--pink); color: var(--red); }
+.btn.secondary:hover { background: #ffc6d0; }
+.btn.outline { background: var(--card); color: var(--ink); border-color: var(--line-strong); }
+.btn.outline:hover { background: var(--pink); color: var(--red); }
+.btn.ghost { background: transparent; color: var(--ink); }
+.btn.ghost:hover { background: var(--pink); color: var(--red); }
+.btn.sm { min-height: 34px; padding: 5px 12px; font-size: 13px; }
+.btn.danger { background: var(--ink); color: var(--cream); }
+.btn svg { width: 16px; height: 16px; }
+.pills { display: inline-flex; flex-wrap: wrap; gap: 4px; background: var(--muted); padding: 4px; border-radius: 999px; }
+.pill { border: 0; background: transparent; padding: 6px 14px; border-radius: 999px; color: var(--muted-fg); font-weight: 500; font-size: 14px; min-height: 34px; }
+.pill[aria-pressed="true"] { background: var(--red); color: var(--cream); }
+.chip { border: 1px solid var(--line-strong); background: var(--card); padding: 5px 12px; border-radius: 999px; font-size: 13px; min-height: 34px; }
+.chip[aria-pressed="true"] { background: var(--red); border-color: var(--red); color: var(--cream); }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.field { display: grid; gap: 6px; min-width: 0; }
+.field > span { font-size: 13px; font-weight: 500; }
+input[type="text"], input[type="number"], input[type="url"], input[type="date"], input[type="time"], input[type="search"], select, textarea {
+  width: 100%; min-height: 40px; border: 1px solid var(--line-strong); background: var(--white); border-radius: 10px; padding: 8px 12px; font-size: 15px; }
+textarea { min-height: 90px; resize: vertical; line-height: 1.45; }
+textarea.mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; min-height: 64px; }
+.badge { display: inline-flex; align-items: center; gap: 4px; padding: 2px 9px; border-radius: 999px; font-size: 12px; font-weight: 500; white-space: nowrap; }
+.b-red { background: var(--red); color: var(--cream); }
+.b-pink { background: var(--pink); color: var(--red); }
+.b-muted { background: var(--muted); color: var(--muted-fg); }
+.b-line { border: 1px solid var(--line-strong); color: var(--ink); }
+
+/* surfaces */
+.card { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 18px; min-width: 0; }
+.card h2 { font-size: 22px; }
+.card h3 { font-size: 19px; }
+.stack { display: grid; gap: 16px; }
+.row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.between { justify-content: space-between; }
+.grid-cards { display: grid; gap: 16px; grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr)); }
+.grid-4 { display: grid; gap: 16px; grid-template-columns: repeat(auto-fill, minmax(min(100%, 220px), 1fr)); }
+.empty { border: 1px dashed var(--line-strong); border-radius: var(--radius); padding: 32px 20px; text-align: center; color: var(--muted-fg); }
+.section-title { font-size: 26px; margin: 8px 0 4px; }
+details.panel > summary { list-style: none; }
+details.panel > summary::-webkit-details-marker { display: none; }
+details.panel[open] > summary { margin-bottom: 16px; }
+.form-grid { display: grid; gap: 14px; grid-template-columns: repeat(auto-fill, minmax(min(100%, 200px), 1fr)); }
+.span-all { grid-column: 1 / -1; }
+.slot { background: var(--pink); color: var(--red); border-radius: 5px; padding: 0 4px; font-weight: inherit; }
+.quote { font-family: var(--display); font-weight: 900; letter-spacing: -0.04em; color: var(--red); font-size: 20px; line-height: 1.2; margin: 0; }
+.box { background: var(--muted); border-radius: 10px; padding: 10px 12px; min-width: 0; }
+
+/* tables */
+.table-wrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 14px; }
+th { text-align: left; font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted-fg); padding: 10px 10px; border-bottom: 1px solid var(--line); white-space: nowrap; }
+td { padding: 10px; border-bottom: 1px solid var(--line); vertical-align: middle; }
+tr:last-child td { border-bottom: 0; }
+.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+/* analytics */
+.metric { padding: 16px 16px 0; overflow: hidden; display: flex; flex-direction: column; }
+.metric .big { font-family: var(--display); font-weight: 900; letter-spacing: -0.05em; font-size: 40px; line-height: 1; color: var(--red); }
+.metric .na { color: var(--muted-fg); }
+.metric svg.spark { display: block; width: calc(100% + 32px); margin: 10px -16px 0; height: 64px; }
+.heater { display: grid; gap: 12px; grid-template-columns: 1fr; background: var(--red); color: var(--cream); border-radius: var(--radius); padding: 18px; }
+.heater .n { font-family: var(--display); font-weight: 900; font-size: 36px; line-height: 1; color: var(--pink); }
+.heater h3 { color: var(--cream); font-size: 20px; }
+.heater .views { font-family: var(--display); font-weight: 900; letter-spacing: -0.05em; font-size: 30px; line-height: 1; }
+@media (min-width: 700px) { .heater { grid-template-columns: 48px 1fr auto; align-items: center; } }
+
+/* competitor + trend rows */
+.list { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); }
+.list > li { list-style: none; border-bottom: 1px solid var(--line); padding: 16px 18px; display: grid; gap: 12px; }
+.list > li:last-child { border-bottom: 0; }
+.list { margin: 0; padding: 0; }
+@media (min-width: 760px) { .list > li.cr { grid-template-columns: 36px 1fr auto; align-items: start; } }
+.rank { font-family: var(--display); font-weight: 900; font-size: 26px; line-height: 1; color: var(--tint-3); }
+.stat { font-family: var(--display); font-weight: 900; letter-spacing: -0.05em; font-size: 26px; line-height: 1; color: var(--red); }
+.top5 { display: grid; gap: 10px; margin: 0; padding: 0; }
+.top5 > li { list-style: none; background: var(--red); color: var(--cream); border-radius: var(--radius); padding: 16px 18px; display: grid; gap: 8px; }
+.top5 .hookline { background: rgba(255, 215, 222, 0.16); border-radius: 10px; padding: 8px 12px; }
+.top5 h3 { color: var(--cream); font-size: 20px; }
+.tag-hook { background: var(--red); color: var(--cream); }
+.tag-explainer { background: var(--pink); color: var(--red); }
+.tag-skip { background: var(--muted); color: var(--muted-fg); }
+.trend-layout { display: grid; gap: 16px; }
+@media (min-width: 1100px) { .trend-layout { grid-template-columns: 1fr 280px; align-items: start; } }
+.srcbtn { display: flex; justify-content: space-between; gap: 8px; width: 100%; border: 0; background: transparent; padding: 7px 8px; border-radius: 8px; text-align: left; font-size: 14px; }
+.srcbtn[aria-pressed="true"] { background: var(--pink); color: var(--red); font-weight: 500; }
+
+/* calendar */
+.cal { display: none; }
+.agenda { display: grid; gap: 8px; }
+@media (min-width: 820px) {
+  .cal { display: block; background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
+  .agenda { display: none; }
+}
+.cal-head, .cal-grid { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); }
+.cal-head div { padding: 8px 10px; font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted-fg); background: var(--muted); }
+.cal-cell { min-height: 128px; border-right: 1px solid var(--line); border-top: 1px solid var(--line); padding: 6px; min-width: 0; }
+.cal-cell:nth-child(7n) { border-right: 0; }
+.cal-cell.out { background: rgba(233, 230, 210, 0.45); }
+.daynum { display: inline-flex; width: 24px; height: 24px; align-items: center; justify-content: center; border-radius: 50%; font-size: 12px; color: var(--muted-fg); }
+.daynum.today { background: var(--red); color: var(--cream); font-weight: 600; }
+.slotbtn { display: block; width: 100%; text-align: left; border: 0; border-radius: 7px; padding: 5px 7px; margin-top: 4px; font-size: 12px; line-height: 1.25; }
+.slotbtn .t { display: flex; justify-content: space-between; gap: 4px; font-weight: 600; }
+.slotbtn .h { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; margin-top: 2px; }
+.pf { font-size: 10px; font-weight: 700; background: rgba(0, 0, 0, 0.12); border-radius: 4px; padding: 0 4px; }
+.st-idea { background: var(--muted); color: var(--muted-fg); }
+.st-scripted { background: var(--pink); color: var(--red); }
+.st-filmed { background: var(--tint-3); color: var(--red); }
+.st-edited { background: var(--tint-2); color: var(--ink); }
+.st-scheduled { background: #C2382C; color: var(--cream); }
+.st-posted { background: var(--red); color: var(--cream); }
+.agenda button { display: flex; gap: 12px; text-align: left; width: 100%; border: 1px solid var(--line); background: var(--card); border-radius: 12px; padding: 12px; min-width: 0; }
+.agenda .d { font-family: var(--display); font-weight: 900; color: var(--red); width: 46px; text-align: center; flex: none; line-height: 1; }
+.agenda .d b { display: block; font-size: 26px; }
+.drawer-bg { position: fixed; inset: 0; background: rgba(42, 18, 16, 0.4); z-index: 40; }
+.drawer { position: fixed; top: 0; right: 0; bottom: 0; width: min(100%, 520px); background: var(--card); z-index: 41; overflow-y: auto;
+  padding-top: max(24px, env(safe-area-inset-top, 0px)); padding-bottom: max(24px, env(safe-area-inset-bottom, 0px)); padding-left: 24px; padding-right: max(24px, env(safe-area-inset-right, 0px)); box-shadow: -8px 0 32px rgba(42, 18, 16, 0.18); }
+.drawer h2 { font-size: 30px; line-height: 1.05; }
+.script p { margin: 0 0 4px; white-space: pre-wrap; }
+.script .sh { margin-top: 14px; font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--red); }
+.pre { white-space: pre-line; }
+.toast { position: fixed; left: 50%; transform: translateX(-50%); bottom: max(20px, env(safe-area-inset-bottom, 0px)); background: var(--ink); color: var(--cream); padding: 10px 16px; border-radius: 999px; z-index: 60; font-size: 14px; max-width: calc(100% - 32px); }
+@media (prefers-reduced-motion: no-preference) { .toast { animation: rise .2s ease-out; } @keyframes rise { from { transform: translate(-50%, 8px); opacity: 0; } } }
+</style>
+
+<div class="shell">
+  <aside class="side" aria-label="Main">
+    <a class="brand" href="#hooks" style="text-decoration:none;color:inherit">
+      <span class="handle">@theclearcode</span>
+      <span class="sub">content dashboard</span>
+    </a>
+    <nav id="sidenav"></nav>
+    <div class="foot"><span>the clear code.</span><span class="mark" aria-hidden="true">c.</span></div>
+  </aside>
+  <div class="main">
+    <header class="topbar">
+      <span class="handle">@theclearcode</span>
+      <nav class="topnav" id="topnav" aria-label="Main"></nav>
+    </header>
+    <main class="wrap" id="view" tabindex="-1"></main>
+  </div>
+</div>
+<div id="overlay"></div>
+<div id="toast" class="toast" role="status" hidden></div>
+
+<script>
+(() => {
+"use strict";
+
+/* ------------------------------------------------------------------ setup */
+const ICONS = {
+  hooks: '<path d="M4 7h16M4 12h10M4 17h7"/>',
+  analytics: '<path d="M5 19V11M12 19V5M19 19v-6"/>',
+  competitors: '<path d="M6 4l12 16M18 4L6 20"/>',
+  scheduler: '<path d="M4 12l16-8-6 16-2-7z"/>',
+  calendar: '<rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M9 3v4M15 3v4"/>',
+  trending: '<path d="M12 3c1 4 5 5 5 10a5 5 0 0 1-10 0c0-2 1-3 2-4 0 2 1 3 2 3 0-3-1-5 1-9z"/>',
+};
+const NAV = [
+  ["hooks", "hook vault"], ["analytics", "analytics"], ["competitors", "competitor tracker"],
+  ["scheduler", "scheduler"], ["calendar", "content calendar"], ["trending", "what's trending"],
+];
+const PLATFORMS = [{ id: "instagram", label: "Instagram", limit: 2200 }, { id: "tiktok", label: "TikTok", limit: 2200 }];
+const HASHTAGS = "#acnespecialist #skinspecialist #acnetreatment #skinclinic #theclearcode";
+const READY = ["scripted", "filmed", "edited"];
+
+const S = {
+  db: null, ready: false,
+  ig: null, tt: null, competitors: null, trending: null,
+  hooks: [], queue: [], calendar: [], posts: [],
+  ui: {
+    hq: "", hniche: "all", hmin: "0", hsort: "views", hshape: null, hookAdd: false,
+    platform: "instagram", range: 30, ccreator: null, cAdd: false,
+    tag: "all", tsource: null, month: null, slot: null, quick: false,
+    confirm: null, msg: {},
+  },
+  drafts: {},
+};
+
+const $view = document.getElementById("view");
+const $overlay = document.getElementById("overlay");
+const esc = (v) => String(v ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const compact = new Intl.NumberFormat("en", { notation: "compact", maximumFractionDigits: 1 });
+const fmtN = (n) => compact.format(Number(n) || 0);
+const fmtPct = (n, d = 1) => `${(n * 100).toFixed(d)}%`;
+const fmtDate = (iso, o = { day: "numeric", month: "short" }) => { try { return new Intl.DateTimeFormat("en-GB", o).format(new Date(iso)).toLowerCase(); } catch { return ""; } };
+const fmtDay = (ymd, o = { weekday: "short", day: "numeric", month: "short" }) => new Intl.DateTimeFormat("en-GB", { timeZone: "UTC", ...o }).format(new Date(ymd + "T00:00:00Z")).toLowerCase();
+const fmtWhen = (iso) => fmtDate(iso, { weekday: "short", day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" });
+const localYmd = (d = new Date()) => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+const uid = (p) => `${p}_${Math.random().toString(36).slice(2, 10)}`;
+const icon = (name) => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICONS[name] || ""}</svg>`;
+const slots = (t) => esc(t).replace(/\[([^\]]+)\]/g, '<mark class="slot">[$1]</mark>');
+const median = (a) => { if (!a.length) return 0; const s = [...a].sort((x, y) => x - y); const m = s.length >> 1; return s.length % 2 ? s[m] : (s[m - 1] + s[m]) / 2; };
+
+function toast(text) {
+  const t = document.getElementById("toast");
+  t.textContent = text; t.hidden = false;
+  clearTimeout(toast.t); toast.t = setTimeout(() => (t.hidden = true), 3200);
+}
+function setMsg(key, text) { S.ui.msg[key] = text; render(); }
+
+/* -------------------------------------------------- shared logic (also used by /metricool send) */
+// Fingerprint of everything that would go out. Taken at approval; /metricool send refuses a post
+// whose fingerprint changed since. Same function as dashboard/scripts/approval-key.mjs.
+function cyrb53(str, seed = 0) {
+  let h1 = 0xdeadbeef ^ seed, h2 = 0x41c6ce57 ^ seed;
+  for (let i = 0; i < str.length; i++) { const ch = str.charCodeAt(i); h1 = Math.imul(h1 ^ ch, 2654435761); h2 = Math.imul(h2 ^ ch, 1597334677); }
+  h1 = Math.imul(h1 ^ (h1 >>> 16), 2246822507) ^ Math.imul(h2 ^ (h2 >>> 13), 3266489909);
+  h2 = Math.imul(h2 ^ (h2 >>> 16), 2246822507) ^ Math.imul(h1 ^ (h1 >>> 13), 3266489909);
+  return (4294967296 * (2097151 & h2) + (h1 >>> 0)).toString(16).padStart(14, "0");
+}
+function approvalKey(p) {
+  const plats = [...p.platforms].sort();
+  return cyrb53(JSON.stringify({ f: p.format, t: p.scheduledFor, p: plats, c: plats.map((k) => (p.captions || {})[k] || ""), m: p.media || [] }));
+}
+function approvalProblems(p) {
+  const out = [];
+  for (const id of p.platforms) {
+    const meta = PLATFORMS.find((x) => x.id === id);
+    const text = ((p.captions || {})[id] || "").trim();
+    if (!text) out.push(`${meta.label} caption is empty`);
+    else if (text.length > meta.limit) out.push(`${meta.label} caption is over ${meta.limit} characters`);
+  }
+  if (p.format === "reel" && (p.media || []).length !== 1) out.push("a reel needs exactly one video link");
+  if (p.format === "carousel" && ((p.media || []).length < 2 || p.media.length > 10)) out.push("a carousel needs 2–10 image links");
+  if (new Date(p.scheduledFor).getTime() <= Date.now()) out.push("the post time has passed — move it in the calendar first");
+  return out;
+}
+function templateCaptions(e) {
+  const h = (e.hook || "").trim(), a = (e.angle || "").trim();
+  const c = (e.cta || "").trim() || (e.format === "carousel" ? "save this for later 📌" : "follow for more from the clear code protocol");
+  const out = {};
+  for (const p of e.platforms) {
+    out[p] = p === "instagram"
+      ? [h, a, e.format === "carousel" ? "swipe →" : "", c, HASHTAGS].filter(Boolean).join("\n\n")
+      : [h, c, HASHTAGS.split(" ").slice(0, 3).join(" ")].filter(Boolean).join(" · ");
+  }
+  return out;
+}
+
+/* hook templating — known shapes first, then generic slots */
+const tail = (rest) => { const m = rest.trim().match(/^(before|about|when|as|at)\b/i); return m ? ` ${m[1].toLowerCase()} [x]` : ""; };
+const ARCH = [
+  [/^(.+?)\s+just\s+(killed|replaced|ended|broke|changed)\s+(.+?)([.!?]|$)/i, (m) => `[x] just ${m[2].toLowerCase()} [y]`, "news"],
+  [/^stop\s+(doing|using|saying|making|posting|buying)\s+(.+?)([.!?]|$)/i, (m) => `stop ${m[1].toLowerCase()} [x]`, "contrarian"],
+  [/^(\d+|three|five|seven|ten)\s+things\s+i\s+wish\s+i\s+(knew|had known|'d known)\b(.*?)([.!?]|$)/i, (m) => `[number] things i wish i knew${tail(m[3])}`, "listicle"],
+  [/^(\d+|three|five|ten)\s+(.+?)\s+that\s+feel\s+illegal\s+to\s+know/i, () => "[number] [x] that feel illegal to know", "listicle"],
+  [/^nobody\s+(is\s+talking|talks)\s+about\s+(.+?)([.!?]|$)/i, () => "nobody is talking about [x]", "curiosity"],
+  [/^(skin practitioners|skin specialists|acne specialists|practitioners),?\s+if you('re| are)\s+(.+?)([.!?]|$)/i, () => "[audience], if you're [feeling]…", "callout"],
+  [/^if\s+you('re| are)\s+(.+?),\s*(.+)$/i, (m) => `if you're [audience], ${m[3].replace(/\.$/, "")}`, "callout"],
+  [/^pov:\s*(.+)$/i, () => "pov: [x]", "pov"],
+  [/^what'?s one thing you wish you knew (.+?)\??$/i, () => "what's one thing you wish you knew [when]?", "callout"],
+  [/^how to (.+?)( \(.+\))?$/i, () => "how to [result]", "how-to"],
+];
+function generic(s) {
+  return s.replace(/\b(chatgpt|claude|gemini|copilot|canva|capcut|retinol|niacinamide)\b/gi, "[x]")
+    .replace(/\b(20\d\d)\b/g, "[year]").replace(/(?<!\[)\b\d+(\.\d+)?(%|x|k|m)?\b(?![^[]*\])/gi, "[number]");
+}
+function templateHook(t) {
+  const s = t.trim().replace(/^[“"]|[”"]$/g, "");
+  for (const [re, build, format] of ARCH) { const m = s.match(re); if (m) return { template: generic(build(m)), format }; }
+  const l = s.toLowerCase();
+  const format = /^\d|\b\d+ (ways|tools|things|prompts)\b/.test(l) ? "listicle" : /^(i |last |when i)/.test(l) ? "story" : /\?$/.test(l) ? "curiosity" : "statement";
+  return { template: generic(s), format };
+}
+
+/* analytics maths */
+function series(daily, key, days) {
+  const sorted = [...(daily || [])].sort((a, b) => a.date.localeCompare(b.date));
+  const cur = sorted.slice(-days), prev = sorted.slice(-days * 2, -days);
+  const sum = (a) => a.reduce((n, d) => n + (Number(d[key]) || 0), 0);
+  const total = sum(cur), before = sum(prev);
+  return {
+    available: sorted.some((d) => d[key] !== undefined && d[key] !== null),
+    total, change: prev.length === days && before > 0 ? (total - before) / before : null,
+    points: cur.map((d) => ({ date: d.date, v: Number(d[key]) || 0 })),
+  };
+}
+function scoreReels(reels) {
+  const sorted = [...(reels || [])].sort((a, b) => a.postedAt.localeCompare(b.postedAt));
+  return sorted.map((reel, i) => {
+    const t = new Date(reel.postedAt).getTime();
+    const earlier = sorted.slice(0, i);
+    const win = earlier.filter((r) => t - new Date(r.postedAt).getTime() <= 30 * 864e5);
+    const pool = win.length >= 3 ? win : earlier;
+    if (!pool.length) return { reel, multiple: null };
+    const base = median(pool.map((r) => r.views));
+    return { reel, multiple: base > 0 ? reel.views / base : null };
+  });
+}
+const isHeater = (h) => h.multiple !== null && h.multiple >= 2;
+function inRange(file, days) {
+  const last = [...(file.daily || [])].sort((a, b) => a.date.localeCompare(b.date)).at(-1)?.date;
+  if (!last) return [];
+  const start = new Date(last + "T00:00:00Z").getTime() - (days - 1) * 864e5;
+  return scoreReels(file.reels).filter((h) => new Date(h.reel.postedAt).getTime() >= start);
+}
+function hookClause(hook) {
+  const h = (hook || "").toLowerCase();
+  if (/\bjust (killed|replaced|ended)\b/.test(h)) return "a news-style “[x] just killed [y]” opener";
+  if (/^stop\b/.test(h)) return "a contrarian “stop doing [x]” opener";
+  if (/things i wish i knew/.test(h)) return "a “things i wish i knew” list opener";
+  if (/\b\d+\b/.test(h.split(".")[0])) return "a number in the first line";
+  if (h.includes("?")) return "a question viewers wanted answered";
+  return "a curiosity-gap opener";
+}
+function popNote(reel, all) {
+  if (reel.note) return reel.note;
+  const hook = hookClause(reel.hook);
+  const full = all.flatMap((r) => (r.fullWatchRate != null ? [r.fullWatchRate] : []));
+  if (reel.fullWatchRate != null && full.length >= 3 && reel.fullWatchRate >= median(full) * 1.3)
+    return `${reel.fullWatchRate.toFixed(0)}% watched to the end (you usually get ${median(full).toFixed(0)}%) — ${hook} kept them watching.`;
+  const skips = all.flatMap((r) => (r.skipRate != null ? [r.skipRate] : []));
+  if (reel.skipRate != null && skips.length >= 3 && reel.skipRate <= median(skips) * 0.8)
+    return `only ${reel.skipRate.toFixed(0)}% swiped away in the first 3s (you usually lose ${median(skips).toFixed(0)}%) — ${hook} held them.`;
+  const rates = [["saves", "saved", "a reference people wanted to keep"], ["shares", "shared", "people sent it to friends"], ["comments", "commented on", "the hook started a conversation"]]
+    .filter(([k]) => all.some((r) => r[k] > 0))
+    .map(([k, verb, why]) => ({ k, verb, why, ratio: (reel[k] / Math.max(1, reel.views)) / Math.max(1e-9, median(all.map((r) => r[k] / Math.max(1, r.views)))) }))
+    .sort((a, b) => b.ratio - a.ratio);
+  if (rates[0] && rates[0].ratio >= 1.3) return `${rates[0].verb} ${rates[0].ratio.toFixed(1)}× more than usual — ${rates[0].why}; ${hook}.`;
+  return `pure reach — ${hook} got it pushed past your followers.`;
+}
+
+/* -------------------------------------------------- data access */
+const writable = () => !!S.db;
+async function write(fn, okText) {
+  if (!S.db) { toast("open this page in claude.ai while signed in to save changes"); return false; }
+  try { await fn(S.db); if (okText) toast(okText); return true; }
+  catch (e) {
+    const code = e && e.code;
+    toast(code === "quota_exceeded" ? "the dashboard is full — delete some old items and try again" : code === "invalid_argument" ? "you don't have permission to change this page" : "couldn't save — check your connection and try again");
+    return false;
+  }
+}
+const clean = (o) => JSON.parse(JSON.stringify(o));
+
+/* -------------------------------------------------- views */
+function header(title, desc, actions = "") {
+  return `<div class="ph"><div><h1>${esc(title)}</h1><p>${desc}</p></div>${actions ? `<div class="row">${actions}</div>` : ""}</div>`;
+}
+function sourceNote(meta) {
+  if (!meta) return "";
+  return `<p class="source">source: ${esc(meta.source || "—")}${meta.updatedAt ? ` · updated ${esc(fmtWhen(meta.updatedAt))}` : ""}</p>`;
+}
+function loading() { return `<div class="empty">loading your data…</div>`; }
+
+/* ---------- hook vault */
+function viewHooks() {
+  const u = S.ui, hooks = S.hooks;
+  const queued = new Set(S.queue.map((q) => q.hookId));
+  const niches = [...hooks.reduce((m, h) => m.set(h.niche || "general", (m.get(h.niche || "general") || 0) + 1), new Map())].sort((a, b) => b[1] - a[1]);
+  const shapes = [...hooks.reduce((m, h) => m.set(h.template.toLowerCase(), (m.get(h.template.toLowerCase()) || 0) + 1), new Map())].filter(([, n]) => n > 1);
+  const reach = (h) => h.views ?? h.likes ?? 0;
+  const q = u.hq.toLowerCase().trim();
+  const list = hooks
+    .filter((h) => (u.hniche === "all" || (h.niche || "general") === u.hniche) && (h.views ?? 0) >= Number(u.hmin) && (!u.hshape || h.template.toLowerCase() === u.hshape)
+      && (!q || [h.transcript, h.template, h.creator, h.niche].some((s) => (s || "").toLowerCase().includes(q))))
+    .sort((a, b) => (u.hsort === "views" ? reach(b) - reach(a) : (b.savedAt || "").localeCompare(a.savedAt || "")));
+
+  const form = `<details class="card panel" id="hookAdd" ${u.hookAdd ? "open" : ""}>
+    <summary class="row between"><span class="btn">+ add hook</span><span class="muted small">paste the first line someone said — it's turned into a template for you</span></summary>
+    <form data-form="hook" class="form-grid">
+      <label class="field span-all"><span>hook (what they said, or the cover text)</span><textarea id="h-transcript" name="transcript" required></textarea></label>
+      <label class="field"><span>creator</span><input id="h-creator" name="creator" type="text" placeholder="@handle" required></label>
+      <label class="field"><span>niche</span><input id="h-niche" name="niche" type="text" list="h-niches" placeholder="acne"></label>
+      <label class="field"><span>views</span><input id="h-views" name="views" type="number" min="0"></label>
+      <label class="field"><span>link</span><input id="h-url" name="url" type="url" placeholder="https://"></label>
+      <label class="field span-all"><span>template (optional — leave empty and it's written for you)</span><input id="h-template" name="template" type="text" placeholder="e.g. stop doing [x]"></label>
+      <datalist id="h-niches">${niches.map(([n]) => `<option value="${esc(n)}"></option>`).join("")}</datalist>
+      <div class="span-all row"><button class="btn" type="submit">save hook</button></div>
+    </form></details>`;
+
+  const filters = `<div class="card stack">
+    <div class="form-grid">
+      <label class="field span-all"><span>search</span><input id="hq" type="search" value="${esc(u.hq)}" placeholder="hooks, templates, creators" data-bind="hq"></label>
+      <label class="field"><span>niche</span><select id="hniche" data-bind="hniche"><option value="all">all niches (${hooks.length})</option>${niches.map(([n, c]) => `<option value="${esc(n)}" ${u.hniche === n ? "selected" : ""}>${esc(n)} (${c})</option>`).join("")}</select></label>
+      <label class="field"><span>views</span><select id="hmin" data-bind="hmin">${[["0", "any views"], ["1000", "1k+"], ["10000", "10k+"], ["100000", "100k+"], ["1000000", "1m+"]].map(([v, l]) => `<option value="${v}" ${u.hmin === v ? "selected" : ""}>${l}</option>`).join("")}</select></label>
+      <label class="field"><span>sort</span><select id="hsort" data-bind="hsort"><option value="views" ${u.hsort === "views" ? "selected" : ""}>most viewed</option><option value="recent" ${u.hsort === "recent" ? "selected" : ""}>newest saved</option></select></label>
+    </div>
+    ${shapes.length ? `<div class="chips"><span class="label">proven shapes</span>${shapes.map(([s, n]) => `<button class="chip" data-act="shape" data-v="${esc(s)}" aria-pressed="${u.hshape === s}">“${esc(s)}” ×${n}</button>`).join("")}</div>` : ""}
+  </div>`;
+
+  const cards = list.map((h) => {
+    const conf = u.confirm === "hook:" + h.id;
+    return `<article class="card stack" style="gap:12px">
+      <div class="row between" style="align-items:flex-start">
+        <div style="min-width:0"><div style="font-weight:600">${esc(h.creator)}</div><div class="muted small">${esc(h.niche || "general")} · saved ${esc(fmtDate(h.savedAt))}</div></div>
+        <div style="text-align:right"><div class="stat tabular">${h.views != null ? fmtN(h.views) : h.likes != null ? fmtN(h.likes) : "—"}</div><div class="label">${h.views == null && h.likes != null ? "likes" : "views"}</div></div>
+      </div>
+      <div class="box"><div class="label">template · ${esc(h.format || "")}</div><p class="quote">${slots(h.template)}</p></div>
+      <div><div class="label">transcript</div><div>“${esc(h.transcript)}”</div></div>
+      ${h.onScreenText ? `<div class="muted small">on screen: ${esc(h.onScreenText)}</div>` : ""}
+      <div class="row between">
+        ${queued.has(h.id)
+          ? `<span class="row"><span class="badge b-red">✓ queued for /script</span><button class="btn ghost sm" data-act="unqueue" data-id="${h.id}">remove</button></span>`
+          : `<button class="btn sm" data-act="use" data-id="${h.id}">use this →</button>`}
+        <span class="row">${h.url ? `<a class="btn ghost sm" href="${esc(h.url)}" target="_blank" rel="noreferrer">open</a>` : ""}
+        <button class="btn ${conf ? "danger" : "ghost"} sm" data-act="delhook" data-id="${h.id}">${conf ? "tap again to delete" : "delete"}</button></span>
+      </div>
+      ${S.ui.msg["use:" + h.id] ? `<div class="small muted">${esc(S.ui.msg["use:" + h.id])}</div>` : ""}
+    </article>`;
+  }).join("");
+
+  return header("hook vault", "every hook you save, turned into a template. tap “use this” to send one to /script.")
+    + `<div class="stack">${form}${filters}<p class="muted small" style="margin:0">${list.length} of ${hooks.length} hooks</p>
+      ${hooks.length === 0 ? `<div class="empty">no hooks yet. save one above, or tap “save to hook vault” on the competitor tracker.</div>`
+        : list.length === 0 ? `<div class="empty">no hooks match these filters.</div>` : `<div class="grid-cards">${cards}</div>`}</div>`;
+}
+
+/* ---------- analytics */
+function spark(points) {
+  if (points.length < 2) return `<svg class="spark" viewBox="0 0 200 64" aria-hidden="true"></svg>`;
+  const vals = points.map((p) => p.v), lo = Math.min(...vals), hi = Math.max(...vals), span = hi - lo || 1;
+  const xy = points.map((p, i) => [(i / (points.length - 1)) * 200, 58 - ((p.v - lo) / span) * 50]);
+  const line = xy.map(([x, y], i) => `${i ? "L" : "M"}${x.toFixed(1)},${y.toFixed(1)}`).join(" ");
+  const [ex, ey] = xy.at(-1);
+  return `<svg class="spark" viewBox="0 0 200 64" preserveAspectRatio="none" role="img" aria-label="daily trend, ${points.length} days">
+    <path d="${line} L200,64 L0,64 Z" fill="rgba(174,31,20,0.12)" stroke="none"/>
+    <path d="${line}" fill="none" stroke="#AE1F14" stroke-width="1.8" vector-effect="non-scaling-stroke"/>
+    <circle cx="${ex}" cy="${ey}" r="2.5" fill="#AE1F14"/></svg>`;
+}
+function viewAnalytics() {
+  const u = S.ui, tiktok = u.platform === "tiktok";
+  const file = tiktok ? S.tt : S.ig;
+  const tabs = `<div class="pills" role="group" aria-label="platform">${["instagram", "tiktok"].map((p) => `<button class="pill" data-act="platform" data-v="${p}" aria-pressed="${u.platform === p}">${p === "instagram" ? "Instagram" : "TikTok"}</button>`).join("")}</div>
+    <div class="pills" role="group" aria-label="range">${[7, 30, 90].map((r) => `<button class="pill" data-act="range" data-v="${r}" aria-pressed="${u.range === r}">${r} days</button>`).join("")}</div>`;
+  if (!S.ready) return header("analytics", "", tabs) + loading();
+  if (!file || !(file.daily || []).length) {
+    return header("analytics", `${esc(file?.handle || (tiktok ? "@theclearcode_acne" : "@theclearcode_"))} on ${tiktok ? "tiktok" : "instagram"}.`, tabs) + sourceNote(file?.meta)
+      + `<div class="empty">${tiktok ? "no tiktok numbers yet — metricool takes a day or two after connecting. type /metricool pull in claude to fetch them." : "no numbers yet — type /metricool pull in claude to fetch them."}</div>`;
+  }
+  const days = [...file.daily].sort((a, b) => a.date.localeCompare(b.date));
+  const short = days.length < u.range;
+  const metrics = tiktok
+    ? [["views", "views"], ["follows", "follows"], ["likes", "likes"], ["shares", "shares"]]
+    : [["views", "views"], ["saves", "saves"], ["follows", "follows"], ["dms", "dms"]];
+  const missing = { dms: "metricool doesn’t provide dm numbers — check them in the instagram app." };
+  const cards = metrics.map(([k, label]) => {
+    const s = series(file.daily, k, u.range);
+    if (!s.available) return `<div class="card metric"><div class="row between"><span class="muted">${label}</span></div><div class="big na">—</div><p class="small muted">${esc(missing[k] || `metricool doesn’t provide ${label} for ${u.platform}.`)}</p></div>`;
+    const ch = s.change === null ? "no earlier period to compare" : `<b>${s.change >= 0 ? "▲" : "▼"} ${fmtPct(Math.abs(s.change))}</b> vs the ${u.range} days before`;
+    return `<div class="card metric"><div class="row between"><span class="muted">${label}</span></div><div class="big tabular">${fmtN(s.total)}</div><div class="small muted">${ch}</div>${spark(s.points)}</div>`;
+  }).join("");
+  const item = tiktok ? "video" : "reel";
+  const rows = inRange(file, u.range).sort((a, b) => b.reel.views - a.reel.views);
+  const heaters = rows.filter(isHeater).slice(0, 5);
+  const cols = tiktok
+    ? [["likes", (r) => fmtN(r.likes)], ["shares", (r) => fmtN(r.shares)], ["comments", (r) => fmtN(r.comments)], ["watched to end", (r) => r.fullWatchRate != null ? r.fullWatchRate.toFixed(0) + "%" : "—"], ["for you", (r) => r.forYouRate != null ? r.forYouRate.toFixed(0) + "%" : "—"]]
+    : [["saves", (r) => fmtN(r.saves)], ["shares", (r) => fmtN(r.shares)], ["comments", (r) => fmtN(r.comments)], ["skip rate", (r) => r.skipRate != null ? r.skipRate.toFixed(0) + "%" : "—"]];
+  return header("analytics", `${esc(file.handle)} on ${tiktok ? "tiktok" : "instagram"} — the last ${u.range} days to ${esc(fmtDay(days.at(-1).date, { day: "numeric", month: "long" }))}.${short ? ` history starts ${esc(fmtDay(days[0].date, { day: "numeric", month: "long" }))}, so this covers ${days.length} days for now.` : ""}`, tabs)
+    + sourceNote(file.meta)
+    + `<div class="grid-4">${cards}</div>
+    <section class="card stack" style="margin-top:16px"><div><h2>top heaters</h2><p class="muted small" style="margin:4px 0 0">${item}s from the last ${u.range} days that beat your 30-day median views by 2× or more — top 5 by views.</p></div>
+      ${heaters.length ? `<ol class="top5">${heaters.map((h, i) => `<li class="heater"><span class="n">${i + 1}</span><div style="min-width:0"><h3>${esc(h.reel.title)}</h3><div class="small" style="opacity:.88">${esc(popNote(h.reel, file.reels))}</div><div class="small" style="opacity:.65">posted ${esc(fmtDate(h.reel.postedAt))}</div></div><div><div class="views tabular">${fmtN(h.reel.views)}</div><span class="badge b-pink">${h.multiple.toFixed(1)}× median</span></div></li>`).join("")}</ol>`
+        : `<div class="empty">${file.reels.length < 4 ? `heaters need a few ${item}s to compare against — ${file.reels.length} so far. they’ll appear as you post.` : `no heaters in the last ${u.range} days.`}</div>`}
+    </section>
+    <section class="card" style="margin-top:16px"><h2>every ${item}, last ${u.range} days</h2><p class="muted small" style="margin:4px 0 12px">${rows.filter(isHeater).length} flagged as heaters</p>
+      ${rows.length ? `<div class="table-wrap"><table><thead><tr><th>${item}</th><th>posted</th><th class="num">views</th><th class="num">vs median</th>${cols.map(([l]) => `<th class="num">${l}</th>`).join("")}</tr></thead><tbody>
+      ${rows.map((h) => `<tr><td style="min-width:220px">${h.reel.url ? `<a href="${esc(h.reel.url)}" target="_blank" rel="noreferrer">${esc(h.reel.title)}</a>` : esc(h.reel.title)} ${isHeater(h) ? '<span class="badge b-red">heater</span>' : ""}</td><td class="muted" style="white-space:nowrap">${esc(fmtDate(h.reel.postedAt))}</td><td class="num">${fmtN(h.reel.views)}</td><td class="num" ${isHeater(h) ? 'style="color:var(--red);font-weight:600"' : ""}>${h.multiple == null ? "—" : h.multiple.toFixed(1) + "×"}</td>${cols.map(([, f]) => `<td class="num">${f(h.reel)}</td>`).join("")}</tr>`).join("")}
+      </tbody></table></div>` : `<div class="empty">no ${item}s in this range.</div>`}
+    </section>`;
+}
+
+/* ---------- competitors */
+function viewCompetitors() {
+  const u = S.ui, st = S.competitors;
+  const hooksBySrc = new Set(S.hooks.map((h) => h.sourceReelId).filter(Boolean));
+  const add = `<details class="card panel" ${u.cAdd ? "open" : ""} id="cAdd"><summary class="row between"><span class="btn outline">+ add reel</span><span class="muted small">quicker for lots: screenshot their reels tab and send it to claude with /competitors</span></summary>
+    <form data-form="creel" class="form-grid">
+      <label class="field"><span>account</span><input id="c-creator" name="creator" type="text" placeholder="@handle" list="c-handles" required></label>
+      <label class="field"><span>their followers</span><input id="c-followers" name="followers" type="number" min="0"></label>
+      <label class="field span-all"><span>hook (first line said, or the cover text)</span><input id="c-hook" name="hook" type="text" required></label>
+      <label class="field"><span>views</span><input id="c-views" name="views" type="number" min="0"></label>
+      <label class="field"><span>likes</span><input id="c-likes" name="likes" type="number" min="0"></label>
+      <label class="field"><span>link</span><input id="c-url" name="url" type="url" placeholder="https://www.instagram.com/reel/…"></label>
+      <datalist id="c-handles">${(st?.creators || []).map((c) => `<option value="${esc(c.handle)}"></option>`).join("")}</datalist>
+      <div class="span-all"><button class="btn" type="submit">add reel</button></div></form></details>`;
+  if (!S.ready) return header("competitor tracker", "") + loading();
+  const creators = st?.creators || [];
+  const reels = (st?.reels || []).map((r) => ({ ...r, c: creators.find((c) => c.handle.toLowerCase() === r.creator.toLowerCase()) }))
+    .filter((r) => !u.ccreator || r.creator === u.ccreator)
+    .sort((a, b) => (b.views ?? b.likes ?? 0) - (a.views ?? a.likes ?? 0));
+  const chips = creators.length ? `<div class="chips"><button class="chip" data-act="ccreator" data-v="" aria-pressed="${!u.ccreator}">all ${(st?.reels || []).length}</button>${creators.map((c) => `<button class="chip" data-act="ccreator" data-v="${esc(c.handle)}" aria-pressed="${u.ccreator === c.handle}">${esc(c.handle)} <span style="opacity:.7">${fmtN(c.followers)}</span></button>`).join("")}</div>` : "";
+  const rows = reels.map((r, i) => {
+    const conf = u.confirm === "creel:" + r.id;
+    return `<li class="cr"><span class="rank">${i + 1}</span><div class="stack" style="gap:8px;min-width:0">
+      <div class="row" style="gap:6px 12px;align-items:baseline"><span class="stat tabular">${fmtN(r.views ?? r.likes)}</span><span class="label">${r.views != null ? "views" : "likes"}</span><b>${esc(r.creator)}</b><span class="muted small">${fmtN(r.c?.followers)} followers · ${r.dateKnown === false ? "added" : "posted"} ${esc(fmtDate(r.postedAt))}</span></div>
+      <div><div class="label">hook</div><p class="quote" style="font-size:18px">“${esc(r.hook)}”</p></div>
+      ${r.onScreenText || r.transcript ? `<div class="small muted">${r.onScreenText ? `on screen: ${esc(r.onScreenText)}` : ""}${r.transcript ? ` · transcript: ${esc(r.transcript)}` : ""}</div>` : ""}
+    </div><div class="row" style="justify-content:flex-end">
+      ${hooksBySrc.has(r.id) ? `<span class="badge b-pink">✓ in hook vault</span>` : `<button class="btn sm" data-act="savereel" data-id="${esc(r.id)}">+ save to hook vault</button>`}
+      ${r.url ? `<a class="btn ghost sm" href="${esc(r.url)}" target="_blank" rel="noreferrer">open</a>` : ""}
+      <button class="btn ${conf ? "danger" : "ghost"} sm" data-act="delreel" data-id="${esc(r.id)}">${conf ? "tap again to remove" : "remove"}</button></div></li>`;
+  }).join("");
+  return header("competitor tracker", `top reels from the ${creators.length} accounts you track, sorted by views. send screenshots of their reels tabs to claude with /competitors to add or refresh them.`)
+    + sourceNote(st?.meta) + `<div class="stack">${add}${chips}${reels.length ? `<ol class="list">${rows}</ol>` : `<div class="empty">no competitor reels yet. screenshot a competitor’s reels tab and send it to claude with /competitors.</div>`}</div>`;
+}
+
+/* ---------- scheduler */
+function postCard(p) {
+  const editable = p.status === "pending_approval" || p.status === "approved";
+  const d = S.drafts[p.id] || { captions: { ...(p.captions || {}) }, media: (p.media || []).join("\n") };
+  const statusLabel = { pending_approval: ["needs approval", "b-pink"], approved: ["approved — waiting for /metricool send", "b-red"], in_metricool: ["scheduled in metricool", "b-red"], published: ["published", "b-muted"], failed: ["failed", "b-line"] }[p.status] || [p.status, "b-muted"];
+  const src = p.captionSource === "script" || p.captionSource === "claude" ? "written by claude" : p.captionSource === "edited" ? "edited by you" : "template — worth a read before approving";
+  const conf = S.ui.confirm === "post:" + p.id;
+  return `<article class="card stack" style="gap:14px">
+    <div class="row between"><span class="label" style="color:var(--red)">${esc(fmtWhen(p.scheduledFor))}</span><span class="badge ${statusLabel[1]}">${statusLabel[0]}</span></div>
+    <div><h3>${esc(p.title)}</h3><div class="row small muted" style="margin-top:6px"><span class="badge b-red">${esc(p.format)}</span>${p.platforms.map((x) => `<span class="badge b-pink">${x === "instagram" ? "Instagram" : "TikTok"}</span>`).join("")}<span>captions: ${src}</span></div></div>
+    ${p.platforms.map((pid) => {
+      const meta = PLATFORMS.find((x) => x.id === pid), text = (editable ? d.captions[pid] : (p.captions || {})[pid]) || "";
+      const res = (p.results || {})[pid];
+      return `<div class="field"><span class="row between"><span>${meta.label} caption</span><span class="small tabular ${text.length > meta.limit ? "" : "muted"}" ${text.length > meta.limit ? 'style="color:var(--red);font-weight:600"' : ""}>${text.length}/${meta.limit}</span></span>
+        ${editable ? `<textarea id="cap-${p.id}-${pid}" data-draft="${p.id}" data-k="${pid}">${esc(text)}</textarea>` : `<div class="box pre small">${esc(text)}</div>`}
+        ${res ? `<span class="small" ${res.ok ? "" : 'style="color:var(--red)"'}>${res.ok ? (res.url ? `<a href="${esc(res.url)}" target="_blank" rel="noreferrer">✓ scheduled in metricool — open</a>` : "✓ posted") : "✗ " + esc(res.error)}</span>` : ""}</div>`;
+    }).join("")}
+    <div class="field"><span>${p.format === "reel" ? "video link" : "image links (2–10, one per line, in slide order)"}</span>
+      ${editable ? `<textarea class="mono" id="media-${p.id}" data-draft="${p.id}" data-k="media" placeholder="${p.format === "reel" ? "https://drive.google.com/file/d/…" : "https://drive.google.com/file/d/… (slide 1)&#10;https://drive.google.com/file/d/… (slide 2)"}">${esc(d.media)}</textarea>
+        <span class="small muted">google drive or dropbox share links set to “anyone with the link” work — metricool uploads them.</span>` : `<div class="small muted" style="word-break:break-all">${esc((p.media || []).join(" · ") || "—")}</div>`}</div>
+    ${S.ui.msg["post:" + p.id] ? `<div class="small" style="color:var(--red)">${esc(S.ui.msg["post:" + p.id])}</div>` : ""}
+    <div class="row" style="border-top:1px solid var(--line);padding-top:14px">
+      ${p.status === "pending_approval" ? `<button class="btn" data-act="approve" data-id="${p.id}">✓ approve</button><button class="btn outline" data-act="savepost" data-id="${p.id}">save</button><button class="btn ghost" data-act="recaption" data-id="${p.id}">reset captions</button>` : ""}
+      ${p.status === "approved" ? `<button class="btn outline" data-act="savepost" data-id="${p.id}">save edits</button><button class="btn ghost" data-act="unapprove" data-id="${p.id}">withdraw approval</button>` : ""}
+      ${p.status === "in_metricool" ? `<span class="small muted">to change it now, edit it in metricool (link above).</span>` : ""}
+      ${editable ? `<button class="btn ${conf ? "danger" : "ghost"}" style="margin-left:auto" data-act="delpost" data-id="${p.id}">${conf ? "tap again to remove" : "remove"}</button>` : ""}
+    </div></article>`;
+}
+function viewScheduler() {
+  if (!S.ready) return header("scheduler", "") + loading();
+  const today = localYmd();
+  const hasPost = new Set(S.posts.map((p) => p.calendarEntryId));
+  const ready = S.calendar.filter((e) => READY.includes(e.status) && e.date >= today && !hasPost.has(e.id)).sort((a, b) => (a.date + a.time).localeCompare(b.date + b.time));
+  const by = (s) => S.posts.filter((p) => s.includes(p.status)).sort((a, b) => a.scheduledFor.localeCompare(b.scheduledFor));
+  const pending = by(["pending_approval"]), approved = by(["approved"]), inMc = by(["in_metricool"]), done = by(["published", "failed"]).reverse().slice(0, 10);
+  const quick = `<details class="card panel" ${S.ui.quick ? "open" : ""} id="quick"><summary><span class="btn outline">+ quick post</span></summary>
+    <form data-form="quick" class="form-grid">
+      <label class="field span-all"><span>title</span><input id="q-title" name="title" type="text" required></label>
+      <label class="field"><span>date</span><input id="q-date" name="date" type="date" required value="${today}"></label>
+      <label class="field"><span>time</span><input id="q-time" name="time" type="time" required value="18:00"></label>
+      <label class="field"><span>format</span><select id="q-format" name="format"><option value="reel">reel</option><option value="carousel">carousel</option></select></label>
+      <fieldset class="field" style="border:0;padding:0;margin:0"><span>platforms</span><span class="row"><label><input type="checkbox" name="platforms" value="instagram" checked> Instagram</label><label><input type="checkbox" name="platforms" value="tiktok" checked> TikTok</label></span></fieldset>
+      <label class="field span-all"><span>hook</span><input id="q-hook" name="hook" type="text" required></label>
+      <label class="field span-all"><span>angle</span><input id="q-angle" name="angle" type="text"></label>
+      <label class="field span-all"><span>call to action</span><input id="q-cta" name="cta" type="text" placeholder="tap the link in our bio to join the waitlist"></label>
+      <div class="span-all"><button class="btn" type="submit">add to calendar</button></div></form></details>`;
+  const sec = (title, desc, body) => `<section class="stack" style="gap:10px;margin-top:28px"><div><h2 class="section-title">${title}</h2>${desc ? `<p class="muted small" style="margin:0">${desc}</p>` : ""}</div>${body}</section>`;
+  return header("scheduler", "one click drafts your reels and carousels for instagram and tiktok, with the captions from /script. nothing posts until you approve it.",
+      `<button class="btn" data-act="scheduleall" ${ready.length ? "" : "disabled"}>schedule all ready (${ready.length})</button>`)
+    + `<div class="note"><span aria-hidden="true">✓</span><span><b>you authorise every post.</b> approved posts go to metricool only when you type <b>/metricool send</b> in claude. editing one before then withdraws the approval.</span></div>`
+    + quick
+    + sec(`ready to schedule · ${ready.length}`, "scripted, filmed or edited pieces from the content calendar.",
+      ready.length ? `<ul class="list">${ready.map((e) => `<li><div class="row between" style="align-items:flex-start;gap:14px"><div style="min-width:0"><div class="label" style="color:var(--red)">${esc(fmtDay(e.date))} · ${esc(e.time)}</div><h3 style="margin-top:4px">${esc(e.title)}</h3><div class="muted small">“${esc(e.hook)}”</div><div class="row small" style="margin-top:6px"><span class="badge b-red">${esc(e.format)}</span>${e.platforms.map((x) => `<span class="badge b-pink">${x === "instagram" ? "Instagram" : "TikTok"}</span>`).join("")}${e.captions ? '<span class="muted">captions ready</span>' : ""}</div></div><button class="btn secondary" data-act="schedule" data-id="${e.id}">schedule</button></div></li>`).join("")}</ul>` : `<div class="empty">nothing ready. use /script in claude, or add a quick post.</div>`)
+    + sec(`needs your approval · ${pending.length}`, "check the captions, add the media links, then approve.", pending.length ? `<div class="grid-cards" style="grid-template-columns:repeat(auto-fill,minmax(min(100%,440px),1fr))">${pending.map(postCard).join("")}</div>` : `<div class="empty">nothing waiting for you.</div>`)
+    + sec(`approved · ${approved.length}`, "type /metricool send in claude and these are scheduled in metricool.", approved.length ? `<div class="grid-cards" style="grid-template-columns:repeat(auto-fill,minmax(min(100%,440px),1fr))">${approved.map(postCard).join("")}</div>` : `<div class="empty">nothing approved yet.</div>`)
+    + (inMc.length ? sec(`scheduled in metricool · ${inMc.length}`, "metricool publishes these at their time.", `<div class="grid-cards" style="grid-template-columns:repeat(auto-fill,minmax(min(100%,440px),1fr))">${inMc.map(postCard).join("")}</div>`) : "")
+    + (done.length ? sec("published", "", `<div class="grid-cards" style="grid-template-columns:repeat(auto-fill,minmax(min(100%,440px),1fr))">${done.map(postCard).join("")}</div>`) : "");
+}
+
+/* ---------- calendar */
+function scriptHtml(text) {
+  return text.split(/\n{2,}/).map((block) => {
+    const lines = block.split("\n"); const h = lines[0].match(/^#{1,3}\s+(.*)$/);
+    return `${h ? `<div class="sh">${esc(h[1])}</div>` : ""}${(h ? lines.slice(1) : lines).filter(Boolean).map((l) => `<p>${esc(l)}</p>`).join("")}`;
+  }).join("");
+}
+function viewCalendar() {
+  if (!S.ready) return header("content calendar", "") + loading();
+  const now = new Date();
+  const [y, m] = (S.ui.month || `${now.getFullYear()}-${now.getMonth() + 1}`).split("-").map(Number);
+  const first = new Date(Date.UTC(y, m - 1, 1)), dim = new Date(Date.UTC(y, m, 0)).getUTCDate(), lead = (first.getUTCDay() + 6) % 7;
+  const prefix = `${y}-${String(m).padStart(2, "0")}`;
+  const entries = S.calendar.filter((e) => e.date.startsWith(prefix)).sort((a, b) => (a.date + a.time).localeCompare(b.date + b.time));
+  const label = new Intl.DateTimeFormat("en-GB", { month: "long", year: "numeric", timeZone: "UTC" }).format(first).toLowerCase();
+  const today = localYmd();
+  const pf = (ps) => ps.map((p) => `<span class="pf">${p === "instagram" ? "IG" : "TT"}</span>`).join(" ");
+  const cells = Array.from({ length: Math.ceil((lead + dim) / 7) * 7 }, (_, i) => i - lead + 1).map((d) => {
+    if (d < 1 || d > dim) return `<div class="cal-cell out"></div>`;
+    const iso = `${prefix}-${String(d).padStart(2, "0")}`;
+    return `<div class="cal-cell"><span class="daynum ${iso === today ? "today" : ""}">${d}</span>${entries.filter((e) => e.date === iso).map((e) => `<button class="slotbtn st-${esc(e.status)}" data-act="slot" data-id="${e.id}"><span class="t"><span class="tabular">${esc(e.time)}</span><span>${pf(e.platforms)}</span></span><span class="h">${esc(e.hook)}</span></button>`).join("")}</div>`;
+  }).join("");
+  const legend = `<div class="chips small">${["idea", "scripted", "filmed", "edited", "scheduled", "posted"].map((s) => `<span class="badge st-${s}">${s}</span>`).join("")}<span class="muted">IG = Instagram · TT = TikTok</span></div>`;
+  const nav = `<div class="row"><button class="btn outline sm" data-act="month" data-v="-1" aria-label="previous month">‹</button><span class="display" style="font-size:22px;min-width:9ch;text-align:center">${esc(label)}</span><button class="btn outline sm" data-act="month" data-v="1" aria-label="next month">›</button></div>`;
+  return header("content calendar", "when each piece goes out, where, and the hook. tap a slot for the full script and caption.", nav)
+    + `<div class="stack">${legend}
+      <div class="cal"><div class="cal-head">${["mon", "tue", "wed", "thu", "fri", "sat", "sun"].map((d) => `<div>${d}</div>`).join("")}</div><div class="cal-grid">${cells}</div></div>
+      <div class="agenda">${entries.length ? entries.map((e) => `<button data-act="slot" data-id="${e.id}"><span class="d"><b>${Number(e.date.slice(8))}</b>${esc(fmtDay(e.date, { weekday: "short" }))}</span><span style="min-width:0"><span class="row small"><b class="tabular">${esc(e.time)}</b>${pf(e.platforms)}</span><span style="display:block;font-weight:500;margin-top:2px">${esc(e.hook)}</span><span class="badge st-${esc(e.status)}" style="margin-top:6px">${esc(e.status)}</span></span></button>`).join("") : `<div class="empty">nothing planned this month. use /script in claude.</div>`}</div>
+    </div>`;
+}
+function drawer() {
+  const e = S.calendar.find((x) => x.id === S.ui.slot);
+  if (!e) return "";
+  const post = S.posts.find((p) => p.calendarEntryId === e.id);
+  const caps = post ? post.captions : e.captions;
+  return `<div class="drawer-bg" data-act="closeslot"></div><aside class="drawer" role="dialog" aria-modal="true" aria-label="${esc(e.title)}">
+    <div class="row between"><span class="label" style="color:var(--red)">${esc(fmtDay(e.date, { weekday: "long", day: "numeric", month: "long" }))} · ${esc(e.time)}</span><button class="btn ghost sm" data-act="closeslot" aria-label="close">✕</button></div>
+    <h2 style="margin-top:6px">${esc(e.title)}</h2>
+    <div class="row small" style="margin:10px 0 18px"><span class="badge b-red">${esc(e.format)}</span>${e.platforms.map((x) => `<span class="badge b-pink">${x === "instagram" ? "Instagram" : "TikTok"}</span>`).join("")}<span class="badge st-${esc(e.status)}">${esc(e.status)}</span><span class="muted">${e.source === "script" ? "from /script" : "added by hand"}</span></div>
+    <div class="box stack" style="gap:10px;background:rgba(255,215,222,.55)"><div><div class="label">hook</div><p class="quote">“${esc(e.hook)}”</p></div><div><div class="label">angle</div><div>${esc(e.angle || "—")}</div></div><div><div class="label">call to action</div><div>${esc(e.cta || "—")}</div></div></div>
+    <h3 style="margin-top:22px">script</h3><div class="script">${e.script ? scriptHtml(e.script) : '<p class="muted">no script yet — use /script in claude for this one.</p>'}</div>
+    <h3 style="margin-top:22px">caption</h3>
+    ${caps ? `${post ? `<p class="small muted">in the scheduler: ${esc(post.status.replace("_", " "))}</p>` : '<p class="small muted">from /script — used when you schedule it.</p>'}${e.platforms.map((p) => `<div class="label" style="margin-top:10px">${p === "instagram" ? "Instagram" : "TikTok"}</div><div class="box pre small">${esc((caps || {})[p] || "—")}</div>`).join("")}` : '<p class="muted small">no caption yet — it’s written when you schedule this.</p>'}
+  </aside>`;
+}
+
+/* ---------- trending */
+function viewTrending() {
+  if (!S.ready) return header("what's trending", "") + loading();
+  const st = S.trending || { sources: [], items: [] };
+  const items = st.items || [], sources = st.sources || [];
+  const name = (id) => sources.find((s) => s.id === id)?.name || id;
+  const top = items.filter((i) => i.tag === "hook potential").sort((a, b) => b.publishedAt.localeCompare(a.publishedAt)).slice(0, 5);
+  const u = S.ui;
+  const visible = items.filter((i) => (u.tag === "all" || i.tag === u.tag) && (!u.tsource || i.sourceId === u.tsource)).sort((a, b) => b.publishedAt.localeCompare(a.publishedAt));
+  const tagCls = { "hook potential": "tag-hook", explainer: "tag-explainer", skip: "tag-skip" };
+  return header("what's trending", `ai news from ${sources.length || 12} sources, tagged “hook potential”, “explainer” or “skip”. type /trending in claude to pull today’s.`)
+    + sourceNote(st.meta)
+    + (items.length === 0 ? `<div class="empty">no news pulled yet. type /trending in claude and the top stories land here.</div>` : `
+    <section class="stack" style="gap:10px"><h2 class="section-title">top 5 hook-worthy, newest first</h2>
+      ${top.length ? `<ol class="top5">${top.map((t, i) => `<li><div class="row between"><span class="small" style="opacity:.8">${i + 1} · ${esc(name(t.sourceId))} · ${esc(fmtWhen(t.publishedAt))}</span><a class="btn secondary sm" href="${esc(t.url)}" target="_blank" rel="noreferrer">read</a></div><h3>${esc(t.title)}</h3><div class="hookline small">hook: ${esc(t.hookIdea)}</div><div class="small" style="opacity:.75">why: ${esc(t.reason)}</div></li>`).join("")}</ol>` : `<div class="empty">nothing tagged “hook potential” in this pull.</div>`}
+    </section>
+    <div class="trend-layout" style="margin-top:24px">
+      <section class="stack" style="gap:10px;min-width:0"><div class="row between"><h2 class="section-title">everything</h2>
+        <div class="pills" role="group" aria-label="tag">${["all", "hook potential", "explainer", "skip"].map((t) => `<button class="pill" data-act="tag" data-v="${t}" aria-pressed="${u.tag === t}">${t} ${t === "all" ? items.length : items.filter((i) => i.tag === t).length}</button>`).join("")}</div></div>
+        ${visible.length ? visible.map((t) => `<article class="card stack" style="gap:8px;${t.tag === "skip" ? "opacity:.78" : ""}"><div class="row small muted"><span class="badge ${tagCls[t.tag] || "b-muted"}">${esc(t.tag)}</span><span>${esc(name(t.sourceId))}</span><span>${esc(fmtWhen(t.publishedAt))}</span></div><h3>${esc(t.title)}</h3>${t.summary ? `<div class="muted small">${esc(t.summary)}</div>` : ""}<div class="small"><b>why:</b> ${esc(t.reason)}</div>${t.tag !== "skip" ? `<div class="box small"><span class="label">hook idea </span>${esc(t.hookIdea)}</div>` : ""}<div class="row" style="justify-content:flex-end">${t.tag !== "skip" ? `<button class="btn ghost sm" data-act="copy" data-v="${esc(t.hookIdea)}">copy hook</button>` : ""}<a class="btn ghost sm" href="${esc(t.url)}" target="_blank" rel="noreferrer">read</a></div></article>`).join("") : `<div class="empty">nothing matches this filter.</div>`}
+      </section>
+      <aside class="card" style="padding:12px"><div class="label" style="padding:4px 8px 8px">${sources.length} sources</div>
+        <button class="srcbtn" data-act="tsource" data-v="" aria-pressed="${!u.tsource}"><span>all sources</span><span class="tabular">${items.length}</span></button>
+        ${sources.map((s) => `<button class="srcbtn" data-act="tsource" data-v="${esc(s.id)}" aria-pressed="${u.tsource === s.id}"><span>${esc(s.name)}</span><span class="tabular muted">${items.filter((i) => i.sourceId === s.id).length}</span></button>`).join("")}
+      </aside>
+    </div>`);
+}
+
+/* -------------------------------------------------- render */
+const VIEWS = { hooks: viewHooks, analytics: viewAnalytics, competitors: viewCompetitors, scheduler: viewScheduler, calendar: viewCalendar, trending: viewTrending };
+const current = () => { const h = location.hash.slice(1); return VIEWS[h] ? h : "hooks"; };
+function renderNav() {
+  const cur = current();
+  const links = NAV.map(([id, label]) => `<a class="navlink" href="#${id}" ${cur === id ? 'aria-current="page"' : ""}>${icon(id)}${label}</a>`).join("");
+  document.getElementById("sidenav").innerHTML = links;
+  document.getElementById("topnav").innerHTML = links;
+}
+function render() {
+  const a = document.activeElement;
+  const keep = a && a.id && $view.contains(a) ? { id: a.id, s: a.selectionStart, e: a.selectionEnd } : null;
+  const scroll = window.scrollY;
+  renderNav();
+  let html = VIEWS[current()]();
+  if (S.ready && !S.db) html = `<div class="note">you’re viewing a read-only copy — open this page in claude.ai while signed in to make changes.</div>` + html;
+  $view.innerHTML = html;
+  $overlay.innerHTML = current() === "calendar" ? drawer() : "";
+  if (keep) { const el = document.getElementById(keep.id); if (el) { el.focus(); try { if (keep.s != null) el.setSelectionRange(keep.s, keep.e); } catch {} } }
+  window.scrollTo(0, scroll);
+}
+let rq = 0;
+const schedule = () => { cancelAnimationFrame(rq); rq = requestAnimationFrame(render); };
+window.addEventListener("hashchange", () => { S.ui.confirm = null; render(); window.scrollTo(0, 0); });
+
+/* -------------------------------------------------- events */
+document.addEventListener("toggle", (e) => {
+  const t = e.target;
+  if (t.id === "hookAdd") S.ui.hookAdd = t.open; else if (t.id === "cAdd") S.ui.cAdd = t.open; else if (t.id === "quick") S.ui.quick = t.open;
+}, true);
+document.addEventListener("input", (e) => {
+  const t = e.target;
+  if (t.dataset.bind) { S.ui[t.dataset.bind] = t.value; render(); return; }
+  if (t.dataset.draft) {
+    const p = S.posts.find((x) => x.id === t.dataset.draft); if (!p) return;
+    const d = (S.drafts[p.id] ||= { captions: { ...(p.captions || {}) }, media: (p.media || []).join("\n") });
+    if (t.dataset.k === "media") d.media = t.value; else d.captions[t.dataset.k] = t.value;
+    const counter = t.parentElement.querySelector(".tabular"); if (counter && t.dataset.k !== "media") counter.textContent = `${t.value.length}/2200`;
+  }
+});
+document.addEventListener("change", (e) => { if (e.target.dataset.bind) { S.ui[e.target.dataset.bind] = e.target.value; render(); } });
+
+document.addEventListener("click", async (e) => {
+  const el = e.target.closest("[data-act]"); if (!el) return;
+  const act = el.dataset.act, id = el.dataset.id, v = el.dataset.v;
+  const confirmTwice = (key) => { if (S.ui.confirm === key) { S.ui.confirm = null; return true; } S.ui.confirm = key; render(); return false; };
+  switch (act) {
+    case "shape": S.ui.hshape = S.ui.hshape === v ? null : v; break;
+    case "platform": S.ui.platform = v; break;
+    case "range": S.ui.range = Number(v); break;
+    case "ccreator": S.ui.ccreator = v || null; break;
+    case "tag": S.ui.tag = v; break;
+    case "tsource": S.ui.tsource = v || null; break;
+    case "slot": S.ui.slot = id; break;
+    case "closeslot": S.ui.slot = null; break;
+    case "month": {
+      const now = new Date(); const [y, m] = (S.ui.month || `${now.getFullYear()}-${now.getMonth() + 1}`).split("-").map(Number);
+      const d = new Date(y, m - 1 + Number(v), 1); S.ui.month = `${d.getFullYear()}-${d.getMonth() + 1}`; break;
+    }
+    case "copy": try { await navigator.clipboard.writeText(v); toast("copied"); } catch { toast(v); } return;
+    case "use": {
+      const h = S.hooks.find((x) => x.id === id); if (!h) return;
+      const cmd = `/script --hook "${h.template.replace(/"/g, "'")}" --from ${h.id}`;
+      let copied = false; try { await navigator.clipboard.writeText(cmd); copied = true; } catch {}
+      await write((db) => db.collection("scriptQueue").doc(h.id).set({ hookId: h.id, template: h.template, transcript: h.transcript, niche: h.niche || "general", queuedAt: new Date().toISOString() }));
+      S.ui.msg["use:" + id] = copied ? "queued, and the command is copied — paste it into claude. or just type /script there." : `queued — in claude, type: ${cmd}`;
+      break;
+    }
+    case "unqueue": await write((db) => db.collection("scriptQueue").doc(id).delete()); return;
+    case "delhook": if (!confirmTwice("hook:" + id)) return; await write((db) => db.collection("hooks").doc(id).delete(), "hook deleted"); return;
+    case "savereel": {
+      const r = (S.competitors?.reels || []).find((x) => x.id === id); if (!r) return;
+      const c = (S.competitors.creators || []).find((x) => x.handle.toLowerCase() === r.creator.toLowerCase());
+      const t = templateHook(r.hook); const hid = uid("hook");
+      await write((db) => db.collection("hooks").doc(hid).set(clean({ id: hid, transcript: r.hook, template: t.template, format: t.format, niche: c?.niche || "general", creator: r.creator, platform: "instagram", url: r.url || null, views: r.views ?? null, likes: r.views == null ? r.likes ?? null : null, onScreenText: r.onScreenText || null, sourceReelId: r.id, savedAt: new Date().toISOString() })), "saved to the hook vault");
+      return;
+    }
+    case "delreel": {
+      if (!confirmTwice("creel:" + id)) return;
+      const st = S.competitors; if (!st) return;
+      await write((db) => db.doc("competitors/state").set(clean({ ...st, reels: st.reels.filter((r) => r.id !== id) })), "removed");
+      return;
+    }
+    case "schedule": case "scheduleall": {
+      const today = localYmd(); const hasPost = new Set(S.posts.map((p) => p.calendarEntryId));
+      const list = act === "schedule" ? S.calendar.filter((x) => x.id === id) : S.calendar.filter((x) => READY.includes(x.status) && x.date >= today && !hasPost.has(x.id));
+      for (const en of list) {
+        const fromScript = en.captions && en.platforms.every((p) => (en.captions[p] || "").trim());
+        const pid = uid("post");
+        const post = { id: pid, calendarEntryId: en.id, title: en.title, format: en.format, platforms: en.platforms, scheduledFor: new Date(`${en.date}T${en.time}:00`).toISOString(),
+          captions: fromScript ? en.captions : templateCaptions(en), media: [], status: "pending_approval", captionSource: fromScript ? "script" : "template", createdAt: new Date().toISOString() };
+        const ok = await write((db) => db.collection("posts").doc(pid).set(clean(post)));
+        if (ok) await write((db) => db.collection("calendar").doc(en.id).update({ status: "scheduled" }));
+      }
+      toast(list.length ? `${list.length} drafted — add media, then approve` : "nothing ready");
+      return;
+    }
+    case "savepost": case "approve": {
+      const p = S.posts.find((x) => x.id === id); if (!p) return;
+      const d = S.drafts[id] || { captions: { ...(p.captions || {}) }, media: (p.media || []).join("\n") };
+      const media = d.media.split(/\s+/).map((s) => s.trim()).filter(Boolean);
+      const bad = media.find((m) => !/^https:\/\//i.test(m));
+      if (bad) { S.ui.msg["post:" + id] = `“${bad.slice(0, 40)}” isn’t a web link — paste links that start with https://`; render(); return; }
+      const captions = Object.fromEntries(p.platforms.map((k) => [k, d.captions[k] || ""]));
+      const changed = p.platforms.some((k) => (p.captions || {})[k] !== captions[k]);
+      const next = { ...p, captions, media, captionSource: changed ? "edited" : p.captionSource };
+      if (act === "approve") {
+        const problems = approvalProblems(next);
+        if (problems.length) { S.ui.msg["post:" + id] = problems.join(" · "); render(); return; }
+        Object.assign(next, { status: "approved", approvedAt: new Date().toISOString(), approvalKey: approvalKey(next) });
+      } else if (p.status === "approved" && p.approvalKey !== approvalKey(next)) {
+        Object.assign(next, { status: "pending_approval" }); delete next.approvedAt; delete next.approvalKey;
+      }
+      const ok = await write((db) => db.collection("posts").doc(id).set(clean(next)), act === "approve" ? "approved — type /metricool send in claude" : next.status === "pending_approval" && p.status === "approved" ? "saved — edits need a fresh approval" : "saved");
+      if (ok) { delete S.drafts[id]; S.ui.msg["post:" + id] = ""; }
+      return;
+    }
+    case "unapprove": {
+      const p = S.posts.find((x) => x.id === id); if (!p) return;
+      const next = { ...p, status: "pending_approval" }; delete next.approvedAt; delete next.approvalKey;
+      await write((db) => db.collection("posts").doc(id).set(clean(next)), "approval withdrawn"); return;
+    }
+    case "recaption": {
+      const p = S.posts.find((x) => x.id === id); const en = S.calendar.find((x) => x.id === p?.calendarEntryId); if (!p || !en) return;
+      const fromScript = en.captions && en.platforms.every((k) => (en.captions[k] || "").trim());
+      delete S.drafts[id];
+      await write((db) => db.collection("posts").doc(id).update({ captions: fromScript ? en.captions : templateCaptions(en), captionSource: fromScript ? "script" : "template" }), "captions reset");
+      return;
+    }
+    case "delpost": {
+      if (!confirmTwice("post:" + id)) return;
+      const p = S.posts.find((x) => x.id === id); if (!p) return;
+      const ok = await write((db) => db.collection("posts").doc(id).delete(), "removed from the scheduler");
+      if (ok && S.calendar.some((x) => x.id === p.calendarEntryId && x.status === "scheduled")) await write((db) => db.collection("calendar").doc(p.calendarEntryId).update({ status: "edited" }));
+      return;
+    }
+    default: return;
+  }
+  render();
+});
+document.addEventListener("keydown", (e) => { if (e.key === "Escape" && S.ui.slot) { S.ui.slot = null; render(); } });
+
+document.addEventListener("submit", async (e) => {
+  const f = e.target.closest("form[data-form]"); if (!f) return;
+  e.preventDefault();
+  const fd = new FormData(f); const kind = f.dataset.form;
+  const num = (k) => (fd.get(k) ? Number(fd.get(k)) : null);
+  if (kind === "hook") {
+    const transcript = String(fd.get("transcript") || "").trim(); if (!transcript) return;
+    const t = templateHook(transcript); const hid = uid("hook"); const tpl = String(fd.get("template") || "").trim();
+    const creator = String(fd.get("creator") || "").trim();
+    const ok = await write((db) => db.collection("hooks").doc(hid).set(clean({ id: hid, transcript, template: tpl || t.template, format: t.format, niche: String(fd.get("niche") || "general").trim().toLowerCase() || "general", creator: creator.startsWith("@") ? creator : "@" + creator, platform: "instagram", url: String(fd.get("url") || "") || null, views: num("views"), savedAt: new Date().toISOString() })), "hook saved");
+    if (ok) { f.reset(); S.ui.hookAdd = false; render(); }
+  } else if (kind === "creel") {
+    const creator = String(fd.get("creator") || "").trim(); const handle = "@" + creator.replace(/^@/, "");
+    const hook = String(fd.get("hook") || "").trim(); if (!hook) return;
+    const views = num("views"), likes = num("likes");
+    if (views == null && likes == null) { toast("add the views (or at least the likes)"); return; }
+    const st = clean(S.competitors || { meta: {}, creators: [], reels: [] });
+    let c = st.creators.find((x) => x.handle.toLowerCase() === handle.toLowerCase());
+    if (!c) { c = { handle, name: handle.slice(1), niche: "", followers: num("followers") || 0 }; st.creators.push(c); } else if (num("followers")) c.followers = num("followers");
+    st.reels.push({ id: uid("comp"), creator: c.handle, hook, caption: "", views: views ?? undefined, likes: likes ?? 0, comments: 0, postedAt: new Date().toISOString(), dateKnown: false, url: String(fd.get("url") || "") || undefined, source: "manual" });
+    st.meta = { sample: false, source: "screenshots and manual entries", updatedAt: new Date().toISOString() };
+    const ok = await write((db) => db.doc("competitors/state").set(clean(st)), "reel added");
+    if (ok) { f.reset(); S.ui.cAdd = false; render(); }
+  } else if (kind === "quick") {
+    const platforms = fd.getAll("platforms").map(String); if (!platforms.length) { toast("pick at least one platform"); return; }
+    const cid = uid("cal");
+    const ok = await write((db) => db.collection("calendar").doc(cid).set(clean({ id: cid, date: String(fd.get("date")), time: String(fd.get("time")), title: String(fd.get("title")).trim(), format: String(fd.get("format")), platforms, hook: String(fd.get("hook")).trim(), angle: String(fd.get("angle") || "").trim(), cta: String(fd.get("cta") || "").trim(), status: "edited", source: "manual" })), "added — schedule it below");
+    if (ok) { f.reset(); S.ui.quick = false; render(); }
+  }
+});
+
+/* -------------------------------------------------- boot */
+render();
+(async () => {
+  const db = window.claude && window.claude.use ? await window.claude.use("db").catch(() => null) : null;
+  S.db = db;
+  if (!db) { S.ready = true; render(); return; }
+  let pending = 8;
+  const done = () => { if (pending > 0 && --pending === 0) S.ready = true; schedule(); };
+  const err = () => done();
+  const docSub = (path, key) => db.doc(path).onSnapshot((s) => { S[key] = s.exists ? s.data() : null; done(); }, err);
+  const colSub = (path, key) => db.collection(path).onSnapshot((s) => { S[key] = s.docs.map((d) => ({ id: d.id, ...d.data() })); done(); }, err);
+  docSub("analytics/instagram", "ig"); docSub("analytics/tiktok", "tt"); docSub("competitors/state", "competitors"); docSub("trending/state", "trending");
+  colSub("hooks", "hooks"); colSub("scriptQueue", "queue"); colSub("calendar", "calendar"); colSub("posts", "posts");
+  setTimeout(() => { if (!S.ready) { S.ready = true; render(); } }, 8000);
+})();
+})();
+</script>

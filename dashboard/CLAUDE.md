@@ -1,5 +1,39 @@
 # the clear code. — content dashboard
 
+## Where it lives now: online (the owner works on an iPad)
+
+The dashboard the owner uses is a **published page on their Claude account**:
+**https://claude.ai/artifact/C377BSo7rK7oopk2gX1C1K** (title "The Clear Code Dashboard"). It's
+one self-contained HTML file, kept in git at `dashboard/online/index.html`. To change it, edit
+that file and republish it to that URL with the Artifact tool (`url` = the link).
+
+- **Why:** the owner only has an iPad (11 Nov 2026), which can't run Node, so the Next.js
+  app below can't be their daily tool.
+- **Data:** in the page's own database (the `db` capability), read and written with the
+  **ArtifactData** tool:
+  - `analytics/instagram`, `analytics/tiktok`, `competitors/state` and `trending/state`:
+    one document each, same shapes as the JSON files in `data/`
+  - `hooks/*`, `scriptQueue/*`, `calendar/*` and `posts/*`: one document per item, same
+    shapes as `lib/types.ts`
+- **Commands that fill it:** `/metricool` (pull and send), `/competitors` (screenshots),
+  `/trending` (12 sources) and `/script` (calendar entries with captions). Their skills
+  under `../.claude/skills/` say exactly which documents they read and write.
+- **Helper scripts:** `scripts/online/`:
+  - `posts-ready.mjs` picks approved, unchanged posts for Metricool
+  - `approval-key.mjs` must stay identical to `approvalKey()` in the page
+  - `competitors-merge.mjs`
+  - `trending-build.ts`
+- **Approval gate (unchanged idea):** the page stores an `approvalKey` fingerprint on
+  approval, and `posts-ready.mjs` refuses any post whose fingerprint no longer matches.
+- **Nothing runs on a timer:** the owner's account doesn't let scheduled tasks use the
+  Metricool connector, so the commands are run by hand. The "Daily Metricool pull"
+  scheduled task (5:11am) exists but can't reach Metricool.
+
+Everything below describes the original Next.js version. It still works on a computer and
+holds the shared logic the online page's helper scripts reuse, but it isn't what the owner
+opens.
+
+
 This is the content dashboard for @theclearcode. It has six pages and a set of scheduled
 jobs, all in this folder. The repo root is a separate HyperFrames video project with its own
 CLAUDE.md, and none of that project's rules (GSAP timelines, `npm run check`) apply here.
