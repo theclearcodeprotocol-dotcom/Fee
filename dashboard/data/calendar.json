@@ -4,5 +4,27 @@
     "source": "cleared — waiting for real data",
     "updatedAt": "2026-11-11T08:28:32.145Z"
   },
-  "entries": []
+  "entries": [
+    {
+      "date": "2026-11-19",
+      "time": "12:30",
+      "title": "black friday doors open — carousel",
+      "format": "carousel",
+      "platforms": [
+        "instagram",
+        "tiktok"
+      ],
+      "hook": "doors open this black friday.",
+      "angle": "problem → cost → the protocol → what's inside → phase two → doors open fri 27 nov (black friday plan, day 22: everything inside)",
+      "cta": "tap the link in our bio to join the waitlist",
+      "status": "edited",
+      "source": "manual",
+      "script": "## slide 1 · hook\nDoors open this Black Friday.\nThe Clear Code Protocol, phase two.\n\n## slide 2 · the problem\nAcne clients keep finding you.\nBut you build the programme as you go. A new plan for every client, and no system behind any of it.\n\n## slide 3 · the cost\nAnd it's exhausting.\nMonths of guesswork and second-guessing, when you could be treating.\n\n## slide 4 · the answer\nSo I built the framework.\nThe Clear Code Protocol is a done-for-you framework to build an acne programme in your clinic.\n\n## slide 5 · what's inside\nWhat you actually get.\nA complete guide for you to successfully plan, launch and nurture your Acne programme. With even more ready to use resources, client education and a purpose built Acne consultation form, this collaborative style approach will ensure you get results.\n\n## slide 6 · phase two\nPhase two is here.\n25+ specialists joined at launch. Their feedback shaped every upgrade.\n\n## slide 7 · doors\nDoors open Friday 27 November.\nThey won't be open for very long. Tap the link in our bio to join the waitlist.\n\n## design\nClaude Design canvas: \"Black Friday doors open — carousel\" (7 slides, 1080 × 1350) — https://claude.ai/artifact/XufPwdFqM26rx6ZEgQJ9uS",
+      "captions": {
+        "instagram": "doors open this black friday. 🖤\n\nacne clients keep finding you, but you're building the programme as you go, with no system behind any of it.\n\nthe clear code protocol is a done-for-you framework to plan, launch and nurture an acne programme in your clinic. phase two is here, shaped by the specialists who joined at launch.\n\nswipe →\n\ndoors open friday 27 november, and they won't be open for long. tap the link in our bio to join the waitlist.\n\n#acnespecialist #skinspecialist #acnetreatment #skinclinic #theclearcode",
+        "tiktok": "doors open this black friday 🖤 the clear code protocol, phase two: a done-for-you framework for your clinic's acne programme. join the waitlist, link in bio. #acnespecialist #skinspecialist #theclearcode"
+      },
+      "id": "cal_51e6e4bb"
+    }
+  ]
 }
