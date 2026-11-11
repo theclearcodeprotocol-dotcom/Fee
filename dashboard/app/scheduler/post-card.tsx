@@ -21,7 +21,8 @@ import { PlatformBadges, formatWhen } from "@/components/platform-badges";
 
 const STATUS: Record<ScheduledPost["status"], { label: string; className: string }> = {
   pending_approval: { label: "needs approval", className: "bg-secondary text-secondary-foreground" },
-  approved: { label: "approved", className: "bg-primary text-primary-foreground" },
+  approved: { label: "approved — waiting for /metricool send", className: "bg-primary text-primary-foreground" },
+  in_metricool: { label: "in metricool", className: "bg-primary text-primary-foreground" },
   publishing: { label: "publishing…", className: "bg-primary text-primary-foreground" },
   published: { label: "published", className: "bg-muted text-muted-foreground" },
   failed: { label: "failed", className: "bg-destructive text-primary-foreground" },
@@ -75,7 +76,17 @@ export function PostCard({ post }: { post: ScheduledPost }) {
               )}
               {post.results?.[id] ? (
                 <p className={cn("text-xs", post.results[id]!.ok ? "text-muted-foreground" : "text-destructive")}>
-                  {post.results[id]!.ok ? `✓ posted (${post.results[id]!.id})` : `✗ ${post.results[id]!.error}`}
+                  {post.results[id]!.ok ? (
+                    post.results[id]!.url ? (
+                      <a href={post.results[id]!.url} target="_blank" rel="noreferrer" className="underline underline-offset-2">
+                        ✓ scheduled in metricool — open
+                      </a>
+                    ) : (
+                      `✓ posted (${post.results[id]!.id})`
+                    )
+                  ) : (
+                    `✗ ${post.results[id]!.error}`
+                  )}
                 </p>
               ) : null}
             </div>
@@ -88,13 +99,15 @@ export function PostCard({ post }: { post: ScheduledPost }) {
               id={`${post.id}-media`}
               value={media}
               onChange={(e) => setMedia(e.target.value)}
-              placeholder={post.format === "reel" ? "https://…/reel.mp4" : "https://…/slide-1.jpg\nhttps://…/slide-2.jpg"}
+              placeholder={post.format === "reel" ? "https://drive.google.com/file/d/…" : "https://drive.google.com/file/d/… (slide 1)\nhttps://drive.google.com/file/d/… (slide 2)"}
               className="min-h-12 font-mono text-xs"
             />
           ) : (
             <p className="break-all font-mono text-xs text-muted-foreground">{post.media.join(" · ") || "—"}</p>
           )}
-          {editable ? <p className="text-xs text-muted-foreground">public https urls instagram and tiktok can fetch (see CLAUDE.md → publishing).</p> : null}
+          {editable ? (
+            <p className="text-xs text-muted-foreground">paste a google drive or dropbox share link (metricool uploads it), or any public https link to the file.</p>
+          ) : null}
         </div>
         {msg ? (
           <p role="status" className={cn("text-sm", msg.ok ? "text-muted-foreground" : "font-medium text-destructive")}>
@@ -115,6 +128,9 @@ export function PostCard({ post }: { post: ScheduledPost }) {
               <RefreshCw /> rewrite captions
             </Button>
           </>
+        ) : null}
+        {post.status === "in_metricool" ? (
+          <p className="text-xs text-muted-foreground">sent to metricool — it publishes at the time. to change it now, edit it in metricool (link above).</p>
         ) : null}
         {post.status === "approved" ? (
           <>

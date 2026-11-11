@@ -50,7 +50,10 @@ export default async function AnalyticsPage({ searchParams }: { searchParams: Pr
     );
   }
 
-  const asOf = [...file.daily].sort((a, b) => a.date.localeCompare(b.date)).at(-1)!.date;
+  const sortedDays = [...file.daily].sort((a, b) => a.date.localeCompare(b.date));
+  const asOf = sortedDays.at(-1)!.date;
+  const since = sortedDays[0].date;
+  const short = sortedDays.length < range;
   const reels = reelsInRange(file, range).sort((a, b) => b.reel.views - a.reel.views);
   const heaters = topHeaters(file, range);
 
@@ -58,7 +61,7 @@ export default async function AnalyticsPage({ searchParams }: { searchParams: Pr
     <>
       <PageHeader
         title="analytics"
-        description={`${file.handle} on instagram — the last ${range} days to ${formatDate(asOf, { day: "numeric", month: "long" })}.`}
+        description={`${file.handle} on instagram — the last ${range} days to ${formatDate(asOf, { day: "numeric", month: "long" })}.${short ? ` history starts ${formatDate(since, { day: "numeric", month: "long" })}, so this shows ${sortedDays.length} days for now.` : ""}`}
         actions={rangeTabs}
       />
       <DataSourceNote meta={file.meta} />
@@ -66,6 +69,22 @@ export default async function AnalyticsPage({ searchParams }: { searchParams: Pr
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
         {METRICS.map(({ key, label, icon: Icon }) => {
           const s = metricSummary(file.daily, key, range);
+          if (!s.available) {
+            return (
+              <Card key={key} className="gap-3">
+                <CardHeader className="flex flex-row items-center justify-between">
+                  <CardDescription className="text-sm">{label}</CardDescription>
+                  <Icon className="size-4 text-muted-foreground" aria-hidden />
+                </CardHeader>
+                <CardContent>
+                  <p className="font-heading text-4xl leading-none text-muted-foreground">—</p>
+                  <p className="mt-1.5 text-xs text-muted-foreground">
+                    metricool doesn’t provide dm numbers. check them in the instagram app, or connect the instagram api directly (see CLAUDE.md).
+                  </p>
+                </CardContent>
+              </Card>
+            );
+          }
           return (
             <Card key={key} className="gap-3 pb-3">
               <CardHeader className="flex flex-row items-center justify-between">
@@ -104,7 +123,11 @@ export default async function AnalyticsPage({ searchParams }: { searchParams: Pr
         </CardHeader>
         <CardContent>
           {heaters.length === 0 ? (
-            <p className="py-6 text-center text-muted-foreground">no heaters in the last {range} days. try a longer range.</p>
+            <p className="py-6 text-center text-muted-foreground">
+              {file.reels.length < 4
+                ? `heaters need a few reels to compare against — ${file.reels.length} reel${file.reels.length === 1 ? "" : "s"} so far. they’ll appear as you post.`
+                : `no heaters in the last ${range} days. try a longer range.`}
+            </p>
           ) : (
             <ol className="grid gap-3">
               {heaters.map((h, i) => (
@@ -119,7 +142,7 @@ export default async function AnalyticsPage({ searchParams }: { searchParams: Pr
                   </div>
                   <div className="flex gap-4 sm:block sm:text-right">
                     <p className="font-heading text-3xl leading-none">{formatCompact(h.reel.views)}</p>
-                    <Badge className="mt-1 bg-brand-pink text-primary">{h.multiple.toFixed(1)}× median</Badge>
+                    <Badge className="mt-1 bg-brand-pink text-primary">{h.multiple!.toFixed(1)}× median</Badge>
                   </div>
                 </li>
               ))}
@@ -143,7 +166,8 @@ export default async function AnalyticsPage({ searchParams }: { searchParams: Pr
                 <TableHead className="text-right">vs 30-day median</TableHead>
                 <TableHead className="text-right">saves</TableHead>
                 <TableHead className="text-right">shares</TableHead>
-                <TableHead className="text-right">follows</TableHead>
+                <TableHead className="text-right">comments</TableHead>
+                <TableHead className="text-right" title="swiped away in the first 3 seconds">skip rate</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
@@ -159,10 +183,13 @@ export default async function AnalyticsPage({ searchParams }: { searchParams: Pr
                   </TableCell>
                   <TableCell className="whitespace-nowrap text-muted-foreground">{formatDate(h.reel.postedAt)}</TableCell>
                   <TableCell className="text-right tabular-nums">{formatCompact(h.reel.views)}</TableCell>
-                  <TableCell className={cn("text-right tabular-nums", isHeater(h) && "font-semibold text-primary")}>{h.multiple.toFixed(1)}×</TableCell>
+                  <TableCell className={cn("text-right tabular-nums", isHeater(h) && "font-semibold text-primary")}>
+                    {h.multiple === null ? <span title="no earlier reels to compare with">—</span> : `${h.multiple.toFixed(1)}×`}
+                  </TableCell>
                   <TableCell className="text-right tabular-nums">{formatCompact(h.reel.saves)}</TableCell>
                   <TableCell className="text-right tabular-nums">{formatCompact(h.reel.shares)}</TableCell>
-                  <TableCell className="text-right tabular-nums">{formatCompact(h.reel.follows)}</TableCell>
+                  <TableCell className="text-right tabular-nums">{formatCompact(h.reel.comments)}</TableCell>
+                  <TableCell className="text-right tabular-nums">{h.reel.skipRate !== undefined ? `${h.reel.skipRate.toFixed(0)}%` : "—"}</TableCell>
                 </TableRow>
               ))}
             </TableBody>

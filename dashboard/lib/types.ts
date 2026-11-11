@@ -70,8 +70,8 @@ export interface DailyMetric {
   views: number;
   saves: number;
   follows: number;
-  /** DM conversations with activity that day (Instagram Messaging API) */
-  dms: number;
+  /** DM conversations with activity that day — only from the direct Instagram API; Metricool has no DM data */
+  dms?: number;
 }
 
 export interface Reel {
@@ -84,6 +84,11 @@ export interface Reel {
   shares: number;
   follows: number;
   comments: number;
+  reach?: number;
+  /** average % of the reel watched (Metricool) */
+  retention?: number;
+  /** % who swiped away in the first 3 seconds (Metricool) */
+  skipRate?: number;
   url?: string;
   /** one-line "why it popped", written by Claude during the analytics pull */
   note?: string;
@@ -154,16 +159,19 @@ export interface CalendarEntry {
 /* ---------------- Scheduler ---------------- */
 
 /**
- * pending_approval → approved → publishing → published | failed
+ * pending_approval → approved → in_metricool (Metricool publishes it at the time)
+ * (direct-API route instead: approved → publishing → published | failed)
  * Nothing is ever sent to a platform unless status is "approved" and the
  * captions/media are unchanged since approval (see approvalKey in lib/posts.ts).
  */
-export type PostStatus = "pending_approval" | "approved" | "publishing" | "published" | "failed";
+export type PostStatus = "pending_approval" | "approved" | "in_metricool" | "publishing" | "published" | "failed";
 
 export interface PublishResult {
   ok: boolean;
   at: string;
   id?: string;
+  /** Metricool planner link for the scheduled post */
+  url?: string;
   error?: string;
 }
 

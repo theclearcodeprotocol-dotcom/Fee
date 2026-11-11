@@ -17,7 +17,9 @@
     "trending:slack": "node --env-file-if-exists=.env.local scripts/slack-trending.ts",
     "publish:due": "node --env-file-if-exists=.env.local scripts/publish-due.ts",
     "schedule:install": "bash scripts/install-schedule.sh",
-    "schedule:remove": "bash scripts/install-schedule.sh --remove"
+    "schedule:remove": "bash scripts/install-schedule.sh --remove",
+    "metricool:import": "node scripts/metricool-import.ts",
+    "metricool:posts": "node scripts/metricool-posts.ts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^1.8.0",

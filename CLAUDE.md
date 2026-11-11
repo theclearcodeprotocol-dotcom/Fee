@@ -22,7 +22,9 @@ A separate Next.js app (hook vault, analytics, competitors, scheduler, content c
 trending) lives in `dashboard/` with its own `package.json` and its own
 `dashboard/CLAUDE.md`. Read that file before you work on it; the HyperFrames rules below don't
 apply there. The `/script` skill (`.claude/skills/script/`) writes reel scripts to
-`content/scripts/` and adds them to the dashboard's content calendar.
+`content/scripts/` and adds them to the dashboard's content calendar. The `/metricool` skill
+(`.claude/skills/metricool/`) pulls Instagram analytics into the dashboard and sends approved
+posts to Metricool.
 
 ## Transcripts — ElevenLabs
 

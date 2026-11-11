@@ -19,9 +19,15 @@ import { hookFormatSchema, platformSchema } from "./schemas.ts";
 const MODEL = "claude-opus-5-5";
 const BETAS = ["server-side-fallback-2026-07-01"];
 
-const BRAND_VOICE = `You write for "the clear code." (@theclearcode), a creator who explains AI clearly for non-technical people.
-Voice: between professional and playful; warm, bold, a little cheeky. Lower-case, like the brand.
-No corporate filler ("unlock", "game-changer", "dive in", "in today's fast-paced world"). Short sentences.`;
+const BRAND_VOICE = `You write for "the clear code." (Instagram @theclearcode_), the brand behind The Clear Code Protocol:
+a done-for-you framework that helps skin specialists and acne specialists build and run their own acne programmes
+inside their clinics (plan, launch, nurture). The audience is skin and acne specialists and clinic owners.
+Voice: between professional and playful; feminine, warm, bold. Lower-case, like the brand.
+No corporate filler ("unlock", "game-changer", "dive in", "in today's fast-paced world"). Short sentences.
+Never make medical claims or promise skin results.`;
+
+/** Fallback hashtags (and the tags Claude is asked to include). */
+export const BRAND_HASHTAGS = "#acnespecialist #skinspecialist #acnetreatment #skinclinic #theclearcode";
 
 let client: Anthropic | null = null;
 function getClient() {
@@ -70,7 +76,7 @@ export interface CaptionInput {
 
 const PLATFORM_RULES: Record<Platform, string> = {
   instagram:
-    "Instagram: open with the hook as the first line (it shows before 'more'), 2–4 short lines that deliver the angle, end with the CTA, then 3–5 hashtags including #theclearcode. For a carousel, tease the slides ('swipe →').",
+    `Instagram: open with the hook as the first line (it shows before 'more'), 2–4 short lines that deliver the angle, end with the CTA, then 3–5 hashtags drawn from: ${BRAND_HASHTAGS}. For a carousel, tease the slides ('swipe →').`,
   tiktok: "TikTok: the hook in one punchy line, one line of angle, the CTA, then 2–4 hashtags. Under 300 characters.",
 };
 
@@ -110,13 +116,13 @@ Return exactly these platforms: ${input.platforms.join(", ")}.`,
 export function templateCaptions({ hook, angle, cta, format, platforms }: CaptionInput) {
   const h = hook.trim().replace(/\s+/g, " ");
   const a = angle.trim();
-  const c = cta.trim() || (format === "carousel" ? "save this for later 📌" : "follow for the clear version of ai 🧠");
+  const c = cta.trim() || (format === "carousel" ? "save this for later 📌" : "follow for more from the clear code protocol 🧚‍♀️");
   const out: Partial<Record<Platform, string>> = {};
   for (const p of platforms) {
     out[p] =
       p === "instagram"
-        ? [h, a, format === "carousel" ? "swipe →" : "", c, "#ai #aitools #learnai #theclearcode"].filter(Boolean).join("\n\n")
-        : [h, a ? a.split(/[.\n]/)[0] : "", c, "#ai #learnontiktok"].filter(Boolean).join(" · ").slice(0, 2200);
+        ? [h, a, format === "carousel" ? "swipe →" : "", c, BRAND_HASHTAGS].filter(Boolean).join("\n\n")
+        : [h, a ? a.split(/[.\n]/)[0] : "", c, BRAND_HASHTAGS.split(" ").slice(0, 3).join(" ")].filter(Boolean).join(" · ").slice(0, 2200);
   }
   return out;
 }

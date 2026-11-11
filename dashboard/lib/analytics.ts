@@ -27,33 +27,37 @@ export function metricSummary(daily: DailyMetric[], key: MetricKey, days: Range)
   const sorted = [...daily].sort((a, b) => a.date.localeCompare(b.date));
   const current = sorted.slice(-days);
   const previous = sorted.slice(-days * 2, -days);
-  const total = current.reduce((n, d) => n + d[key], 0);
-  const prevTotal = previous.reduce((n, d) => n + d[key], 0);
+  const total = current.reduce((n, d) => n + (d[key] ?? 0), 0);
+  const prevTotal = previous.reduce((n, d) => n + (d[key] ?? 0), 0);
   return {
+    /** false when the source doesn't provide this metric at all (e.g. DMs via Metricool) */
+    available: sorted.some((d) => d[key] !== undefined),
+    days: current.length,
     total,
     // only compare against a full previous period
     change: previous.length === days && prevTotal > 0 ? (total - prevTotal) / prevTotal : null,
-    series: current.map((d) => ({ date: d.date, value: d[key] })),
+    series: current.map((d) => ({ date: d.date, value: d[key] ?? 0 })),
   };
 }
 
 export interface HeaterInfo {
   reel: Reel;
-  baseline: number;
-  multiple: number;
+  /** null when there are no earlier reels to compare against */
+  baseline: number | null;
+  multiple: number | null;
 }
 
-/** 30-day median baseline and multiple for every reel (where a baseline exists). */
+/** 30-day median baseline and multiple for every reel. */
 export function scoreReels(reels: Reel[]): HeaterInfo[] {
   const sorted = [...reels].sort((a, b) => a.postedAt.localeCompare(b.postedAt));
-  return sorted.flatMap((reel, i) => {
+  return sorted.flatMap((reel, i): HeaterInfo[] => {
     const t = new Date(reel.postedAt).getTime();
     const earlier = sorted.slice(0, i);
     const window = earlier.filter((r) => t - new Date(r.postedAt).getTime() <= 30 * DAY);
     const pool = window.length >= 3 ? window : earlier;
-    if (!pool.length) return [];
+    if (!pool.length) return [{ reel, baseline: null, multiple: null }];
     const baseline = median(pool.map((r) => r.views));
-    return [{ reel, baseline, multiple: reel.views / baseline }];
+    return [{ reel, baseline, multiple: baseline > 0 ? reel.views / baseline : null }];
   });
 }
 
@@ -64,7 +68,7 @@ export function reelsInRange(file: AnalyticsFile, days: Range) {
   return scoreReels(file.reels).filter((h) => new Date(h.reel.postedAt).getTime() >= start);
 }
 
-export const isHeater = (h: HeaterInfo) => h.multiple >= HEATER_MULTIPLE;
+export const isHeater = (h: HeaterInfo) => h.multiple !== null && h.multiple >= HEATER_MULTIPLE;
 
 /** Top 5 heaters in the range, sorted by view count. */
 export function topHeaters(file: AnalyticsFile, days: Range, n = 5) {
@@ -97,13 +101,20 @@ function hookClause(hook: string) {
 /** One line on why a heater popped, from rates vs your medians. Claude can overwrite it (reel.note). */
 export function popNote(reel: Reel, all: Reel[]): string {
   if (reel.note) return reel.note;
-  const rate = (r: Reel, k: (typeof RATES)[number]["key"]) => r[k] / Math.max(1, r.views);
-  const ratios = RATES.map((m) => ({ m, ratio: rate(reel, m.key) / Math.max(1e-9, median(all.map((r) => rate(r, m.key)))) })).sort(
-    (a, b) => b.ratio - a.ratio,
-  );
-  const best = ratios[0];
   const hook = hookClause(reel.hook);
-  if (best.ratio >= 1.3) return `${best.m.clause(best.ratio.toFixed(1))}; ${hook}.`;
+  // a hook that held: far fewer people swiped away in the first 3 seconds (Metricool's skip rate)
+  const skips = all.flatMap((r) => (r.skipRate !== undefined ? [r.skipRate] : []));
+  if (reel.skipRate !== undefined && skips.length >= 3 && reel.skipRate <= median(skips) * 0.8) {
+    return `only ${reel.skipRate.toFixed(0)}% swiped away in the first 3s (you usually lose ${median(skips).toFixed(0)}%) — ${hook} held them.`;
+  }
+  const rate = (r: Reel, k: (typeof RATES)[number]["key"]) => r[k] / Math.max(1, r.views);
+  const ratios = RATES
+    // skip rates the source doesn't report (Metricool has no per-reel follows)
+    .filter((m) => all.some((r) => r[m.key] > 0))
+    .map((m) => ({ m, ratio: rate(reel, m.key) / Math.max(1e-9, median(all.map((r) => rate(r, m.key)))) }))
+    .sort((a, b) => b.ratio - a.ratio);
+  const best = ratios[0];
+  if (best && best.ratio >= 1.3) return `${best.m.clause(best.ratio.toFixed(1))}; ${hook}.`;
   return `pure reach — ${hook} got it pushed past your followers.`;
 }
 
@@ -111,5 +122,6 @@ export function heaterStats(h: HeaterInfo, all: Reel[]) {
   const r = h.reel;
   const pct = (n: number) => `${((n / r.views) * 100).toFixed(2)}%`;
   const med = (k: "saves" | "shares" | "follows" | "comments") => `${((median(all.map((x) => x[k] / x.views)) || 0) * 100).toFixed(2)}%`;
-  return `views ${r.views} (${h.multiple.toFixed(1)}× 30-day median); save rate ${pct(r.saves)} vs median ${med("saves")}; share rate ${pct(r.shares)} vs ${med("shares")}; follow rate ${pct(r.follows)} vs ${med("follows")}; comment rate ${pct(r.comments)} vs ${med("comments")}`;
+  const skip = r.skipRate !== undefined ? `; skip rate (swiped away in 3s) ${r.skipRate}% vs median ${median(all.flatMap((x) => (x.skipRate !== undefined ? [x.skipRate] : []))).toFixed(1)}%` : "";
+  return `views ${r.views} (${h.multiple?.toFixed(1) ?? "?"}× 30-day median)${skip}; save rate ${pct(r.saves)} vs median ${med("saves")}; share rate ${pct(r.shares)} vs ${med("shares")}; follow rate ${pct(r.follows)} vs ${med("follows")}; comment rate ${pct(r.comments)} vs ${med("comments")}`;
 }

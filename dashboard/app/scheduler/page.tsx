@@ -30,6 +30,7 @@ export default async function SchedulerPage() {
   const byTime = (a: { scheduledFor: string }, b: { scheduledFor: string }) => a.scheduledFor.localeCompare(b.scheduledFor);
   const pending = posts.filter((p) => p.status === "pending_approval").sort(byTime);
   const approved = posts.filter((p) => p.status === "approved" || p.status === "publishing").sort(byTime);
+  const inMetricool = posts.filter((p) => p.status === "in_metricool").sort(byTime);
   const done = posts.filter((p) => p.status === "published" || p.status === "failed").sort((a, b) => b.scheduledFor.localeCompare(a.scheduledFor));
 
   return (
@@ -47,8 +48,8 @@ export default async function SchedulerPage() {
       <p className="mb-6 flex items-start gap-2 rounded-lg border bg-card px-3 py-2 text-sm">
         <ShieldCheck className="mt-0.5 size-4 shrink-0 text-primary" aria-hidden />
         <span>
-          <strong className="font-medium">you authorise every post.</strong> drafts wait in “needs your approval”. an approved post goes out at its time;
-          editing it afterwards withdraws the approval automatically.
+          <strong className="font-medium">you authorise every post.</strong> drafts wait in “needs your approval”. approved posts go to metricool only when
+          you run /metricool send; editing one before then withdraws the approval automatically.
         </span>
       </p>
 
@@ -64,7 +65,10 @@ export default async function SchedulerPage() {
             ))}
           </div>
         </Section>
-        <Section title={`approved · ${approved.length}`} description="these publish automatically at their time.">
+        <Section
+          title={`approved · ${approved.length}`}
+          description="ready to go. type /metricool send in claude code and they’re scheduled in metricool, which publishes them at their time."
+        >
           {approved.length === 0 ? <p className="text-sm text-muted-foreground">nothing approved yet.</p> : null}
           <div className="grid gap-4 xl:grid-cols-2">
             {approved.map((p) => (
@@ -72,6 +76,15 @@ export default async function SchedulerPage() {
             ))}
           </div>
         </Section>
+        {inMetricool.length ? (
+          <Section title={`scheduled in metricool · ${inMetricool.length}`} description="metricool publishes these at their time.">
+            <div className="grid gap-4 xl:grid-cols-2">
+              {inMetricool.map((p) => (
+                <PostCard key={p.id} post={p} />
+              ))}
+            </div>
+          </Section>
+        ) : null}
         {done.length ? (
           <Section title="published">
             <div className="grid gap-4 xl:grid-cols-2">

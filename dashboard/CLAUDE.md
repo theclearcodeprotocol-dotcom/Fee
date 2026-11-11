@@ -7,11 +7,42 @@ CLAUDE.md, and none of that project's rules (GSAP timelines, `npm run check`) ap
 | Page | Route | Data | Filled by |
 |---|---|---|---|
 | hook vault | `/hooks` | `data/hooks.json`, `data/script-queue.json` | "add hook", `npm run hooks:transcribe`, "save to hook vault" on the competitor page |
-| analytics | `/analytics?range=7\|30\|90` | `data/analytics.json` | `analytics:fetch`, daily 05:30 |
+| analytics | `/analytics?range=7\|30\|90` | `data/analytics.json` | **Metricool**, via `/metricool pull` in Claude Code (`../.claude/skills/metricool/SKILL.md`) |
 | competitor tracker | `/competitors` | `data/competitors.json` | `scrape:competitors`, Sunday 06:00 |
-| scheduler | `/scheduler` | `data/scheduled.json` | "schedule with claude" (from calendar entries), then your approval; `publish:due` every 5 min |
+| scheduler | `/scheduler` | `data/scheduled.json` | "schedule with claude" (from calendar entries), then your approval, then `/metricool send`, and Metricool publishes |
 | content calendar | `/calendar?month=YYYY-MM` | `data/calendar.json` + `../content/scripts/*.md` | the `/script` skill (`../.claude/skills/script/SKILL.md`), "quick post" |
 | what's trending | `/trending` | `data/trending.json` | `trending:fetch` daily 06:40; `trending:slack` at 07:00 |
+
+## Metricool (analytics + publishing)
+
+Instagram analytics and publishing go through **Metricool** (brand `theclearcode_`, id
+`7976989`, Europe/London), not through Meta/TikTok developer apps. The dashboard can't call
+Metricool itself; Claude can, through the Metricool connector. So the `/metricool` skill is
+the bridge:
+
+- `/metricool pull`: Claude fetches the stats (fixed metric lists in `lib/metricool.ts`) and
+  saves the raw responses in `data/metricool/` (gitignored). `npm run metricool:import` turns
+  them into `data/analytics.json`. Claude then writes the "what made it pop" notes for new
+  heaters.
+- `/metricool send`: `npm run metricool:posts -- ready` lists the approved posts whose
+  fingerprint still matches. Claude calls `createScheduledPost` with that exact payload, one
+  Metricool post per platform because the captions differ. Each one is recorded with
+  `mark`/`skip`, and the post becomes `in_metricool`.
+  - `ready` refuses to run while `scheduled.json` holds sample data, and skips placeholder
+    media links.
+- **What Metricool doesn't have:**
+  - DM numbers. The DM card says so; it doesn't invent a number.
+  - Per-reel follows.
+  - Any history from before the account was connected. History starts 2 Nov 2026.
+- **What it adds:** per-reel skip rate (the share who swiped away in the first 3 seconds),
+  used in the table and in the "what made it pop" notes.
+- **TikTok** has to be connected inside Metricool first. Until then, `send` skips TikTok and
+  says why.
+- The direct Instagram/TikTok API code (`scripts/fetch-analytics.ts`, `scripts/publish-due.ts`,
+  `lib/publish/*`) is kept as an alternative. It only runs with `IG_ACCESS_TOKEN` /
+  `TIKTOK_ACCESS_TOKEN` set, and `schedule:install -- --direct`.
+- Competitors still use Apify. Metricool's competitor data has no view counts and no video,
+  so it can't sort by views or transcribe anything.
 
 ## How the pieces connect
 
@@ -55,12 +86,12 @@ npm run seed                        # deterministic SAMPLE data in data/*.json
 npm run data:clear-sample           # empty the samples once real sources are connected
 
 npm run hooks:transcribe -- clip.mp4 --creator @handle [--niche "ai tools"]
-npm run analytics:fetch
+npm run metricool:import            # used by /metricool pull
+npm run metricool:posts -- ready    # used by /metricool send
 npm run scrape:competitors
 npm run trending:fetch
 npm run trending:slack [-- --print]
-npm run publish:due [-- --dry-run]
-npm run schedule:install            # put all of the above on their timers (crontab)
+npm run schedule:install            # Sunday scrape, daily trending pull, 7am Slack (crontab)
 npm run schedule:remove
 ```
 
@@ -71,10 +102,7 @@ npm run schedule:remove
 | `ANTHROPIC_API_KEY` | everything Claude does. Optional: without it every feature falls back to rules or templates and the UI says so |
 | `ELEVENLABS_API_KEY` | transcription (added by the network proxy in Fee cloud sessions) |
 | `APIFY_TOKEN` | competitor scrape |
-| `IG_USER_ID`, `IG_ACCESS_TOKEN` | analytics pull and Instagram publishing. Scopes: `instagram_basic`, `instagram_manage_insights`, `instagram_content_publish`, and optionally `instagram_manage_messages` for DM volume |
-| `IG_GRAPH_VERSION` | Graph API version, default `v23.0` |
-| `TIKTOK_ACCESS_TOKEN` | TikTok publishing (`video.publish` scope) |
-| `TIKTOK_PRIVACY_LEVEL` | optional, e.g. `SELF_ONLY` while the TikTok app is unaudited |
+| `IG_USER_ID`, `IG_ACCESS_TOKEN`, `IG_GRAPH_VERSION`, `TIKTOK_ACCESS_TOKEN`, `TIKTOK_PRIVACY_LEVEL` | **only for the direct-API alternative.** Not needed with Metricool |
 | `SLACK_WEBHOOK_URL` | 7am digest (Slack app → Incoming Webhooks → your channel or DM) |
 | `DASHBOARD_URL` | link in the Slack digest, default `http://localhost:3000` |
 | `TZ` | timezone for calendar times and cron, if the machine's timezone isn't yours |
@@ -134,16 +162,18 @@ a mock server in tests.
    - The 7/30/90-day ranges come from the URL (`?range=`). Each metric card shows the total,
      the change against the previous equal period (shown only when a full previous period
      exists, so the file keeps 180 days), and a daily sparkline.
-   - **DMs** counts DM conversations with activity that day. Instagram has no "new DMs"
-     metric; this comes from the Messaging API.
+   - **Source:** Metricool (see the Metricool section). DMs show "—" because Metricool has
+     no DM data. While history is shorter than the chosen range, the page says how many days
+     it covers.
    - **Heater:** a reel whose views are at least 2× the median of your reels posted in the 30
      days before it went up (`lib/analytics.ts`). With fewer than 3 reels in that window it
      uses all earlier reels.
    - **Top heaters:** the top 5 heaters in the selected range, sorted by views. Every reel in
      the range appears in the table with a heater flag.
-   - **"What made it pop":** written by Claude during the daily pull, based on the reel's
-     rates against your medians and its hook. Without Claude, `popNote()` picks whichever
-     rate stands out most and names the hook shape.
+   - **"What made it pop":** written by Claude during `/metricool pull`. Without it,
+     `popNote()` uses the skip rate (if the reel held people much better than usual), else
+     whichever save/share/comment rate stands out, and names the hook shape.
+   - **Heaters need history:** a reel with no earlier reels to compare against shows "—".
 
 6. **Competitor tracker.**
    - Uses Apify's reel and profile scrapers, because Instagram has no API for other
@@ -163,15 +193,12 @@ a mock server in tests.
    - **Approval:** clicking approve checks the captions (present, within limits), the media
      (1 video for a reel, 2–10 images for a carousel) and that the time is in the future. It
      then stores a fingerprint of everything that would go out (`approvalKey`).
-   - **Publishing:** `publish:due` only sends `approved` posts whose fingerprint still
-     matches. Any later edit, by you or a stray write, sends the post back for approval
-     instead of publishing it. Platforms that succeeded are never re-posted on retry.
-   - **Media:** given as public HTTPS URLs, because both APIs pull media from a URL. TikTok
-     also requires that domain to be verified in its developer portal. Uploading files needs
-     storage (R2 or S3, for example) and isn't built yet.
-   - **Platform APIs:** the Instagram Content Publishing API (reels and image carousels) and
-     the TikTok Content Posting API (video, and photo posts for carousels). Until TikTok
-     audits the app, posts can only be private.
+   - **Publishing:** `/metricool send` (decision above) only sends `approved` posts whose
+     fingerprint still matches. Any later edit, by you or a stray write, sends the post back
+     for approval instead of sending it. Once a post is in Metricool, changes are made in
+     Metricool; the card links to it.
+   - **Media:** a Google Drive or Dropbox share link ("anyone with the link"), which
+     Metricool uploads itself, or any public HTTPS link.
    - **Times:** calendar times are your wall-clock time, read in the machine's timezone
      (`TZ`).
 
@@ -210,9 +237,12 @@ a mock server in tests.
   - `publish:due` against a mock Instagram/TikTok server (reel and carousel, the tampered
     post refused, calendar entry marked posted)
   - the Slack digest against a mock webhook
+- **Run against the live Metricool account:** the analytics pull and import (real data from
+  2 Nov 2026). The `ready`/`mark`/`skip` hand-off was tested on a copy of the data. No real
+  post has been sent to Metricool yet; the first `/metricool send` will do that.
 - **Written to the documented APIs but never run against the live services** (the sandbox
-  blocks them): the Instagram Graph insights and publishing calls, the TikTok Content
-  Posting API, Apify actors, the RSS feeds, and the ElevenLabs and Claude calls. Expect to
+  blocks them): Apify actors, the RSS feeds, the ElevenLabs and Claude calls, and the
+  direct Instagram/TikTok API alternative. Expect to
   adjust a field name or two on the first real run. Each job logs what it couldn't read
   instead of failing silently.
 

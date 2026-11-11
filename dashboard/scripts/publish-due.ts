@@ -18,6 +18,13 @@ import { PUBLISHERS } from "../lib/publish/index.ts";
 import type { PublishResult, ScheduledPost } from "../lib/types.ts";
 
 const dryRun = process.argv.includes("--dry-run");
+
+// Default route is Metricool (`/metricool send` in Claude Code). This direct
+// publisher only runs when the Instagram/TikTok API tokens are configured.
+if (!process.env.IG_ACCESS_TOKEN && !process.env.TIKTOK_ACCESS_TOKEN) {
+  console.log("direct publishing is off (no IG_ACCESS_TOKEN / TIKTOK_ACCESS_TOKEN) — approved posts go out through /metricool send");
+  process.exit(0);
+}
 const now = new Date();
 
 const { posts } = await read("scheduled");
