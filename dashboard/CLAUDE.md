@@ -3,7 +3,7 @@
 ## Where it lives now: online (the owner works on an iPad)
 
 The dashboard the owner uses is a **published page on their Claude account**:
-**https://claude.ai/artifact/C377BSo7rK7oopk2gX1C1K** (title "The Clear Code Dashboard"). It's
+**https://claude.ai/artifact/C377BSo7rK7oopk2gX1C1K** (named **Cleo**, page title "Cleo"). It's
 one self-contained HTML file, kept in git at `dashboard/online/index.html`. To change it, edit
 that file and republish it to that URL with the Artifact tool (`url` = the link).
 

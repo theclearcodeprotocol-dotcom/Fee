@@ -18,7 +18,7 @@ Outfit body; lower-case logo ending in a full stop; `c.` lettermark as watermark
 
 ## Content dashboard — `dashboard/`
 
-The owner uses the dashboard online, on an iPad: **https://claude.ai/artifact/C377BSo7rK7oopk2gX1C1K**.
+The owner uses the dashboard, named **Cleo**, online on an iPad: **https://claude.ai/artifact/C377BSo7rK7oopk2gX1C1K**.
 Its source is `dashboard/online/index.html`, and its data is in the page's database, reached
 with the ArtifactData tool. The repo also holds the original Next.js app (hook vault, analytics, competitors, scheduler, content calendar,
 trending) lives in `dashboard/` with its own `package.json` and its own
