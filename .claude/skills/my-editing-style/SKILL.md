@@ -69,6 +69,15 @@ python3 scripts/sync_check.py exports/<name>_render.mp4 <clip>  # lip sync vs th
   face_landmarker.task model) and inpaints small spots just outside the chosen lip corner (DECRUMB_SIDE=left|right; this video: left, a pale fleck above the upper lip),
   frame by frame. Run `test` first and check the before/after zooms, then `run` on the cut to make
   `<clip>-cut-clean.mp4`, then `sync_check.py` it. Adjust the search side/radius for other spots.
+- **Eye contact, always (the user's standing rule):** the user must be looking at the lens in every
+  frame where their face shows. After the cut, run
+  `~/Developer/video-use/.venv/bin/python scripts/gaze_scan.py assets/footage/<clip>-cut.mp4 <face_landmarker.task> 0.55 --gaps`
+  (needs `libegl1 libgles2`; the model is the MediaPipe float16 face_landmarker.task), then look at eye
+  close-ups at every flagged time and wherever the lid gap drops below ~0.14 for more than 0.3 s (eyes
+  lowered reads as a "blink" to the iris check). Fix each look-away, keeping their words: prefer a better
+  take; a glance under ~0.3 s at a word's end → hold the last good frame for those frames (same frame
+  count, so sync is untouched); longer → a full-frame brand page over it with the voice underneath (on
+  launch-step2 the whole CTA sits on a red end page). Re-check the fixed footage before rendering.
 - Place the top-zone pop-ups by the **actual head position**: look at a frame at each
   framing. Pop-ups may overlap hair, never the eyes or mouth.
 

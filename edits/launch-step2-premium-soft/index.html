@@ -86,6 +86,14 @@ html, body { width:1080px; height:1920px; overflow:hidden; background:#000; }
 .n-unit { font:600 30px/1 var(--sans); letter-spacing:.22em; text-transform:uppercase; color:var(--red); padding-bottom:14px;
   text-shadow:0 0 18px rgba(242,240,224,.9); }
 .curtain { pointer-events:none; }
+#endp { pointer-events:none; }
+.ep { position:absolute; inset:0; background:var(--red); color:var(--cream); }
+.ep::after { content:""; position:absolute; inset:28px; border:1.5px solid var(--hair); border-radius:4px; }
+.ep-b { position:absolute; left:0; right:0; top:700px; text-align:center; }
+.ep .eyebrow { color:var(--pink); }
+.ep-title { font:900 124px/0.98 var(--serif); letter-spacing:-0.05em; margin-top:30px; }
+.ep-sub { font:italic 900 52px/1.2 var(--serif); color:var(--pink); letter-spacing:-0.02em; margin-top:26px; }
+.ep-mark { position:absolute; left:0; right:0; top:420px; text-align:center; font:900 120px/1 var(--serif); letter-spacing:-0.05em; color:var(--cream); opacity:.9; }
 .cv { position:absolute; inset:0; background:var(--red); display:grid; place-items:center; }
 .cv-mark { font:900 200px/1 var(--serif); color:var(--cream); letter-spacing:-0.05em; }
 </style>
@@ -93,7 +101,7 @@ html, body { width:1080px; height:1920px; overflow:hidden; background:#000; }
 <body>
 <div id="root" data-composition-id="main" data-start="0" data-duration="31.867" data-width="1080" data-height="1920">
   <div id="cam">
-    <video id="footage" class="clip" src="footage/launch-step2-cut.mp4" data-start="0" data-duration="31.867" data-track-index="0"
+    <video id="footage" class="clip" src="footage/launch-step2-cut-eyes.mp4" data-start="0" data-duration="31.867" data-track-index="0"
       playsinline data-has-audio="true"></video>
   </div>
   <div id="scrim" class="clip" data-start="0" data-duration="31.867" data-track-index="1" data-track-kind="graphics" data-layout-allow-overlap></div>
@@ -104,13 +112,14 @@ html, body { width:1080px; height:1920px; overflow:hidden; background:#000; }
   <div class="tx row" data-at="9.303"><i>iii.</i>Nurture</div></div></div><div id="p4" class="clip pop" data-start="11.590" data-duration="6.660" data-track-index="7" data-track-kind="graphics" data-layout-allow-overlap><div class="in card "><div class="tx eyebrow">In one sentence</div>
   <div class="tx row" data-at="14.373"><i>i.</i>Who it's for</div>
   <div class="tx row" data-at="15.173"><i>ii.</i>How long it runs</div>
-  <div class="tx row" data-at="16.413"><i>iii.</i>What changes along the way</div></div></div><div id="p5" class="clip pop" data-start="19.270" data-duration="3.380" data-track-index="8" data-track-kind="graphics" data-layout-allow-overlap><div class="in panel slim"><div class="tx eyebrow">Launch to</div><div class="tx p-main">Existing clients first.</div></div></div><div id="p6" class="clip pop" data-start="25.003" data-duration="3.180" data-track-index="9" data-track-kind="graphics" data-layout-allow-overlap><div class="in panel slim"><div class="tx eyebrow">Step three</div><div class="tx p-main">Nurture keeps them.</div></div></div><div id="p7" class="clip pop" data-start="28.383" data-duration="3.464" data-track-index="10" data-track-kind="graphics" data-layout-allow-overlap><div class="in panel slim"><div class="tx eyebrow">Black Friday · 27 Nov</div><div class="tx p-main">Join the waitlist</div><div class="tx p-sub">link in bio</div></div></div>
+  <div class="tx row" data-at="16.413"><i>iii.</i>What changes along the way</div></div></div><div id="p5" class="clip pop" data-start="19.270" data-duration="3.380" data-track-index="8" data-track-kind="graphics" data-layout-allow-overlap><div class="in panel slim"><div class="tx eyebrow">Launch to</div><div class="tx p-main">Existing clients first.</div></div></div><div id="p6" class="clip pop" data-start="25.003" data-duration="2.717" data-track-index="9" data-track-kind="graphics" data-layout-allow-overlap><div class="in panel slim"><div class="tx eyebrow">Step three</div><div class="tx p-main">Nurture keeps them.</div></div></div>
+  <div id="endp" class="clip" data-start="27.720" data-duration="4.147" data-track-index="30" data-track-kind="graphics" data-layout-allow-overlap><div class="ep"><div class="ep-b"><div class="eyebrow">Black Friday · 27 November</div><div class="ep-title">Doors open.</div><div class="ep-sub">join the waitlist, link in bio</div></div><div class="ep-mark" data-layout-ignore>c.</div></div></div>
   <div id="captions" class="clip" data-start="0" data-duration="31.867" data-track-index="2" data-track-kind="captions" data-layout-allow-overlap>
     <div class="cap" id="cap0"><span class="ct">A programme with a <em>name</em></span></div><div class="cap" id="cap1"><span class="ct">Sounds like a <em>plan.</em></span></div><div class="cap" id="cap2"><span class="ct">Whereas</span></div><div class="cap" id="cap3"><span class="ct">A course of treatments just</span></div><div class="cap" id="cap4"><span class="ct">Sound like a <em>cost.</em></span></div><div class="cap" id="cap5"><span class="ct">This is step two</span></div><div class="cap" id="cap6"><span class="ct">Of the clear code</span></div><div class="cap" id="cap7"><span class="ct">Where we <em>launch</em></span></div><div class="cap" id="cap8"><span class="ct">And we give it a</span></div><div class="cap" id="cap9"><span class="ct"><em>Name.</em></span></div><div class="cap" id="cap10"><span class="ct">You&#x27;ll be able to explain</span></div><div class="cap" id="cap11"><span class="ct">It in one sentence in</span></div><div class="cap" id="cap12"><span class="ct">Your consultation,</span></div><div class="cap" id="cap13"><span class="ct">Who it&#x27;s for,</span></div><div class="cap" id="cap14"><span class="ct">How long it runs,</span></div><div class="cap" id="cap15"><span class="ct">And what changes along the</span></div><div class="cap" id="cap16"><span class="ct">Way.</span></div><div class="cap" id="cap17"><span class="ct">And this is where you</span></div><div class="cap" id="cap18"><span class="ct">Tell your existing clients <em>first.</em></span></div><div class="cap" id="cap19"><span class="ct">The people who already trust</span></div><div class="cap" id="cap20"><span class="ct">You</span></div><div class="cap" id="cap21"><span class="ct">Are your <em>first</em> programme clients.</span></div><div class="cap" id="cap22"><span class="ct">Step three is <em>nurture,</em></span></div><div class="cap" id="cap23"><span class="ct">And it&#x27;s the one that</span></div><div class="cap" id="cap24"><span class="ct">Keeps your clients.</span></div><div class="cap" id="cap25"><span class="ct">Our doors open on Black</span></div><div class="cap" id="cap26"><span class="ct">Friday.</span></div><div class="cap" id="cap27"><span class="ct">Join the waitlist</span></div><div class="cap" id="cap28"><span class="ct">In our <em>bio</em></span></div>
   </div>
   <div id="seal" class="clip" data-start="0" data-duration="31.867" data-track-index="3" data-track-kind="graphics"><span>c.</span></div>
   
-  <audio id="sfx0" class="clip" src="sfx/click-soft.mp3" data-start="2.883" data-duration="0.366" data-volume="0.15" data-track-index="40"></audio><audio id="sfx1" class="clip" src="sfx/click-soft.mp3" data-start="11.750" data-duration="0.366" data-volume="0.15" data-track-index="41"></audio><audio id="sfx2" class="clip" src="sfx/click-soft.mp3" data-start="28.543" data-duration="0.366" data-volume="0.15" data-track-index="42"></audio>
+  <audio id="sfx0" class="clip" src="sfx/click-soft.mp3" data-start="2.883" data-duration="0.366" data-volume="0.15" data-track-index="40"></audio><audio id="sfx1" class="clip" src="sfx/click-soft.mp3" data-start="11.750" data-duration="0.366" data-volume="0.15" data-track-index="41"></audio><audio id="sfx2" class="clip" src="sfx/click-soft.mp3" data-start="27.880" data-duration="0.366" data-volume="0.15" data-track-index="42"></audio>
 </div>
 <script>
 window.__timelines = window.__timelines || {};
@@ -133,6 +142,10 @@ function rise(host, t) {
 function curtain(host, t) {
   tl.fromTo(host + " .cv", { x: -1080 }, { x: 0, duration: 0.3, ease: "power3.in", immediateRender: false }, t - 0.3);
   tl.to(host + " .cv", { x: 1080, duration: 0.34, ease: "power3.out" }, t);
+}
+function endPage(t, swap) {  // red page wipes in from the left, then its line changes on "our doors"
+  tl.fromTo("#endp .ep", { clipPath: "inset(0% 100% 0% 0%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 0.45, ease: "expo.out", immediateRender: false }, t);
+  tl.fromTo("#endp .ep-b > *", { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.6, ease: "expo.out", stagger: 0.12, immediateRender: false }, t + 0.15);
 }
 function cap(sel, s, e) {
   tl.set(sel, { visibility: "visible" }, s);
@@ -167,8 +180,7 @@ tl.to("#p4 .in", { opacity: 0, y: -10, duration: 0.35, ease: "power2.in" }, 17.8
 rise("#p5", 19.270);
 tl.to("#p5 .in", { opacity: 0, y: -10, duration: 0.35, ease: "power2.in" }, 22.280);
 rise("#p6", 25.003);
-tl.to("#p6 .in", { opacity: 0, y: -10, duration: 0.35, ease: "power2.in" }, 27.813);
-wipe("#p7", 28.383);
+endPage(27.720, 0);
 document.querySelectorAll("[data-at]").forEach((el) => {
   const t = parseFloat(el.dataset.at);
   if (el.classList.contains("g")) tl.set(el, { className: "g on lit" }, t);

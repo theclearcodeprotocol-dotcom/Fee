@@ -155,9 +155,16 @@ pop(ex - 0.05, SEGS[8]["start"] - ex + 0.4, card("In one sentence", f'''
   <div class="tx row" data-at="{at('how'):.3f}"><i>ii.</i>How long it runs</div>
   <div class="tx row" data-at="{at('what', 16.0):.3f}"><i>iii.</i>What changes along the way</div>'''), sound="click-soft", vol=0.15)
 pop(xi - 0.05, SEGS[10]["start"] - xi, panel("Launch to", "Existing clients first.", cls="slim"), reveal="rise")
-pop(th - 0.05, SEGS[13]["start"] - th, panel("Step three", "Nurture keeps them.", cls="slim"), reveal="rise")
-pop(dr - 0.05, TOTAL - dr + 0.03, panel("Black Friday · 27 Nov", "Join the waitlist", "link in bio", cls="slim"),
-    sound="click-soft", vol=0.15, fade_out=False)
+# eye contact: eyes drop from the end of "clients" (27.75 s) to the end, so a full-frame end page covers it
+EP = 27.72
+pop(th - 0.05, EP - th + 0.05, panel("Step three", "Nurture keeps them.", cls="slim"), reveal="rise", fade_out=False)
+endpage = (f'<div id="endp" class="clip" data-start="{EP:.3f}" data-duration="{TOTAL - EP:.3f}" data-track-index="30" '
+           f'data-track-kind="graphics" data-layout-allow-overlap><div class="ep">'
+           f'<div class="ep-b"><div class="eyebrow">Black Friday · 27 November</div><div class="ep-title">Doors open.</div>'
+           f'<div class="ep-sub">join the waitlist, link in bio</div></div>'
+           f'<div class="ep-mark" data-layout-ignore>c.</div></div></div>')
+pop_js.append(f'endPage({EP:.3f}, 0);')
+sfx.append(("click-soft", EP, 0.15))
 
 # red curtain wipes at the two section changes (bold only)
 curtains = []
@@ -267,6 +274,14 @@ html, body {{ width:1080px; height:1920px; overflow:hidden; background:#000; }}
 .n-unit {{ font:600 30px/1 var(--sans); letter-spacing:.22em; text-transform:uppercase; color:var(--red); padding-bottom:14px;
   text-shadow:0 0 18px rgba(242,240,224,.9); }}
 .curtain {{ pointer-events:none; }}
+#endp {{ pointer-events:none; }}
+.ep {{ position:absolute; inset:0; background:var(--red); color:var(--cream); }}
+.ep::after {{ content:""; position:absolute; inset:28px; border:1.5px solid var(--hair); border-radius:4px; }}
+.ep-b {{ position:absolute; left:0; right:0; top:700px; text-align:center; }}
+.ep .eyebrow {{ color:var(--pink); }}
+.ep-title {{ font:900 124px/0.98 var(--serif); letter-spacing:-0.05em; margin-top:30px; }}
+.ep-sub {{ font:italic 900 52px/1.2 var(--serif); color:var(--pink); letter-spacing:-0.02em; margin-top:26px; }}
+.ep-mark {{ position:absolute; left:0; right:0; top:420px; text-align:center; font:900 120px/1 var(--serif); letter-spacing:-0.05em; color:var(--cream); opacity:.9; }}
 .cv {{ position:absolute; inset:0; background:var(--red); display:grid; place-items:center; }}
 .cv-mark {{ font:900 200px/1 var(--serif); color:var(--cream); letter-spacing:-0.05em; }}
 </style>
@@ -274,11 +289,12 @@ html, body {{ width:1080px; height:1920px; overflow:hidden; background:#000; }}
 <body>
 <div id="root" data-composition-id="main" data-start="0" data-duration="{TOTAL:.3f}" data-width="1080" data-height="1920">
   <div id="cam">
-    <video id="footage" class="clip" src="footage/launch-step2-cut.mp4" data-start="0" data-duration="{TOTAL:.3f}" data-track-index="0"
+    <video id="footage" class="clip" src="footage/launch-step2-cut-eyes.mp4" data-start="0" data-duration="{TOTAL:.3f}" data-track-index="0"
       playsinline data-has-audio="true"></video>
   </div>
   <div id="scrim" class="clip" data-start="0" data-duration="{TOTAL:.3f}" data-track-index="1" data-track-kind="graphics" data-layout-allow-overlap></div>
   {"".join(pops)}
+  {endpage}
   <div id="captions" class="clip" data-start="0" data-duration="{TOTAL:.3f}" data-track-index="2" data-track-kind="captions" data-layout-allow-overlap>
     {"".join(cap_html)}
   </div>
@@ -307,6 +323,10 @@ function rise(host, t) {{
 function curtain(host, t) {{
   tl.fromTo(host + " .cv", {{ x: -1080 }}, {{ x: 0, duration: 0.3, ease: "power3.in", immediateRender: false }}, t - 0.3);
   tl.to(host + " .cv", {{ x: 1080, duration: 0.34, ease: "power3.out" }}, t);
+}}
+function endPage(t, swap) {{  // red page wipes in from the left, then its line changes on "our doors"
+  tl.fromTo("#endp .ep", {{ clipPath: "inset(0% 100% 0% 0%)" }}, {{ clipPath: "inset(0% 0% 0% 0%)", duration: 0.45, ease: "expo.out", immediateRender: false }}, t);
+  tl.fromTo("#endp .ep-b > *", {{ opacity: 0, y: 18 }}, {{ opacity: 1, y: 0, duration: 0.6, ease: "expo.out", stagger: 0.12, immediateRender: false }}, t + 0.15);
 }}
 function cap(sel, s, e) {{
   tl.set(sel, {{ visibility: "visible" }}, s);
