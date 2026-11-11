@@ -1,14 +1,17 @@
 /**
  * File-backed data store. Every page reads its data through here, and every
- * writer (server actions, API routes, /script, scrapers) writes the same files.
+ * writer (server actions, API routes, scheduled jobs) writes the same files.
  *
- * Decision: plain JSON files in /data instead of a database. This is a
- * single-user, local-first tool; JSON keeps the data diffable in git and
- * trivially writable by Claude commands and Node scripts. To move to a
- * database, re-implement these functions — nothing else touches the files.
+ * Decision: plain JSON files in /data instead of a database — a single-user,
+ * local-first tool whose data Claude skills and Node scripts can write without
+ * a client library. To move to a database, re-implement this file.
+ *
+ * Paths resolve from process.cwd(), so run the app and the scripts from the
+ * dashboard/ folder (npm scripts and scripts/install-schedule.sh do).
  */
 import { readFile, writeFile, rename } from "node:fs/promises";
 import { join } from "node:path";
+import { randomUUID } from "node:crypto";
 import type {
   AnalyticsFile,
   CalendarEntry,
@@ -16,70 +19,61 @@ import type {
   DataMeta,
   Hook,
   ScheduledPost,
+  ScriptQueueItem,
   TrendingFile,
-} from "./types";
+} from "./types.ts";
 
-const DATA_DIR = join(process.cwd(), "data");
+export const DATA_DIR = join(process.cwd(), "data");
 
-async function read<T>(name: string): Promise<T> {
-  return JSON.parse(await readFile(join(DATA_DIR, `${name}.json`), "utf8")) as T;
+export type HooksFile = { meta: DataMeta; hooks: Hook[] };
+export type ScheduledFile = { meta: DataMeta; posts: ScheduledPost[] };
+export type CalendarFile = { meta: DataMeta; entries: CalendarEntry[] };
+export type ScriptQueueFile = { queue: ScriptQueueItem[] };
+
+type Files = {
+  hooks: HooksFile;
+  analytics: AnalyticsFile;
+  competitors: CompetitorsFile;
+  scheduled: ScheduledFile;
+  calendar: CalendarFile;
+  trending: TrendingFile;
+  "script-queue": ScriptQueueFile;
+};
+
+export async function read<K extends keyof Files>(name: K): Promise<Files[K]> {
+  return JSON.parse(await readFile(join(DATA_DIR, `${name}.json`), "utf8")) as Files[K];
 }
 
 /** Atomic write: temp file + rename, so a crash never leaves half a JSON file. */
-async function write(name: string, value: unknown) {
+export async function write<K extends keyof Files>(name: K, value: Files[K]) {
   const file = join(DATA_DIR, `${name}.json`);
-  const tmp = `${file}.${process.pid}.tmp`;
+  const tmp = `${file}.${process.pid}.${randomUUID().slice(0, 6)}.tmp`;
   await writeFile(tmp, JSON.stringify(value, null, 2) + "\n");
   await rename(tmp, file);
 }
 
-type HooksFile = { meta: DataMeta; hooks: Hook[] };
-type ScheduledFile = { meta: DataMeta; posts: ScheduledPost[] };
-type CalendarFile = { meta: DataMeta; entries: CalendarEntry[] };
-
-export const getHooks = () => read<HooksFile>("hooks");
-export const getAnalytics = () => read<AnalyticsFile>("analytics");
-export const getCompetitors = () => read<CompetitorsFile>("competitors");
-export const getScheduled = () => read<ScheduledFile>("scheduled");
-export const getCalendar = () => read<CalendarFile>("calendar");
-export const getTrending = () => read<TrendingFile>("trending");
-
-export async function addHook(hook: Hook) {
-  const file = await getHooks();
-  file.hooks.unshift(hook);
-  await write("hooks", file);
+// Serialise read-modify-write per file inside one process (server actions can overlap).
+const queues = new Map<string, Promise<unknown>>();
+export function mutate<K extends keyof Files, R = void>(name: K, fn: (file: Files[K]) => R | Promise<R>): Promise<R> {
+  const run = (queues.get(name) ?? Promise.resolve()).then(async () => {
+    const file = await read(name);
+    const result = await fn(file);
+    await write(name, file);
+    return result;
+  });
+  queues.set(name, run.catch(() => undefined));
+  return run;
 }
 
-export async function deleteHook(id: string) {
-  const file = await getHooks();
-  file.hooks = file.hooks.filter((h) => h.id !== id);
-  await write("hooks", file);
-}
-
-export async function addScheduledPost(post: ScheduledPost) {
-  const file = await getScheduled();
-  file.posts.push(post);
-  file.posts.sort((a, b) => a.scheduledFor.localeCompare(b.scheduledFor));
-  await write("scheduled", file);
-}
-
-export async function deleteScheduledPost(id: string) {
-  const file = await getScheduled();
-  file.posts = file.posts.filter((p) => p.id !== id);
-  await write("scheduled", file);
-}
-
-export async function upsertCalendarEntries(entries: CalendarEntry[]) {
-  const file = await getCalendar();
-  for (const entry of entries) {
-    const i = file.entries.findIndex((e) => e.id === entry.id);
-    if (i >= 0) file.entries[i] = entry;
-    else file.entries.push(entry);
-  }
-  file.entries.sort((a, b) => a.date.localeCompare(b.date));
-  await write("calendar", file);
-}
+export const getHooks = () => read("hooks");
+export const getAnalytics = () => read("analytics");
+export const getCompetitors = () => read("competitors");
+export const getScheduled = () => read("scheduled");
+export const getCalendar = () => read("calendar");
+export const getTrending = () => read("trending");
+export const getScriptQueue = () => read("script-queue");
 
 export function newId(prefix: string) {
-  return `${prefix}_${crypto.randomUUID().slice(0, 8)}`;
+  return `${prefix}_${randomUUID().slice(0, 8)}`;
 }
+

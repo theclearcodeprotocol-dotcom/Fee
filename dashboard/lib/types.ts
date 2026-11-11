@@ -1,17 +1,18 @@
 /**
  * Shared data shapes. Each JSON file in /data matches one of these, and every
- * writer (seed script, /script command, scrapers, API routes) must keep to them.
+ * writer (seed script, /script skill, scheduled jobs, API routes) must keep to them.
+ *
+ * Plain types only — scripts under plain Node import this file.
  */
 
-export type Platform = "instagram" | "tiktok" | "youtube" | "linkedin" | "x";
+export type Platform = "instagram" | "tiktok";
 
 export const PLATFORMS: { id: Platform; label: string; captionLimit: number }[] = [
-  { id: "instagram", label: "Instagram Reels", captionLimit: 2200 },
+  { id: "instagram", label: "Instagram", captionLimit: 2200 },
   { id: "tiktok", label: "TikTok", captionLimit: 2200 },
-  { id: "youtube", label: "YouTube Shorts", captionLimit: 100 }, // Shorts title
-  { id: "linkedin", label: "LinkedIn", captionLimit: 3000 },
-  { id: "x", label: "X", captionLimit: 280 },
 ];
+
+export type PostFormat = "reel" | "carousel";
 
 /** Meta block on every data file, so the UI can say where numbers came from. */
 export interface DataMeta {
@@ -31,21 +32,35 @@ export type HookFormat =
   | "pov"
   | "how-to"
   | "result-first"
-  | "callout";
+  | "callout"
+  | "news";
 
 export interface Hook {
   id: string;
-  /** Exactly what was said in the first ~3 seconds (ElevenLabs transcript) */
+  /** Exactly what was said in the opening seconds (ElevenLabs transcript) */
   transcript: string;
-  /** Reusable version with [placeholders] */
+  /** Reusable version with [placeholders], e.g. "stop doing [x]" */
   template: string;
   format: HookFormat;
+  niche: string;
   creator: string; // @handle
   platform: Platform;
   url?: string;
   views?: number;
+  /** on-screen text from the first seconds, when it came from a scraped reel */
+  onScreenText?: string;
+  /** id of the competitor reel it was saved from */
+  sourceReelId?: string;
   savedAt: string; // ISO
-  tags: string[];
+}
+
+/** Hooks queued for /script by the "use this" button. /script takes the oldest. */
+export interface ScriptQueueItem {
+  hookId: string;
+  template: string;
+  transcript: string;
+  niche: string;
+  queuedAt: string;
 }
 
 /* ---------------- Analytics ---------------- */
@@ -55,6 +70,8 @@ export interface DailyMetric {
   views: number;
   saves: number;
   follows: number;
+  /** DM conversations with activity that day (Instagram Messaging API) */
+  dms: number;
 }
 
 export interface Reel {
@@ -66,7 +83,10 @@ export interface Reel {
   saves: number;
   shares: number;
   follows: number;
+  comments: number;
   url?: string;
+  /** one-line "why it popped", written by Claude during the analytics pull */
+  note?: string;
 }
 
 export interface AnalyticsFile {
@@ -76,21 +96,24 @@ export interface AnalyticsFile {
   reels: Reel[];
 }
 
-/* ---------------- Competitive tracker ---------------- */
+/* ---------------- Competitor tracker ---------------- */
 
 export interface TrackedCreator {
   handle: string;
   name: string;
   niche: string;
   followers: number;
-  /** median views over their last 30 reels; used for the outlier multiple */
-  medianViews: number;
 }
 
 export interface CompetitorReel {
   id: string;
   creator: string; // handle
+  /** first spoken sentence */
   hook: string;
+  /** text burned into the first frames, read by Claude vision */
+  onScreenText: string;
+  /** opening ~15 seconds of speech (ElevenLabs) */
+  transcript: string;
   caption: string;
   views: number;
   likes: number;
@@ -105,41 +128,67 @@ export interface CompetitorsFile {
   reels: CompetitorReel[];
 }
 
-/* ---------------- Scheduler ---------------- */
-
-export type PostStatus = "scheduled" | "published" | "failed";
-
-export interface ScheduledPost {
-  id: string;
-  title: string;
-  brief: string;
-  scheduledFor: string; // ISO
-  platforms: Platform[];
-  captions: Partial<Record<Platform, string>>;
-  status: PostStatus;
-  createdAt: string;
-}
-
 /* ---------------- Content calendar ---------------- */
 
-export type CalendarStatus = "idea" | "scripted" | "filmed" | "edited" | "posted";
+export type CalendarStatus = "idea" | "scripted" | "filmed" | "edited" | "scheduled" | "posted";
 
 export interface CalendarEntry {
   id: string;
   date: string; // YYYY-MM-DD
+  time: string; // HH:MM, local time of the creator
   title: string;
+  format: PostFormat;
+  platforms: Platform[];
   hook: string;
   angle: string;
-  platforms: Platform[];
+  cta: string;
   status: CalendarStatus;
-  /** "script" when written by the /script command, "manual" otherwise */
+  /** "script" when written by the /script skill, "manual" otherwise */
   source: "script" | "manual";
+  /** repo-relative path of the script file, e.g. content/scripts/2026-11-20-x.md */
   scriptPath?: string;
+  /** inline script, used when there is no file (sample data, quick manual posts) */
+  script?: string;
+}
+
+/* ---------------- Scheduler ---------------- */
+
+/**
+ * pending_approval → approved → publishing → published | failed
+ * Nothing is ever sent to a platform unless status is "approved" and the
+ * captions/media are unchanged since approval (see approvalKey in lib/posts.ts).
+ */
+export type PostStatus = "pending_approval" | "approved" | "publishing" | "published" | "failed";
+
+export interface PublishResult {
+  ok: boolean;
+  at: string;
+  id?: string;
+  error?: string;
+}
+
+export interface ScheduledPost {
+  id: string;
+  calendarEntryId: string;
+  title: string;
+  format: PostFormat;
+  platforms: Platform[];
+  scheduledFor: string; // ISO instant
+  captions: Partial<Record<Platform, string>>;
+  /** public URLs: one video for a reel, 2–10 images for a carousel */
+  media: string[];
+  status: PostStatus;
+  captionSource: "claude" | "template" | "edited";
+  createdAt: string;
+  approvedAt?: string;
+  /** fingerprint of captions + media + time at approval */
+  approvalKey?: string;
+  results?: Partial<Record<Platform, PublishResult>>;
 }
 
 /* ---------------- Trending ---------------- */
 
-export type HookPotential = "high" | "medium" | "low";
+export type TrendTag = "hook potential" | "explainer" | "skip";
 
 export interface TrendSource {
   id: string;
@@ -154,12 +203,14 @@ export interface TrendItem {
   summary: string;
   url: string;
   publishedAt: string;
-  potential: HookPotential;
-  /** 0–100, see lib/hook-potential.ts */
+  tag: TrendTag;
+  /** one line on why it got that tag */
+  reason: string;
+  /** 0–100 rule score, see lib/hook-potential.ts */
   score: number;
-  /** A ready-to-film opening line */
+  /** a ready-to-say first line */
   hookIdea: string;
-  tags: string[];
+  taggedBy: "claude" | "rules";
 }
 
 export interface TrendingFile {

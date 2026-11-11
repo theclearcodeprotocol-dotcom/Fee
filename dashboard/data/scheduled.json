@@ -1,47 +1,179 @@
 {
   "meta": {
     "sample": true,
-    "source": "dashboard scheduler",
+    "source": "sample generator",
     "updatedAt": "2026-11-11T09:00:00.000Z"
   },
   "posts": [
     {
       "id": "post_001",
-      "title": "what an ai agent actually is (part 2)",
-      "brief": "follow-up to the agent explainer: agents vs. chatbots, one everyday example.",
-      "scheduledFor": "2026-11-12T17:30:00.000Z",
+      "calendarEntryId": "cal_001",
+      "title": "the context window, explained",
+      "format": "reel",
       "platforms": [
         "instagram",
-        "tiktok",
-        "youtube"
+        "tiktok"
       ],
+      "scheduledFor": "2026-11-02T18:00:00.000Z",
       "captions": {
-        "instagram": "agents, part 2. the difference between a chatbot and an agent is one word: action. save this for later 🧠\n\n#ai #aiagents #theclearcode",
-        "tiktok": "chatbot vs agent — the one-word difference #ai #aiagents",
-        "youtube": "chatbot vs ai agent: the one-word difference"
+        "instagram": "your ai forgets things. here's why.\n\nanalogy: a desk that only fits 10 pages.\n\nfollow for part 2 🧠\n\n#ai #aitools #learnai #theclearcode",
+        "tiktok": "your ai forgets things. here's why. · follow for part 2 #ai #learnontiktok"
       },
-      "status": "scheduled",
-      "createdAt": "2026-11-10T09:00:00.000Z"
+      "media": [
+        "https://example.com/sample.mp4"
+      ],
+      "status": "published",
+      "captionSource": "template",
+      "createdAt": "2026-10-30T09:00:00.000Z",
+      "approvedAt": "2026-10-31T09:00:00.000Z",
+      "approvalKey": "33401489b1395e28",
+      "results": {
+        "instagram": {
+          "ok": true,
+          "at": "2026-11-02T18:00:00.000Z",
+          "id": "sample"
+        },
+        "tiktok": {
+          "ok": true,
+          "at": "2026-11-02T18:00:00.000Z",
+          "id": "sample"
+        }
+      }
     },
     {
       "id": "post_002",
-      "title": "ai news in 30 seconds — week 46",
-      "brief": "weekly roundup from the trending page, top 3 high-potential stories.",
-      "scheduledFor": "2026-11-14T12:00:00.000Z",
+      "calendarEntryId": "cal_002",
+      "title": "my full ai stack 2026",
+      "format": "carousel",
+      "platforms": [
+        "instagram"
+      ],
+      "scheduledFor": "2026-11-05T12:30:00.000Z",
+      "captions": {
+        "instagram": "every ai tool i pay for, and the ones i cancelled.\n\nreceipts on screen; cost per month.\n\nsave this before you subscribe to anything 🧠\n\n#ai #aitools #learnai #theclearcode"
+      },
+      "media": [
+        "https://example.com/slide-1.jpg",
+        "https://example.com/slide-2.jpg"
+      ],
+      "status": "published",
+      "captionSource": "template",
+      "createdAt": "2026-10-30T09:00:00.000Z",
+      "approvedAt": "2026-10-31T09:00:00.000Z",
+      "approvalKey": "3e62ece4fe023685",
+      "results": {
+        "instagram": {
+          "ok": true,
+          "at": "2026-11-05T12:30:00.000Z",
+          "id": "sample"
+        }
+      }
+    },
+    {
+      "id": "post_003",
+      "calendarEntryId": "cal_003",
+      "title": "make a reel with ai in 5 min",
+      "format": "reel",
       "platforms": [
         "instagram",
-        "tiktok",
-        "linkedin",
-        "x"
+        "tiktok"
       ],
+      "scheduledFor": "2026-11-08T18:00:00.000Z",
       "captions": {
-        "instagram": "everything that happened in ai this week, in 30 seconds. which one surprised you? 👇",
-        "tiktok": "ai news in 30 seconds ⏱️ #ainews",
-        "linkedin": "three ai stories from this week worth 30 seconds of your time, and what they mean for how we work.",
-        "x": "ai news in 30 seconds — week 46 🧵"
+        "instagram": "this whole reel was edited by ai. can you tell?\n\nreveal the edit timeline at the end.\n\ncomment 'edit' and i'll send the workflow 🧠\n\n#ai #aitools #learnai #theclearcode",
+        "tiktok": "this whole reel was edited by ai. can you tell? · comment 'edit' and i'll send the workflow #ai #learnontiktok"
       },
-      "status": "scheduled",
-      "createdAt": "2026-11-09T09:00:00.000Z"
+      "media": [
+        "https://example.com/sample.mp4"
+      ],
+      "status": "published",
+      "captionSource": "template",
+      "createdAt": "2026-10-30T09:00:00.000Z",
+      "approvedAt": "2026-10-31T09:00:00.000Z",
+      "approvalKey": "1c232a992743b67b",
+      "results": {
+        "instagram": {
+          "ok": true,
+          "at": "2026-11-08T18:00:00.000Z",
+          "id": "sample"
+        },
+        "tiktok": {
+          "ok": true,
+          "at": "2026-11-08T18:00:00.000Z",
+          "id": "sample"
+        }
+      }
+    },
+    {
+      "id": "post_004",
+      "calendarEntryId": "cal_004",
+      "title": "hidden chatgpt settings",
+      "format": "carousel",
+      "platforms": [
+        "instagram"
+      ],
+      "scheduledFor": "2026-11-10T19:00:00.000Z",
+      "captions": {
+        "instagram": "turn this setting on before you use chatgpt again.\n\nscreen recording, 3 settings, fast cuts.\n\nsave this for later 🧠\n\n#ai #aitools #learnai #theclearcode"
+      },
+      "media": [
+        "https://example.com/slide-1.jpg",
+        "https://example.com/slide-2.jpg"
+      ],
+      "status": "published",
+      "captionSource": "template",
+      "createdAt": "2026-10-30T09:00:00.000Z",
+      "approvedAt": "2026-10-31T09:00:00.000Z",
+      "approvalKey": "177c540a96a38f0b",
+      "results": {
+        "instagram": {
+          "ok": true,
+          "at": "2026-11-10T19:00:00.000Z",
+          "id": "sample"
+        }
+      }
+    },
+    {
+      "id": "post_005",
+      "calendarEntryId": "cal_005",
+      "title": "what an ai agent actually is, part 2",
+      "format": "reel",
+      "platforms": [
+        "instagram",
+        "tiktok"
+      ],
+      "scheduledFor": "2026-11-12T18:00:00.000Z",
+      "captions": {
+        "instagram": "chatbots talk. agents do. here's the difference.\n\none everyday task, done both ways.\n\nfollow for the clear version of ai 🧠\n\n#ai #aitools #learnai #theclearcode",
+        "tiktok": "chatbots talk. agents do. here's the difference. · follow for the clear version of ai #ai #learnontiktok"
+      },
+      "media": [
+        "https://example.com/sample.mp4"
+      ],
+      "status": "approved",
+      "captionSource": "template",
+      "createdAt": "2026-11-10T09:00:00.000Z",
+      "approvedAt": "2026-11-10T09:00:00.000Z",
+      "approvalKey": "0119431155619621"
+    },
+    {
+      "id": "post_006",
+      "calendarEntryId": "cal_006",
+      "title": "ai news in 30 seconds — week 46",
+      "format": "reel",
+      "platforms": [
+        "instagram",
+        "tiktok"
+      ],
+      "scheduledFor": "2026-11-14T12:00:00.000Z",
+      "captions": {
+        "instagram": "everything that happened in ai this week, in 30 seconds.\n\ntop 3 from what's trending.\n\nfollow so you never miss a week 🧠\n\n#ai #aitools #learnai #theclearcode",
+        "tiktok": "everything that happened in ai this week, in 30 seconds. · follow so you never miss a week #ai #learnontiktok"
+      },
+      "media": [],
+      "status": "pending_approval",
+      "captionSource": "template",
+      "createdAt": "2026-11-10T09:00:00.000Z"
     }
   ]
 }

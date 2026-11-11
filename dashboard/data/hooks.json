@@ -1,172 +1,163 @@
 {
   "meta": {
     "sample": true,
-    "source": "sample generator — add hooks from the vault or POST /api/hooks",
+    "source": "sample generator — save hooks here or from the competitor tracker",
     "updatedAt": "2026-11-11T09:00:00.000Z"
   },
   "hooks": [
     {
       "id": "hook_001",
-      "savedAt": "2026-11-10T09:00:00.000Z",
-      "transcript": "Stop using ChatGPT like Google. Here's what it's actually for.",
-      "template": "Stop using [tool] like [familiar thing]. Here's what it's actually for.",
-      "format": "contrarian",
-      "creator": "@aidaily.demo",
+      "transcript": "ChatGPT just killed Google search.",
+      "template": "[x] just killed [y]",
+      "format": "news",
+      "niche": "ai tools",
+      "creator": "@techtok.demo",
       "platform": "instagram",
-      "views": 1240000,
-      "tags": [
-        "ai tools",
-        "mindset"
-      ]
+      "views": 3100000,
+      "savedAt": "2026-11-10T09:00:00.000Z"
     },
     {
       "id": "hook_002",
-      "savedAt": "2026-11-08T09:00:00.000Z",
-      "transcript": "I replaced 4 apps with one prompt, and I'm never going back.",
-      "template": "I replaced [number] [things] with one [simple fix], and I'm never going back.",
-      "format": "result-first",
-      "creator": "@nocodenina.demo",
+      "transcript": "Stop doing your captions by hand.",
+      "template": "stop doing [x]",
+      "format": "contrarian",
+      "niche": "creator tips",
+      "creator": "@reelschool.demo",
       "platform": "tiktok",
-      "views": 880000,
-      "tags": [
-        "productivity"
-      ]
+      "views": 940000,
+      "savedAt": "2026-11-08T09:00:00.000Z"
     },
     {
       "id": "hook_003",
-      "savedAt": "2026-11-06T09:00:00.000Z",
-      "transcript": "3 AI tools that feel illegal to know about.",
-      "template": "[number] [category] that feel illegal to know about.",
+      "transcript": "5 things I wish I knew before I started posting.",
+      "template": "[number] things i wish i knew before [x]",
       "format": "listicle",
-      "creator": "@techtok.demo",
+      "niche": "creator tips",
+      "creator": "@reelschool.demo",
       "platform": "instagram",
-      "views": 2100000,
-      "tags": [
-        "ai tools",
-        "list"
-      ]
+      "views": 1700000,
+      "savedAt": "2026-11-06T09:00:00.000Z"
     },
     {
       "id": "hook_004",
-      "savedAt": "2026-11-04T09:00:00.000Z",
-      "transcript": "POV: you finally understand what an AI agent is.",
-      "template": "POV: you finally understand [confusing concept].",
-      "format": "pov",
-      "creator": "@theclearcode",
+      "transcript": "Stop doing skincare research on TikTok.",
+      "template": "stop doing [x]",
+      "format": "contrarian",
+      "niche": "skincare",
+      "creator": "@skinsci.demo",
       "platform": "instagram",
-      "views": 410000,
-      "tags": [
-        "explainer"
-      ]
+      "views": 620000,
+      "savedAt": "2026-11-04T09:00:00.000Z"
     },
     {
       "id": "hook_005",
-      "savedAt": "2026-11-02T09:00:00.000Z",
-      "transcript": "Nobody is talking about the most useful feature in Claude.",
-      "template": "Nobody is talking about the most useful feature in [product].",
-      "format": "curiosity",
-      "creator": "@founderfiles.demo",
+      "transcript": "3 things I wish I knew about retinol.",
+      "template": "[number] things i wish i knew about [x]",
+      "format": "listicle",
+      "niche": "skincare",
+      "creator": "@skinsci.demo",
       "platform": "tiktok",
-      "views": 960000,
-      "tags": [
-        "ai tools",
-        "hidden feature"
-      ]
+      "views": 2300000,
+      "savedAt": "2026-11-02T09:00:00.000Z"
     },
     {
       "id": "hook_006",
-      "savedAt": "2026-10-31T09:00:00.000Z",
-      "transcript": "If you're a woman in tech, save this before your next salary review.",
-      "template": "If you're [specific audience], save this before your next [high-stakes moment].",
-      "format": "callout",
-      "creator": "@careercode.demo",
+      "transcript": "Canva just killed the design brief.",
+      "template": "[x] just killed [y]",
+      "format": "news",
+      "niche": "no-code",
+      "creator": "@nocodenina.demo",
       "platform": "instagram",
-      "views": 650000,
-      "tags": [
-        "career",
-        "save bait"
-      ]
+      "views": 480000,
+      "savedAt": "2026-10-31T09:00:00.000Z"
     },
     {
       "id": "hook_007",
-      "savedAt": "2026-10-29T09:00:00.000Z",
-      "transcript": "Last year I couldn't write a line of code. Last week I shipped an app.",
-      "template": "Last [time] I couldn't [skill]. Last [short time] I [impressive result].",
-      "format": "story",
-      "creator": "@nocodenina.demo",
-      "platform": "youtube",
-      "views": 1530000,
-      "tags": [
-        "transformation"
-      ]
+      "transcript": "Nobody is talking about the most useful feature in Claude.",
+      "template": "nobody is talking about [x]",
+      "format": "curiosity",
+      "niche": "ai tools",
+      "creator": "@founderfiles.demo",
+      "platform": "instagram",
+      "views": 960000,
+      "savedAt": "2026-10-29T09:00:00.000Z"
     },
     {
       "id": "hook_008",
-      "savedAt": "2026-10-27T09:00:00.000Z",
-      "transcript": "Here's how to make AI write in your voice in under 60 seconds.",
-      "template": "Here's how to [desired outcome] in under [short time].",
-      "format": "how-to",
-      "creator": "@aidaily.demo",
-      "platform": "instagram",
-      "views": 720000,
-      "tags": [
-        "prompting",
-        "tutorial"
-      ]
+      "transcript": "3 AI tools that feel illegal to know about.",
+      "template": "[number] [x] that feel illegal to know",
+      "format": "listicle",
+      "niche": "ai tools",
+      "creator": "@techtok.demo",
+      "platform": "tiktok",
+      "views": 2100000,
+      "savedAt": "2026-10-27T09:00:00.000Z"
     },
     {
       "id": "hook_009",
-      "savedAt": "2026-10-25T09:00:00.000Z",
-      "transcript": "This is why your prompts give you boring answers.",
-      "template": "This is why your [thing] gives you [bad result].",
-      "format": "curiosity",
-      "creator": "@promptlab.demo",
-      "platform": "tiktok",
-      "views": 1050000,
-      "tags": [
-        "prompting"
-      ]
+      "transcript": "If you're a woman in tech, save this before your next salary review.",
+      "template": "if you're [audience], save this before your next salary review",
+      "format": "callout",
+      "niche": "careers",
+      "creator": "@careercode.demo",
+      "platform": "instagram",
+      "views": 650000,
+      "savedAt": "2026-10-25T09:00:00.000Z"
     },
     {
       "id": "hook_010",
-      "savedAt": "2026-10-23T09:00:00.000Z",
-      "transcript": "You don't need to learn to code in 2026. You need to learn this.",
-      "template": "You don't need to [common advice] in [year]. You need to learn this.",
-      "format": "contrarian",
-      "creator": "@techtok.demo",
+      "transcript": "Here's how to make AI write in your voice in under 60 seconds.",
+      "template": "Here's how to make AI write in your voice in under [time].",
+      "format": "how-to",
+      "niche": "prompting",
+      "creator": "@aidaily.demo",
       "platform": "instagram",
-      "views": 3400000,
-      "tags": [
-        "career",
-        "hot take"
-      ]
+      "views": 720000,
+      "savedAt": "2026-10-23T09:00:00.000Z"
     },
     {
       "id": "hook_011",
-      "savedAt": "2026-10-21T09:00:00.000Z",
-      "transcript": "I asked AI to plan my week and it did something I didn't expect.",
-      "template": "I asked [tool] to [everyday task] and it did something I didn't expect.",
-      "format": "story",
-      "creator": "@founderfiles.demo",
-      "platform": "instagram",
-      "views": 540000,
-      "tags": [
-        "experiment"
-      ]
+      "transcript": "Stop using ChatGPT like Google.",
+      "template": "stop using [x]",
+      "format": "contrarian",
+      "niche": "prompting",
+      "creator": "@aidaily.demo",
+      "platform": "tiktok",
+      "views": 1240000,
+      "savedAt": "2026-10-21T09:00:00.000Z"
     },
     {
       "id": "hook_012",
-      "savedAt": "2026-10-19T09:00:00.000Z",
-      "transcript": "5 words that make every AI answer better.",
-      "template": "[number] words that make every [output] better.",
+      "transcript": "I replaced 4 apps with one prompt, and I'm never going back.",
+      "template": "I replaced [number] apps with one prompt, and I'm never going back.",
+      "format": "result-first",
+      "niche": "productivity",
+      "creator": "@nocodenina.demo",
+      "platform": "instagram",
+      "views": 880000,
+      "savedAt": "2026-10-19T09:00:00.000Z"
+    },
+    {
+      "id": "hook_013",
+      "transcript": "POV: you finally understand what an AI agent is.",
+      "template": "pov: [x]",
+      "format": "pov",
+      "niche": "ai explainers",
+      "creator": "@theclearcode",
+      "platform": "instagram",
+      "views": 410000,
+      "savedAt": "2026-10-17T09:00:00.000Z"
+    },
+    {
+      "id": "hook_014",
+      "transcript": "7 things I wish I knew before quitting my job for content.",
+      "template": "[number] things i wish i knew before [x]",
       "format": "listicle",
-      "creator": "@promptlab.demo",
+      "niche": "creator business",
+      "creator": "@founderfiles.demo",
       "platform": "tiktok",
-      "views": 2700000,
-      "tags": [
-        "prompting",
-        "list"
-      ]
+      "views": 1050000,
+      "savedAt": "2026-10-15T09:00:00.000Z"
     }
   ]
 }

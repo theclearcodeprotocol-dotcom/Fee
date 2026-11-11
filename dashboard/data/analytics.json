@@ -1,178 +1,1270 @@
 {
   "meta": {
     "sample": true,
-    "source": "sample generator — connect Instagram Graph API or Metricool",
+    "source": "sample generator — run `npm run analytics:fetch` with IG_USER_ID + IG_ACCESS_TOKEN",
     "updatedAt": "2026-11-11T09:00:00.000Z"
   },
   "handle": "@theclearcode",
   "daily": [
     {
+      "date": "2026-05-16",
+      "views": 5807,
+      "saves": 135,
+      "follows": 17,
+      "dms": 6
+    },
+    {
+      "date": "2026-05-17",
+      "views": 6791,
+      "saves": 159,
+      "follows": 16,
+      "dms": 6
+    },
+    {
+      "date": "2026-05-18",
+      "views": 6163,
+      "saves": 139,
+      "follows": 17,
+      "dms": 7
+    },
+    {
+      "date": "2026-05-19",
+      "views": 5681,
+      "saves": 140,
+      "follows": 17,
+      "dms": 4
+    },
+    {
+      "date": "2026-05-20",
+      "views": 5039,
+      "saves": 105,
+      "follows": 13,
+      "dms": 4
+    },
+    {
+      "date": "2026-05-21",
+      "views": 6230,
+      "saves": 120,
+      "follows": 18,
+      "dms": 6
+    },
+    {
+      "date": "2026-05-22",
+      "views": 5803,
+      "saves": 153,
+      "follows": 18,
+      "dms": 6
+    },
+    {
+      "date": "2026-05-23",
+      "views": 5553,
+      "saves": 135,
+      "follows": 14,
+      "dms": 4
+    },
+    {
+      "date": "2026-05-24",
+      "views": 6828,
+      "saves": 190,
+      "follows": 17,
+      "dms": 5
+    },
+    {
+      "date": "2026-05-25",
+      "views": 6884,
+      "saves": 148,
+      "follows": 20,
+      "dms": 7
+    },
+    {
+      "date": "2026-05-26",
+      "views": 7235,
+      "saves": 141,
+      "follows": 23,
+      "dms": 8
+    },
+    {
+      "date": "2026-05-27",
+      "views": 5913,
+      "saves": 108,
+      "follows": 14,
+      "dms": 7
+    },
+    {
+      "date": "2026-05-28",
+      "views": 6292,
+      "saves": 146,
+      "follows": 16,
+      "dms": 6
+    },
+    {
+      "date": "2026-05-29",
+      "views": 7051,
+      "saves": 133,
+      "follows": 21,
+      "dms": 4
+    },
+    {
+      "date": "2026-05-30",
+      "views": 6219,
+      "saves": 151,
+      "follows": 21,
+      "dms": 5
+    },
+    {
+      "date": "2026-05-31",
+      "views": 6328,
+      "saves": 136,
+      "follows": 14,
+      "dms": 7
+    },
+    {
+      "date": "2026-06-01",
+      "views": 6226,
+      "saves": 159,
+      "follows": 16,
+      "dms": 6
+    },
+    {
+      "date": "2026-06-02",
+      "views": 6046,
+      "saves": 160,
+      "follows": 14,
+      "dms": 4
+    },
+    {
+      "date": "2026-06-03",
+      "views": 6969,
+      "saves": 169,
+      "follows": 16,
+      "dms": 6
+    },
+    {
+      "date": "2026-06-04",
+      "views": 6221,
+      "saves": 170,
+      "follows": 20,
+      "dms": 6
+    },
+    {
+      "date": "2026-06-05",
+      "views": 6368,
+      "saves": 173,
+      "follows": 18,
+      "dms": 5
+    },
+    {
+      "date": "2026-06-06",
+      "views": 6081,
+      "saves": 141,
+      "follows": 13,
+      "dms": 7
+    },
+    {
+      "date": "2026-06-07",
+      "views": 6101,
+      "saves": 135,
+      "follows": 14,
+      "dms": 4
+    },
+    {
+      "date": "2026-06-08",
+      "views": 7573,
+      "saves": 178,
+      "follows": 21,
+      "dms": 5
+    },
+    {
+      "date": "2026-06-09",
+      "views": 7019,
+      "saves": 170,
+      "follows": 23,
+      "dms": 8
+    },
+    {
+      "date": "2026-06-10",
+      "views": 7190,
+      "saves": 173,
+      "follows": 21,
+      "dms": 6
+    },
+    {
+      "date": "2026-06-11",
+      "views": 5577,
+      "saves": 137,
+      "follows": 17,
+      "dms": 7
+    },
+    {
+      "date": "2026-06-12",
+      "views": 7654,
+      "saves": 148,
+      "follows": 18,
+      "dms": 8
+    },
+    {
+      "date": "2026-06-13",
+      "views": 8573,
+      "saves": 184,
+      "follows": 28,
+      "dms": 7
+    },
+    {
+      "date": "2026-06-14",
+      "views": 7918,
+      "saves": 194,
+      "follows": 18,
+      "dms": 6
+    },
+    {
+      "date": "2026-06-15",
+      "views": 7641,
+      "saves": 175,
+      "follows": 23,
+      "dms": 6
+    },
+    {
+      "date": "2026-06-16",
+      "views": 7872,
+      "saves": 166,
+      "follows": 18,
+      "dms": 7
+    },
+    {
+      "date": "2026-06-17",
+      "views": 6768,
+      "saves": 134,
+      "follows": 22,
+      "dms": 8
+    },
+    {
+      "date": "2026-06-18",
+      "views": 8080,
+      "saves": 146,
+      "follows": 22,
+      "dms": 9
+    },
+    {
+      "date": "2026-06-19",
+      "views": 7502,
+      "saves": 188,
+      "follows": 22,
+      "dms": 5
+    },
+    {
+      "date": "2026-06-20",
+      "views": 7292,
+      "saves": 167,
+      "follows": 17,
+      "dms": 8
+    },
+    {
+      "date": "2026-06-21",
+      "views": 5823,
+      "saves": 110,
+      "follows": 20,
+      "dms": 6
+    },
+    {
+      "date": "2026-06-22",
+      "views": 8112,
+      "saves": 214,
+      "follows": 27,
+      "dms": 10
+    },
+    {
+      "date": "2026-06-23",
+      "views": 5846,
+      "saves": 115,
+      "follows": 17,
+      "dms": 5
+    },
+    {
+      "date": "2026-06-24",
+      "views": 7187,
+      "saves": 168,
+      "follows": 16,
+      "dms": 5
+    },
+    {
+      "date": "2026-06-25",
+      "views": 7391,
+      "saves": 153,
+      "follows": 20,
+      "dms": 8
+    },
+    {
+      "date": "2026-06-26",
+      "views": 7258,
+      "saves": 155,
+      "follows": 21,
+      "dms": 6
+    },
+    {
+      "date": "2026-06-27",
+      "views": 9336,
+      "saves": 196,
+      "follows": 26,
+      "dms": 7
+    },
+    {
+      "date": "2026-06-28",
+      "views": 8327,
+      "saves": 176,
+      "follows": 24,
+      "dms": 8
+    },
+    {
+      "date": "2026-06-29",
+      "views": 5877,
+      "saves": 113,
+      "follows": 14,
+      "dms": 6
+    },
+    {
+      "date": "2026-06-30",
+      "views": 6400,
+      "saves": 167,
+      "follows": 16,
+      "dms": 6
+    },
+    {
+      "date": "2026-07-01",
+      "views": 8995,
+      "saves": 228,
+      "follows": 29,
+      "dms": 6
+    },
+    {
+      "date": "2026-07-02",
+      "views": 6297,
+      "saves": 160,
+      "follows": 15,
+      "dms": 4
+    },
+    {
+      "date": "2026-07-03",
+      "views": 7286,
+      "saves": 138,
+      "follows": 24,
+      "dms": 7
+    },
+    {
+      "date": "2026-07-04",
+      "views": 8751,
+      "saves": 208,
+      "follows": 27,
+      "dms": 9
+    },
+    {
+      "date": "2026-07-05",
+      "views": 7522,
+      "saves": 193,
+      "follows": 19,
+      "dms": 5
+    },
+    {
+      "date": "2026-07-06",
+      "views": 6628,
+      "saves": 161,
+      "follows": 15,
+      "dms": 6
+    },
+    {
+      "date": "2026-07-07",
+      "views": 9836,
+      "saves": 262,
+      "follows": 28,
+      "dms": 11
+    },
+    {
+      "date": "2026-07-08",
+      "views": 6383,
+      "saves": 149,
+      "follows": 20,
+      "dms": 5
+    },
+    {
+      "date": "2026-07-09",
+      "views": 10008,
+      "saves": 194,
+      "follows": 33,
+      "dms": 9
+    },
+    {
+      "date": "2026-07-10",
+      "views": 9845,
+      "saves": 275,
+      "follows": 26,
+      "dms": 9
+    },
+    {
+      "date": "2026-07-11",
+      "views": 7973,
+      "saves": 151,
+      "follows": 19,
+      "dms": 5
+    },
+    {
+      "date": "2026-07-12",
+      "views": 6648,
+      "saves": 182,
+      "follows": 19,
+      "dms": 6
+    },
+    {
+      "date": "2026-07-13",
+      "views": 7250,
+      "saves": 198,
+      "follows": 17,
+      "dms": 8
+    },
+    {
+      "date": "2026-07-14",
+      "views": 7447,
+      "saves": 139,
+      "follows": 20,
+      "dms": 6
+    },
+    {
+      "date": "2026-07-15",
+      "views": 6961,
+      "saves": 151,
+      "follows": 16,
+      "dms": 8
+    },
+    {
+      "date": "2026-07-16",
+      "views": 8761,
+      "saves": 198,
+      "follows": 30,
+      "dms": 7
+    },
+    {
+      "date": "2026-07-17",
+      "views": 8767,
+      "saves": 205,
+      "follows": 22,
+      "dms": 8
+    },
+    {
+      "date": "2026-07-18",
+      "views": 10341,
+      "saves": 217,
+      "follows": 29,
+      "dms": 9
+    },
+    {
+      "date": "2026-07-19",
+      "views": 7054,
+      "saves": 144,
+      "follows": 21,
+      "dms": 4
+    },
+    {
+      "date": "2026-07-20",
+      "views": 6945,
+      "saves": 176,
+      "follows": 17,
+      "dms": 5
+    },
+    {
+      "date": "2026-07-21",
+      "views": 8382,
+      "saves": 217,
+      "follows": 24,
+      "dms": 8
+    },
+    {
+      "date": "2026-07-22",
+      "views": 9433,
+      "saves": 205,
+      "follows": 29,
+      "dms": 11
+    },
+    {
+      "date": "2026-07-23",
+      "views": 8038,
+      "saves": 202,
+      "follows": 19,
+      "dms": 5
+    },
+    {
+      "date": "2026-07-24",
+      "views": 8889,
+      "saves": 221,
+      "follows": 21,
+      "dms": 10
+    },
+    {
+      "date": "2026-07-25",
+      "views": 10570,
+      "saves": 204,
+      "follows": 35,
+      "dms": 9
+    },
+    {
+      "date": "2026-07-26",
+      "views": 9777,
+      "saves": 232,
+      "follows": 31,
+      "dms": 12
+    },
+    {
+      "date": "2026-07-27",
+      "views": 8685,
+      "saves": 176,
+      "follows": 22,
+      "dms": 9
+    },
+    {
+      "date": "2026-07-28",
+      "views": 9839,
+      "saves": 182,
+      "follows": 30,
+      "dms": 7
+    },
+    {
+      "date": "2026-07-29",
+      "views": 8704,
+      "saves": 223,
+      "follows": 24,
+      "dms": 10
+    },
+    {
+      "date": "2026-07-30",
+      "views": 10096,
+      "saves": 194,
+      "follows": 23,
+      "dms": 7
+    },
+    {
+      "date": "2026-07-31",
+      "views": 7005,
+      "saves": 192,
+      "follows": 18,
+      "dms": 7
+    },
+    {
+      "date": "2026-08-01",
+      "views": 8238,
+      "saves": 175,
+      "follows": 25,
+      "dms": 9
+    },
+    {
+      "date": "2026-08-02",
+      "views": 9670,
+      "saves": 268,
+      "follows": 28,
+      "dms": 10
+    },
+    {
+      "date": "2026-08-03",
+      "views": 9442,
+      "saves": 207,
+      "follows": 24,
+      "dms": 11
+    },
+    {
+      "date": "2026-08-04",
+      "views": 7507,
+      "saves": 176,
+      "follows": 20,
+      "dms": 8
+    },
+    {
+      "date": "2026-08-05",
+      "views": 9446,
+      "saves": 188,
+      "follows": 28,
+      "dms": 7
+    },
+    {
+      "date": "2026-08-06",
+      "views": 8471,
+      "saves": 161,
+      "follows": 28,
+      "dms": 7
+    },
+    {
+      "date": "2026-08-07",
+      "views": 7608,
+      "saves": 180,
+      "follows": 21,
+      "dms": 5
+    },
+    {
+      "date": "2026-08-08",
+      "views": 7487,
+      "saves": 139,
+      "follows": 20,
+      "dms": 9
+    },
+    {
+      "date": "2026-08-09",
+      "views": 9124,
+      "saves": 247,
+      "follows": 24,
+      "dms": 7
+    },
+    {
+      "date": "2026-08-10",
+      "views": 10033,
+      "saves": 181,
+      "follows": 27,
+      "dms": 9
+    },
+    {
+      "date": "2026-08-11",
+      "views": 10920,
+      "saves": 274,
+      "follows": 32,
+      "dms": 13
+    },
+    {
+      "date": "2026-08-12",
+      "views": 10202,
+      "saves": 200,
+      "follows": 24,
+      "dms": 7
+    },
+    {
+      "date": "2026-08-13",
+      "views": 8369,
+      "saves": 222,
+      "follows": 20,
+      "dms": 6
+    },
+    {
+      "date": "2026-08-14",
+      "views": 7704,
+      "saves": 203,
+      "follows": 24,
+      "dms": 5
+    },
+    {
+      "date": "2026-08-15",
+      "views": 9154,
+      "saves": 166,
+      "follows": 23,
+      "dms": 10
+    },
+    {
+      "date": "2026-08-16",
+      "views": 9669,
+      "saves": 175,
+      "follows": 22,
+      "dms": 6
+    },
+    {
+      "date": "2026-08-17",
+      "views": 9271,
+      "saves": 213,
+      "follows": 21,
+      "dms": 10
+    },
+    {
+      "date": "2026-08-18",
+      "views": 11826,
+      "saves": 242,
+      "follows": 31,
+      "dms": 8
+    },
+    {
+      "date": "2026-08-19",
+      "views": 8304,
+      "saves": 152,
+      "follows": 22,
+      "dms": 9
+    },
+    {
+      "date": "2026-08-20",
+      "views": 11270,
+      "saves": 247,
+      "follows": 36,
+      "dms": 10
+    },
+    {
+      "date": "2026-08-21",
+      "views": 9117,
+      "saves": 221,
+      "follows": 27,
+      "dms": 9
+    },
+    {
+      "date": "2026-08-22",
+      "views": 9554,
+      "saves": 239,
+      "follows": 26,
+      "dms": 8
+    },
+    {
+      "date": "2026-08-23",
+      "views": 9728,
+      "saves": 269,
+      "follows": 25,
+      "dms": 10
+    },
+    {
+      "date": "2026-08-24",
+      "views": 8049,
+      "saves": 196,
+      "follows": 19,
+      "dms": 8
+    },
+    {
+      "date": "2026-08-25",
+      "views": 8844,
+      "saves": 231,
+      "follows": 27,
+      "dms": 6
+    },
+    {
+      "date": "2026-08-26",
+      "views": 12488,
+      "saves": 276,
+      "follows": 33,
+      "dms": 9
+    },
+    {
+      "date": "2026-08-27",
+      "views": 7894,
+      "saves": 212,
+      "follows": 19,
+      "dms": 7
+    },
+    {
+      "date": "2026-08-28",
+      "views": 12078,
+      "saves": 324,
+      "follows": 29,
+      "dms": 14
+    },
+    {
+      "date": "2026-08-29",
+      "views": 9872,
+      "saves": 233,
+      "follows": 26,
+      "dms": 8
+    },
+    {
+      "date": "2026-08-30",
+      "views": 8408,
+      "saves": 154,
+      "follows": 21,
+      "dms": 5
+    },
+    {
+      "date": "2026-08-31",
+      "views": 9447,
+      "saves": 228,
+      "follows": 26,
+      "dms": 7
+    },
+    {
+      "date": "2026-09-01",
+      "views": 10611,
+      "saves": 257,
+      "follows": 33,
+      "dms": 12
+    },
+    {
+      "date": "2026-09-02",
+      "views": 8997,
+      "saves": 201,
+      "follows": 21,
+      "dms": 9
+    },
+    {
+      "date": "2026-09-03",
+      "views": 9649,
+      "saves": 189,
+      "follows": 29,
+      "dms": 7
+    },
+    {
+      "date": "2026-09-04",
+      "views": 8920,
+      "saves": 219,
+      "follows": 22,
+      "dms": 7
+    },
+    {
+      "date": "2026-09-05",
+      "views": 9320,
+      "saves": 169,
+      "follows": 22,
+      "dms": 6
+    },
+    {
+      "date": "2026-09-06",
+      "views": 9816,
+      "saves": 228,
+      "follows": 25,
+      "dms": 12
+    },
+    {
+      "date": "2026-09-07",
+      "views": 11890,
+      "saves": 299,
+      "follows": 30,
+      "dms": 12
+    },
+    {
+      "date": "2026-09-08",
+      "views": 10394,
+      "saves": 280,
+      "follows": 28,
+      "dms": 11
+    },
+    {
+      "date": "2026-09-09",
+      "views": 9165,
+      "saves": 187,
+      "follows": 30,
+      "dms": 7
+    },
+    {
+      "date": "2026-09-10",
+      "views": 8657,
+      "saves": 231,
+      "follows": 28,
+      "dms": 7
+    },
+    {
+      "date": "2026-09-11",
+      "views": 8336,
+      "saves": 162,
+      "follows": 23,
+      "dms": 5
+    },
+    {
+      "date": "2026-09-12",
+      "views": 11902,
+      "saves": 298,
+      "follows": 36,
+      "dms": 11
+    },
+    {
+      "date": "2026-09-13",
+      "views": 9505,
+      "saves": 260,
+      "follows": 32,
+      "dms": 9
+    },
+    {
+      "date": "2026-09-14",
+      "views": 9048,
+      "saves": 193,
+      "follows": 23,
+      "dms": 8
+    },
+    {
+      "date": "2026-09-15",
+      "views": 12737,
+      "saves": 350,
+      "follows": 29,
+      "dms": 10
+    },
+    {
+      "date": "2026-09-16",
+      "views": 10586,
+      "saves": 291,
+      "follows": 31,
+      "dms": 9
+    },
+    {
+      "date": "2026-09-17",
+      "views": 9319,
+      "saves": 227,
+      "follows": 27,
+      "dms": 8
+    },
+    {
+      "date": "2026-09-18",
+      "views": 13384,
+      "saves": 303,
+      "follows": 45,
+      "dms": 9
+    },
+    {
+      "date": "2026-09-19",
+      "views": 9886,
+      "saves": 238,
+      "follows": 31,
+      "dms": 8
+    },
+    {
+      "date": "2026-09-20",
+      "views": 10114,
+      "saves": 188,
+      "follows": 26,
+      "dms": 11
+    },
+    {
+      "date": "2026-09-21",
+      "views": 13504,
+      "saves": 282,
+      "follows": 37,
+      "dms": 12
+    },
+    {
+      "date": "2026-09-22",
+      "views": 10867,
+      "saves": 240,
+      "follows": 33,
+      "dms": 7
+    },
+    {
+      "date": "2026-09-23",
+      "views": 10511,
+      "saves": 213,
+      "follows": 35,
+      "dms": 7
+    },
+    {
+      "date": "2026-09-24",
+      "views": 8825,
+      "saves": 210,
+      "follows": 22,
+      "dms": 5
+    },
+    {
+      "date": "2026-09-25",
+      "views": 13342,
+      "saves": 333,
+      "follows": 32,
+      "dms": 14
+    },
+    {
+      "date": "2026-09-26",
+      "views": 8864,
+      "saves": 166,
+      "follows": 21,
+      "dms": 6
+    },
+    {
+      "date": "2026-09-27",
+      "views": 8918,
+      "saves": 244,
+      "follows": 29,
+      "dms": 10
+    },
+    {
+      "date": "2026-09-28",
+      "views": 12498,
+      "saves": 300,
+      "follows": 39,
+      "dms": 9
+    },
+    {
+      "date": "2026-09-29",
+      "views": 9211,
+      "saves": 201,
+      "follows": 22,
+      "dms": 7
+    },
+    {
+      "date": "2026-09-30",
+      "views": 11253,
+      "saves": 234,
+      "follows": 27,
+      "dms": 13
+    },
+    {
+      "date": "2026-10-01",
+      "views": 11690,
+      "saves": 313,
+      "follows": 36,
+      "dms": 8
+    },
+    {
+      "date": "2026-10-02",
+      "views": 11956,
+      "saves": 295,
+      "follows": 27,
+      "dms": 10
+    },
+    {
+      "date": "2026-10-03",
+      "views": 13049,
+      "saves": 342,
+      "follows": 35,
+      "dms": 13
+    },
+    {
+      "date": "2026-10-04",
+      "views": 11622,
+      "saves": 234,
+      "follows": 34,
+      "dms": 14
+    },
+    {
+      "date": "2026-10-05",
+      "views": 10297,
+      "saves": 193,
+      "follows": 27,
+      "dms": 9
+    },
+    {
+      "date": "2026-10-06",
+      "views": 10915,
+      "saves": 279,
+      "follows": 37,
+      "dms": 9
+    },
+    {
+      "date": "2026-10-07",
+      "views": 11315,
+      "saves": 218,
+      "follows": 34,
+      "dms": 10
+    },
+    {
+      "date": "2026-10-08",
+      "views": 10688,
+      "saves": 205,
+      "follows": 24,
+      "dms": 10
+    },
+    {
+      "date": "2026-10-09",
+      "views": 10413,
+      "saves": 250,
+      "follows": 28,
+      "dms": 12
+    },
+    {
+      "date": "2026-10-10",
+      "views": 14203,
+      "saves": 271,
+      "follows": 37,
+      "dms": 12
+    },
+    {
+      "date": "2026-10-11",
+      "views": 10948,
+      "saves": 214,
+      "follows": 35,
+      "dms": 8
+    },
+    {
+      "date": "2026-10-12",
+      "views": 12685,
+      "saves": 240,
+      "follows": 36,
+      "dms": 12
+    },
+    {
+      "date": "2026-10-13",
+      "views": 13697,
+      "saves": 313,
+      "follows": 38,
+      "dms": 16
+    },
+    {
+      "date": "2026-10-14",
+      "views": 10260,
+      "saves": 260,
+      "follows": 28,
+      "dms": 11
+    },
+    {
       "date": "2026-10-15",
-      "views": 11822,
-      "saves": 343,
-      "follows": 39
+      "views": 13037,
+      "saves": 332,
+      "follows": 37,
+      "dms": 13
     },
     {
       "date": "2026-10-16",
-      "views": 12656,
-      "saves": 236,
-      "follows": 35
+      "views": 9580,
+      "saves": 201,
+      "follows": 26,
+      "dms": 10
     },
     {
       "date": "2026-10-17",
-      "views": 10586,
-      "saves": 261,
-      "follows": 35
+      "views": 11814,
+      "saves": 291,
+      "follows": 34,
+      "dms": 12
     },
     {
       "date": "2026-10-18",
-      "views": 14308,
-      "saves": 404,
-      "follows": 40
+      "views": 14492,
+      "saves": 262,
+      "follows": 45,
+      "dms": 15
     },
     {
       "date": "2026-10-19",
-      "views": 11095,
-      "saves": 252,
-      "follows": 26
+      "views": 12917,
+      "saves": 308,
+      "follows": 31,
+      "dms": 9
     },
     {
       "date": "2026-10-20",
-      "views": 11496,
-      "saves": 303,
-      "follows": 43
+      "views": 12881,
+      "saves": 253,
+      "follows": 35,
+      "dms": 11
     },
     {
       "date": "2026-10-21",
-      "views": 35665,
-      "saves": 1039,
-      "follows": 105
+      "views": 10894,
+      "saves": 207,
+      "follows": 28,
+      "dms": 12
     },
     {
       "date": "2026-10-22",
-      "views": 12281,
-      "saves": 321,
-      "follows": 42
+      "views": 13690,
+      "saves": 361,
+      "follows": 32,
+      "dms": 10
     },
     {
       "date": "2026-10-23",
-      "views": 16391,
-      "saves": 447,
-      "follows": 49
+      "views": 9933,
+      "saves": 237,
+      "follows": 33,
+      "dms": 10
     },
     {
       "date": "2026-10-24",
-      "views": 13333,
-      "saves": 364,
-      "follows": 30
+      "views": 10889,
+      "saves": 231,
+      "follows": 30,
+      "dms": 7
     },
     {
       "date": "2026-10-25",
-      "views": 14183,
-      "saves": 421,
-      "follows": 40
+      "views": 12738,
+      "saves": 346,
+      "follows": 36,
+      "dms": 11
     },
     {
       "date": "2026-10-26",
-      "views": 15916,
-      "saves": 463,
-      "follows": 51
+      "views": 10332,
+      "saves": 253,
+      "follows": 29,
+      "dms": 12
     },
     {
       "date": "2026-10-27",
-      "views": 13291,
-      "saves": 245,
-      "follows": 43
+      "views": 12023,
+      "saves": 236,
+      "follows": 40,
+      "dms": 11
     },
     {
       "date": "2026-10-28",
-      "views": 44202,
-      "saves": 1217,
-      "follows": 134
+      "views": 11328,
+      "saves": 227,
+      "follows": 29,
+      "dms": 11
     },
     {
       "date": "2026-10-29",
-      "views": 13565,
-      "saves": 360,
-      "follows": 45
+      "views": 14721,
+      "saves": 409,
+      "follows": 36,
+      "dms": 14
     },
     {
       "date": "2026-10-30",
-      "views": 15436,
-      "saves": 307,
-      "follows": 36
+      "views": 14539,
+      "saves": 348,
+      "follows": 49,
+      "dms": 13
     },
     {
       "date": "2026-10-31",
-      "views": 14193,
-      "saves": 396,
-      "follows": 36
+      "views": 15319,
+      "saves": 329,
+      "follows": 35,
+      "dms": 18
     },
     {
       "date": "2026-11-01",
-      "views": 19038,
-      "saves": 403,
-      "follows": 70
+      "views": 14005,
+      "saves": 268,
+      "follows": 32,
+      "dms": 10
     },
     {
       "date": "2026-11-02",
-      "views": 13827,
-      "saves": 265,
-      "follows": 32
+      "views": 12057,
+      "saves": 300,
+      "follows": 36,
+      "dms": 10
     },
     {
       "date": "2026-11-03",
-      "views": 49213,
-      "saves": 995,
-      "follows": 171
+      "views": 13645,
+      "saves": 333,
+      "follows": 41,
+      "dms": 11
     },
     {
       "date": "2026-11-04",
-      "views": 16515,
-      "saves": 481,
-      "follows": 55
+      "views": 10658,
+      "saves": 277,
+      "follows": 25,
+      "dms": 10
     },
     {
       "date": "2026-11-05",
-      "views": 17295,
-      "saves": 507,
-      "follows": 61
+      "views": 16100,
+      "saves": 429,
+      "follows": 55,
+      "dms": 14
     },
     {
       "date": "2026-11-06",
-      "views": 14141,
-      "saves": 255,
-      "follows": 43
+      "views": 12385,
+      "saves": 339,
+      "follows": 38,
+      "dms": 13
     },
     {
       "date": "2026-11-07",
-      "views": 19124,
-      "saves": 414,
-      "follows": 47
+      "views": 15823,
+      "saves": 313,
+      "follows": 40,
+      "dms": 16
     },
     {
       "date": "2026-11-08",
-      "views": 45692,
-      "saves": 1284,
-      "follows": 153
+      "views": 12030,
+      "saves": 272,
+      "follows": 36,
+      "dms": 11
     },
     {
       "date": "2026-11-09",
-      "views": 18489,
-      "saves": 431,
-      "follows": 50
+      "views": 16136,
+      "saves": 323,
+      "follows": 36,
+      "dms": 16
     },
     {
       "date": "2026-11-10",
-      "views": 49730,
-      "saves": 1029,
-      "follows": 119
+      "views": 14702,
+      "saves": 360,
+      "follows": 49,
+      "dms": 10
     },
     {
       "date": "2026-11-11",
-      "views": 17309,
-      "saves": 493,
-      "follows": 44
+      "views": 11301,
+      "saves": 316,
+      "follows": 34,
+      "dms": 9
     }
   ],
   "reels": [
@@ -180,161 +1272,397 @@
       "id": "reel_001",
       "title": "what an ai agent actually is",
       "hook": "you've heard 'agent' 100 times this week. here's what it means.",
-      "postedAt": "2026-10-15T09:00:00.000Z",
-      "views": 12731,
-      "saves": 402,
-      "shares": 132,
-      "follows": 54
+      "postedAt": "2026-08-14T09:00:00.000Z",
+      "views": 14520,
+      "saves": 323,
+      "shares": 98,
+      "follows": 50,
+      "comments": 43
     },
     {
       "id": "reel_002",
       "title": "3 prompts i use every day",
-      "hook": "3 prompts i use every single day, steal them.",
-      "postedAt": "2026-10-17T09:00:00.000Z",
-      "views": 36486,
-      "saves": 1574,
-      "shares": 204,
-      "follows": 107
+      "hook": "3 prompts i use every single day. steal them.",
+      "postedAt": "2026-08-17T09:00:00.000Z",
+      "views": 15393,
+      "saves": 245,
+      "shares": 64,
+      "follows": 44,
+      "comments": 37
     },
     {
       "id": "reel_003",
       "title": "claude vs chatgpt for writing",
       "hook": "i gave claude and chatgpt the same brief. one was way better.",
-      "postedAt": "2026-10-19T09:00:00.000Z",
-      "views": 130680,
-      "saves": 1995,
-      "shares": 1112,
-      "follows": 553
+      "postedAt": "2026-08-19T09:00:00.000Z",
+      "views": 90119,
+      "saves": 1962,
+      "shares": 632,
+      "follows": 234,
+      "comments": 219
     },
     {
       "id": "reel_004",
       "title": "the 60-second voice prompt",
       "hook": "make ai write like you in 60 seconds.",
-      "postedAt": "2026-10-20T09:00:00.000Z",
-      "views": 24772,
-      "saves": 474,
-      "shares": 127,
-      "follows": 111
+      "postedAt": "2026-08-22T09:00:00.000Z",
+      "views": 22455,
+      "saves": 560,
+      "shares": 157,
+      "follows": 55,
+      "comments": 64
     },
     {
       "id": "reel_005",
       "title": "why your prompts are boring",
       "hook": "this is why your ai answers sound like a robot.",
-      "postedAt": "2026-10-22T09:00:00.000Z",
-      "views": 16650,
-      "saves": 652,
-      "shares": 109,
-      "follows": 93
+      "postedAt": "2026-08-24T09:00:00.000Z",
+      "views": 13855,
+      "saves": 258,
+      "shares": 95,
+      "follows": 28,
+      "comments": 49
     },
     {
       "id": "reel_006",
       "title": "ai news in 30 seconds",
       "hook": "everything that happened in ai this week, in 30 seconds.",
-      "postedAt": "2026-10-24T09:00:00.000Z",
-      "views": 36584,
-      "saves": 1001,
-      "shares": 149,
-      "follows": 139
+      "postedAt": "2026-08-27T09:00:00.000Z",
+      "views": 13792,
+      "saves": 287,
+      "shares": 103,
+      "follows": 47,
+      "comments": 68
     },
     {
       "id": "reel_007",
       "title": "automate your inbox",
       "hook": "i haven't sorted an email by hand in 3 months.",
-      "postedAt": "2026-10-26T09:00:00.000Z",
-      "views": 28180,
-      "saves": 737,
-      "shares": 360,
-      "follows": 136
+      "postedAt": "2026-08-29T09:00:00.000Z",
+      "views": 17465,
+      "saves": 407,
+      "shares": 105,
+      "follows": 47,
+      "comments": 81
     },
     {
       "id": "reel_008",
       "title": "the context window, explained",
       "hook": "your ai forgets things. here's why.",
-      "postedAt": "2026-10-28T09:00:00.000Z",
-      "views": 20856,
-      "saves": 649,
-      "shares": 269,
-      "follows": 117
+      "postedAt": "2026-09-01T09:00:00.000Z",
+      "views": 14408,
+      "saves": 323,
+      "shares": 92,
+      "follows": 47,
+      "comments": 42
     },
     {
       "id": "reel_009",
       "title": "build a website with no code",
       "hook": "i built this site in 11 minutes with zero code.",
-      "postedAt": "2026-10-29T09:00:00.000Z",
-      "views": 27689,
-      "saves": 1142,
-      "shares": 313,
-      "follows": 57
+      "postedAt": "2026-09-03T09:00:00.000Z",
+      "views": 16048,
+      "saves": 252,
+      "shares": 109,
+      "follows": 47,
+      "comments": 80
     },
     {
       "id": "reel_010",
       "title": "ai for your skincare routine",
       "hook": "i asked ai to fix my skincare routine. bye bye, guesswork.",
-      "postedAt": "2026-10-31T09:00:00.000Z",
-      "views": 142596,
-      "saves": 3049,
-      "shares": 1867,
-      "follows": 572
+      "postedAt": "2026-09-06T09:00:00.000Z",
+      "views": 75391,
+      "saves": 1215,
+      "shares": 442,
+      "follows": 607,
+      "comments": 279
     },
     {
       "id": "reel_011",
-      "title": "stop saying 'please' to chatgpt?",
+      "title": "stop saying please to chatgpt?",
       "hook": "does being polite to ai actually change the answer?",
-      "postedAt": "2026-11-02T09:00:00.000Z",
-      "views": 17265,
-      "saves": 352,
-      "shares": 89,
-      "follows": 60
+      "postedAt": "2026-09-08T09:00:00.000Z",
+      "views": 25937,
+      "saves": 618,
+      "shares": 162,
+      "follows": 54,
+      "comments": 93
     },
     {
       "id": "reel_012",
       "title": "my full ai stack 2026",
       "hook": "every ai tool i pay for, and the ones i cancelled.",
-      "postedAt": "2026-11-04T09:00:00.000Z",
-      "views": 14302,
-      "saves": 473,
-      "shares": 84,
-      "follows": 32
+      "postedAt": "2026-09-11T09:00:00.000Z",
+      "views": 17216,
+      "saves": 295,
+      "shares": 104,
+      "follows": 51,
+      "comments": 58
     },
     {
       "id": "reel_013",
       "title": "make a reel with ai in 5 min",
       "hook": "this whole reel was edited by ai. can you tell?",
-      "postedAt": "2026-11-06T09:00:00.000Z",
-      "views": 95865,
-      "saves": 2972,
-      "shares": 1126,
-      "follows": 218
+      "postedAt": "2026-09-14T09:00:00.000Z",
+      "views": 17490,
+      "saves": 264,
+      "shares": 92,
+      "follows": 39,
+      "comments": 67
     },
     {
       "id": "reel_014",
       "title": "the prompt that writes prompts",
       "hook": "the only prompt you need to memorise.",
-      "postedAt": "2026-11-07T09:00:00.000Z",
-      "views": 54531,
-      "saves": 2168,
-      "shares": 436,
-      "follows": 215
+      "postedAt": "2026-09-16T09:00:00.000Z",
+      "views": 119955,
+      "saves": 5510,
+      "shares": 520,
+      "follows": 357,
+      "comments": 263
     },
     {
       "id": "reel_015",
       "title": "is ai coming for your job",
       "hook": "the honest answer to 'will ai take my job'.",
-      "postedAt": "2026-11-09T09:00:00.000Z",
-      "views": 33328,
-      "saves": 808,
-      "shares": 138,
-      "follows": 102
+      "postedAt": "2026-09-19T09:00:00.000Z",
+      "views": 19883,
+      "saves": 349,
+      "shares": 116,
+      "follows": 45,
+      "comments": 44
     },
     {
       "id": "reel_016",
       "title": "hidden chatgpt settings",
       "hook": "turn this setting on before you use chatgpt again.",
+      "postedAt": "2026-09-21T09:00:00.000Z",
+      "views": 36375,
+      "saves": 606,
+      "shares": 162,
+      "follows": 122,
+      "comments": 88
+    },
+    {
+      "id": "reel_017",
+      "title": "ai just killed the cover letter",
+      "hook": "ai just killed the cover letter. here's what replaces it.",
+      "postedAt": "2026-09-24T09:00:00.000Z",
+      "views": 68134,
+      "saves": 1699,
+      "shares": 822,
+      "follows": 160,
+      "comments": 309
+    },
+    {
+      "id": "reel_018",
+      "title": "stop doing this in chatgpt",
+      "hook": "stop doing this in chatgpt. it's costing you better answers.",
+      "postedAt": "2026-09-26T09:00:00.000Z",
+      "views": 32128,
+      "saves": 696,
+      "shares": 232,
+      "follows": 101,
+      "comments": 158
+    },
+    {
+      "id": "reel_019",
+      "title": "5 things i wish i knew about ai",
+      "hook": "5 things i wish i knew before i started using ai.",
+      "postedAt": "2026-09-29T09:00:00.000Z",
+      "views": 136099,
+      "saves": 5162,
+      "shares": 767,
+      "follows": 342,
+      "comments": 620
+    },
+    {
+      "id": "reel_020",
+      "title": "the free ai tool nobody uses",
+      "hook": "the most useful free ai tool, and nobody's using it.",
+      "postedAt": "2026-10-01T09:00:00.000Z",
+      "views": 21412,
+      "saves": 326,
+      "shares": 147,
+      "follows": 58,
+      "comments": 59
+    },
+    {
+      "id": "reel_021",
+      "title": "ai photo trick for your feed",
+      "hook": "this ai photo trick made my feed look expensive.",
+      "postedAt": "2026-10-04T09:00:00.000Z",
+      "views": 17709,
+      "saves": 351,
+      "shares": 117,
+      "follows": 38,
+      "comments": 83
+    },
+    {
+      "id": "reel_022",
+      "title": "what 'tokens' means",
+      "hook": "every ai tool charges you in 'tokens'. here's what that means.",
+      "postedAt": "2026-10-06T09:00:00.000Z",
+      "views": 28019,
+      "saves": 438,
+      "shares": 146,
+      "follows": 63,
+      "comments": 133
+    },
+    {
+      "id": "reel_023",
+      "title": "ai meal planner",
+      "hook": "i let ai plan my meals for a week.",
+      "postedAt": "2026-10-09T09:00:00.000Z",
+      "views": 21016,
+      "saves": 439,
+      "shares": 122,
+      "follows": 68,
+      "comments": 96
+    },
+    {
+      "id": "reel_024",
+      "title": "your data and ai",
+      "hook": "is ai training on your messages? here's how to check.",
+      "postedAt": "2026-10-11T09:00:00.000Z",
+      "views": 19293,
+      "saves": 478,
+      "shares": 78,
+      "follows": 51,
+      "comments": 94
+    },
+    {
+      "id": "reel_025",
+      "title": "notebook ai for students",
+      "hook": "students: this ai tool is basically a tutor.",
+      "postedAt": "2026-10-14T09:00:00.000Z",
+      "views": 92860,
+      "saves": 1393,
+      "shares": 687,
+      "follows": 257,
+      "comments": 332
+    },
+    {
+      "id": "reel_026",
+      "title": "3 ai apps on my phone",
+      "hook": "the 3 ai apps that earned a spot on my home screen.",
+      "postedAt": "2026-10-17T09:00:00.000Z",
+      "views": 33923,
+      "saves": 738,
+      "shares": 183,
+      "follows": 95,
+      "comments": 150
+    },
+    {
+      "id": "reel_027",
+      "title": "deepfake or real?",
+      "hook": "one of these videos is fake. can you tell which?",
+      "postedAt": "2026-10-19T09:00:00.000Z",
+      "views": 46148,
+      "saves": 914,
+      "shares": 332,
+      "follows": 160,
+      "comments": 111
+    },
+    {
+      "id": "reel_028",
+      "title": "ai and your skincare labels",
+      "hook": "i let ai read my skincare labels. bye bye, guesswork.",
+      "postedAt": "2026-10-22T09:00:00.000Z",
+      "views": 96669,
+      "saves": 4688,
+      "shares": 398,
+      "follows": 313,
+      "comments": 367
+    },
+    {
+      "id": "reel_029",
+      "title": "ai agents book my trips now",
+      "hook": "i haven't booked a trip myself in 2 months.",
+      "postedAt": "2026-10-24T09:00:00.000Z",
+      "views": 38860,
+      "saves": 812,
+      "shares": 222,
+      "follows": 127,
+      "comments": 186
+    },
+    {
+      "id": "reel_030",
+      "title": "the one-line prompt fix",
+      "hook": "add this one line to every prompt.",
+      "postedAt": "2026-10-27T09:00:00.000Z",
+      "views": 33700,
+      "saves": 825,
+      "shares": 138,
+      "follows": 71,
+      "comments": 84
+    },
+    {
+      "id": "reel_031",
+      "title": "ai voice clone, explained",
+      "hook": "i cloned my voice in 30 seconds. here's why that's scary.",
+      "postedAt": "2026-10-29T09:00:00.000Z",
+      "views": 31496,
+      "saves": 702,
+      "shares": 159,
+      "follows": 74,
+      "comments": 127
+    },
+    {
+      "id": "reel_032",
+      "title": "claude for spreadsheets",
+      "hook": "i gave claude my messiest spreadsheet.",
+      "postedAt": "2026-11-01T09:00:00.000Z",
+      "views": 156825,
+      "saves": 3840,
+      "shares": 905,
+      "follows": 1230,
+      "comments": 325
+    },
+    {
+      "id": "reel_033",
+      "title": "chatgpt memory, explained",
+      "hook": "chatgpt remembers things about you. here's how to see what.",
+      "postedAt": "2026-11-03T09:00:00.000Z",
+      "views": 48727,
+      "saves": 815,
+      "shares": 240,
+      "follows": 151,
+      "comments": 152
+    },
+    {
+      "id": "reel_034",
+      "title": "ai in 2026 — what changed",
+      "hook": "the 3 biggest ai changes this year, explained simply.",
+      "postedAt": "2026-11-06T09:00:00.000Z",
+      "views": 51798,
+      "saves": 1227,
+      "shares": 370,
+      "follows": 147,
+      "comments": 234
+    },
+    {
+      "id": "reel_035",
+      "title": "ai just killed the to-do list",
+      "hook": "ai just killed my to-do list. this replaced it.",
+      "postedAt": "2026-11-08T09:00:00.000Z",
+      "views": 186748,
+      "saves": 2883,
+      "shares": 3706,
+      "follows": 609,
+      "comments": 608
+    },
+    {
+      "id": "reel_036",
+      "title": "the prompt i use for hooks",
+      "hook": "the exact prompt i use to write hooks.",
       "postedAt": "2026-11-11T09:00:00.000Z",
-      "views": 119425,
-      "saves": 2107,
-      "shares": 1392,
-      "follows": 326
+      "views": 44474,
+      "saves": 982,
+      "shares": 326,
+      "follows": 110,
+      "comments": 188
     }
   ]
 }

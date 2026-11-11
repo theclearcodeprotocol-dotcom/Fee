@@ -1,7 +1,7 @@
 {
   "meta": {
     "sample": true,
-    "source": "sample generator — run `npm run trending:fetch` for live feeds",
+    "source": "sample generator — the daily 06:40 job runs `npm run trending:fetch`",
     "updatedAt": "2026-11-11T09:00:00.000Z"
   },
   "sources": [
@@ -73,338 +73,12 @@
       "title": "Study: 40% of office tasks could be automated by agents",
       "summary": "The report separates tasks from whole jobs and finds most roles change rather than disappear.",
       "url": "https://huggingface.co/blog",
-      "publishedAt": "2026-11-11T03:00:00.000Z",
+      "publishedAt": "2026-11-11T07:00:00.000Z",
+      "tag": "hook potential",
+      "reason": "personal stakes + a number to hook on",
       "score": 40,
-      "potential": "medium",
       "hookIdea": "here's the clear version of today's ai news: study: 40% of office tasks could be automated by agents.",
-      "tags": [
-        "jobs",
-        "research"
-      ]
-    },
-    {
-      "id": "trend_013",
-      "sourceId": "openai",
-      "title": "Social app tests AI-written captions for creators",
-      "summary": "The test suggests captions and hashtags from the video's audio.",
-      "url": "https://openai.com/news/",
-      "publishedAt": "2026-11-11T03:00:00.000Z",
-      "score": 25,
-      "potential": "medium",
-      "hookIdea": "here's the clear version of today's ai news: social app tests AI-written captions for creators.",
-      "tags": [
-        "social",
-        "creators"
-      ]
-    },
-    {
-      "id": "trend_003",
-      "sourceId": "google-ai",
-      "title": "Phone maker adds on-device AI that reads your screen",
-      "summary": "The assistant can now act across apps, with processing kept on the device.",
-      "url": "https://blog.google/technology/ai/",
-      "publishedAt": "2026-11-10T20:00:00.000Z",
-      "score": 35,
-      "potential": "medium",
-      "hookIdea": "here's the clear version of today's ai news: phone maker adds on-device AI that reads your screen.",
-      "tags": [
-        "devices",
-        "agents"
-      ]
-    },
-    {
-      "id": "trend_021",
-      "sourceId": "ars",
-      "title": "Translation app adds real-time voice dubbing",
-      "summary": "The feature keeps the speaker's voice across 20 languages.",
-      "url": "https://arstechnica.com/ai/",
-      "publishedAt": "2026-11-10T17:00:00.000Z",
-      "score": 25,
-      "potential": "medium",
-      "hookIdea": "here's the clear version of today's ai news: translation app adds real-time voice dubbing.",
-      "tags": [
-        "voice",
-        "tools"
-      ]
-    },
-    {
-      "id": "trend_022",
-      "sourceId": "wired",
-      "title": "Ethics board publishes guidance on AI in hiring",
-      "summary": "The guidance recommends human review of every rejection.",
-      "url": "https://www.wired.com/tag/artificial-intelligence/",
-      "publishedAt": "2026-11-10T12:00:00.000Z",
-      "score": 15,
-      "potential": "low",
-      "hookIdea": "here's the clear version of today's ai news: ethics board publishes guidance on AI in hiring.",
-      "tags": [
-        "jobs",
-        "policy"
-      ]
-    },
-    {
-      "id": "trend_024",
-      "sourceId": "reddit-ai",
-      "title": "Image model learns to fix hands and text in pictures",
-      "summary": "Text rendering errors dropped sharply in the lab's tests.",
-      "url": "https://www.reddit.com/r/artificial/",
-      "publishedAt": "2026-11-10T10:00:00.000Z",
-      "score": 25,
-      "potential": "medium",
-      "hookIdea": "here's the clear version of today's ai news: image model learns to fix hands and text in pictures.",
-      "tags": [
-        "images"
-      ]
-    },
-    {
-      "id": "trend_002",
-      "sourceId": "deepmind",
-      "title": "Open-source model beats closed rivals on 3 coding benchmarks",
-      "summary": "Researchers released weights under a permissive licence; results are self-reported.",
-      "url": "https://deepmind.google/discover/blog/",
-      "publishedAt": "2026-11-10T09:00:00.000Z",
-      "score": 35,
-      "potential": "medium",
-      "hookIdea": "i tested it so you don't have to — open-source model beats closed rivals on 3 coding benchmarks.",
-      "tags": [
-        "open source",
-        "coding"
-      ]
-    },
-    {
-      "id": "trend_009",
-      "sourceId": "ars",
-      "title": "AI note-takers compared: which one is worth paying for",
-      "summary": "A hands-on review across accuracy, privacy and price.",
-      "url": "https://arstechnica.com/ai/",
-      "publishedAt": "2026-11-10T03:00:00.000Z",
-      "score": 38,
-      "potential": "medium",
-      "hookIdea": "here's the clear version of today's ai news: aI note-takers compared: which one is worth paying for.",
-      "tags": [
-        "tools",
-        "review"
-      ]
-    },
-    {
-      "id": "trend_008",
-      "sourceId": "venturebeat",
-      "title": "Browser ships built-in AI that summarises any page",
-      "summary": "The feature is off by default and runs a small local model.",
-      "url": "https://venturebeat.com/category/ai/",
-      "publishedAt": "2026-11-09T20:00:00.000Z",
-      "score": 18,
-      "potential": "low",
-      "hookIdea": "here's the clear version of today's ai news: browser ships built-in AI that summarises any page.",
-      "tags": [
-        "browsers",
-        "tools"
-      ]
-    },
-    {
-      "id": "trend_015",
-      "sourceId": "google-ai",
-      "title": "Startup raises $200M to build AI for spreadsheets",
-      "summary": "The product turns plain-English questions into formulas and charts.",
-      "url": "https://blog.google/technology/ai/",
-      "publishedAt": "2026-11-09T14:00:00.000Z",
-      "score": 43,
-      "potential": "medium",
-      "hookIdea": "here's the clear version of today's ai news: startup raises $200M to build AI for spreadsheets.",
-      "tags": [
-        "funding",
-        "tools"
-      ]
-    },
-    {
-      "id": "trend_016",
-      "sourceId": "huggingface",
-      "title": "Lawsuit over AI-generated images moves to trial",
-      "summary": "The case could set rules for training on copyrighted art.",
-      "url": "https://huggingface.co/blog",
-      "publishedAt": "2026-11-09T04:00:00.000Z",
-      "score": 23,
-      "potential": "low",
-      "hookIdea": "here's the clear version of today's ai news: lawsuit over AI-generated images moves to trial.",
-      "tags": [
-        "policy",
-        "legal"
-      ]
-    },
-    {
-      "id": "trend_018",
-      "sourceId": "techcrunch",
-      "title": "AI model can now take actions in a desktop app",
-      "summary": "Early testers report it is slow but reliable for repetitive tasks.",
-      "url": "https://techcrunch.com/category/artificial-intelligence/",
-      "publishedAt": "2026-11-09T03:00:00.000Z",
-      "score": 28,
-      "potential": "medium",
-      "hookIdea": "here's the clear version of today's ai news: aI model can now take actions in a desktop app.",
-      "tags": [
-        "agents"
-      ]
-    },
-    {
-      "id": "trend_007",
-      "sourceId": "mit-tr",
-      "title": "Chip maker unveils accelerator 2x faster for inference",
-      "summary": "Shipments are expected next year; cloud providers have pre-ordered.",
-      "url": "https://www.technologyreview.com/topic/artificial-intelligence/",
-      "publishedAt": "2026-11-09T02:00:00.000Z",
-      "score": 28,
-      "potential": "medium",
-      "hookIdea": "this dropped today and it changes how you'll work: chip maker unveils accelerator 2x faster for inference.",
-      "tags": [
-        "hardware"
-      ]
-    },
-    {
-      "id": "trend_006",
-      "sourceId": "techcrunch",
-      "title": "Regulators open review into AI training on user posts",
-      "summary": "The review covers consent and opt-out flows on major social apps.",
-      "url": "https://techcrunch.com/category/artificial-intelligence/",
-      "publishedAt": "2026-11-09T00:00:00.000Z",
-      "score": 8,
-      "potential": "low",
-      "hookIdea": "here's the clear version of today's ai news: regulators open review into AI training on user posts.",
-      "tags": [
-        "policy",
-        "privacy"
-      ]
-    },
-    {
-      "id": "trend_020",
-      "sourceId": "venturebeat",
-      "title": "Robotics lab demos home robot folding laundry",
-      "summary": "The demo was teleoperated in parts, the lab said.",
-      "url": "https://venturebeat.com/category/ai/",
-      "publishedAt": "2026-11-08T07:00:00.000Z",
-      "score": 10,
-      "potential": "low",
-      "hookIdea": "here's the clear version of today's ai news: robotics lab demos home robot folding laundry.",
-      "tags": [
-        "robotics"
-      ]
-    },
-    {
-      "id": "trend_023",
-      "sourceId": "hn",
-      "title": "Developer tool makes AI pair programming the default",
-      "summary": "The update writes tests alongside every change.",
-      "url": "https://news.ycombinator.com/",
-      "publishedAt": "2026-11-07T17:00:00.000Z",
-      "score": 10,
-      "potential": "low",
-      "hookIdea": "here's the clear version of today's ai news: developer tool makes AI pair programming the default.",
-      "tags": [
-        "coding",
-        "tools"
-      ]
-    },
-    {
-      "id": "trend_017",
-      "sourceId": "verge",
-      "title": "Search engine launches AI mode in 40 new countries",
-      "summary": "The mode answers with cited sources and follow-up questions.",
-      "url": "https://www.theverge.com/ai-artificial-intelligence",
-      "publishedAt": "2026-11-07T16:00:00.000Z",
-      "score": 30,
-      "potential": "medium",
-      "hookIdea": "this dropped today and it changes how you'll work: search engine launches AI mode in 40 new countries.",
-      "tags": [
-        "search"
-      ]
-    },
-    {
-      "id": "trend_001",
-      "sourceId": "openai",
-      "title": "Major lab launches a free tier for its newest model",
-      "summary": "The company says the new tier includes limited daily use of its flagship model at no cost.",
-      "url": "https://openai.com/news/",
-      "publishedAt": "2026-11-07T12:00:00.000Z",
-      "score": 35,
-      "potential": "medium",
-      "hookIdea": "this just got way cheaper — and nobody's talking about it: major lab launches a free tier for its newest model.",
-      "tags": [
-        "models",
-        "pricing"
-      ]
-    },
-    {
-      "id": "trend_014",
-      "sourceId": "deepmind",
-      "title": "University releases free AI literacy course",
-      "summary": "Eight short lessons, no coding required.",
-      "url": "https://deepmind.google/discover/blog/",
-      "publishedAt": "2026-11-07T05:00:00.000Z",
-      "score": 25,
-      "potential": "medium",
-      "hookIdea": "this dropped today and it changes how you'll work: university releases free AI literacy course.",
-      "tags": [
-        "education"
-      ]
-    },
-    {
-      "id": "trend_005",
-      "sourceId": "verge",
-      "title": "New AI video tool turns one photo into a 10-second clip",
-      "summary": "Creators get a beta with watermarking on by default.",
-      "url": "https://www.theverge.com/ai-artificial-intelligence",
-      "publishedAt": "2026-11-06T19:00:00.000Z",
-      "score": 30,
-      "potential": "medium",
-      "hookIdea": "here's the clear version of today's ai news: new AI video tool turns one photo into a 10-second clip.",
-      "tags": [
-        "video",
-        "creators"
-      ]
-    },
-    {
-      "id": "trend_012",
-      "sourceId": "reddit-ai",
-      "title": "Small language model runs on a laptop with no internet",
-      "summary": "The model targets offline note-taking and translation.",
-      "url": "https://www.reddit.com/r/artificial/",
-      "publishedAt": "2026-11-06T19:00:00.000Z",
-      "score": 0,
-      "potential": "low",
-      "hookIdea": "here's the clear version of today's ai news: small language model runs on a laptop with no internet.",
-      "tags": [
-        "models",
-        "local"
-      ]
-    },
-    {
-      "id": "trend_011",
-      "sourceId": "hn",
-      "title": "Music platform lets artists license their voice to AI",
-      "summary": "Artists set prices and approve each use.",
-      "url": "https://news.ycombinator.com/",
-      "publishedAt": "2026-11-06T10:00:00.000Z",
-      "score": 0,
-      "potential": "low",
-      "hookIdea": "here's the clear version of today's ai news: music platform lets artists license their voice to AI.",
-      "tags": [
-        "music",
-        "creators"
-      ]
-    },
-    {
-      "id": "trend_010",
-      "sourceId": "wired",
-      "title": "Researchers show AI agents can be tricked by hidden text",
-      "summary": "Prompt injection remains a top risk for agents that browse the web.",
-      "url": "https://www.wired.com/tag/artificial-intelligence/",
-      "publishedAt": "2026-11-06T05:00:00.000Z",
-      "score": 30,
-      "potential": "medium",
-      "hookIdea": "here's the clear version of today's ai news: researchers show AI agents can be tricked by hidden text.",
-      "tags": [
-        "safety",
-        "agents"
-      ]
+      "taggedBy": "rules"
     },
     {
       "id": "trend_019",
@@ -412,14 +86,298 @@
       "title": "Report: AI tools cut time spent on email by a third",
       "summary": "The survey covered 2,000 knowledge workers.",
       "url": "https://www.technologyreview.com/topic/artificial-intelligence/",
-      "publishedAt": "2026-11-06T00:00:00.000Z",
-      "score": 15,
-      "potential": "low",
+      "publishedAt": "2026-11-11T03:00:00.000Z",
+      "tag": "explainer",
+      "reason": "teaches a concept — better as a slower explainer than a hook",
+      "score": 30,
       "hookIdea": "here's the clear version of today's ai news: report: AI tools cut time spent on email by a third.",
-      "tags": [
-        "productivity",
-        "research"
-      ]
+      "taggedBy": "rules"
+    },
+    {
+      "id": "trend_018",
+      "sourceId": "techcrunch",
+      "title": "How context windows work, explained with diagrams",
+      "summary": "A long-form guide to why models forget earlier parts of a chat.",
+      "url": "https://techcrunch.com/category/artificial-intelligence/",
+      "publishedAt": "2026-11-11T01:00:00.000Z",
+      "tag": "explainer",
+      "reason": "teaches a concept — better as a slower explainer than a hook",
+      "score": 15,
+      "hookIdea": "here's the clear version of today's ai news: how context windows work, explained with diagrams.",
+      "taggedBy": "rules"
+    },
+    {
+      "id": "trend_013",
+      "sourceId": "openai",
+      "title": "Social app tests AI-written captions for creators",
+      "summary": "The test suggests captions and hashtags from the video's audio.",
+      "url": "https://openai.com/news/",
+      "publishedAt": "2026-11-10T19:00:00.000Z",
+      "tag": "skip",
+      "reason": "no stakes, names or news angle for a general audience",
+      "score": 25,
+      "hookIdea": "here's the clear version of today's ai news: social app tests AI-written captions for creators.",
+      "taggedBy": "rules"
+    },
+    {
+      "id": "trend_022",
+      "sourceId": "wired",
+      "title": "Ethics board publishes guidance on AI in hiring",
+      "summary": "The guidance recommends human review of every rejection.",
+      "url": "https://www.wired.com/tag/artificial-intelligence/",
+      "publishedAt": "2026-11-10T18:00:00.000Z",
+      "tag": "explainer",
+      "reason": "teaches a concept — better as a slower explainer than a hook",
+      "score": 15,
+      "hookIdea": "here's the clear version of today's ai news: ethics board publishes guidance on AI in hiring.",
+      "taggedBy": "rules"
+    },
+    {
+      "id": "trend_007",
+      "sourceId": "mit-tr",
+      "title": "Chip maker unveils accelerator 2x faster for inference",
+      "summary": "Shipments are expected next year; cloud providers have pre-ordered.",
+      "url": "https://www.technologyreview.com/topic/artificial-intelligence/",
+      "publishedAt": "2026-11-10T16:00:00.000Z",
+      "tag": "hook potential",
+      "reason": "brand-new + a number to hook on",
+      "score": 35,
+      "hookIdea": "this dropped today and it changes how you'll work: chip maker unveils accelerator 2x faster for inference.",
+      "taggedBy": "rules"
+    },
+    {
+      "id": "trend_020",
+      "sourceId": "venturebeat",
+      "title": "Robotics lab demos home robot folding laundry",
+      "summary": "The demo was teleoperated in parts, the lab said.",
+      "url": "https://venturebeat.com/category/ai/",
+      "publishedAt": "2026-11-10T16:00:00.000Z",
+      "tag": "skip",
+      "reason": "no stakes, names or news angle for a general audience",
+      "score": 25,
+      "hookIdea": "here's the clear version of today's ai news: robotics lab demos home robot folding laundry.",
+      "taggedBy": "rules"
+    },
+    {
+      "id": "trend_011",
+      "sourceId": "hn",
+      "title": "Music platform lets artists license their voice to AI",
+      "summary": "Artists set prices and approve each use.",
+      "url": "https://news.ycombinator.com/",
+      "publishedAt": "2026-11-10T13:00:00.000Z",
+      "tag": "skip",
+      "reason": "no stakes, names or news angle for a general audience",
+      "score": 15,
+      "hookIdea": "here's the clear version of today's ai news: music platform lets artists license their voice to AI.",
+      "taggedBy": "rules"
+    },
+    {
+      "id": "trend_005",
+      "sourceId": "verge",
+      "title": "New AI video tool turns one photo into a 10-second clip",
+      "summary": "Creators get a beta with watermarking on by default.",
+      "url": "https://www.theverge.com/ai-artificial-intelligence",
+      "publishedAt": "2026-11-10T06:00:00.000Z",
+      "tag": "hook potential",
+      "reason": "brand-new + a number to hook on",
+      "score": 38,
+      "hookIdea": "here's the clear version of today's ai news: new AI video tool turns one photo into a 10-second clip.",
+      "taggedBy": "rules"
+    },
+    {
+      "id": "trend_001",
+      "sourceId": "openai",
+      "title": "Major lab launches a free tier for its newest model",
+      "summary": "The company says the new tier includes limited daily use of its flagship model at no cost.",
+      "url": "https://openai.com/news/",
+      "publishedAt": "2026-11-10T00:00:00.000Z",
+      "tag": "hook potential",
+      "reason": "personal stakes + brand-new",
+      "score": 43,
+      "hookIdea": "this just got way cheaper — and nobody's talking about it: major lab launches a free tier for its newest model.",
+      "taggedBy": "rules"
+    },
+    {
+      "id": "trend_024",
+      "sourceId": "reddit-ai",
+      "title": "Image model learns to fix hands and text in pictures",
+      "summary": "Text rendering errors dropped sharply in the lab's tests.",
+      "url": "https://www.reddit.com/r/artificial/",
+      "publishedAt": "2026-11-09T23:00:00.000Z",
+      "tag": "skip",
+      "reason": "no stakes, names or news angle for a general audience",
+      "score": 18,
+      "hookIdea": "here's the clear version of today's ai news: image model learns to fix hands and text in pictures.",
+      "taggedBy": "rules"
+    },
+    {
+      "id": "trend_017",
+      "sourceId": "verge",
+      "title": "Search engine launches AI mode in 40 new countries",
+      "summary": "The mode answers with cited sources and follow-up questions.",
+      "url": "https://www.theverge.com/ai-artificial-intelligence",
+      "publishedAt": "2026-11-09T22:00:00.000Z",
+      "tag": "hook potential",
+      "reason": "brand-new + a number to hook on",
+      "score": 38,
+      "hookIdea": "this dropped today and it changes how you'll work: search engine launches AI mode in 40 new countries.",
+      "taggedBy": "rules"
+    },
+    {
+      "id": "trend_008",
+      "sourceId": "venturebeat",
+      "title": "Browser ships built-in AI that summarises any page",
+      "summary": "The feature is off by default and runs a small local model.",
+      "url": "https://venturebeat.com/category/ai/",
+      "publishedAt": "2026-11-09T21:00:00.000Z",
+      "tag": "skip",
+      "reason": "no stakes, names or news angle for a general audience",
+      "score": 18,
+      "hookIdea": "here's the clear version of today's ai news: browser ships built-in AI that summarises any page.",
+      "taggedBy": "rules"
+    },
+    {
+      "id": "trend_003",
+      "sourceId": "google-ai",
+      "title": "Phone maker adds on-device AI that reads your screen",
+      "summary": "The assistant can now act across apps, with processing kept on the device.",
+      "url": "https://blog.google/technology/ai/",
+      "publishedAt": "2026-11-09T19:00:00.000Z",
+      "tag": "skip",
+      "reason": "no stakes, names or news angle for a general audience",
+      "score": 28,
+      "hookIdea": "here's the clear version of today's ai news: phone maker adds on-device AI that reads your screen.",
+      "taggedBy": "rules"
+    },
+    {
+      "id": "trend_016",
+      "sourceId": "huggingface",
+      "title": "Lawsuit over AI-generated images moves to trial",
+      "summary": "The case could set rules for training on copyrighted art.",
+      "url": "https://huggingface.co/blog",
+      "publishedAt": "2026-11-09T19:00:00.000Z",
+      "tag": "skip",
+      "reason": "no stakes, names or news angle for a general audience",
+      "score": 23,
+      "hookIdea": "here's the clear version of today's ai news: lawsuit over AI-generated images moves to trial.",
+      "taggedBy": "rules"
+    },
+    {
+      "id": "trend_023",
+      "sourceId": "hn",
+      "title": "Vendor updates enterprise data connector pricing",
+      "summary": "Changes apply to annual contracts from next quarter.",
+      "url": "https://news.ycombinator.com/",
+      "publishedAt": "2026-11-09T13:00:00.000Z",
+      "tag": "skip",
+      "reason": "no stakes, names or news angle for a general audience",
+      "score": 8,
+      "hookIdea": "here's the clear version of today's ai news: vendor updates enterprise data connector pricing.",
+      "taggedBy": "rules"
+    },
+    {
+      "id": "trend_002",
+      "sourceId": "deepmind",
+      "title": "Open-source model beats closed rivals on 3 coding benchmarks",
+      "summary": "Researchers released weights under a permissive licence; results are self-reported.",
+      "url": "https://deepmind.google/discover/blog/",
+      "publishedAt": "2026-11-09T12:00:00.000Z",
+      "tag": "explainer",
+      "reason": "teaches a concept — better as a slower explainer than a hook",
+      "score": 28,
+      "hookIdea": "i tested it so you don't have to — open-source model beats closed rivals on 3 coding benchmarks.",
+      "taggedBy": "rules"
+    },
+    {
+      "id": "trend_009",
+      "sourceId": "ars",
+      "title": "AI note-takers compared: which one is worth paying for",
+      "summary": "A hands-on review across accuracy, privacy and price.",
+      "url": "https://arstechnica.com/ai/",
+      "publishedAt": "2026-11-09T09:00:00.000Z",
+      "tag": "hook potential",
+      "reason": "personal stakes",
+      "score": 38,
+      "hookIdea": "here's the clear version of today's ai news: aI note-takers compared: which one is worth paying for.",
+      "taggedBy": "rules"
+    },
+    {
+      "id": "trend_006",
+      "sourceId": "techcrunch",
+      "title": "Regulators open review into AI training on user posts",
+      "summary": "The review covers consent and opt-out flows on major social apps.",
+      "url": "https://techcrunch.com/category/artificial-intelligence/",
+      "publishedAt": "2026-11-09T08:00:00.000Z",
+      "tag": "explainer",
+      "reason": "teaches a concept — better as a slower explainer than a hook",
+      "score": 8,
+      "hookIdea": "here's the clear version of today's ai news: regulators open review into AI training on user posts.",
+      "taggedBy": "rules"
+    },
+    {
+      "id": "trend_012",
+      "sourceId": "reddit-ai",
+      "title": "Small language model runs on a laptop with no internet",
+      "summary": "The model targets offline note-taking and translation.",
+      "url": "https://www.reddit.com/r/artificial/",
+      "publishedAt": "2026-11-09T08:00:00.000Z",
+      "tag": "skip",
+      "reason": "no stakes, names or news angle for a general audience",
+      "score": 8,
+      "hookIdea": "here's the clear version of today's ai news: small language model runs on a laptop with no internet.",
+      "taggedBy": "rules"
+    },
+    {
+      "id": "trend_014",
+      "sourceId": "deepmind",
+      "title": "University releases free AI literacy course",
+      "summary": "Eight short lessons, no coding required.",
+      "url": "https://deepmind.google/discover/blog/",
+      "publishedAt": "2026-11-09T08:00:00.000Z",
+      "tag": "explainer",
+      "reason": "teaches a concept — better as a slower explainer than a hook",
+      "score": 33,
+      "hookIdea": "this dropped today and it changes how you'll work: university releases free AI literacy course.",
+      "taggedBy": "rules"
+    },
+    {
+      "id": "trend_021",
+      "sourceId": "ars",
+      "title": "Translation app adds real-time voice dubbing",
+      "summary": "The feature keeps the speaker's voice across 20 languages.",
+      "url": "https://arstechnica.com/ai/",
+      "publishedAt": "2026-11-09T07:00:00.000Z",
+      "tag": "skip",
+      "reason": "no stakes, names or news angle for a general audience",
+      "score": 18,
+      "hookIdea": "here's the clear version of today's ai news: translation app adds real-time voice dubbing.",
+      "taggedBy": "rules"
+    },
+    {
+      "id": "trend_015",
+      "sourceId": "google-ai",
+      "title": "Startup raises $200M to build AI for spreadsheets",
+      "summary": "The product turns plain-English questions into formulas and charts.",
+      "url": "https://blog.google/technology/ai/",
+      "publishedAt": "2026-11-09T06:00:00.000Z",
+      "tag": "hook potential",
+      "reason": "personal stakes + a number to hook on",
+      "score": 43,
+      "hookIdea": "here's the clear version of today's ai news: startup raises $200M to build AI for spreadsheets.",
+      "taggedBy": "rules"
+    },
+    {
+      "id": "trend_010",
+      "sourceId": "wired",
+      "title": "Researchers show AI agents can be tricked by hidden text",
+      "summary": "Prompt injection remains a top risk for agents that browse the web.",
+      "url": "https://www.wired.com/tag/artificial-intelligence/",
+      "publishedAt": "2026-11-08T23:00:00.000Z",
+      "tag": "hook potential",
+      "reason": "personal stakes",
+      "score": 38,
+      "hookIdea": "here's the clear version of today's ai news: researchers show AI agents can be tricked by hidden text.",
+      "taggedBy": "rules"
     }
   ]
 }

@@ -10,7 +10,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 
-export function AddHookDialog() {
+export function AddHookDialog({ niches }: { niches: string[] }) {
   const [open, setOpen] = useState(false);
   const [state, action, pending] = useActionState<SaveHookState, FormData>(saveHookAction, { ok: false, message: "" });
   const formRef = useRef<HTMLFormElement>(null);
@@ -44,7 +44,7 @@ export function AddHookDialog() {
           </div>
           <div className="grid gap-2">
             <Label htmlFor="template">template (optional)</Label>
-            <Textarea id="template" name="template" placeholder="auto: nobody is talking about [thing]…" />
+            <Textarea id="template" name="template" placeholder="auto: e.g. [x] just killed [y]" />
           </div>
           <div className="grid gap-4 sm:grid-cols-2">
             <div className="grid gap-2">
@@ -71,8 +71,13 @@ export function AddHookDialog() {
             </div>
           </div>
           <div className="grid gap-2">
-            <Label htmlFor="tags">tags (comma separated)</Label>
-            <Input id="tags" name="tags" placeholder="ai tools, list" />
+            <Label htmlFor="niche">niche (optional — guessed if empty)</Label>
+            <Input id="niche" name="niche" list="niche-options" placeholder="ai tools" />
+            <datalist id="niche-options">
+              {niches.map((n) => (
+                <option key={n} value={n} />
+              ))}
+            </datalist>
           </div>
           {state.message && !state.ok ? <p className="text-sm text-destructive">{state.message}</p> : null}
           <DialogFooter>

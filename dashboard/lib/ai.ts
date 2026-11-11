@@ -1,167 +1,258 @@
 /**
  * Claude-powered helpers, each with a deterministic fallback so the dashboard
- * works with no API key (and in tests).
+ * and the scheduled jobs work with no API key.
  *
- * Decision: Claude Opus 5.5 at low effort. These are short, high-volume
- * writing tasks where low effort holds quality; raise `effort` if captions
- * feel thin. Server-side refusal fallbacks are on (`fallbacks: "default"`), so
- * a declined request is retried on another model inside the same call.
- * Structured outputs (zod) guarantee the JSON shape we render.
+ * Imported by the Next.js app AND by scripts under plain Node, so relative
+ * imports carry explicit .ts extensions.
+ *
+ * Decision: Claude Opus 5.5 at low effort for these short writing / labelling
+ * tasks (raise `effort` if output feels thin). Server-side refusal fallbacks
+ * are on (`fallbacks: "default"`), and structured outputs (zod) guarantee the
+ * JSON shape we store.
  */
 import Anthropic from "@anthropic-ai/sdk";
 import { betaZodOutputFormat } from "@anthropic-ai/sdk/helpers/beta/zod";
 import { z } from "zod";
-import { PLATFORMS, type HookFormat, type Platform } from "./types";
-import { hookFormatSchema, platformSchema } from "./schemas";
+import type { HookFormat, Platform, PostFormat, TrendTag } from "./types.ts";
+import { hookFormatSchema, platformSchema } from "./schemas.ts";
 
 const MODEL = "claude-opus-5-5";
+const BETAS = ["server-side-fallback-2026-07-01"];
 
 const BRAND_VOICE = `You write for "the clear code." (@theclearcode), a creator who explains AI clearly for non-technical people.
-Voice: between professional and playful; warm, bold, a little cheeky. Write in lower-case, like the brand.
-No corporate filler, no "unlock", "game-changer", "dive in" or "in today's fast-paced world". Short sentences.`;
+Voice: between professional and playful; warm, bold, a little cheeky. Lower-case, like the brand.
+No corporate filler ("unlock", "game-changer", "dive in", "in today's fast-paced world"). Short sentences.`;
 
 let client: Anthropic | null = null;
 function getClient() {
   // Credentials resolve from ANTHROPIC_API_KEY / ANTHROPIC_AUTH_TOKEN / an `ant auth login` profile.
-  client ??= new Anthropic({ timeout: 60_000, maxRetries: 1 });
+  client ??= new Anthropic({ timeout: 90_000, maxRetries: 1 });
   return client;
 }
 
 export type AiSource = "claude" | "template";
 
-/* ---------------- captions ---------------- */
+/** One structured-output call. Throws on refusal or missing output so callers fall back. */
+async function ask<T extends z.ZodType>(schema: T, content: Anthropic.Beta.BetaContentBlockParam[] | string, system?: string) {
+  const response = await getClient().beta.messages.parse({
+    model: MODEL,
+    max_tokens: 8000,
+    betas: BETAS,
+    fallbacks: "default",
+    output_config: { effort: "low", format: betaZodOutputFormat(schema) },
+    ...(system ? { system } : {}),
+    messages: [{ role: "user", content }],
+  });
+  if (response.stop_reason === "refusal") throw new Error("Claude declined this request");
+  if (!response.parsed_output) throw new Error("no structured output");
+  return response.parsed_output as z.infer<T>;
+}
 
-const captionsSchema = z.object({
-  captions: z.array(z.object({ platform: platformSchema, caption: z.string() })),
-});
+export function describeAiError(err: unknown) {
+  if (err instanceof Anthropic.AuthenticationError) return "Anthropic key rejected — used templates";
+  if (err instanceof Anthropic.RateLimitError) return "Claude rate-limited — used templates";
+  if (err instanceof Anthropic.APIError) return `Claude API error ${err.status} — used templates`;
+  if (err instanceof Error && /authentication/i.test(err.message)) return "no ANTHROPIC_API_KEY set — used templates";
+  if (err instanceof Error) return `${err.message} — used templates`;
+  return "Claude unavailable — used templates";
+}
+
+/* ---------------- captions (scheduler) ---------------- */
+
+export interface CaptionInput {
+  title: string;
+  hook: string;
+  angle: string;
+  cta: string;
+  format: PostFormat;
+  platforms: Platform[];
+}
 
 const PLATFORM_RULES: Record<Platform, string> = {
-  instagram: "Instagram Reels: 1–3 short lines, a save/share prompt, 3–5 hashtags at the end including #theclearcode.",
-  tiktok: "TikTok: one punchy line under 150 characters plus 2–4 hashtags.",
-  youtube: "YouTube Shorts title: under 90 characters, no hashtags, curiosity-led.",
-  linkedin: "LinkedIn: 3–5 short lines, a practical takeaway, no hashtags or at most 2.",
-  x: "X: under 260 characters, one line, at most 1 hashtag.",
+  instagram:
+    "Instagram: open with the hook as the first line (it shows before 'more'), 2–4 short lines that deliver the angle, end with the CTA, then 3–5 hashtags including #theclearcode. For a carousel, tease the slides ('swipe →').",
+  tiktok: "TikTok: the hook in one punchy line, one line of angle, the CTA, then 2–4 hashtags. Under 300 characters.",
 };
 
-export async function generateCaptions(input: { title: string; brief: string; platforms: Platform[] }): Promise<{
+export async function generateCaptions(input: CaptionInput): Promise<{
   captions: Partial<Record<Platform, string>>;
   source: AiSource;
   error?: string;
 }> {
   try {
-    const response = await getClient().beta.messages.parse({
-      model: MODEL,
-      max_tokens: 4000,
-      betas: ["server-side-fallback-2026-07-01"],
-      fallbacks: "default",
-      output_config: { effort: "low", format: betaZodOutputFormat(captionsSchema) },
-      system: BRAND_VOICE,
-      messages: [
-        {
-          role: "user",
-          content: `Write one caption per platform for this short-form video.
+    const out = await ask(
+      z.object({ captions: z.array(z.object({ platform: platformSchema, caption: z.string() })) }),
+      `Write one caption per platform for this ${input.format}.
 
-<video>
+<post>
 title: ${input.title}
-brief: ${input.brief || "(none)"}
-</video>
+hook: ${input.hook}
+angle: ${input.angle || "(none)"}
+cta: ${input.cta || "(none — pick a save or follow prompt)"}
+</post>
 
-Platform rules:
-${input.platforms.map((p) => `- ${p}: ${PLATFORM_RULES[p]}`).join("\n")}
+Rules:
+${input.platforms.map((p) => `- ${PLATFORM_RULES[p]}`).join("\n")}
 
-Return a caption for exactly these platforms: ${input.platforms.join(", ")}.`,
-        },
-      ],
-    });
-    if (response.stop_reason === "refusal" || !response.parsed_output) {
-      throw new Error(response.stop_reason === "refusal" ? "Claude declined this request" : "no structured output");
-    }
+Return exactly these platforms: ${input.platforms.join(", ")}.`,
+      BRAND_VOICE,
+    );
     const captions: Partial<Record<Platform, string>> = {};
-    for (const { platform, caption } of response.parsed_output.captions) {
-      if (input.platforms.includes(platform)) captions[platform] = caption.trim();
-    }
+    for (const { platform, caption } of out.captions) if (input.platforms.includes(platform)) captions[platform] = caption.trim();
+    if (input.platforms.some((p) => !captions[p])) throw new Error("missing a platform caption");
     return { captions, source: "claude" };
   } catch (err) {
-    return { captions: templateCaptions(input), source: "template", error: describe(err) };
+    return { captions: templateCaptions(input), source: "template", error: describeAiError(err) };
   }
 }
 
-/** Deterministic captions used when Claude isn't available. */
-export function templateCaptions({ title, brief, platforms }: { title: string; brief: string; platforms: Platform[] }) {
-  const t = title.toLowerCase().trim();
-  const line = brief.trim().split(/[.\n]/)[0]?.toLowerCase().trim();
+/** Deterministic captions: hook + angle + CTA + tags. */
+export function templateCaptions({ hook, angle, cta, format, platforms }: CaptionInput) {
+  const h = hook.trim().replace(/\s+/g, " ");
+  const a = angle.trim();
+  const c = cta.trim() || (format === "carousel" ? "save this for later 📌" : "follow for the clear version of ai 🧠");
   const out: Partial<Record<Platform, string>> = {};
   for (const p of platforms) {
-    const limit = PLATFORMS.find((x) => x.id === p)!.captionLimit;
-    const text = {
-      instagram: `${t}.${line ? `\n\n${line}.` : ""}\n\nsave this for later and send it to the friend who needs it 🧠\n\n#ai #aitools #learnai #theclearcode`,
-      tiktok: `${t} 👀 #ai #aitools #learnontiktok`,
-      youtube: t.length > 90 ? `${t.slice(0, 87)}…` : t,
-      linkedin: `${t}.${line ? `\n\n${line}.` : ""}\n\nthe short version: you don't need to be technical to use this well.`,
-      x: `${t}${line ? ` — ${line}` : ""}`,
-    }[p];
-    out[p] = text.slice(0, limit);
+    out[p] =
+      p === "instagram"
+        ? [h, a, format === "carousel" ? "swipe →" : "", c, "#ai #aitools #learnai #theclearcode"].filter(Boolean).join("\n\n")
+        : [h, a ? a.split(/[.\n]/)[0] : "", c, "#ai #learnontiktok"].filter(Boolean).join(" · ").slice(0, 2200);
   }
   return out;
 }
 
-/* ---------------- hook templating ---------------- */
+/* ---------------- hook templating (hook vault) ---------------- */
 
-const templateSchema = z.object({ template: z.string(), format: hookFormatSchema });
-
-export async function templateHook(transcript: string): Promise<{ template: string; format: HookFormat; source: AiSource }> {
+export async function templateHook(
+  transcript: string,
+  niche?: string,
+): Promise<{ template: string; format: HookFormat; niche: string; source: AiSource }> {
   try {
-    const response = await getClient().beta.messages.parse({
-      model: MODEL,
-      max_tokens: 2000,
-      betas: ["server-side-fallback-2026-07-01"],
-      fallbacks: "default",
-      output_config: { effort: "low", format: betaZodOutputFormat(templateSchema) },
-      messages: [
-        {
-          role: "user",
-          content: `Turn this viral video hook into a reusable template.
-Replace the specific parts (tools, numbers, audiences, results, time frames) with short [bracketed placeholders]; keep the structure and the words that make it work.
-Also classify its format: curiosity, contrarian, listicle, story, pov, how-to, result-first or callout.
+    const out = await ask(
+      z.object({ template: z.string(), format: hookFormatSchema, niche: z.string() }),
+      `Turn this viral video hook into a reusable template.
+
+Keep the structure and the words that make it work; replace the specifics with short [bracketed] slots.
+Use these canonical slot names where they fit: [x], [y], [number], [tool], [audience], [result], [time].
+Examples:
+- "ChatGPT just killed Google search" → "[x] just killed [y]"
+- "Stop doing your own captions" → "stop doing [x]"
+- "5 things I wish I knew before freelancing" → "[number] things i wish i knew before [x]"
+
+Also give its format (curiosity, contrarian, listicle, story, pov, how-to, result-first, callout or news)
+and a 1–3 word lower-case niche${niche ? ` (the creator's niche is "${niche}" — use it unless the hook is clearly about something else)` : ""}.
 
 <hook>${transcript}</hook>`,
-        },
-      ],
-    });
-    if (response.stop_reason === "refusal" || !response.parsed_output) throw new Error("no output");
-    return { ...response.parsed_output, source: "claude" };
+    );
+    return { ...out, niche: out.niche.toLowerCase(), source: "claude" };
   } catch {
-    return { ...heuristicTemplate(transcript), source: "template" };
+    return { ...heuristicTemplate(transcript), niche: niche ?? "general", source: "template" };
   }
 }
 
-const TOOLS = /\b(chatgpt|claude|gemini|copilot|midjourney|notion|canva|capcut|perplexity|grok|llama|ai)\b/gi;
+/** Known hook archetypes first (the shapes worth naming), then generic slot replacement. */
+const tail = (rest: string) => {
+  const m = rest.trim().match(/^(before|about|when|as|at)\b/i);
+  return m ? ` ${m[1].toLowerCase()} [x]` : "";
+};
+const ARCHETYPES: [RegExp, (m: RegExpMatchArray) => string, HookFormat][] = [
+  [/^(.+?)\s+just\s+(killed|replaced|ended|broke|changed)\s+(.+?)([.!?]|$)/i, (m) => `[x] just ${m[2].toLowerCase()} [y]`, "news"],
+  [/^stop\s+(doing|using|saying|making|posting|buying)\s+(.+?)([.!?]|$)/i, (m) => `stop ${m[1].toLowerCase()} [x]`, "contrarian"],
+  [/^(\d+|three|five|seven|ten)\s+things\s+i\s+wish\s+i\s+(knew|had known)\b(.*?)([.!?]|$)/i, (m) => `[number] things i wish i knew${tail(m[3])}`, "listicle"],
+  [/^(\d+|three|five|ten)\s+(.+?)\s+that\s+feel\s+illegal\s+to\s+know/i, () => "[number] [x] that feel illegal to know", "listicle"],
+  [/^nobody\s+(is\s+talking|talks)\s+about\s+(.+?)([.!?]|$)/i, () => "nobody is talking about [x]", "curiosity"],
+  [/^if\s+you('re| are)\s+(.+?),\s*(.+)$/i, (m) => `if you're [audience], ${m[3].replace(/\.$/, "")}`, "callout"],
+  [/^pov:\s*(.+)$/i, () => "pov: [x]", "pov"],
+];
 
 export function heuristicTemplate(transcript: string): { template: string; format: HookFormat } {
-  const template = transcript
+  const t = transcript.trim();
+  for (const [re, build, format] of ARCHETYPES) {
+    const m = t.match(re);
+    if (m) return { template: genericSlots(build(m)), format };
+  }
+  return { template: genericSlots(t), format: guessFormat(t) };
+}
+
+const TOOLS = /\b(chatgpt|claude|gemini|copilot|midjourney|notion|canva|capcut|perplexity|grok|llama)\b/gi;
+function genericSlots(s: string) {
+  return s
     .replace(TOOLS, "[tool]")
-    .replace(/\bin (under )?\d+\s?(seconds?|minutes?|mins?|hours?|days?)\b/gi, "in $1[short time]")
+    .replace(/\bin (under )?\d+\s?(seconds?|minutes?|mins?|hours?|days?)\b/gi, "in $1[time]")
     .replace(/\b(20\d\d)\b/g, "[year]")
-    .replace(/\b\d+(\.\d+)?(%|x|k|m)?\b/gi, "[number]");
-  return { template, format: guessFormat(transcript) };
+    .replace(/(?<!\[)\b\d+(\.\d+)?(%|x|k|m)?\b(?![^[]*\])/gi, "[number]");
 }
 
 export function guessFormat(t: string): HookFormat {
   const s = t.toLowerCase();
   if (s.startsWith("pov")) return "pov";
   if (/^(stop|don't|you don't|unpopular|nobody needs)/.test(s)) return "contrarian";
+  if (/^(i |last |when i)/.test(s)) return /\b(replaced|made|saved|shipped|built)\b/.test(s) ? "result-first" : "story";
   if (/^\d+|\b\d+ (ways|tools|things|prompts|words|apps)\b/.test(s)) return "listicle";
   if (/^(here's how|how to|how i)/.test(s)) return "how-to";
   if (/^if you('re| are)/.test(s)) return "callout";
-  if (/^(i |last |when i)/.test(s)) return /\b(replaced|made|saved|shipped|built)\b/.test(s) ? "result-first" : "story";
+  if (/\bjust (killed|launched|dropped|replaced)\b/.test(s)) return "news";
   return "curiosity";
 }
 
-function describe(err: unknown) {
-  if (err instanceof Anthropic.AuthenticationError) return "no valid Anthropic credentials — using templates";
-  if (err instanceof Anthropic.RateLimitError) return "rate limited — using templates";
-  if (err instanceof Anthropic.APIError) return `Claude API error ${err.status} — using templates`;
-  if (err instanceof Error && /authentication/i.test(err.message)) return "no ANTHROPIC_API_KEY set — using templates";
-  if (err instanceof Error) return `${err.message} — using templates`;
-  return "Claude unavailable — using templates";
+/* ---------------- on-screen text (competitor scrape) ---------------- */
+
+/** Read the text burned into the opening frames of a reel. Returns "" when there is none. */
+export async function readOnScreenText(framesJpeg: Buffer[]): Promise<string> {
+  const out = await ask(z.object({ text: z.string() }), [
+    ...framesJpeg.map((data) => ({
+      type: "image" as const,
+      source: { type: "base64" as const, media_type: "image/jpeg" as const, data: data.toString("base64") },
+    })),
+    {
+      type: "text" as const,
+      text: `These are frames from the first 3 seconds of a short-form video, in order.
+Transcribe the on-screen text overlay (the title or hook text added in editing) exactly as written, once, even if it repeats across frames.
+Ignore captions/subtitles that simply mirror speech, app UI, watermarks and usernames. If there is no overlay text, return an empty string.`,
+    },
+  ]);
+  return out.text.trim();
+}
+
+/* ---------------- trend tagging ---------------- */
+
+export async function tagTrends(
+  items: { id: string; title: string; summary: string }[],
+): Promise<Map<string, { tag: TrendTag; reason: string; hookIdea: string }>> {
+  const out = await ask(
+    z.object({
+      items: z.array(
+        z.object({ id: z.string(), tag: z.enum(["hook potential", "explainer", "skip"]), reason: z.string(), hookIdea: z.string() }),
+      ),
+    }),
+    `Tag each AI news item for a short-form creator who explains AI to non-technical people.
+
+- "hook potential": a viewer would stop scrolling in the first 2 seconds — personal stakes, a famous name, a surprising number, a fight, or news they'll hear about elsewhere today.
+- "explainer": worth covering, but it needs a slower "here's what this means" video, not a punchy hook.
+- "skip": niche, incremental, B2B, or not interesting to a general audience.
+
+For each item give a one-line reason (under 15 words) and a hookIdea: the first line the creator would say to camera, lower-case, under 20 words.
+
+<items>
+${items.map((i) => `<item id="${i.id}"><title>${i.title}</title><summary>${i.summary}</summary></item>`).join("\n")}
+</items>`,
+    BRAND_VOICE,
+  );
+  return new Map(out.items.map((i) => [i.id, { tag: i.tag, reason: i.reason, hookIdea: i.hookIdea }]));
+}
+
+/* ---------------- why a reel popped (analytics) ---------------- */
+
+export async function explainHeaters(
+  reels: { id: string; hook: string; title: string; stats: string }[],
+): Promise<Map<string, string>> {
+  const out = await ask(
+    z.object({ notes: z.array(z.object({ id: z.string(), note: z.string() })) }),
+    `Each reel below beat the creator's 30-day median views by at least 2×. For each one, write ONE line (under 18 words, lower-case)
+on what most likely made it pop. Ground it in the numbers given (which rate stands out vs their average) and the hook's structure.
+Don't invent facts beyond what's given.
+
+${reels.map((r) => `<reel id="${r.id}"><title>${r.title}</title><hook>${r.hook}</hook><stats>${r.stats}</stats></reel>`).join("\n")}`,
+  );
+  return new Map(out.notes.map((n) => [n.id, n.note]));
 }

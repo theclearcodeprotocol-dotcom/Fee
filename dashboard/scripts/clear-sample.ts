@@ -25,6 +25,7 @@ for (const [name, keys] of Object.entries(LISTS)) {
     continue;
   }
   for (const k of keys) file[k] = [];
+  if (name === "competitors") console.log("  → replace the 8 sample handles in data/competitors.json → creators with the accounts you follow");
   file.meta = { sample: false, source: "cleared — waiting for real data", updatedAt: new Date().toISOString() };
   await writeFile(path, JSON.stringify(file, null, 2) + "\n");
   console.log(`cleared data/${name}.json`);

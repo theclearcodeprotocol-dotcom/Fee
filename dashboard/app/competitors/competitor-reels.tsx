@@ -1,77 +1,107 @@
 "use client";
 
-import { useState } from "react";
-import { ExternalLink } from "lucide-react";
-import type { CompetitorReel } from "@/lib/types";
-import { formatCompact, formatDate } from "@/lib/utils";
-import { Badge } from "@/components/ui/badge";
-import { Card, CardContent, CardHeader, CardTitle, CardAction } from "@/components/ui/card";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { useState, useTransition } from "react";
+import { Check, ExternalLink, Plus } from "lucide-react";
+import type { CompetitorReel, TrackedCreator } from "@/lib/types";
+import { cn, formatCompact, formatDate } from "@/lib/utils";
+import { saveReelToVaultAction } from "@/app/actions/hooks";
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
 
-type Row = CompetitorReel & { multiple: number; creatorName: string };
+type Row = CompetitorReel & { followers: number; creatorName: string; saved: boolean };
 
-export function CompetitorReels({ rows, creators }: { rows: Row[]; creators: { handle: string; name: string }[] }) {
-  const [creator, setCreator] = useState("all");
-  const visible = creator === "all" ? rows : rows.filter((r) => r.creator === creator);
+function SaveButton({ row }: { row: Row }) {
+  const [pending, start] = useTransition();
+  const [msg, setMsg] = useState<string | null>(null);
+  if (row.saved) {
+    return (
+      <Button variant="secondary" size="sm" disabled>
+        <Check /> in hook vault
+      </Button>
+    );
+  }
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle>top reels this week</CardTitle>
-        <CardAction>
-          <Select value={creator} onValueChange={setCreator}>
-            <SelectTrigger className="w-44" aria-label="Filter by creator">
-              <SelectValue />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="all">all creators</SelectItem>
-              {creators.map((c) => (
-                <SelectItem key={c.handle} value={c.handle}>
-                  {c.name}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-        </CardAction>
-      </CardHeader>
-      <CardContent className="px-2 sm:px-5">
-        <Table>
-          <TableHeader>
-            <TableRow>
-              <TableHead>outlier</TableHead>
-              <TableHead>hook</TableHead>
-              <TableHead>creator</TableHead>
-              <TableHead className="text-right">views</TableHead>
-              <TableHead className="text-right">likes</TableHead>
-              <TableHead className="text-right">comments</TableHead>
-              <TableHead>posted</TableHead>
-              <TableHead className="sr-only">link</TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {visible.map((r) => (
-              <TableRow key={r.id}>
-                <TableCell>
-                  <Badge variant={r.multiple >= 2 ? "default" : r.multiple >= 1 ? "secondary" : "muted"}>{r.multiple.toFixed(1)}×</Badge>
-                </TableCell>
-                <TableCell className="min-w-64 font-medium">{r.hook}</TableCell>
-                <TableCell className="whitespace-nowrap text-muted-foreground">{r.creatorName}</TableCell>
-                <TableCell className="text-right tabular-nums">{formatCompact(r.views)}</TableCell>
-                <TableCell className="text-right tabular-nums">{formatCompact(r.likes)}</TableCell>
-                <TableCell className="text-right tabular-nums">{formatCompact(r.comments)}</TableCell>
-                <TableCell className="whitespace-nowrap text-muted-foreground">{formatDate(r.postedAt)}</TableCell>
-                <TableCell>
-                  {r.url ? (
-                    <a href={r.url} target="_blank" rel="noreferrer" className="text-primary" aria-label="Open reel">
-                      <ExternalLink className="size-4" />
+    <div className="flex flex-col items-start gap-1 sm:items-end">
+      <Button size="sm" disabled={pending} onClick={() => start(async () => setMsg((await saveReelToVaultAction(row.id)).message))}>
+        <Plus /> {pending ? "saving…" : "save to hook vault"}
+      </Button>
+      {msg ? <span className="text-xs text-muted-foreground">{msg}</span> : null}
+    </div>
+  );
+}
+
+export function CompetitorReels({ rows, creators }: { rows: Row[]; creators: TrackedCreator[] }) {
+  const [creator, setCreator] = useState<string | null>(null);
+  const visible = creator ? rows.filter((r) => r.creator === creator) : rows;
+
+  return (
+    <div className="space-y-4">
+      <div className="flex flex-wrap gap-1.5" role="group" aria-label="Filter by creator">
+        <button
+          onClick={() => setCreator(null)}
+          aria-pressed={!creator}
+          className={cn("rounded-full border px-3 py-1 text-sm", !creator ? "border-primary bg-primary text-primary-foreground" : "bg-card hover:bg-accent")}
+        >
+          all {rows.length}
+        </button>
+        {creators.map((c) => (
+          <button
+            key={c.handle}
+            onClick={() => setCreator(creator === c.handle ? null : c.handle)}
+            aria-pressed={creator === c.handle}
+            className={cn(
+              "rounded-full border px-3 py-1 text-sm",
+              creator === c.handle ? "border-primary bg-primary text-primary-foreground" : "bg-card hover:bg-accent",
+            )}
+          >
+            {c.handle} <span className="opacity-70">{formatCompact(c.followers)}</span>
+          </button>
+        ))}
+      </div>
+
+      <Card className="gap-0 py-0">
+        <ol>
+          {visible.map((r, i) => (
+            <li key={r.id} className="grid gap-3 border-b p-4 last:border-b-0 sm:grid-cols-[2.5rem_1fr_auto] sm:items-start sm:p-5">
+              <span className="font-heading text-2xl leading-none text-primary/40" aria-hidden>
+                {i + 1}
+              </span>
+              <div className="min-w-0 space-y-2">
+                <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+                  <span className="font-heading text-2xl leading-none text-primary">{formatCompact(r.views)}</span>
+                  <span className="text-xs uppercase tracking-wider text-muted-foreground">views</span>
+                  <span className="font-medium">{r.creator}</span>
+                  <span className="text-sm text-muted-foreground">{formatCompact(r.followers)} followers · posted {formatDate(r.postedAt)}</span>
+                </div>
+                <div>
+                  <p className="text-[0.7rem] uppercase tracking-wider text-muted-foreground">hook</p>
+                  <p className="font-heading text-lg leading-snug text-primary">“{r.hook}”</p>
+                </div>
+                <div className="grid gap-2 text-sm sm:grid-cols-2">
+                  <div className="rounded-lg bg-muted/70 p-2.5">
+                    <p className="text-[0.7rem] uppercase tracking-wider text-muted-foreground">on-screen text</p>
+                    <p>{r.onScreenText || <span className="text-muted-foreground">none</span>}</p>
+                  </div>
+                  <div className="rounded-lg bg-muted/70 p-2.5">
+                    <p className="text-[0.7rem] uppercase tracking-wider text-muted-foreground">transcript (opening)</p>
+                    <p className="line-clamp-3">{r.transcript}</p>
+                  </div>
+                </div>
+              </div>
+              <div className="flex items-center gap-1 sm:flex-col sm:items-end">
+                <SaveButton row={r} />
+                {r.url ? (
+                  <Button variant="ghost" size="sm" asChild>
+                    <a href={r.url} target="_blank" rel="noreferrer">
+                      <ExternalLink /> open reel
                     </a>
-                  ) : null}
-                </TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </CardContent>
-    </Card>
+                  </Button>
+                ) : null}
+              </div>
+            </li>
+          ))}
+        </ol>
+      </Card>
+    </div>
   );
 }

@@ -1,165 +1,227 @@
 # the clear code. — content dashboard
 
-The content dashboard for @theclearcode. It has six pages, all served from this folder.
-The repo root is a separate HyperFrames video project: its own CLAUDE.md covers that, and
-none of its rules (the GSAP timelines, `npm run check`) apply here.
+This is the content dashboard for @theclearcode. It has six pages and a set of scheduled
+jobs, all in this folder. The repo root is a separate HyperFrames video project with its own
+CLAUDE.md, and none of that project's rules (GSAP timelines, `npm run check`) apply here.
 
-| Page | Route | Data file | Filled by |
+| Page | Route | Data | Filled by |
 |---|---|---|---|
-| hook vault | `/hooks` | `data/hooks.json` | the "add hook" dialog, `POST /api/hooks`, `npm run hooks:transcribe` (ElevenLabs) |
-| analytics | `/analytics` | `data/analytics.json` | sample data for now. Connect Instagram, see "Not wired yet" |
-| competitive tracker | `/competitors` | `data/competitors.json` | `npm run scrape:competitors` (Apify), weekly |
-| scheduler | `/scheduler` | `data/scheduled.json` | the composer, with captions from `POST /api/captions` (Claude) |
-| content calendar | `/calendar` | `data/calendar.json` | the `/script` skill (`../.claude/skills/script/SKILL.md`), or `POST /api/calendar` |
-| what's trending | `/trending` | `data/trending.json` | `npm run trending:fetch` (12 RSS feeds) |
+| hook vault | `/hooks` | `data/hooks.json`, `data/script-queue.json` | "add hook", `npm run hooks:transcribe`, "save to hook vault" on the competitor page |
+| analytics | `/analytics?range=7\|30\|90` | `data/analytics.json` | `analytics:fetch`, daily 05:30 |
+| competitor tracker | `/competitors` | `data/competitors.json` | `scrape:competitors`, Sunday 06:00 |
+| scheduler | `/scheduler` | `data/scheduled.json` | "schedule with claude" (from calendar entries), then your approval; `publish:due` every 5 min |
+| content calendar | `/calendar?month=YYYY-MM` | `data/calendar.json` + `../content/scripts/*.md` | the `/script` skill (`../.claude/skills/script/SKILL.md`), "quick post" |
+| what's trending | `/trending` | `data/trending.json` | `trending:fetch` daily 06:40; `trending:slack` at 07:00 |
 
-`/` redirects to `/hooks`.
+## How the pieces connect
+
+```
+competitor scrape ──save to hook vault──▶ hook vault ──use this──▶ /script ──▶ calendar entry (+ script file)
+trending (hook potential) ─────────────────────────────────────────▲               │
+                                                                         scheduler: claude drafts captions
+                                                                         from hook + angle + cta
+                                                                                       │ you approve
+                                                                         publish:due ──▶ Instagram / TikTok
+analytics ◀── Instagram (daily)                                                         │
+                                                                         calendar entry → posted
+```
 
 ## Stack
 
-- **Next.js 16** (App Router, React 19, Turbopack) and **TypeScript 5**. TypeScript 7 was
-  skipped on purpose because Next's type-check step still uses the TS 5 compiler API.
-- **Tailwind CSS v4**, set up CSS-first in `app/globals.css` with `@theme inline`. There is
-  no `tailwind.config`.
-- **shadcn/ui** (new-york style, unified `radix-ui` package, lucide icons). The components
-  are in `components/ui/` and `components.json` is set up, so `npx shadcn@latest add <name>`
-  works. The first components were written by hand from shadcn's source because the build
-  sandbox couldn't reach the registry. Keep using `data-slot` and `cn()` the same way when
-  you add more.
-- **Recharts** for the analytics charts (`app/analytics/charts.tsx`).
-- **zod v4** checks every form and API input (`lib/schemas.ts`).
-- **@anthropic-ai/sdk** for captions and hook templates (`lib/ai.ts`).
-- **Node ≥ 22.18**. Scripts in `scripts/*.ts` run with plain `node`, which strips the
-  types itself. There is no tsx or ts-node. Any file a script imports (`lib/types.ts`,
-  `lib/hook-potential.ts`, `lib/trend-sources.ts`) must stay free of dependencies and
-  import other files with an explicit `.ts` extension. `allowImportingTsExtensions` is on
-  for this reason.
+- **Next.js 16** (App Router, React 19, Turbopack) with **TypeScript 5**. TS 7 is skipped
+  because Next's type-check step still uses the TS 5 API.
+- **Tailwind CSS v4**, configured CSS-first in `app/globals.css` (`@theme inline`, no
+  `tailwind.config`).
+- **shadcn/ui** (new-york style, unified `radix-ui` package, lucide icons). Components live in
+  `components/ui/`. `components.json` is set up, so `npx shadcn@latest add <name>` works. The
+  first components were written by hand from shadcn's source because the build sandbox
+  couldn't reach the registry.
+- **Recharts** for the sparklines (`app/analytics/sparkline.tsx`).
+- **zod v4** checks every input (`lib/schemas.ts`).
+- **@anthropic-ai/sdk** for captions, hook templates, on-screen text, trend tags and heater
+  notes (`lib/ai.ts`).
+- **Node ≥ 22.18.** Jobs in `scripts/*.ts` run with plain `node` (built-in type stripping) and
+  load `.env.local` via `--env-file-if-exists`. Anything a script imports from `lib/` must use
+  explicit `.ts` extensions on relative imports (`allowImportingTsExtensions` is on) and must
+  not use the `@/` alias. `lib/media.ts` and `lib/publish/*` are script-only.
+- **ffmpeg** for the competitor scrape and `hooks:transcribe`.
 
 ```bash
 npm install
-npm run dev                 # http://localhost:3000
-npm run build && npm start  # production
+npm run dev                         # http://localhost:3000
+npm run build && npm start
 npm run typecheck
-npm run seed                # rewrite data/*.json with deterministic SAMPLE data
-npm run data:clear-sample   # empty the sample data once real sources are connected
-npm run trending:fetch      # pull the 12 feeds → data/trending.json
-npm run scrape:competitors  # APIFY_TOKEN=… → data/competitors.json
-npm run hooks:transcribe -- clip.mp4 --creator @handle   # ElevenLabs → hook vault (dev server must be running)
+npm run seed                        # deterministic SAMPLE data in data/*.json
+npm run data:clear-sample           # empty the samples once real sources are connected
+
+npm run hooks:transcribe -- clip.mp4 --creator @handle [--niche "ai tools"]
+npm run analytics:fetch
+npm run scrape:competitors
+npm run trending:fetch
+npm run trending:slack [-- --print]
+npm run publish:due [-- --dry-run]
+npm run schedule:install            # put all of the above on their timers (crontab)
+npm run schedule:remove
 ```
 
-Environment variables (put them in `.env.local`, which git ignores):
+### Environment (`.env.local`, gitignored)
 
-| Var | Used by | Notes |
-|---|---|---|
-| `ANTHROPIC_API_KEY` | captions, hook templates | optional. Without it the app uses built-in templates and says so in the UI |
-| `ELEVENLABS_API_KEY` | `hooks:transcribe` | the network proxy adds it in Fee cloud sessions |
-| `APIFY_TOKEN` | `scrape:competitors` | |
+| Var | Used by |
+|---|---|
+| `ANTHROPIC_API_KEY` | everything Claude does. Optional: without it every feature falls back to rules or templates and the UI says so |
+| `ELEVENLABS_API_KEY` | transcription (added by the network proxy in Fee cloud sessions) |
+| `APIFY_TOKEN` | competitor scrape |
+| `IG_USER_ID`, `IG_ACCESS_TOKEN` | analytics pull and Instagram publishing. Scopes: `instagram_basic`, `instagram_manage_insights`, `instagram_content_publish`, and optionally `instagram_manage_messages` for DM volume |
+| `IG_GRAPH_VERSION` | Graph API version, default `v23.0` |
+| `TIKTOK_ACCESS_TOKEN` | TikTok publishing (`video.publish` scope) |
+| `TIKTOK_PRIVACY_LEVEL` | optional, e.g. `SELF_ONLY` while the TikTok app is unaudited |
+| `SLACK_WEBHOOK_URL` | 7am digest (Slack app → Incoming Webhooks → your channel or DM) |
+| `DASHBOARD_URL` | link in the Slack digest, default `http://localhost:3000` |
+| `TZ` | timezone for calendar times and cron, if the machine's timezone isn't yours |
+
+`IG_GRAPH_BASE`, `TIKTOK_API_BASE` and `PUBLISH_POLL_MS` exist only to point the publishers at
+a mock server in tests.
 
 ## Brand (from `../brand/BRAND.md`)
 
-- Palette: red `#AE1F14`, cream `#F2F0E0`, pink `#FFD7DE`, and white as an accent only.
-  They're defined as tokens in `app/globals.css` (`--brand-*`) and mapped onto the shadcn
-  variables (`--primary` = red, `--background` = cream, `--secondary`/`--accent` = pink).
-- Everything else is derived from those three, never a new colour:
-  - `--brand-ink #2A1210` is red at very low lightness and is used for body text. Long text
-    set in full red is tiring to read, so red is kept for headings and accents.
-  - `--brand-red-deep` is the hover colour.
-  - The `--muted` cream and the chart tints `--chart-2..5` are red and pink tints.
-- Headings use Source Serif 4 Black (900), tracked at -0.05em. They're applied to
-  `h1–h3` and `.font-heading`. The font is loaded with `next/font/local` from
-  `app/fonts/` (copied from `../assets/fonts`, OFL).
-- Body text uses Outfit, the closest free match to Dacht. It's self-hosted through
-  `@fontsource-variable/outfit`, so the build needs no network for fonts.
-- The sidebar is solid brand red with cream text and a pink pill for the active page.
-  **@theclearcode** sits at the top in the serif, and the `c.` lettermark sits at the bottom
-  as the watermark.
-- UI copy is lower-case, matching the logo. Proper nouns (platform names, Claude) keep
-  their capitals.
-- There's no dark mode. The brand is a light cream ground, so dark mode was left out of v1
-  on purpose.
+- **Palette:** red `#AE1F14`, cream `#F2F0E0`, pink `#FFD7DE`, with white as an accent only.
+  These are tokens in `app/globals.css` (`--brand-*`) mapped onto the shadcn variables:
+  `--primary` is red, `--background` is cream, `--secondary`/`--accent` are pink.
+- **Derived colours only, never new hues:** `--brand-ink #2A1210` (red at very low lightness)
+  is the body text colour, because long text in full red is tiring. Red is kept for headings
+  and accents. `--brand-red-deep` is the hover colour. The chart tints `--chart-2..5` are red
+  and pink tints.
+- **Type:** headings use Source Serif 4 Black at -0.05em, via `next/font/local` from
+  `app/fonts/` (OFL). Body text uses Outfit, self-hosted through `@fontsource-variable/outfit`.
+- **Sidebar:** red, with **@theclearcode** at the top in the serif, a pink pill for the
+  active page, and the `c.` lettermark at the bottom.
+- **Copy:** lower-case UI text. No dark mode (the brand is a light cream ground).
 
 ## Decisions
 
-1. **Self-contained app in `dashboard/`.** The repo root is the HyperFrames project with
-   its own `package.json`. `next.config.ts` pins `turbopack.root` and
-   `outputFileTracingRoot` to this folder so Next doesn't pick up the parent.
-2. **JSON files instead of a database.** This is a single-user, local-first tool. Plain
-   JSON can be diffed in git, and Claude skills and Node scripts can write it without a
-   client library. All reads and writes go through `lib/store.ts`, which writes atomically
-   (temp file, then rename). To move to Postgres, SQLite or Supabase, re-implement
-   `lib/store.ts` and nothing else changes. One limit: serverless hosts such as Vercel have
-   a read-only filesystem, so writes need a real database there.
-3. **Sample data is labelled, never passed off as real.** Every data file has
-   `meta: { sample, source, updatedAt }`. While `sample` is true, the page shows a pink
-   "sample data" notice and the trending cards carry a `sample` badge. Real writers (the
-   scrapers, `/script`, the forms) set `sample: false`. `npm run seed` is deterministic: a
-   seeded PRNG anchored to 2026-11-11, with no reads of the clock.
-4. **Server components read, client components interact.** Pages are async server
-   components with `dynamic = "force-dynamic"`, so they always read fresh files.
-   Interactive pieces (filters, dialogs, the composer, charts) are client components.
-   Mutations use server actions (`app/actions/*`) plus `revalidatePath`. The API routes
-   (`app/api/*`) exist for outside writers: `/script`, scripts and future webhooks.
-5. **Claude for writing tasks, with a deterministic fallback** (`lib/ai.ts`):
-   - Model `claude-opus-5-5` at `effort: "low"`, because these are short writing tasks.
-     Raise the effort if captions feel thin.
-   - Structured outputs (`betaZodOutputFormat`) guarantee the JSON shape.
-   - Server-side refusal fallbacks are on (`fallbacks: "default"`, beta
-     `server-side-fallback-2026-07-01`).
-   - Any failure (no key, rate limit, refusal) falls back to rule-based templates. The UI
-     says which path ran, so the dashboard works with no key at all.
-6. **Hook templating:** specifics are swapped for `[placeholders]`. Claude does this when
-   it's available, otherwise regexes for tools, numbers, years and durations
-   (`heuristicTemplate`). The format is classified as one of eight hook formats
-   (`HookFormat`).
-7. **A "heater"** is a reel posted in the last 7 days with at least 2× the median views of
-   all reels in the file (about the last 30 days). Heaters are ranked by
-   `views/median × (1 + 10·save rate + 50·follow rate)`, so saves and follows count more
-   than raw reach (`lib/analytics.ts`). KPIs compare the last 7 days with the 7 before.
-8. **Competitor outlier score** is a reel's views divided by that creator's own median. A
-   small creator's 5× matters more than a big creator's average reel. The scrape uses
-   Apify's Instagram Reel Scraper, because Instagram has no API for other people's
-   content. The field mapping in `toReel` should be checked against one real run: the raw
-   output is saved as `data/competitors.raw.json`, which git ignores.
-9. **Hook potential** (What's trending) is a transparent 0–100 rule score in
-   `lib/hook-potential.ts`, not an LLM call:
-   - Points for stakes, novelty, recognisable names, numbers/versus, and recency.
-   - ≥ 45 is high and ≥ 25 is medium.
-   - Each item also gets a ready-to-say `hookIdea`.
-   - The 12 sources are public RSS feeds listed in `lib/trend-sources.ts`. Edit that list
-     to change them. Anthropic isn't on it because it has no RSS feed.
-10. **Scheduling stores the queue. It doesn't publish.** "Schedule on N platforms" saves
-    one post with a caption per platform to `data/scheduled.json`. Actual publishing is a
-    separate step, through a scheduling provider. Metricool is recommended: its API (and
-    the Metricool connector in Claude) can create scheduled posts across IG, TikTok, YT,
-    LinkedIn and X. Direct platform APIs would mean five OAuth apps and app reviews. Each
-    platform has a caption limit in `PLATFORMS` (`lib/types.ts`), and the composer counts
-    characters against it.
-11. **The calendar is a month grid on desktop and an agenda list on phones.** Weeks start
-    on Monday. Status colours run from muted (idea) to full red (posted).
-12. **Dates are stored as ISO strings and rendered in UTC** with the `en-GB` locale, so the
-    server and client render the same text. The one exception is scheduled post times,
-    which are local-time instants and are marked `suppressHydrationWarning`.
+1. **Self-contained app in `dashboard/`.** `next.config.ts` pins the turbopack and
+   output-tracing roots here so the parent HyperFrames project isn't picked up.
 
-## Not wired yet (next steps)
+2. **JSON files instead of a database.** This is a single-user, local-first tool.
+   - All reads and writes go through `lib/store.ts`: atomic temp-file-plus-rename writes, and
+     `mutate()` serialises read-modify-write per file within a process.
+   - The web app and a cron job can still race on the same file. The scheduler's approval
+     fingerprint (decision 7) means a race can't cause an unapproved publish.
+   - To move to a database, re-implement `lib/store.ts`.
+   - Serverless hosts have read-only disks, so deploying needs a database first.
 
-- **Instagram analytics:** replace the sample `data/analytics.json`. Two options:
-  - The Instagram Graph API: a business or creator account linked to a Facebook page,
-    calling `/{ig-user-id}/media` and `/insights` with metrics `views`, `saved`, `shares`
-    and `follows`.
-  - Metricool's analytics API.
-  Write a `scripts/fetch-analytics.ts` that produces `AnalyticsFile`.
-- **Publishing** the scheduler queue through Metricool (decision 10).
-- **Scheduling the scripts:** run `trending:fetch` hourly and `scrape:competitors` every
-  Monday, with cron, GitHub Actions or a Claude Code scheduled task.
-- **Auth:** none, because it's meant to run locally. Add it before deploying anywhere
-  public.
+3. **Sample data is labelled, never passed off as real.** Every data file carries
+   `meta.sample`. While it's true, the page shows a pink "sample data" notice and the Slack
+   digest warns too. Real jobs set `sample: false`. The seed is deterministic: seeded PRNG,
+   anchored to 2026-11-11. The sample creator handles end in `.demo`; replace them in
+   `data/competitors.json` → `creators` with the 8 accounts you follow.
+
+4. **Hook vault.**
+   - **Saving a hook:** each save is templatised. Claude handles this when available.
+     Otherwise `heuristicTemplate()` recognises named archetypes first (`[x] just killed [y]`,
+     `stop doing [x]`, `[number] things i wish i knew …`, `nobody is talking about [x]`,
+     `if you're [audience], …`, `pov: [x]`), then swaps tools, numbers, years and durations
+     for slots.
+   - **Niche:** comes from the creator (competitor saves), the form, or Claude's guess.
+   - **Search:** free text, niche, a minimum view count and sort order. Templates that appear
+     more than once show up as "proven shapes" filters.
+   - **"Use this":** queues the hook in `data/script-queue.json` and copies
+     `/script --hook "<template>" --from <id>` to the clipboard. `/script` with no arguments
+     takes the oldest queued hook. A web page can't type into Claude Code, so the queue plus
+     clipboard is the hand-off.
+
+5. **Analytics.**
+   - The 7/30/90-day ranges come from the URL (`?range=`). Each metric card shows the total,
+     the change against the previous equal period (shown only when a full previous period
+     exists, so the file keeps 180 days), and a daily sparkline.
+   - **DMs** counts DM conversations with activity that day. Instagram has no "new DMs"
+     metric; this comes from the Messaging API.
+   - **Heater:** a reel whose views are at least 2× the median of your reels posted in the 30
+     days before it went up (`lib/analytics.ts`). With fewer than 3 reels in that window it
+     uses all earlier reels.
+   - **Top heaters:** the top 5 heaters in the selected range, sorted by views. Every reel in
+     the range appears in the table with a heater flag.
+   - **"What made it pop":** written by Claude during the daily pull, based on the reel's
+     rates against your medians and its hook. Without Claude, `popNote()` picks whichever
+     rate stands out most and names the hook shape.
+
+6. **Competitor tracker.**
+   - Uses Apify's reel and profile scrapers, because Instagram has no API for other
+     accounts.
+   - Picks the top 5 per account by views from the last 7 days, topped up from the last 30.
+   - Each reel is downloaded and transcribed by ElevenLabs (first 15 seconds). The hook is the
+     first spoken sentence. Claude vision reads the on-screen text from frames at 0.4, 1.2
+     and 2.5 seconds.
+   - Music-only reels fall back to the on-screen text, then the caption.
+   - The page sorts all reels by views.
+   - Apify field names may drift. The raw output is kept in `data/competitors.raw.json`.
+
+7. **Scheduler: Claude drafts, you authorise.**
+   - **Drafting:** "schedule with claude" (or "schedule all ready") turns a
+     scripted/filmed/edited calendar entry into a post with Instagram and TikTok captions
+     written from hook + angle + CTA. The post starts as `pending_approval`.
+   - **Approval:** clicking approve checks the captions (present, within limits), the media
+     (1 video for a reel, 2–10 images for a carousel) and that the time is in the future. It
+     then stores a fingerprint of everything that would go out (`approvalKey`).
+   - **Publishing:** `publish:due` only sends `approved` posts whose fingerprint still
+     matches. Any later edit, by you or a stray write, sends the post back for approval
+     instead of publishing it. Platforms that succeeded are never re-posted on retry.
+   - **Media:** given as public HTTPS URLs, because both APIs pull media from a URL. TikTok
+     also requires that domain to be verified in its developer portal. Uploading files needs
+     storage (R2 or S3, for example) and isn't built yet.
+   - **Platform APIs:** the Instagram Content Publishing API (reels and image carousels) and
+     the TikTok Content Posting API (video, and photo posts for carousels). Until TikTok
+     audits the app, posts can only be private.
+   - **Times:** calendar times are your wall-clock time, read in the machine's timezone
+     (`TZ`).
+
+8. **Content calendar.** A month grid shows each slot's time, platforms (IG/TT) and hook,
+   coloured by status. Clicking a slot opens a right-hand panel with the hook, angle and
+   CTA, the full script, and the caption(s) once the post has been drafted.
+   - The script is read from `scriptPath`, which must be under `content/scripts/`, with the
+     YAML front matter removed. Sample entries carry the script inline.
+   - On phones the grid becomes an agenda list and the panel goes full-width.
+
+9. **What's trending.**
+   - Pulled daily from the 12 RSS/Atom feeds in `lib/trend-sources.ts` (items from the last 48
+     hours). Anthropic isn't on the list because it has no feed.
+   - Each item is tagged `hook potential`, `explainer` or `skip`, with a one-line reason and a
+     first line to say on camera. Claude tags the whole batch in one call. Without it, the
+     rules in `lib/hook-potential.ts` decide: a score of 35 or more is hook potential, a
+     concept or research piece is an explainer, everything else is skip.
+   - The top section and the 07:00 Slack digest use the same `topHookItems()`: the 5 newest
+     hook-potential items, newest first.
+
+10. **Scheduling uses your crontab** (`scripts/install-schedule.sh`), in your machine's local
+    time, with logs in `logs/`. It was chosen over GitHub Actions because the data lives in
+    local files and the jobs need ffmpeg and your keys.
+    - **Limit:** cron doesn't run while the machine is asleep. For 06:00 Sundays and 07:00
+      Slack messages to be reliable, run it on an always-on machine, or move the jobs to a
+      server alongside a database (decision 2).
+
+## Verified vs not yet
+
+- **Tested here:** every page renders, with no console errors and no horizontal scroll at
+  390px. Also tested:
+  - hook templating
+  - "use this", including the queue and clipboard
+  - "save to hook vault"
+  - the approval gate, which rejects missing media and resets on edit
+  - `publish:due` against a mock Instagram/TikTok server (reel and carousel, the tampered
+    post refused, calendar entry marked posted)
+  - the Slack digest against a mock webhook
+- **Written to the documented APIs but never run against the live services** (the sandbox
+  blocks them): the Instagram Graph insights and publishing calls, the TikTok Content
+  Posting API, Apify actors, the RSS feeds, and the ElevenLabs and Claude calls. Expect to
+  adjust a field name or two on the first real run. Each job logs what it couldn't read
+  instead of failing silently.
 
 ## Conventions
 
-- Shared types live in `lib/types.ts`. Every writer must produce these shapes.
-- Put new UI primitives in `components/ui/` (shadcn style). Page-only components sit next
-  to their page, e.g. `app/scheduler/composer.tsx`.
+- Shared types live in `lib/types.ts`, and every writer must produce those shapes.
+- Put UI primitives in `components/ui/` (shadcn style). Page-only components sit next to
+  their page.
 - Use the brand tokens (`bg-primary`, `text-brand-ink`, `bg-chart-3`…), never raw hex values
   in components.
-- Before you're done, run `npm run typecheck` and `npm run build`. Check the pages at
-  390px wide: no horizontal page scroll is allowed. Tables scroll inside their card.
+- Before finishing a change, run `npm run typecheck` and `npm run build`, and check the pages
+  at 390px wide (tables scroll inside their card, never the page).

@@ -1,18 +1,15 @@
 /**
- * Save a hook from a video file: ElevenLabs Scribe transcribes it, the first
- * sentence (inside the first ~8 seconds) becomes the hook, and it is posted to
- * the running dashboard, which templates it with Claude.
+ * Save a hook from a video file: ElevenLabs transcribes the opening, the first
+ * sentence becomes the hook, and it's templated (Claude, or the built-in
+ * rules) and saved to the hook vault.
  *
- *   npm run hooks:transcribe -- <video> --creator @handle [--platform instagram] [--url https://…] [--views 120000]
- *
- * Needs ffmpeg for video input, and the dev server running (default
- * http://localhost:3000, override with --api). Auth for api.elevenlabs.io:
- * ELEVENLABS_API_KEY locally; added by the network proxy in Fee cloud sessions.
+ *   npm run hooks:transcribe -- <video> --creator @handle [--niche "ai tools"] [--platform instagram|tiktok] [--url …] [--views 120000]
  */
-import { readFile, rm } from "node:fs/promises";
-import { execFileSync } from "node:child_process";
-import { basename, extname, join } from "node:path";
-import { tmpdir } from "node:os";
+import { transcribeOpening, hookFromWords, framesAt, withTempDir } from "../lib/media.ts";
+import { createHook } from "../lib/hooks.ts";
+import { readOnScreenText } from "../lib/ai.ts";
+import { copyFile } from "node:fs/promises";
+import { join } from "node:path";
 
 const args = process.argv.slice(2);
 const flag = (name: string) => {
@@ -22,66 +19,25 @@ const flag = (name: string) => {
 const input = args.find((a, i) => !a.startsWith("--") && !args[i - 1]?.startsWith("--"));
 const creator = flag("creator");
 if (!input || !creator) {
-  console.error("usage: npm run hooks:transcribe -- <video> --creator @handle [--platform instagram] [--url …] [--views N]");
+  console.error('usage: npm run hooks:transcribe -- <video> --creator @handle [--niche "ai tools"] [--platform instagram] [--url …] [--views N]');
   process.exit(1);
 }
-const api = flag("api") ?? "http://localhost:3000";
 
-let upload = input;
-let tmp: string | undefined;
-if (![".mp3", ".wav", ".m4a", ".ogg", ".flac"].includes(extname(input).toLowerCase())) {
-  tmp = join(tmpdir(), `hook-stt-${process.pid}.mp3`);
-  // only the opening matters for a hook — keep the upload tiny
-  execFileSync("ffmpeg", ["-y", "-loglevel", "error", "-i", input, "-t", "12", "-vn", "-ac", "1", "-ar", "16000", "-b:a", "64k", tmp]);
-  upload = tmp;
-}
-
-const form = new FormData();
-form.append("model_id", process.env.ELEVENLABS_STT_MODEL || "scribe_v1");
-form.append("timestamps_granularity", "word");
-form.append("tag_audio_events", "false");
-form.append("file", new Blob([await readFile(upload)]), basename(upload));
-
-const res = await fetch("https://api.elevenlabs.io/v1/speech-to-text", {
-  method: "POST",
-  headers: { "xi-api-key": process.env.ELEVENLABS_API_KEY || "proxy-injected" },
-  body: form,
-});
-if (tmp) await rm(tmp, { force: true });
-if (!res.ok) {
-  console.error(`ElevenLabs error ${res.status}: ${await res.text()}`);
-  process.exit(1);
-}
-const data = (await res.json()) as { text?: string; words?: { text: string; start: number; end: number; type: string }[] };
-
-// Hook = words up to the first sentence end, capped at 8 seconds.
-const words = (data.words ?? []).filter((w) => w.type === "word" && w.start <= 8);
-let hook = "";
-for (const w of words) {
-  hook += (hook ? " " : "") + w.text.trim();
-  if (/[.!?]$/.test(w.text) && w.end >= 1.5) break;
-}
-hook = hook.trim() || (data.text ?? "").split(/(?<=[.!?])\s/)[0];
-console.log(`hook: “${hook}”`);
-
-const post = await fetch(`${api}/api/hooks`, {
-  method: "POST",
-  headers: { "content-type": "application/json" },
-  body: JSON.stringify({
-    transcript: hook,
+await withTempDir(async (dir) => {
+  const file = join(dir, "clip");
+  await copyFile(input, file);
+  const { text, words } = await transcribeOpening(file);
+  const transcript = hookFromWords(words, text);
+  if (!transcript) throw new Error("no speech found in the first seconds");
+  const onScreenText = await readOnScreenText(framesAt(file)).catch(() => "");
+  const { hook, templatedBy } = await createHook({
+    transcript,
     creator,
-    platform: flag("platform") ?? "instagram",
-    url: flag("url") ?? "",
+    niche: flag("niche"),
+    platform: flag("platform") === "tiktok" ? "tiktok" : "instagram",
+    url: flag("url"),
     views: flag("views") ? Number(flag("views")) : undefined,
-    tags: [],
-  }),
-}).catch((e: Error) => {
-  console.error(`couldn't reach the dashboard at ${api} (${e.message}). start it with npm run dev.`);
-  process.exit(1);
+    onScreenText,
+  });
+  console.log(`saved ${hook.id}\n  hook:     “${hook.transcript}”\n  template: ${hook.template} (${templatedBy})\n  niche:    ${hook.niche}`);
 });
-const out = await post.json();
-if (!post.ok) {
-  console.error(out);
-  process.exit(1);
-}
-console.log(`saved ${out.hook.id} — template (${out.templatedBy}): ${out.hook.template}`);

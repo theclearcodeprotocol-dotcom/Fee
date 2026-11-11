@@ -9,10 +9,15 @@
     "start": "next start",
     "typecheck": "tsc --noEmit",
     "seed": "node scripts/seed.ts",
-    "hooks:transcribe": "node scripts/transcribe-hook.ts",
-    "trending:fetch": "node scripts/fetch-trending.ts",
-    "scrape:competitors": "node scripts/scrape-competitors.ts",
-    "data:clear-sample": "node scripts/clear-sample.ts"
+    "data:clear-sample": "node scripts/clear-sample.ts",
+    "hooks:transcribe": "node --env-file-if-exists=.env.local scripts/transcribe-hook.ts",
+    "analytics:fetch": "node --env-file-if-exists=.env.local scripts/fetch-analytics.ts",
+    "scrape:competitors": "node --env-file-if-exists=.env.local scripts/scrape-competitors.ts",
+    "trending:fetch": "node --env-file-if-exists=.env.local scripts/fetch-trending.ts",
+    "trending:slack": "node --env-file-if-exists=.env.local scripts/slack-trending.ts",
+    "publish:due": "node --env-file-if-exists=.env.local scripts/publish-due.ts",
+    "schedule:install": "bash scripts/install-schedule.sh",
+    "schedule:remove": "bash scripts/install-schedule.sh --remove"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^1.8.0",

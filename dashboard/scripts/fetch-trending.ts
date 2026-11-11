@@ -1,22 +1,25 @@
 /**
- * Pull the 12 AI news feeds in lib/trend-sources.ts, tag each item for hook
- * potential (lib/hook-potential.ts) and write data/trending.json.
+ * Daily pull (06:40 via scripts/install-schedule.sh): the 12 AI news feeds in
+ * lib/trend-sources.ts → tag each item "hook potential" / "explainer" / "skip"
+ * → data/trending.json. The 07:00 Slack digest reads that file.
  *
- *   npm run trending:fetch            # last 7 days, top 15 per source
+ *   npm run trending:fetch     # items from the last 48 hours, up to 15 per source
  *
- * No dependencies: a small RSS/Atom parser below handles the feeds we use.
- * A source that fails is skipped and reported; the rest still save. Run it on
- * a schedule (e.g. hourly cron, or a Claude Code scheduled task).
+ * Tagging: one Claude call for the whole batch when ANTHROPIC_API_KEY is set,
+ * otherwise the rules in lib/hook-potential.ts. Every item keeps the rule score.
+ * A small RSS/Atom parser below handles the feeds; a source that fails is
+ * skipped and reported, the rest still save.
  */
 import { writeFile } from "node:fs/promises";
 import { join } from "node:path";
 import { createHash } from "node:crypto";
 import { TREND_SOURCES } from "../lib/trend-sources.ts";
-import { hookIdeaFor, potentialFromScore, scoreHookPotential } from "../lib/hook-potential.ts";
+import { hookIdeaFor, ruleTag, scoreHookPotential } from "../lib/hook-potential.ts";
+import { describeAiError, tagTrends } from "../lib/ai.ts";
 import type { TrendItem, TrendingFile } from "../lib/types.ts";
 
 const DATA = join(import.meta.dirname, "..", "data", "trending.json");
-const MAX_AGE_DAYS = Number(process.env.TRENDING_MAX_AGE_DAYS ?? 7);
+const MAX_AGE_HOURS = Number(process.env.TRENDING_MAX_AGE_HOURS ?? 48);
 const PER_SOURCE = Number(process.env.TRENDING_PER_SOURCE ?? 15);
 const now = new Date();
 
@@ -65,7 +68,7 @@ await Promise.all(
       const entries = parseFeed(await res.text())
         .filter((e) => e.title && e.link)
         .map((e) => ({ ...e, publishedAt: new Date(e.date || now).toISOString() }))
-        .filter((e) => now.getTime() - new Date(e.publishedAt).getTime() <= MAX_AGE_DAYS * 864e5)
+        .filter((e) => now.getTime() - new Date(e.publishedAt).getTime() <= MAX_AGE_HOURS * 36e5)
         .slice(0, PER_SOURCE);
       for (const e of entries) {
         const score = scoreHookPotential(e.title, e.summary, e.publishedAt, now);
@@ -77,9 +80,9 @@ await Promise.all(
           url: e.link,
           publishedAt: e.publishedAt,
           score,
-          potential: potentialFromScore(score),
+          ...ruleTag(e.title, e.summary, score),
           hookIdea: hookIdeaFor(e.title),
-          tags: [],
+          taggedBy: "rules",
         });
       }
     } catch (err) {
@@ -101,6 +104,18 @@ const unique = items
     const k = i.title.toLowerCase().replace(/[^a-z0-9]+/g, " ").slice(0, 60);
     return seen.has(k) ? false : (seen.add(k), true);
   });
+
+// Claude re-tags the batch when available; the rules above stay as the fallback.
+try {
+  const tags = await tagTrends(unique.map(({ id, title, summary }) => ({ id, title, summary })));
+  for (const item of unique) {
+    const t = tags.get(item.id);
+    if (t) Object.assign(item, { tag: t.tag, reason: t.reason, hookIdea: t.hookIdea, taggedBy: "claude" });
+  }
+  console.log(`tagged ${tags.size} items with claude`);
+} catch (e) {
+  console.warn(`claude tagging skipped (${describeAiError(e)}) — rule tags kept`);
+}
 
 const file: TrendingFile = {
   meta: { sample: false, source: `${TREND_SOURCES.length - failed.length}/${TREND_SOURCES.length} rss feeds`, updatedAt: now.toISOString() },
