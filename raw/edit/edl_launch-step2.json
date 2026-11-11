@@ -1,0 +1,146 @@
+{
+  "version": 1,
+  "sources": {
+    "launch-step2": "/home/user/Fee/ai-video-editing/launch-step2/clip.mov"
+  },
+  "ranges": [
+    {
+      "source": "launch-step2",
+      "start": 20.48,
+      "end": 23.21,
+      "beat": "HOOK",
+      "quote": "A program with a name sounds like a plan.",
+      "output_start": 0.0,
+      "output_duration": 2.733
+    },
+    {
+      "source": "launch-step2",
+      "start": 27.64,
+      "end": 30.81,
+      "beat": "HOOK",
+      "quote": "Whereas a course of treatments just sound like a cost.",
+      "output_start": 2.733,
+      "output_duration": 3.2
+    },
+    {
+      "source": "launch-step2",
+      "start": 3.44,
+      "end": 7.05,
+      "beat": "SETUP",
+      "quote": "This is step two of the clear code where we launch",
+      "output_start": 5.933,
+      "output_duration": 3.633
+    },
+    {
+      "source": "launch-step2",
+      "start": 15.3,
+      "end": 16.73,
+      "beat": "SETUP",
+      "quote": "and we give it a name.",
+      "output_start": 9.567,
+      "output_duration": 1.433
+    },
+    {
+      "source": "launch-step2",
+      "start": 43.74,
+      "end": 47.07,
+      "beat": "EXPLAIN",
+      "quote": "You'll be able to explain it in one sentence in your consultation,",
+      "output_start": 11.0,
+      "output_duration": 3.333
+    },
+    {
+      "source": "launch-step2",
+      "start": 47.5,
+      "end": 48.27,
+      "beat": "EXPLAIN",
+      "quote": "who it's for,",
+      "output_start": 14.333,
+      "output_duration": 0.8
+    },
+    {
+      "source": "launch-step2",
+      "start": 48.64,
+      "end": 49.73,
+      "beat": "EXPLAIN",
+      "quote": "how long it runs,",
+      "output_start": 15.133,
+      "output_duration": 1.1
+    },
+    {
+      "source": "launch-step2",
+      "start": 52.66,
+      "end": 54.31,
+      "beat": "EXPLAIN",
+      "quote": "and what changes along the way.",
+      "output_start": 16.233,
+      "output_duration": 1.667
+    },
+    {
+      "source": "launch-step2",
+      "start": 69.2,
+      "end": 72.33,
+      "beat": "EXISTING",
+      "quote": "And this is where you tell your existing clients first.",
+      "output_start": 17.9,
+      "output_duration": 3.133
+    },
+    {
+      "source": "launch-step2",
+      "start": 73.24,
+      "end": 74.89,
+      "beat": "EXISTING",
+      "quote": "The people who already trust you",
+      "output_start": 21.033,
+      "output_duration": 1.667
+    },
+    {
+      "source": "launch-step2",
+      "start": 77.18,
+      "end": 79.19,
+      "beat": "EXISTING",
+      "quote": "are your first program clients.",
+      "output_start": 22.7,
+      "output_duration": 2.033
+    },
+    {
+      "source": "launch-step2",
+      "start": 86.26,
+      "end": 87.75,
+      "beat": "NURTURE",
+      "quote": "Step three is nurture,",
+      "output_start": 24.733,
+      "output_duration": 1.5
+    },
+    {
+      "source": "launch-step2",
+      "start": 95.46,
+      "end": 97.45,
+      "beat": "NURTURE",
+      "quote": "and it's the one that keeps your clients.",
+      "output_start": 26.233,
+      "output_duration": 2.0
+    },
+    {
+      "source": "launch-step2",
+      "start": 103.0,
+      "end": 104.89,
+      "beat": "CTA",
+      "quote": "Our doors open on Black Friday.",
+      "output_start": 28.233,
+      "output_duration": 1.9
+    },
+    {
+      "source": "launch-step2",
+      "start": 108.66,
+      "end": 110.39,
+      "beat": "CTA",
+      "quote": "join the wait list in our bio",
+      "output_start": 30.133,
+      "output_duration": 1.733
+    }
+  ],
+  "grade": "eq=contrast=1.04:saturation=1.05:gamma=1.02,colorbalance=rm=0.03:bm=-0.03:rh=0.02:bh=-0.02,scale=1440:2560:flags=lanczos",
+  "overlays": [],
+  "total_duration_s": 31.867
+}

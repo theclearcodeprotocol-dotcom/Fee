@@ -25,6 +25,14 @@ CLIPS = {  # (beat, first word start, last word end) in source seconds, in outpu
         ("SOLUTION", 242.66, 245.24), ("SOLUTION", 254.72, 256.96), ("SOLUTION", 261.52, 263.58),
         ("CTA", 278.48, 283.32),
     ],
+    "launch-step2": [  # Step 2 of 3: launch. Opens on the strongest line (name = plan vs cost)
+        ("HOOK", 20.52, 23.14), ("HOOK", 27.68, 30.74),
+        ("SETUP", 3.48, 6.98), ("SETUP", 15.34, 16.66),
+        ("EXPLAIN", 43.78, 54.24),
+        ("EXISTING", 69.24, 79.12),
+        ("NURTURE", 86.30, 87.68), ("NURTURE", 95.50, 97.38),
+        ("CTA", 103.04, 104.82), ("CTA", 108.70, 110.32),
+    ],
 }
 SECTIONS = CLIPS[CLIP]
 GAP = 0.15
@@ -55,7 +63,8 @@ for beat, s, e, run in spans:
                 "quote": " ".join(w["text"] for w in run), "output_start": round(t, 3)})
     t += e - s
 edl = {"version": 1, "sources": {CLIP: str(Path(f"raw/{CLIP}.mp4").resolve())},
-       "ranges": out, "grade": "eq=contrast=1.04:saturation=1.05:gamma=1.02,colorbalance=rm=0.03:bm=-0.03:rh=0.02:bh=-0.02",
+       "ranges": out, "grade": "eq=contrast=1.04:saturation=1.05:gamma=1.02,colorbalance=rm=0.03:bm=-0.03:rh=0.02:bh=-0.02"
+                 + (",scale=1440:2560:flags=lanczos" if CLIP == "launch-step2" else ""),
        "overlays": [], "total_duration_s": round(t, 3)}
 json.dump(edl, open(edit / f"edl_{CLIP}.json", "w"), indent=2)
 for r in out:
