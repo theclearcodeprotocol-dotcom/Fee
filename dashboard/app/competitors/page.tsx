@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { getCompetitors, getHooks } from "@/lib/store";
 import { PageHeader, DataSourceNote } from "@/components/page-header";
 import { CompetitorReels } from "./competitor-reels";
+import { AddReelDialog } from "./add-reel-dialog";
 
 export const metadata: Metadata = { title: "competitor tracker" };
 export const dynamic = "force-dynamic";
@@ -15,17 +16,18 @@ export default async function CompetitorsPage() {
       return { ...r, followers: c?.followers ?? 0, creatorName: c?.name ?? r.creator, saved: saved.has(r.id) };
     })
     .sort((a, b) => (b.views ?? b.likes) - (a.views ?? a.likes));
-  const byLikes = reels.some((r) => r.views === undefined);
+  const fromMetricool = reels.some((r) => r.source === "metricool");
 
   return (
     <>
       <PageHeader
         title="competitor tracker"
         description={
-          byLikes
-            ? `the top 5 reels from each of the ${creators.length} accounts you track in metricool, ranked by likes (metricool doesn’t share competitors’ views). refresh with /metricool.`
-            : `the top 5 reels from each of the ${creators.length} accounts you track — transcribed, with the hook and on-screen text pulled out.`
+          fromMetricool
+            ? `top reels from the ${creators.length} accounts you track in metricool, ranked by likes (metricool doesn’t share competitors’ views).`
+            : `top reels from the ${creators.length} accounts you track, sorted by views. screenshot a competitor’s reels tab and send it to claude with /competitors, or add one by hand.`
         }
+        actions={<AddReelDialog handles={creators.map((c) => c.handle)} />}
       />
       <DataSourceNote meta={meta} />
       <CompetitorReels rows={rows} creators={creators} />

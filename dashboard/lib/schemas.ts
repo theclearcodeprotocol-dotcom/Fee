@@ -45,3 +45,21 @@ export const updatePostSchema = z.object({
   captions: z.partialRecord(platformSchema, z.string().max(2200)),
   media: z.array(z.url()).max(10),
 });
+
+/** One competitor reel from a screenshot (/competitors) or the "add reel" form. */
+export const competitorReelInputSchema = z.object({
+  creator: z.string().trim().min(2).max(60).transform((h) => `@${h.replace(/^@/, "")}`),
+  creatorName: z.string().trim().max(80).optional(),
+  followers: z.coerce.number().int().nonnegative().optional(),
+  niche: z.string().trim().max(40).optional(),
+  hook: z.string().trim().min(2).max(400),
+  onScreenText: z.string().trim().max(400).optional(),
+  caption: z.string().max(3000).optional(),
+  views: z.coerce.number().int().nonnegative().optional(),
+  likes: z.coerce.number().int().nonnegative().optional(),
+  comments: z.coerce.number().int().nonnegative().optional(),
+  postedAt: z.string().optional(),
+  url: z.url().optional().or(z.literal("").transform(() => undefined)),
+  source: z.enum(["screenshot", "manual"]).default("manual"),
+});
+export type CompetitorReelInput = z.infer<typeof competitorReelInputSchema>;

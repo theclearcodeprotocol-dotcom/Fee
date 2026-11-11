@@ -1,10 +1,11 @@
 "use client";
 
 import { useState, useTransition } from "react";
-import { Check, ExternalLink, Plus } from "lucide-react";
+import { Check, ExternalLink, Plus, Trash2 } from "lucide-react";
 import type { CompetitorReel, TrackedCreator } from "@/lib/types";
 import { cn, formatCompact, formatDate } from "@/lib/utils";
 import { saveReelToVaultAction } from "@/app/actions/hooks";
+import { removeCompetitorReelAction } from "@/app/actions/competitors";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 
@@ -27,6 +28,21 @@ function SaveButton({ row }: { row: Row }) {
       </Button>
       {msg ? <span className="text-xs text-muted-foreground">{msg}</span> : null}
     </div>
+  );
+}
+
+function RemoveButton({ id }: { id: string }) {
+  const [pending, start] = useTransition();
+  return (
+    <Button
+      variant="ghost"
+      size="icon"
+      aria-label="Remove reel"
+      disabled={pending}
+      onClick={() => confirm("remove this reel from the tracker?") && start(() => removeCompetitorReelAction(id))}
+    >
+      <Trash2 />
+    </Button>
   );
 }
 
@@ -71,13 +87,13 @@ export function CompetitorReels({ rows, creators }: { rows: Row[]; creators: Tra
                   <span className="font-heading text-2xl leading-none text-primary">{formatCompact(r.views ?? r.likes)}</span>
                   <span className="text-xs uppercase tracking-wider text-muted-foreground">{r.views !== undefined ? "views" : "likes"}</span>
                   <span className="font-medium">{r.creator}</span>
-                  <span className="text-sm text-muted-foreground">{formatCompact(r.followers)} followers · posted {formatDate(r.postedAt)}</span>
+                  <span className="text-sm text-muted-foreground">{formatCompact(r.followers)} followers · {r.dateKnown === false ? "added" : "posted"} {formatDate(r.postedAt)}</span>
                 </div>
                 <div>
-                  <p className="text-[0.7rem] uppercase tracking-wider text-muted-foreground">{r.transcript ? "hook" : "hook (caption’s first line)"}</p>
+                  <p className="text-[0.7rem] uppercase tracking-wider text-muted-foreground">{r.source === "metricool" ? "hook (caption’s first line)" : "hook"}</p>
                   <p className="font-heading text-lg leading-snug text-primary">“{r.hook}”</p>
                 </div>
-                {r.transcript !== undefined || r.onScreenText !== undefined ? (
+                {r.transcript !== undefined ? (
                 <div className="grid gap-2 text-sm sm:grid-cols-2">
                   <div className="rounded-lg bg-muted/70 p-2.5">
                     <p className="text-[0.7rem] uppercase tracking-wider text-muted-foreground">on-screen text</p>
@@ -90,7 +106,15 @@ export function CompetitorReels({ rows, creators }: { rows: Row[]; creators: Tra
                 </div>
                 ) : (
                   <p className="text-xs text-muted-foreground">
-                    {formatCompact(r.comments)} comments · {r.caption.length > 160 ? `${r.caption.slice(0, 160)}…` : r.caption}
+                    {[
+                      r.onScreenText ? `on screen: ${r.onScreenText}` : "",
+                      r.views !== undefined && r.likes ? `${formatCompact(r.likes)} likes` : "",
+                      r.comments ? `${formatCompact(r.comments)} comments` : "",
+                      r.source === "screenshot" ? "from a screenshot" : r.source === "manual" ? "added by hand" : "",
+                      r.caption ? (r.caption.length > 140 ? `${r.caption.slice(0, 140)}…` : r.caption) : "",
+                    ]
+                      .filter(Boolean)
+                      .join(" · ")}
                   </p>
                 )}
               </div>
@@ -103,6 +127,7 @@ export function CompetitorReels({ rows, creators }: { rows: Row[]; creators: Tra
                     </a>
                   </Button>
                 ) : null}
+                <RemoveButton id={r.id} />
               </div>
             </li>
           ))}

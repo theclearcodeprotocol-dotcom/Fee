@@ -24,7 +24,8 @@ trending) lives in `dashboard/` with its own `package.json` and its own
 apply there. The `/script` skill (`.claude/skills/script/`) writes reel scripts to
 `content/scripts/` and adds them to the dashboard's content calendar. The `/metricool` skill
 (`.claude/skills/metricool/`) pulls Instagram analytics into the dashboard and sends approved
-posts to Metricool.
+posts to Metricool. The `/competitors` skill (`.claude/skills/competitors/`) fills the
+competitor tracker from screenshots of other creators' Instagram reels tabs.
 
 ## Transcripts — ElevenLabs
 

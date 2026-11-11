@@ -8,7 +8,7 @@ CLAUDE.md, and none of that project's rules (GSAP timelines, `npm run check`) ap
 |---|---|---|---|
 | hook vault | `/hooks` | `data/hooks.json`, `data/script-queue.json` | "add hook", `npm run hooks:transcribe`, "save to hook vault" on the competitor page |
 | analytics | `/analytics?range=7\|30\|90` | `data/analytics.json` | **Metricool**, via `/metricool pull` in Claude Code (`../.claude/skills/metricool/SKILL.md`) |
-| competitor tracker | `/competitors` | `data/competitors.json` | **Metricool** competitors, via `/metricool competitors` (free). Optional paid route: Apify `scrape:competitors` |
+| competitor tracker | `/competitors` | `data/competitors.json` | **screenshots** of competitors' Instagram reels tabs, read by Claude with the `/competitors` skill (`../.claude/skills/competitors/SKILL.md`), plus the "add reel" button. Free. Metricool (`/metricool competitors`) only if a plan with competitor tracking is added; Apify `scrape:competitors` is a paid alternative |
 | scheduler | `/scheduler` | `data/scheduled.json` | "schedule with claude" (from calendar entries), then your approval, then `/metricool send`, and Metricool publishes |
 | content calendar | `/calendar?month=YYYY-MM` | `data/calendar.json` + `../content/scripts/*.md` | the `/script` skill (`../.claude/skills/script/SKILL.md`), "quick post" |
 | what's trending | `/trending` | `data/trending.json` | `trending:fetch` daily 06:40; `trending:slack` at 07:00 |
@@ -22,7 +22,10 @@ Claude (subscription), Metricool, ElevenLabs and a free Slack webhook. That mean
   (`captions`), and used as-is by the scheduler. `ANTHROPIC_API_KEY` is optional. Without it,
   the dashboard's own buttons ("add hook", "redo captions") use the built-in rules and
   templates.
-- **Competitors** come from Metricool, not Apify.
+- **Competitors** come from screenshots the owner sends to `/competitors`: Claude reads the
+  view counts, cover text and follower counts. The current Metricool plan has no
+  competitor tracking (checked 11 Nov 2026). `lib/competitors.ts` upserts by account +
+  hook (or link), so weekly screenshots refresh the numbers. Not Apify.
 - **Paid options stay off by default.** Apify, the direct Instagram/TikTok APIs and the
   Claude API are only used if their keys are set, or with `schedule:install -- --apify` /
   `--direct`. Don't propose them unless asked.
@@ -105,7 +108,8 @@ npm run data:clear-sample           # empty the samples once real sources are co
 npm run hooks:transcribe -- clip.mp4 --creator @handle [--niche "ai tools"]
 npm run metricool:import            # used by /metricool pull
 npm run metricool:posts -- ready    # used by /metricool send
-npm run metricool:competitors       # used by /metricool competitors
+npm run metricool:competitors       # used by /metricool competitors (needs a Metricool plan with competitors)
+npm run competitors:add -- file.json # used by /competitors (screenshots)
 npm run scrape:competitors
 npm run trending:fetch
 npm run trending:slack [-- --print]

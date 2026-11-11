@@ -10,7 +10,9 @@ The dashboard can't reach Metricool itself. You can, through the Metricool conne
 
 - Brand id `7976989` (theclearcode_), timezone `Europe/London`. Both are in
   `dashboard/lib/metricool.ts`.
-- `/metricool` with no argument does **pull**, then **competitors**, then **send**.
+- `/metricool` with no argument does **pull**, then **send**. Run **competitors** only when
+  asked: the current plan has no competitor tracking, and `/competitors` (screenshots)
+  covers it instead.
 - Everything here runs on the user's existing Claude and Metricool accounts. Don't suggest paid
   add-ons (Claude API key, Apify); the user has asked not to take on new subscriptions.
 
@@ -44,9 +46,9 @@ Metricool provides no DM numbers and no per-reel follows. The page says so; don'
    response to `dashboard/data/metricool/competitor-reels.json`, written with
    `node -e` and `JSON.stringify`.
 3. Run `npm run -s metricool:competitors`.
-4. **If it says there are no competitors:** tell the user to add the accounts they follow in
-   Metricool (Competitors → Instagram → add). That's free within their current Metricool
-   plan, up to its competitor limit.
+4. **If it says there are no competitors:** the user's current Metricool plan has no
+   competitor tracking (checked 11 Nov 2026). Point them to `/competitors` instead, which
+   fills the page from Instagram screenshots and includes view counts.
 5. Reply with how many accounts and reels came in, and the top 3 hooks by likes.
 
 Metricool doesn't share competitors' view counts or videos. So reels are ranked by likes, the

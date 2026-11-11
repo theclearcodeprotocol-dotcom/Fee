@@ -49,6 +49,7 @@ const all: CompetitorReel[] = reelsRaw.rows.map((r, i) => {
     comments: num(r[6]),
     postedAt: fromMetricoolStamp(String(r[4] ?? "")),
     url: r[3] ? String(r[3]) : undefined,
+    source: "metricool",
   };
 });
 

@@ -122,6 +122,10 @@ export interface CompetitorReel {
   /** opening ~15 seconds of speech (ElevenLabs) — Apify route only */
   transcript?: string;
   caption: string;
+  /** false when the real posting date isn't known (screenshots): postedAt is then when it was added */
+  dateKnown?: boolean;
+  /** where it came from: a screenshot read by Claude, typed in by hand, Metricool or Apify */
+  source?: "screenshot" | "manual" | "metricool" | "apify";
   /** Metricool doesn't report competitor views; the page sorts by likes then */
   views?: number;
   likes: number;

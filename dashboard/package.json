@@ -20,7 +20,8 @@
     "schedule:remove": "bash scripts/install-schedule.sh --remove",
     "metricool:import": "node scripts/metricool-import.ts",
     "metricool:posts": "node scripts/metricool-posts.ts",
-    "metricool:competitors": "node scripts/metricool-competitors.ts"
+    "metricool:competitors": "node scripts/metricool-competitors.ts",
+    "competitors:add": "node scripts/competitors-add.ts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^1.8.0",
