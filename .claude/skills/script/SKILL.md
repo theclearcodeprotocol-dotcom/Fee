@@ -22,14 +22,17 @@ file.
 ## 1. Pick the hook
 
 - **If a hook template was given:** fill its `[slots]` for this topic and keep the template's
-  structure. For example, "[x] just killed [y]" becomes "claude just killed the cover letter".
+  structure. For example, "[x] just killed [y]" becomes "this protocol just killed the one-size-fits-all acne plan".
   Use the original transcript only to understand why the template worked.
 - **If no template was given:**
   1. Read `dashboard/data/hooks.json` and favour high-`views` templates in a relevant niche.
   2. Read `dashboard/data/trending.json`, taking items tagged `"hook potential"` first.
   3. Write 3 options and choose the strongest.
 - Every hook: under 12 words, lower-case, in the brand voice (`brand/BRAND.md`: between
-  professional and playful, bold, warm).
+  professional and playful, feminine, bold, warm).
+- The audience is skin and acne specialists and clinic owners: The Clear Code Protocol
+  helps them build and run acne programmes in their clinics. Make no medical claims and
+  promise no skin results.
 
 ## 2. Write the script
 
@@ -75,7 +78,8 @@ calendar and scheduler:
 curl -s -X POST http://localhost:3000/api/calendar -H 'content-type: application/json' -d '{
   "date": "YYYY-MM-DD", "time": "18:00", "title": "...", "format": "reel",
   "platforms": ["instagram","tiktok"], "hook": "...", "angle": "...", "cta": "...",
-  "status": "scripted", "source": "script", "scriptPath": "content/scripts/<file>.md"
+  "status": "scripted", "source": "script", "scriptPath": "content/scripts/<file>.md",
+  "captions": { "instagram": "...", "tiktok": "..." }
 }'
 ```
 
@@ -85,10 +89,22 @@ curl -s -X POST http://localhost:3000/api/calendar -H 'content-type: application
   `source: "script"`.
 - Keep `entries` sorted by date then time.
 
+**Captions:** add a `captions` object to the entry, with one caption per platform in
+`platforms`. You write these yourself; the user's Claude subscription covers it, so no API
+key is needed.
+- **instagram:** the hook as the first line, 2–4 short lines delivering the angle, the CTA,
+  then 3–5 hashtags from
+  `#acnespecialist #skinspecialist #acnetreatment #skinclinic #theclearcode`. For a
+  carousel, add "swipe →".
+- **tiktok:** the hook in one line, one line of angle, the CTA, then 2–3 of those hashtags.
+  Under 300 characters.
+- Write them lower-case, in the same voice. Captions in the entry are used as-is when the
+  user clicks "schedule" in the scheduler.
+
 **Re-running /script** for the same title and date updates that entry: reuse its `id`.
 
-The scheduler picks the entry up under "ready to schedule". Captions are written there from
-hook + angle + CTA, and nothing posts until the user approves it.
+The scheduler picks the entry up under "ready to schedule", with your captions. Nothing posts
+until the user approves it and runs `/metricool send`.
 
 ## 4. Reply
 

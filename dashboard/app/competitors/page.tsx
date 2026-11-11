@@ -14,13 +14,18 @@ export default async function CompetitorsPage() {
       const c = creators.find((c) => c.handle === r.creator);
       return { ...r, followers: c?.followers ?? 0, creatorName: c?.name ?? r.creator, saved: saved.has(r.id) };
     })
-    .sort((a, b) => b.views - a.views);
+    .sort((a, b) => (b.views ?? b.likes) - (a.views ?? a.likes));
+  const byLikes = reels.some((r) => r.views === undefined);
 
   return (
     <>
       <PageHeader
         title="competitor tracker"
-        description={`the top 5 reels from each of the ${creators.length} accounts you follow, scraped every sunday at 06:00 — transcribed, with the hook and on-screen text pulled out.`}
+        description={
+          byLikes
+            ? `the top 5 reels from each of the ${creators.length} accounts you track in metricool, ranked by likes (metricool doesn’t share competitors’ views). refresh with /metricool.`
+            : `the top 5 reels from each of the ${creators.length} accounts you track — transcribed, with the hook and on-screen text pulled out.`
+        }
       />
       <DataSourceNote meta={meta} />
       <CompetitorReels rows={rows} creators={creators} />

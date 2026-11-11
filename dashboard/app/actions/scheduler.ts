@@ -14,8 +14,12 @@ function refresh() {
   revalidatePath("/calendar");
 }
 
-async function draftPost(entry: CalendarEntry): Promise<{ post: ScheduledPost; note?: string }> {
-  const { captions, source, error } = await generateCaptions({
+async function draftPost(entry: CalendarEntry, rewrite = false): Promise<{ post: ScheduledPost; note?: string }> {
+  // captions Claude already wrote in /script — free, no API key
+  const fromScript = !rewrite && entry.captions && entry.platforms.every((p) => entry.captions?.[p]?.trim());
+  const { captions, source, error } = fromScript
+    ? { captions: entry.captions!, source: "script" as const, error: undefined }
+    : await generateCaptions({
     title: entry.title,
     hook: entry.hook,
     angle: entry.angle,
@@ -47,7 +51,7 @@ export async function scheduleEntryAction(entryId: string): Promise<Result> {
   const entry = entries.find((e) => e.id === entryId);
   if (!entry) return { ok: false, message: "calendar entry not found" };
   if (posts.some((p) => p.calendarEntryId === entryId)) return { ok: false, message: "already in the scheduler" };
-  const { post, note } = await draftPost(entry);
+  const { post } = await draftPost(entry);
   await mutate("scheduled", (f) => {
     f.posts.push(post);
   });
@@ -56,7 +60,15 @@ export async function scheduleEntryAction(entryId: string): Promise<Result> {
     if (e) e.status = "scheduled";
   });
   refresh();
-  return { ok: true, message: note ? `drafted with templates (${note}) — add media, then approve` : "captions written by claude — add media, then approve" };
+  return {
+    ok: true,
+    message:
+      post.captionSource === "script"
+        ? "drafted with the captions /script wrote — add media, then approve"
+        : post.captionSource === "claude"
+          ? "captions written by claude — add media, then approve"
+          : "drafted from a template — edit the captions (or ask claude in /script), add media, then approve",
+  };
 }
 
 export async function scheduleAllReadyAction(): Promise<Result> {
@@ -96,13 +108,13 @@ export async function regenerateCaptionsAction(id: string): Promise<Result> {
   const post = posts.find((p) => p.id === id);
   const entry = entries.find((e) => e.id === post?.calendarEntryId);
   if (!post || !entry) return { ok: false, message: "post not found" };
-  const { post: fresh, note } = await draftPost(entry);
+  const { post: fresh } = await draftPost(entry, true);
   await mutate("scheduled", (f) => {
     const p = f.posts.find((x) => x.id === id);
     if (p) Object.assign(p, { captions: fresh.captions, captionSource: fresh.captionSource, status: "pending_approval", approvedAt: undefined, approvalKey: undefined });
   });
   refresh();
-  return { ok: true, message: note ?? "new captions written by claude" };
+  return { ok: true, message: fresh.captionSource === "claude" ? "new captions written by claude" : "reset to the template captions" };
 }
 
 /** Your authorisation. Saves the current edits and approves them in one step. */

@@ -47,6 +47,8 @@ export interface Hook {
   platform: Platform;
   url?: string;
   views?: number;
+  /** used when views aren't known (competitor reels saved via Metricool) */
+  likes?: number;
   /** on-screen text from the first seconds, when it came from a scraped reel */
   onScreenText?: string;
   /** id of the competitor reel it was saved from */
@@ -113,14 +115,15 @@ export interface TrackedCreator {
 export interface CompetitorReel {
   id: string;
   creator: string; // handle
-  /** first spoken sentence */
+  /** first spoken sentence (Apify route) or the caption's opening line (Metricool route) */
   hook: string;
-  /** text burned into the first frames, read by Claude vision */
-  onScreenText: string;
-  /** opening ~15 seconds of speech (ElevenLabs) */
-  transcript: string;
+  /** text burned into the first frames, read by Claude vision — Apify route only */
+  onScreenText?: string;
+  /** opening ~15 seconds of speech (ElevenLabs) — Apify route only */
+  transcript?: string;
   caption: string;
-  views: number;
+  /** Metricool doesn't report competitor views; the page sorts by likes then */
+  views?: number;
   likes: number;
   comments: number;
   postedAt: string;
@@ -154,6 +157,8 @@ export interface CalendarEntry {
   scriptPath?: string;
   /** inline script, used when there is no file (sample data, quick manual posts) */
   script?: string;
+  /** captions written by Claude in /script (no API key needed); the scheduler uses them as-is */
+  captions?: Partial<Record<Platform, string>>;
 }
 
 /* ---------------- Scheduler ---------------- */
@@ -186,7 +191,7 @@ export interface ScheduledPost {
   /** public URLs: one video for a reel, 2–10 images for a carousel */
   media: string[];
   status: PostStatus;
-  captionSource: "claude" | "template" | "edited";
+  captionSource: "claude" | "script" | "template" | "edited";
   createdAt: string;
   approvedAt?: string;
   /** fingerprint of captions + media + time at approval */

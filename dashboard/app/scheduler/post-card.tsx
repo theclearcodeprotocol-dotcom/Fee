@@ -54,7 +54,12 @@ export function PostCard({ post }: { post: ScheduledPost }) {
         <CardTitle className="text-xl">{post.title}</CardTitle>
         <CardDescription className="flex flex-wrap items-center gap-2">
           <PlatformBadges platforms={post.platforms} format={post.format} />
-          <span className="text-xs">captions: {post.captionSource === "claude" ? "written by claude" : post.captionSource === "edited" ? "edited by you" : "template"}</span>
+          <span className="text-xs">captions:{" "}
+            {post.captionSource === "claude" || post.captionSource === "script"
+              ? "written by claude"
+              : post.captionSource === "edited"
+                ? "edited by you"
+                : "template — worth a read before approving"}</span>
         </CardDescription>
       </CardHeader>
       <CardContent className="grid gap-4">
@@ -125,7 +130,7 @@ export function PostCard({ post }: { post: ScheduledPost }) {
               <Save /> save
             </Button>
             <Button variant="ghost" disabled={pending} onClick={() => run(() => regenerateCaptionsAction(post.id))}>
-              <RefreshCw /> rewrite captions
+              <RefreshCw /> redo captions
             </Button>
           </>
         ) : null}

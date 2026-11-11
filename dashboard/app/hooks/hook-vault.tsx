@@ -191,8 +191,8 @@ export function HookVault({ hooks, queued }: { hooks: Hook[]; queued: string[] }
                     </p>
                   </div>
                   <div className="shrink-0 text-right">
-                    <p className="font-heading text-2xl leading-none text-primary">{h.views ? formatCompact(h.views) : "—"}</p>
-                    <p className="text-[0.7rem] uppercase tracking-wider text-muted-foreground">views</p>
+                    <p className="font-heading text-2xl leading-none text-primary">{h.views ? formatCompact(h.views) : h.likes ? formatCompact(h.likes) : "—"}</p>
+                    <p className="text-[0.7rem] uppercase tracking-wider text-muted-foreground">{!h.views && h.likes ? "likes" : "views"}</p>
                   </div>
                 </div>
               </CardHeader>

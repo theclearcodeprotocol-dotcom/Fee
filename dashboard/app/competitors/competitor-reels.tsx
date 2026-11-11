@@ -68,15 +68,16 @@ export function CompetitorReels({ rows, creators }: { rows: Row[]; creators: Tra
               </span>
               <div className="min-w-0 space-y-2">
                 <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-                  <span className="font-heading text-2xl leading-none text-primary">{formatCompact(r.views)}</span>
-                  <span className="text-xs uppercase tracking-wider text-muted-foreground">views</span>
+                  <span className="font-heading text-2xl leading-none text-primary">{formatCompact(r.views ?? r.likes)}</span>
+                  <span className="text-xs uppercase tracking-wider text-muted-foreground">{r.views !== undefined ? "views" : "likes"}</span>
                   <span className="font-medium">{r.creator}</span>
                   <span className="text-sm text-muted-foreground">{formatCompact(r.followers)} followers · posted {formatDate(r.postedAt)}</span>
                 </div>
                 <div>
-                  <p className="text-[0.7rem] uppercase tracking-wider text-muted-foreground">hook</p>
+                  <p className="text-[0.7rem] uppercase tracking-wider text-muted-foreground">{r.transcript ? "hook" : "hook (caption’s first line)"}</p>
                   <p className="font-heading text-lg leading-snug text-primary">“{r.hook}”</p>
                 </div>
+                {r.transcript !== undefined || r.onScreenText !== undefined ? (
                 <div className="grid gap-2 text-sm sm:grid-cols-2">
                   <div className="rounded-lg bg-muted/70 p-2.5">
                     <p className="text-[0.7rem] uppercase tracking-wider text-muted-foreground">on-screen text</p>
@@ -87,6 +88,11 @@ export function CompetitorReels({ rows, creators }: { rows: Row[]; creators: Tra
                     <p className="line-clamp-3">{r.transcript}</p>
                   </div>
                 </div>
+                ) : (
+                  <p className="text-xs text-muted-foreground">
+                    {formatCompact(r.comments)} comments · {r.caption.length > 160 ? `${r.caption.slice(0, 160)}…` : r.caption}
+                  </p>
+                )}
               </div>
               <div className="flex items-center gap-1 sm:flex-col sm:items-end">
                 <SaveButton row={r} />

@@ -12,6 +12,11 @@ export const METRICOOL = {
   /** analytics request #2 — keep this order */
   reelMetrics: ["IGRE02", "IGRE03", "IGRE04", "IGRE06", "IGRE23", "IGRE12", "IGRE21", "IGRE07", "IGRE11", "IGRE27", "IGRE30"],
   // date+time, text, reel id, url, views, saved, shares, comments, reach, retention %, skip rate %
+  /** competitor accounts — keep this order */
+  competitorMetrics: ["IGCO02", "IGCO03", "IGCO07"], // handle, display name, followers
+  /** competitor reels — keep this order */
+  competitorReelMetrics: ["IGCR01", "IGCR02", "IGCR03", "IGCR04", "IGCR06", "IGCR07", "IGCR08"],
+  // competitor handle, reel id, text, url, published (date+time), likes, comments
 } as const;
 
 /** Wall-clock parts of an instant in a timezone. */

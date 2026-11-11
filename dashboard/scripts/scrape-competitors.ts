@@ -84,7 +84,7 @@ const candidates: Candidate[] = rawReels.map((item, i) => ({
 const now = Date.now();
 const age = (r: Candidate) => (now - new Date(r.postedAt).getTime()) / 864e5;
 const picked = file.creators.flatMap((c) => {
-  const mine = candidates.filter((r) => r.creator === c.handle).sort((a, b) => b.views - a.views);
+  const mine = candidates.filter((r) => r.creator === c.handle).sort((a, b) => (b.views ?? 0) - (a.views ?? 0));
   const week = mine.filter((r) => age(r) <= 7);
   const month = mine.filter((r) => age(r) > 7 && age(r) <= 30);
   return [...week, ...month].slice(0, TOP_N);
@@ -119,7 +119,7 @@ for (const r of picked) {
   console.log(`  ${r.creator.padEnd(22)} ${String(r.views).padStart(9)}  ${hook.slice(0, 70)}`);
 }
 
-file.reels = reels.sort((a, b) => b.views - a.views);
+file.reels = reels.sort((a, b) => (b.views ?? 0) - (a.views ?? 0));
 file.meta = { sample: false, source: "weekly scrape (apify + elevenlabs + claude)", updatedAt: new Date().toISOString() };
 await writeFile(DATA, JSON.stringify(file, null, 2) + "\n");
 console.log(`saved ${reels.length} reels from ${file.creators.length} accounts`);

@@ -37,6 +37,7 @@ export const calendarEntryInputSchema = z.object({
     .regex(/^content\/scripts\/[\w.-]+\.md$/, "scriptPath must be content/scripts/<file>.md")
     .optional(),
   script: z.string().max(20_000).optional(),
+  captions: z.partialRecord(platformSchema, z.string().max(2200)).optional(),
 });
 
 export const updatePostSchema = z.object({

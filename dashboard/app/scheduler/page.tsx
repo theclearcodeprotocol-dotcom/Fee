@@ -37,7 +37,7 @@ export default async function SchedulerPage() {
     <>
       <PageHeader
         title="scheduler"
-        description="one click and claude drafts your reels and carousels for instagram and tiktok, captions written from hook + angle + cta. nothing posts until you approve it."
+        description="one click drafts your reels and carousels for instagram and tiktok, with the captions claude wrote in /script from hook + angle + cta. nothing posts until you approve it."
         actions={
           <>
             <NewPostDialog />

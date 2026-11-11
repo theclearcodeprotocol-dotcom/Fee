@@ -11,6 +11,7 @@ export interface NewHook {
   platform: Platform;
   url?: string;
   views?: number;
+  likes?: number;
   onScreenText?: string;
   sourceReelId?: string;
 }
@@ -27,6 +28,7 @@ export async function createHook(input: NewHook): Promise<{ hook: Hook; template
     platform: input.platform,
     url: input.url,
     views: input.views,
+    likes: input.likes,
     onScreenText: input.onScreenText || undefined,
     sourceReelId: input.sourceReelId,
     savedAt: new Date().toISOString(),

@@ -63,6 +63,7 @@ export async function saveReelToVaultAction(reelId: string): Promise<{ ok: boole
     platform: "instagram",
     url: reel.url,
     views: reel.views,
+    likes: reel.views === undefined ? reel.likes : undefined,
     onScreenText: reel.onScreenText,
     sourceReelId: reel.id,
   });

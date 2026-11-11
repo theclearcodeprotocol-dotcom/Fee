@@ -15,7 +15,7 @@ export function ScheduleAllButton({ count }: { count: number }) {
   return (
     <div className="flex flex-col items-end gap-1">
       <Button disabled={pending || count === 0} onClick={() => start(async () => setMsg((await scheduleAllReadyAction()).message))}>
-        <Sparkles /> {pending ? "claude is drafting…" : `schedule all ready (${count})`}
+        <Sparkles /> {pending ? "drafting…" : `schedule all ready (${count})`}
       </Button>
       {msg ? <span className="text-xs text-muted-foreground">{msg}</span> : null}
     </div>
@@ -33,12 +33,13 @@ function ReadyRow({ entry }: { entry: CalendarEntry }) {
       </div>
       <div className="min-w-0 space-y-1">
         <p className="font-heading text-lg leading-snug text-primary">{entry.title}</p>
+        {entry.captions ? <p className="text-xs text-muted-foreground">captions ready from /script</p> : null}
         <p className="truncate text-sm text-muted-foreground">“{entry.hook}”</p>
         <PlatformBadges platforms={entry.platforms} format={entry.format} />
       </div>
       <div className="flex flex-col items-start gap-1 sm:items-end">
         <Button variant="secondary" disabled={pending} onClick={() => start(async () => setMsg((await scheduleEntryAction(entry.id)).message))}>
-          <Sparkles /> {pending ? "drafting…" : "schedule with claude"}
+          <Sparkles /> {pending ? "drafting…" : "schedule"}
         </Button>
         {msg ? <span className="text-xs text-muted-foreground">{msg}</span> : null}
       </div>

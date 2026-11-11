@@ -8,10 +8,24 @@ CLAUDE.md, and none of that project's rules (GSAP timelines, `npm run check`) ap
 |---|---|---|---|
 | hook vault | `/hooks` | `data/hooks.json`, `data/script-queue.json` | "add hook", `npm run hooks:transcribe`, "save to hook vault" on the competitor page |
 | analytics | `/analytics?range=7\|30\|90` | `data/analytics.json` | **Metricool**, via `/metricool pull` in Claude Code (`../.claude/skills/metricool/SKILL.md`) |
-| competitor tracker | `/competitors` | `data/competitors.json` | `scrape:competitors`, Sunday 06:00 |
+| competitor tracker | `/competitors` | `data/competitors.json` | **Metricool** competitors, via `/metricool competitors` (free). Optional paid route: Apify `scrape:competitors` |
 | scheduler | `/scheduler` | `data/scheduled.json` | "schedule with claude" (from calendar entries), then your approval, then `/metricool send`, and Metricool publishes |
 | content calendar | `/calendar?month=YYYY-MM` | `data/calendar.json` + `../content/scripts/*.md` | the `/script` skill (`../.claude/skills/script/SKILL.md`), "quick post" |
 | what's trending | `/trending` | `data/trending.json` | `trending:fetch` daily 06:40; `trending:slack` at 07:00 |
+
+## Cost rule: no new subscriptions
+
+The owner has asked for no new paid services. Everything runs on what they already have:
+Claude (subscription), Metricool, ElevenLabs and a free Slack webhook. That means:
+
+- **Captions** are written by Claude inside `/script`, stored on the calendar entry
+  (`captions`), and used as-is by the scheduler. `ANTHROPIC_API_KEY` is optional. Without it,
+  the dashboard's own buttons ("add hook", "redo captions") use the built-in rules and
+  templates.
+- **Competitors** come from Metricool, not Apify.
+- **Paid options stay off by default.** Apify, the direct Instagram/TikTok APIs and the
+  Claude API are only used if their keys are set, or with `schedule:install -- --apify` /
+  `--direct`. Don't propose them unless asked.
 
 ## Metricool (analytics + publishing)
 
@@ -41,8 +55,11 @@ the bridge:
 - The direct Instagram/TikTok API code (`scripts/fetch-analytics.ts`, `scripts/publish-due.ts`,
   `lib/publish/*`) is kept as an alternative. It only runs with `IG_ACCESS_TOKEN` /
   `TIKTOK_ACCESS_TOKEN` set, and `schedule:install -- --direct`.
-- Competitors still use Apify. Metricool's competitor data has no view counts and no video,
-  so it can't sort by views or transcribe anything.
+- `/metricool competitors`: the accounts tracked under Competitors in Metricool, run through
+  `npm run metricool:competitors`. Metricool gives likes, comments, caption, link and
+  follower counts, but **no views and no video**. So the page ranks by likes, the hook is
+  the caption's first line, and there's no transcript or on-screen text. The Apify route
+  (`scrape:competitors`) has views and transcripts, and costs money.
 
 ## How the pieces connect
 
@@ -88,10 +105,11 @@ npm run data:clear-sample           # empty the samples once real sources are co
 npm run hooks:transcribe -- clip.mp4 --creator @handle [--niche "ai tools"]
 npm run metricool:import            # used by /metricool pull
 npm run metricool:posts -- ready    # used by /metricool send
+npm run metricool:competitors       # used by /metricool competitors
 npm run scrape:competitors
 npm run trending:fetch
 npm run trending:slack [-- --print]
-npm run schedule:install            # Sunday scrape, daily trending pull, 7am Slack (crontab)
+npm run schedule:install            # daily trending pull + 7am Slack (crontab)
 npm run schedule:remove
 ```
 
@@ -99,9 +117,9 @@ npm run schedule:remove
 
 | Var | Used by |
 |---|---|
-| `ANTHROPIC_API_KEY` | everything Claude does. Optional: without it every feature falls back to rules or templates and the UI says so |
+| `ANTHROPIC_API_KEY` | optional and paid. Not needed: Claude writes captions in `/script` and notes in `/metricool` on the existing subscription |
 | `ELEVENLABS_API_KEY` | transcription (added by the network proxy in Fee cloud sessions) |
-| `APIFY_TOKEN` | competitor scrape |
+| `APIFY_TOKEN` | optional and paid. Apify competitor route only |
 | `IG_USER_ID`, `IG_ACCESS_TOKEN`, `IG_GRAPH_VERSION`, `TIKTOK_ACCESS_TOKEN`, `TIKTOK_PRIVACY_LEVEL` | **only for the direct-API alternative.** Not needed with Metricool |
 | `SLACK_WEBHOOK_URL` | 7am digest (Slack app → Incoming Webhooks → your channel or DM) |
 | `DASHBOARD_URL` | link in the Slack digest, default `http://localhost:3000` |
