@@ -6,8 +6,9 @@
   },
   "entries": [
     {
-      "date": "2026-11-19",
-      "time": "12:30",
+      "id": "cal_51e6e4bb",
+      "date": "2026-11-11",
+      "time": "18:00",
       "title": "black friday doors open — carousel",
       "format": "carousel",
       "platforms": [
@@ -15,7 +16,7 @@
         "tiktok"
       ],
       "hook": "doors open this black friday.",
-      "angle": "problem → cost → the protocol → what's inside → phase two → doors open fri 27 nov (black friday plan, day 22: everything inside)",
+      "angle": "problem → cost → the protocol → what's inside → phase two → doors open fri 27 nov (announced today, 11 nov)",
       "cta": "tap the link in our bio to join the waitlist",
       "status": "edited",
       "source": "manual",
@@ -23,8 +24,7 @@
       "captions": {
         "instagram": "doors open this black friday. 🖤\n\nacne clients keep finding you, but you're building the programme as you go, with no system behind any of it.\n\nthe clear code protocol is a done-for-you framework to plan, launch and nurture an acne programme in your clinic. phase two is here, shaped by the specialists who joined at launch.\n\nswipe →\n\ndoors open friday 27 november, and they won't be open for long. tap the link in our bio to join the waitlist.\n\n#acnespecialist #skinspecialist #acnetreatment #skinclinic #theclearcode",
         "tiktok": "doors open this black friday 🖤 the clear code protocol, phase two: a done-for-you framework for your clinic's acne programme. join the waitlist, link in bio. #acnespecialist #skinspecialist #theclearcode"
-      },
-      "id": "cal_51e6e4bb"
+      }
     }
   ]
 }
