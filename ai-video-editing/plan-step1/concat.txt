@@ -1,0 +1,2 @@
+file '/home/user/Fee/ai-video-editing/plan-step1/take2.mov'
+file '/home/user/Fee/ai-video-editing/plan-step1/take1.mov'

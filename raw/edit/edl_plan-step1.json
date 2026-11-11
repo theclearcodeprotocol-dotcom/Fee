@@ -1,0 +1,209 @@
+{
+  "version": 1,
+  "sources": {
+    "plan-step1": "/home/user/Fee/ai-video-editing/plan-step1/joined.mov"
+  },
+  "ranges": [
+    {
+      "source": "plan-step1",
+      "start": 13.7,
+      "end": 17.57,
+      "beat": "HOOK",
+      "quote": "Skin specialists, if you're still building an acne plan from scratch",
+      "output_start": 0.0,
+      "output_duration": 3.9
+    },
+    {
+      "source": "plan-step1",
+      "start": 19.34,
+      "end": 20.33,
+      "beat": "HOOK",
+      "quote": "for every client,",
+      "output_start": 3.9,
+      "output_duration": 1.0
+    },
+    {
+      "source": "plan-step1",
+      "start": 20.48,
+      "end": 21.63,
+      "beat": "HOOK",
+      "quote": "then watch this.",
+      "output_start": 4.9,
+      "output_duration": 1.167
+    },
+    {
+      "source": "plan-step1",
+      "start": 24.0,
+      "end": 26.23,
+      "beat": "SETUP",
+      "quote": "The Clear Code protocol has three steps,",
+      "output_start": 6.067,
+      "output_duration": 2.233
+    },
+    {
+      "source": "plan-step1",
+      "start": 26.36,
+      "end": 26.85,
+      "beat": "SETUP",
+      "quote": "plan,",
+      "output_start": 8.3,
+      "output_duration": 0.5
+    },
+    {
+      "source": "plan-step1",
+      "start": 27.06,
+      "end": 28.45,
+      "beat": "SETUP",
+      "quote": "launch, and nurture,",
+      "output_start": 8.8,
+      "output_duration": 1.4
+    },
+    {
+      "source": "plan-step1",
+      "start": 29.72,
+      "end": 31.17,
+      "beat": "SETUP",
+      "quote": "and today is step one,",
+      "output_start": 10.2,
+      "output_duration": 1.467
+    },
+    {
+      "source": "plan-step1",
+      "start": 31.42,
+      "end": 31.89,
+      "beat": "SETUP",
+      "quote": "plan.",
+      "output_start": 11.667,
+      "output_duration": 0.5
+    },
+    {
+      "source": "plan-step1",
+      "start": 46.56,
+      "end": 50.63,
+      "beat": "BODY1",
+      "quote": "Planning means deciding the shape of your acne program before anyone books it.",
+      "output_start": 12.167,
+      "output_duration": 4.1
+    },
+    {
+      "source": "plan-step1",
+      "start": 56.54,
+      "end": 57.53,
+      "beat": "BODY1",
+      "quote": "Planning decides",
+      "output_start": 16.267,
+      "output_duration": 1.0
+    },
+    {
+      "source": "plan-step1",
+      "start": 57.72,
+      "end": 58.55,
+      "beat": "BODY1",
+      "quote": "who it's for,",
+      "output_start": 17.267,
+      "output_duration": 0.833
+    },
+    {
+      "source": "plan-step1",
+      "start": 60.3,
+      "end": 61.53,
+      "beat": "BODY1",
+      "quote": "how long it runs,",
+      "output_start": 18.1,
+      "output_duration": 1.233
+    },
+    {
+      "source": "plan-step1",
+      "start": 65.72,
+      "end": 67.51,
+      "beat": "BODY1",
+      "quote": "and what happens at every stage.",
+      "output_start": 19.333,
+      "output_duration": 1.8
+    },
+    {
+      "source": "plan-step1",
+      "start": 78.073,
+      "end": 79.943,
+      "beat": "BODY2",
+      "quote": "And once that structure exists,",
+      "output_start": 21.133,
+      "output_duration": 1.9
+    },
+    {
+      "source": "plan-step1",
+      "start": 81.933,
+      "end": 83.763,
+      "beat": "BODY2",
+      "quote": "every consultation starts",
+      "output_start": 23.033,
+      "output_duration": 1.833
+    },
+    {
+      "source": "plan-step1",
+      "start": 87.153,
+      "end": 88.423,
+      "beat": "BODY2",
+      "quote": "from the same place.",
+      "output_start": 24.867,
+      "output_duration": 1.3
+    },
+    {
+      "source": "plan-step1",
+      "start": 91.993,
+      "end": 94.023,
+      "beat": "BODY2",
+      "quote": "So there's no more building it the night before",
+      "output_start": 26.167,
+      "output_duration": 2.033
+    },
+    {
+      "source": "plan-step1",
+      "start": 100.313,
+      "end": 103.243,
+      "beat": "BODY3",
+      "quote": "And it's also what lets you offer it as a program",
+      "output_start": 28.2,
+      "output_duration": 2.933
+    },
+    {
+      "source": "plan-step1",
+      "start": 106.313,
+      "end": 109.183,
+      "beat": "BODY3",
+      "quote": "instead of selling it as one session at a time.",
+      "output_start": 31.133,
+      "output_duration": 2.9
+    },
+    {
+      "source": "plan-step1",
+      "start": 114.073,
+      "end": 115.843,
+      "beat": "CTA",
+      "quote": "Follow so you don't miss step two.",
+      "output_start": 34.033,
+      "output_duration": 1.8
+    },
+    {
+      "source": "plan-step1",
+      "start": 118.453,
+      "end": 120.563,
+      "beat": "CTA",
+      "quote": "Our doors open on Black Friday.",
+      "output_start": 35.833,
+      "output_duration": 2.133
+    },
+    {
+      "source": "plan-step1",
+      "start": 120.773,
+      "end": 123.083,
+      "beat": "CTA",
+      "quote": "Join our wait list. The link is in our bio.",
+      "output_start": 37.967,
+      "output_duration": 2.333
+    }
+  ],
+  "grade": "eq=contrast=1.04:saturation=1.05:gamma=1.02,colorbalance=rm=0.03:bm=-0.03:rh=0.02:bh=-0.02,scale=1440:2560:flags=lanczos",
+  "overlays": [],
+  "total_duration_s": 40.3
+}

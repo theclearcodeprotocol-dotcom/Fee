@@ -35,7 +35,7 @@ for w in W:
     if k in SPELL:
         w["text"] = re.sub(k, SPELL[k], w["text"], flags=re.I)
     if k == "list" and CW and clean(CW[-1]["text"]) == "waitlist":
-        CW[-1]["end"] = w["end"]; continue
+        CW[-1]["end"] = w["end"]; CW[-1]["text"] += re.sub(r"[\w']", "", w["text"]); continue
     CW.append(w)
 groups, cur = [], []
 for i, w in enumerate(CW):
