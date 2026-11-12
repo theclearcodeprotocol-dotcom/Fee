@@ -1,0 +1,80 @@
+{
+  "daily": [
+    {
+      "date": "2026-11-02",
+      "follows": 0,
+      "saves": 0,
+      "views": 46
+    },
+    {
+      "date": "2026-11-03",
+      "follows": 0,
+      "saves": 0,
+      "views": 387
+    },
+    {
+      "date": "2026-11-04",
+      "follows": 1,
+      "saves": 1,
+      "views": 313
+    },
+    {
+      "date": "2026-11-05",
+      "follows": 2,
+      "saves": 0,
+      "views": 203
+    },
+    {
+      "date": "2026-11-06",
+      "follows": 3,
+      "saves": 0,
+      "views": 130
+    },
+    {
+      "date": "2026-11-07",
+      "follows": 1,
+      "saves": 0,
+      "views": 44
+    },
+    {
+      "date": "2026-11-08",
+      "follows": 3,
+      "saves": 0,
+      "views": 161
+    },
+    {
+      "date": "2026-11-09",
+      "follows": 2,
+      "saves": 0,
+      "views": 88
+    },
+    {
+      "date": "2026-11-10",
+      "follows": 0,
+      "saves": 0,
+      "views": 234
+    }
+  ],
+  "handle": "@theclearcode_",
+  "meta": {
+    "sample": false,
+    "source": "metricool (instagram)",
+    "updatedAt": "2026-11-12T05:34:35.314Z"
+  },
+  "reels": [
+    {
+      "comments": 22,
+      "follows": 0,
+      "hook": "Phase 2 of The Clear Code Protocol is on its way…",
+      "id": "17941897410384889",
+      "postedAt": "2026-11-03T18:19:25.000Z",
+      "reach": 226,
+      "saves": 0,
+      "shares": 0,
+      "skipRate": 70.4,
+      "title": "Phase 2 of The Clear Code Protocol is on its way…",
+      "url": "https://www.instagram.com/reel/DfSf-8nx1qv/",
+      "views": 387
+    }
+  ]
+}
