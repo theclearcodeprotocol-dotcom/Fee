@@ -31,7 +31,9 @@ function info(p, platform) {
     shortener: false, smartLinkData: { ids: [] }, text: p.captions[platform] ?? "",
     ...(platform === "instagram"
       ? { instagramData: { type: p.format === "reel" ? "REEL" : "POST", showReelOnFeed: true } }
-      : { tiktokData: { privacyOption: "PUBLIC_TO_EVERYONE", disableComment: false, disableDuet: false, disableStitch: false, autoAddMusic: p.format === "carousel", photoCoverIndex: 0 } }),
+      // Metricool refuses a TikTok post without tiktokData.title; for a TikTok video the title is
+      // its caption, so it is the approved TikTok caption, unchanged.
+      : { tiktokData: { title: (p.captions[platform] ?? "").slice(0, 2200), privacyOption: "PUBLIC_TO_EVERYONE", disableComment: false, disableDuet: false, disableStitch: false, autoAddMusic: p.format === "carousel", photoCoverIndex: 0 } }),
   };
 }
 
