@@ -1,19 +1,31 @@
 {
+  "approvalKey": "04a0aa8a1860e9",
+  "approvedAt": "2026-11-12T15:06:21.549Z",
   "calendarEntryId": "cal_12ead5cd",
-  "captionSource": "script",
+  "captionSource": "edited",
   "captions": {
-    "instagram": "the 3 steps to an acne programme your clients actually finish: plan, launch, nurture.\n\nthe clear code protocol is a done-for-you framework for skin specialists, acne specialists and aesthetic clinics: plan your acne treatment programme, launch it in your clinic, and nurture acne clients so they stay to the end.\n\nswipe →\n\nsave this for when you build yours. doors open black friday, 27 november. join the waitlist, link in bio.",
-    "tiktok": "plan → launch → nurture: the 3 steps to an acne programme clients finish ✨ waitlist link on our instagram @theclearcode_ #acnespecialist #skinspecialist #theclearcode"
+    "instagram": "what you actually get inside the clear code protocol…just to name a few👀\n\nnot a course you watch once: the templates, scripts and trackers skin and acne specialists use to run an acne programme in their skin clinic.\n\nFollowing our 3 elements: Plan, Launch & Nurture. \n\ndoors open black friday, 27 november. join the waitlist, link in bio.",
+    "tiktok": "what's actually inside the clear code protocol 👀 waitlist link on our instagram @theclearcode_ #acnespecialist #skinspecialist #theclearcode"
   },
   "createdAt": "2026-11-12T13:20:46.042Z",
   "format": "carousel",
   "id": "post_8e5wkim5",
-  "media": [],
+  "media": [
+    "https://drive.usercontent.google.com/download?id=1ofjvpb8-YAX2E35X_HcZxE9i-QeAzi1e&export=download&confirm=t",
+    "https://drive.usercontent.google.com/download?id=1zKIA9IhEO9365y9j9o7XK7aFD5bG9aAE&export=download&confirm=t",
+    "https://drive.usercontent.google.com/download?id=1_VnI1LGvrjSz8kqdoEIMGiBVJoFlUS_J&export=download&confirm=t",
+    "https://drive.usercontent.google.com/download?id=1DnrxEC2DHRO076z_vl9zxkoGz4x0zsLT&export=download&confirm=t",
+    "https://drive.usercontent.google.com/download?id=1Kl6dJchv373vh-Mc85tL1vTvyPQXR-Gz&export=download&confirm=t",
+    "https://drive.usercontent.google.com/download?id=1DuLd_UwPwowOIlvB2oyzvoRa9supoCL5&export=download&confirm=t",
+    "https://drive.usercontent.google.com/download?id=1cQIATwpnCuWSeN3uk0KEMczS4JdnmQda&export=download&confirm=t",
+    "https://drive.usercontent.google.com/download?id=1ISwiALcydeXEQE8pimtiyI5iUOcAy0OX&export=download&confirm=t",
+    "https://drive.usercontent.google.com/download?id=1v35GRRzUlO865vdbdKukAurkGeXcx3f7&export=download&confirm=t"
+  ],
   "platforms": [
     "instagram",
     "tiktok"
   ],
   "scheduledFor": "2026-11-15T12:30:00.000Z",
-  "status": "pending_approval",
-  "title": "plan, launch, nurture: the protocol in 3 steps"
+  "status": "approved",
+  "title": "inside the clear code protocol: every module"
 }

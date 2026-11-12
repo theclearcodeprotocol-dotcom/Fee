@@ -24,7 +24,21 @@
     "instagram",
     "tiktok"
   ],
+  "results": {
+    "instagram": {
+      "at": "2026-11-12T13:52:00Z",
+      "id": 425716661,
+      "ok": true,
+      "url": "https://app.metricool.com/planner/calendar?blogId=7976989&openWithPostUuid=-7156026658981590334"
+    },
+    "tiktok": {
+      "at": "2026-11-12T13:52:00Z",
+      "id": 425716769,
+      "ok": true,
+      "url": "https://app.metricool.com/planner/calendar?blogId=7976989&openWithPostUuid=3193908676894212439"
+    }
+  },
   "scheduledFor": "2026-11-13T12:30:00.000Z",
-  "status": "approved",
+  "status": "in_metricool",
   "title": "clear evidence: why most vitamin c formulas fail"
 }
