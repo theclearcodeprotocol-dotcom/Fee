@@ -17,7 +17,21 @@
     "instagram",
     "tiktok"
   ],
+  "results": {
+    "instagram": {
+      "at": "2026-11-12T13:36:00Z",
+      "id": 425697166,
+      "ok": true,
+      "url": "https://app.metricool.com/planner/calendar?blogId=7976989&openWithPostUuid=4437331974287869827"
+    },
+    "tiktok": {
+      "at": "2026-11-12T13:39:00Z",
+      "id": 425700236,
+      "ok": true,
+      "url": "https://app.metricool.com/planner/calendar?blogId=7976989&openWithPostUuid=-76263527542405656"
+    }
+  },
   "scheduledFor": "2026-11-12T18:00:00.000Z",
-  "status": "approved",
+  "status": "in_metricool",
   "title": "step 1 of 3: plan"
 }
