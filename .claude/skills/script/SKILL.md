@@ -97,12 +97,21 @@ it with `if_version`.
 **Captions:** add a `captions` object to the entry, with one caption per platform in
 `platforms`. You write these yourself; the user's Claude subscription covers it, so no API
 key is needed.
-- **instagram:** the hook as the first line, 2–4 short lines delivering the angle, the CTA,
-  then 3–5 hashtags from
-  `#acnespecialist #skinspecialist #acnetreatment #skinclinic #theclearcode`. For a
-  carousel, add "swipe →".
-- **tiktok:** the hook in one line, one line of angle, the CTA, then 2–3 of those hashtags.
-  Under 300 characters.
+- **instagram:** the hook as the first line, 2–4 short lines delivering the angle, then the
+  CTA ("link in bio" works here). For a carousel, add "swipe →".
+  - **No hashtags** (the user's rule). Instead, write the search keywords into the sentences
+    so Instagram search finds the post. Name the audience and the topic in plain words, two
+    to four of them per caption, without stuffing:
+    - audience: skin specialist(s), acne specialist(s), aesthetician(s), skin therapist,
+      skin clinic / clinic owner(s)
+    - topic: acne programme, acne treatment (plan), acne clients, acne consultation, client
+      retention, evidence-based skincare, plus the post's own subject (e.g. vitamin c serum,
+      rosacea, microneedling for acne scars)
+- **tiktok:** the hook in one line, one line of angle, the CTA, then 2–3 hashtags from
+  `#acnespecialist #skinspecialist #acnetreatment #skinclinic #theclearcode`. Under 300
+  characters. The TikTok account is personal, so it has **no bio link**: never write "link
+  in bio" there. Write "waitlist link on our instagram @theclearcode_" (or "link on our
+  instagram @theclearcode_" when it isn't the waitlist).
 - Write them lower-case, in the same voice. Captions in the entry are used as-is when the
   user clicks "schedule" in the scheduler.
 
