@@ -186,8 +186,14 @@ tr:last-child td { border-bottom: 0; }
 .st-scripted { background: var(--pink); color: var(--red); }
 .st-filmed { background: var(--tint-3); color: var(--red); }
 .st-edited { background: var(--tint-2); color: var(--ink); }
-.st-scheduled { background: #C2382C; color: var(--cream); }
-.st-posted { background: var(--red); color: var(--cream); }
+.st-scheduled { background: var(--ink); color: var(--cream); }
+.st-posted { background: var(--ok); color: var(--cream); }
+.todo { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.todo li button { display: flex; gap: 12px; align-items: center; width: 100%; text-align: left; border: 1px solid var(--line); background: var(--card); border-radius: 12px; padding: 10px 12px; min-height: 44px; }
+.todo .when { font-weight: 600; color: var(--red); white-space: nowrap; min-width: 82px; }
+.todo .what { min-width: 0; flex: 1; }
+.todo .act { display: block; font-size: 13px; color: var(--muted-fg); margin-top: 2px; }
+.nextstep { border-left: 0; background: var(--card); border: 1px solid var(--line-strong); border-radius: 12px; padding: 10px 12px; margin: 0 0 18px; font-size: 14px; }
 .agenda button { display: flex; gap: 12px; text-align: left; width: 100%; border: 1px solid var(--line); background: var(--card); border-radius: 12px; padding: 12px; min-width: 0; }
 .agenda .d { font-family: var(--display); font-weight: 900; color: var(--red); width: 46px; text-align: center; flex: none; line-height: 1; }
 .agenda .d b { display: block; font-size: 26px; }
@@ -267,6 +273,40 @@ const fmtDay = (ymd, o = { weekday: "short", day: "numeric", month: "short" }) =
 const fmtWhen = (iso) => fmtDate(iso, { weekday: "short", day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" });
 const localYmd = (d = new Date()) => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
 const uid = (p) => `${p}_${Math.random().toString(36).slice(2, 10)}`;
+// status as shown: a scheduled piece whose time has passed counts as posted
+// "scheduled" on the calendar only means booked in metricool; a piece sitting in the scheduler
+// still waiting for its video, slides or approval shows the stage it's really at.
+function shownStatus(e) {
+  const now = new Date(); const nowKey = `${localYmd(now)} ${String(now.getHours()).padStart(2, "0")}:${String(now.getMinutes()).padStart(2, "0")}`;
+  const past = `${e.date} ${e.time || "00:00"}` <= nowKey;
+  if (e.status === "posted") return "posted";
+  const post = (S.posts || []).find((p) => p.calendarEntryId === e.id);
+  if (post) {
+    if (post.status === "in_metricool" || post.status === "published") return past ? "posted" : "scheduled";
+    if (post.status === "approved") return "edited";
+    return post.media && post.media.length ? "edited" : "scripted";
+  }
+  if (e.status === "scheduled") return past ? "posted" : "scheduled";
+  return e.status || "idea";
+}
+const STATUS_HELP = { idea: "needs a script", scripted: "to film or design", filmed: "to edit", edited: "ready — approve it", scheduled: "booked in metricool", posted: "done" };
+// the one next step for a piece, and whether it's yours to do
+function nextStep(e) {
+  const post = S.posts.find((p) => p.calendarEntryId === e.id);
+  const st = shownStatus(e);
+  if (st === "posted") return { mine: false, text: "done — it's been posted." };
+  if (st === "scheduled") return { mine: false, text: "nothing to do — metricool posts it automatically." };
+  if (post && post.status === "approved") return { mine: true, text: "type /metricool send in claude." };
+  if (post && post.status === "pending_approval") return post.media && post.media.length
+    ? { mine: true, text: "check the captions in the scheduler and tap approve, then /metricool send." }
+    : { mine: false, text: "waiting for its video or slides — claude attaches them once they're ready." };
+  if (st === "edited") return { mine: true, text: "schedule it in the scheduler, then approve it." };
+  if (st === "filmed") return { mine: false, text: "being edited — type /edit-reel in claude if it isn't." };
+  if (st === "scripted") return e.format === "carousel"
+    ? { mine: true, text: "design it — ask claude to make the carousel." }
+    : { mine: true, text: "film it and upload the clip to “Cleo - to edit” in drive." };
+  return { mine: true, text: "write the script — /script in claude." };
+}
 const icon = (name) => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICONS[name] || ""}</svg>`;
 const slots = (t) => esc(t).replace(/\[([^\]]+)\]/g, '<mark class="slot">[$1]</mark>');
 const median = (a) => { if (!a.length) return 0; const s = [...a].sort((x, y) => x - y); const m = s.length >> 1; return s.length % 2 ? s[m] : (s[m - 1] + s[m]) / 2; };
@@ -654,14 +694,20 @@ function viewCalendar() {
   const cells = Array.from({ length: Math.ceil((lead + dim) / 7) * 7 }, (_, i) => i - lead + 1).map((d) => {
     if (d < 1 || d > dim) return `<div class="cal-cell out"></div>`;
     const iso = `${prefix}-${String(d).padStart(2, "0")}`;
-    return `<div class="cal-cell"><span class="daynum ${iso === today ? "today" : ""}">${d}</span>${entries.filter((e) => e.date === iso).map((e) => `<button class="slotbtn st-${esc(e.status)}" data-act="slot" data-id="${e.id}"><span class="t"><span class="tabular">${esc(e.time)}</span><span>${pf(e.platforms)}</span></span><span class="h">${esc(e.hook)}</span></button>`).join("")}</div>`;
+    return `<div class="cal-cell"><span class="daynum ${iso === today ? "today" : ""}">${d}</span>${entries.filter((e) => e.date === iso).map((e) => `<button class="slotbtn st-${esc(shownStatus(e))}" data-act="slot" data-id="${e.id}"><span class="t"><span class="tabular">${esc(e.time)}</span><span>${pf(e.platforms)}</span></span><span class="h">${esc(e.hook)}</span></button>`).join("")}</div>`;
   }).join("");
-  const legend = `<div class="chips small">${["idea", "scripted", "filmed", "edited", "scheduled", "posted"].map((s) => `<span class="badge st-${s}">${s}</span>`).join("")}<span class="muted">IG = Instagram · TT = TikTok</span></div>`;
+  const legend = `<div class="chips small">${["idea", "scripted", "filmed", "edited", "scheduled", "posted"].map((s) => `<span class="badge st-${s}">${s} · ${STATUS_HELP[s]}</span>`).join("")}<span class="muted">IG = Instagram · TT = TikTok</span></div>`;
+  const soon = new Date(); soon.setDate(soon.getDate() + 14); const until = localYmd(soon);
+  const todo = S.calendar.filter((e) => e.date >= today && e.date <= until).map((e) => ({ e, n: nextStep(e) })).filter((x) => x.n.mine)
+    .sort((a, b) => (a.e.date + a.e.time).localeCompare(b.e.date + b.e.time));
+  const todoHtml = `<div class="card stack" style="gap:10px"><h3>what needs doing <span class="muted small" style="font-family:var(--body);letter-spacing:0;font-weight:400">· next 2 weeks</span></h3>${todo.length
+    ? `<ul class="todo">${todo.map(({ e, n }) => `<li><button data-act="slot" data-id="${e.id}"><span class="when">${esc(fmtDay(e.date, { weekday: "short", day: "numeric", month: "short" }))}</span><span class="what"><b>${esc(e.title)}</b><span class="act">${esc(n.text)}</span></span><span class="badge st-${esc(shownStatus(e))}">${esc(shownStatus(e))}</span></button></li>`).join("")}</ul>`
+    : `<div class="empty">nothing needs you right now.</div>`}</div>`;
   const nav = `<div class="row"><button class="btn outline sm" data-act="month" data-v="-1" aria-label="previous month">‹</button><span class="display" style="font-size:22px;min-width:9ch;text-align:center">${esc(label)}</span><button class="btn outline sm" data-act="month" data-v="1" aria-label="next month">›</button></div>`;
   return header("content calendar", "when each piece goes out, where, and the hook. tap a slot for the full script and caption.", nav)
-    + `<div class="stack">${legend}
+    + `<div class="stack">${todoHtml}${legend}
       <div class="cal"><div class="cal-head">${["mon", "tue", "wed", "thu", "fri", "sat", "sun"].map((d) => `<div>${d}</div>`).join("")}</div><div class="cal-grid">${cells}</div></div>
-      <div class="agenda">${entries.length ? entries.map((e) => `<button data-act="slot" data-id="${e.id}"><span class="d"><b>${Number(e.date.slice(8))}</b>${esc(fmtDay(e.date, { weekday: "short" }))}</span><span style="min-width:0"><span class="row small"><b class="tabular">${esc(e.time)}</b>${pf(e.platforms)}</span><span style="display:block;font-weight:500;margin-top:2px">${esc(e.hook)}</span><span class="badge st-${esc(e.status)}" style="margin-top:6px">${esc(e.status)}</span></span></button>`).join("") : `<div class="empty">nothing planned this month. use /script in claude.</div>`}</div>
+      <div class="agenda">${entries.length ? entries.map((e) => `<button data-act="slot" data-id="${e.id}"><span class="d"><b>${Number(e.date.slice(8))}</b>${esc(fmtDay(e.date, { weekday: "short" }))}</span><span style="min-width:0"><span class="row small"><b class="tabular">${esc(e.time)}</b>${pf(e.platforms)}</span><span style="display:block;font-weight:500;margin-top:2px">${esc(e.hook)}</span><span class="badge st-${esc(shownStatus(e))}" style="margin-top:6px">${esc(shownStatus(e))}</span></span></button>`).join("") : `<div class="empty">nothing planned this month. use /script in claude.</div>`}</div>
     </div>`;
 }
 function drawer() {
@@ -672,7 +718,8 @@ function drawer() {
   return `<div class="drawer-bg" data-act="closeslot"></div><aside class="drawer" role="dialog" aria-modal="true" aria-label="${esc(e.title)}">
     <div class="row between"><span class="label" style="color:var(--red)">${esc(fmtDay(e.date, { weekday: "long", day: "numeric", month: "long" }))} · ${esc(e.time)}</span><button class="btn ghost sm" data-act="closeslot" aria-label="close">✕</button></div>
     <h2 style="margin-top:6px">${esc(e.title)}</h2>
-    <div class="row small" style="margin:10px 0 18px"><span class="badge b-red">${esc(e.format)}</span>${e.platforms.map((x) => `<span class="badge b-pink">${x === "instagram" ? "Instagram" : "TikTok"}</span>`).join("")}<span class="badge st-${esc(e.status)}">${esc(e.status)}</span><span class="muted">${e.source === "script" ? "from /script" : "added by hand"}</span></div>
+    <div class="row small" style="margin:10px 0 18px"><span class="badge b-red">${esc(e.format)}</span>${e.platforms.map((x) => `<span class="badge b-pink">${x === "instagram" ? "Instagram" : "TikTok"}</span>`).join("")}<span class="badge st-${esc(shownStatus(e))}">${esc(shownStatus(e))}</span><span class="muted">${e.source === "script" ? "from /script" : "added by hand"}</span></div>
+    ${(() => { const n = nextStep(e); return `<div class="nextstep"><span class="label" style="color:var(--red)">${n.mine ? "next step for you" : "next step"}</span><div style="margin-top:4px">${esc(n.text)}</div></div>`; })()}
     <div class="box stack" style="gap:10px;background:rgba(255,215,222,.55)"><div><div class="label">hook</div><p class="quote">“${esc(e.hook)}”</p></div><div><div class="label">angle</div><div>${esc(e.angle || "—")}</div></div><div><div class="label">call to action</div><div>${esc(e.cta || "—")}</div></div></div>
     <h3 style="margin-top:22px">script</h3><div class="script">${e.script ? scriptHtml(e.script) : '<p class="muted">no script yet — use /script in claude for this one.</p>'}</div>
     <h3 style="margin-top:22px">caption</h3>
