@@ -737,9 +737,9 @@ function viewTrending() {
   const u = S.ui;
   const visible = items.filter((i) => (u.tag === "all" || i.tag === u.tag) && (!u.tsource || i.sourceId === u.tsource)).sort((a, b) => b.publishedAt.localeCompare(a.publishedAt));
   const tagCls = { "hook potential": "tag-hook", explainer: "tag-explainer", skip: "tag-skip" };
-  return header("what's trending", `ai news from ${sources.length || 12} sources, tagged “hook potential”, “explainer” or “skip”. type /trending in claude to pull today’s.`)
+  return header("what's trending", `this week’s skincare news from ${sources.length || 11} sources (trade press, new research, uk rules, beauty press and your social screenshots), tagged “hook potential”, “explainer” or “skip”. type /trending in claude to refresh it; add tiktok or instagram screenshots to include what’s trending on social.`)
     + sourceNote(st.meta)
-    + (items.length === 0 ? `<div class="empty">no news pulled yet. type /trending in claude and the top stories land here.</div>` : `
+    + (items.length === 0 ? `<div class="empty">no skincare news pulled yet. type /trending in claude and the top stories land here.</div>` : `
     <section class="stack" style="gap:10px"><h2 class="section-title">top 5 hook-worthy, newest first</h2>
       ${top.length ? `<ol class="top5">${top.map((t, i) => `<li><div class="row between"><span class="small" style="opacity:.8">${i + 1} · ${esc(name(t.sourceId))} · ${esc(fmtWhen(t.publishedAt))}</span><a class="btn secondary sm" href="${esc(t.url)}" target="_blank" rel="noreferrer">read</a></div><h3>${esc(t.title)}</h3><div class="hookline small">hook: ${esc(t.hookIdea)}</div><div class="small" style="opacity:.75">why: ${esc(t.reason)}</div></li>`).join("")}</ol>` : `<div class="empty">nothing tagged “hook potential” in this pull.</div>`}
     </section>

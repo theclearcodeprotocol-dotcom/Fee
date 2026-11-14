@@ -1,19 +1,19 @@
 /**
- * The 12 sources the What's trending page pulls from. Edit this list to change
- * them; `scripts/fetch-trending.ts` reads it. All are public RSS/Atom feeds.
+ * The sources the What's trending page pulls skincare news from. Edit this list
+ * to change them; `/trending` (.claude/skills/trending) searches each one.
+ * Most have no public feed, so `url` is the page to search or read.
  * Dependency-free so plain Node can import it.
  */
 export const TREND_SOURCES = [
-  { id: "openai", name: "OpenAI News", url: "https://openai.com/news/rss.xml", home: "https://openai.com/news/" },
-  { id: "deepmind", name: "Google DeepMind", url: "https://deepmind.google/blog/rss.xml", home: "https://deepmind.google/discover/blog/" },
-  { id: "google-ai", name: "Google AI Blog", url: "https://blog.google/technology/ai/rss/", home: "https://blog.google/technology/ai/" },
-  { id: "huggingface", name: "Hugging Face", url: "https://huggingface.co/blog/feed.xml", home: "https://huggingface.co/blog" },
-  { id: "verge", name: "The Verge — AI", url: "https://www.theverge.com/rss/ai-artificial-intelligence/index.xml", home: "https://www.theverge.com/ai-artificial-intelligence" },
-  { id: "techcrunch", name: "TechCrunch — AI", url: "https://techcrunch.com/category/artificial-intelligence/feed/", home: "https://techcrunch.com/category/artificial-intelligence/" },
-  { id: "mit-tr", name: "MIT Technology Review", url: "https://www.technologyreview.com/topic/artificial-intelligence/feed", home: "https://www.technologyreview.com/topic/artificial-intelligence/" },
-  { id: "venturebeat", name: "VentureBeat — AI", url: "https://venturebeat.com/category/ai/feed/", home: "https://venturebeat.com/category/ai/" },
-  { id: "ars", name: "Ars Technica — AI", url: "https://arstechnica.com/ai/feed/", home: "https://arstechnica.com/ai/" },
-  { id: "wired", name: "WIRED — AI", url: "https://www.wired.com/feed/tag/ai/latest/rss", home: "https://www.wired.com/tag/artificial-intelligence/" },
-  { id: "hn", name: "Hacker News (AI, 100+ pts)", url: "https://hnrss.org/newest?q=AI&points=100", home: "https://news.ycombinator.com/" },
-  { id: "reddit-ai", name: "r/artificial (top, week)", url: "https://www.reddit.com/r/artificial/top/.rss?t=week", home: "https://www.reddit.com/r/artificial/" },
+  { id: "aesthetics-journal", name: "Aesthetics Journal", url: "https://aestheticsjournal.com/news/", home: "https://aestheticsjournal.com/" },
+  { id: "professional-beauty", name: "Professional Beauty", url: "https://professionalbeauty.co.uk/news", home: "https://professionalbeauty.co.uk/" },
+  { id: "cosmetics-business", name: "Cosmetics Business", url: "https://cosmeticsbusiness.com/news", home: "https://cosmeticsbusiness.com/" },
+  { id: "cosmeticsdesign", name: "CosmeticsDesign-Europe", url: "https://www.cosmeticsdesign-europe.com/", home: "https://www.cosmeticsdesign-europe.com/" },
+  { id: "beautymatter", name: "BeautyMatter", url: "https://beautymatter.com/", home: "https://beautymatter.com/" },
+  { id: "dermatology-times", name: "Dermatology Times", url: "https://www.dermatologytimes.com/", home: "https://www.dermatologytimes.com/" },
+  { id: "research", name: "New research (PubMed: acne, rosacea, pigmentation)", url: "https://pubmed.ncbi.nlm.nih.gov/?term=acne+OR+rosacea+OR+hyperpigmentation&sort=date", home: "https://pubmed.ncbi.nlm.nih.gov/" },
+  { id: "bad", name: "British Association of Dermatologists", url: "https://www.bad.org.uk/news/", home: "https://www.bad.org.uk/" },
+  { id: "regulation", name: "UK rules (ASA, MHRA, gov.uk)", url: "https://www.asa.org.uk/codes-and-rulings/rulings.html", home: "https://www.gov.uk/search/news-and-communications?keywords=cosmetic" },
+  { id: "consumer", name: "Consumer beauty press (Vogue UK, Allure, Glamour UK)", url: "https://www.vogue.co.uk/beauty", home: "https://www.allure.com/skin-care" },
+  { id: "social", name: "TikTok & Instagram (your screenshots)", url: "https://ads.tiktok.com/business/creativecenter/inspiration/popular/hashtag/pc/en", home: "https://ads.tiktok.com/business/creativecenter/" },
 ] as const;

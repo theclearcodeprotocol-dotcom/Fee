@@ -20,7 +20,7 @@ import type { TrendItem, TrendTag } from "./types.ts";
 
 const STAKES = ["free", "tricked", "hidden", "cut", "raises", "jobs", "job", "salary", "money", "price", "cheaper", "banned", "ban", "lawsuit", "sued", "privacy", "scam", "replace", "replaces", "layoffs", "safety", "leak", "leaked", "killed", "kills"];
 const NOVELTY = ["launch", "launches", "launched", "new", "first", "announces", "unveils", "release", "releases", "just", "open-source", "open source", "beta", "now", "adds", "ships", "unveil", "demos", "tests", "can now"];
-const NAMES = ["openai", "chatgpt", "anthropic", "claude", "google", "gemini", "meta", "llama", "apple", "microsoft", "nvidia", "deepmind", "mistral", "xai", "grok", "tiktok", "instagram", "youtube"];
+const NAMES = ["acne", "rosacea", "pigmentation", "melasma", "retinol", "tretinoin", "isotretinoin", "roaccutane", "niacinamide", "azelaic", "spf", "sunscreen", "botox", "filler", "nhs", "mhra", "asa", "the ordinary", "cerave", "la roche-posay", "boots", "sephora", "tiktok", "instagram"];
 const EXPLAINER = /\b(how|why|what is|what are|explained|guide|study|research|report|researchers|survey|course|lessons?|compared|review|benchmarks?)\b/i;
 const SHAPE = /\b\d+(\.\d+)?(x|%|k|m|b)?\b|\bvs\.?\b|\bversus\b|\bbeats?\b/i;
 
