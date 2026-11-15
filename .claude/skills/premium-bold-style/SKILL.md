@@ -120,8 +120,9 @@ about 1 LU low. Verify with `ebur128=peak=true` and report the measured numbers.
 - **Zoom by source resolution.** 1080x1920 sources: framing 1.00 / 1.04 only and a push of at most +1%.
   1440x2560 or 4K: the full punch-in ladder is fine. Never upscale soft phone footage further.
 - **Grade dim indoor footage** before building the composition: light denoise, lift, gentle contrast,
-  clean warmth, light sharpen (`hqdn3d=1.5:1.5:3:3,eq=brightness=0.035:contrast=1.08:saturation=1.06:gamma=1.06,`
-  `curves=master='0/0 0.12/0.10 0.5/0.55 0.85/0.9 1/1',colorbalance=rm=-0.02:bm=0.02:rh=-0.01,unsharp=5:5:0.55:5:5:0`),
+  clean warmth, light sharpen (`hqdn3d=1.5:1.5:3:3,eq=brightness=0.03:contrast=1.07:saturation=1.10:gamma=1.05,`
+  `curves=master='0/0 0.12/0.10 0.5/0.55 0.85/0.9 1/1',colorbalance=rs=0.02:bs=-0.02:rm=0.03:gm=0.005:bm=-0.03:rh=0.02:bh=-0.02,unsharp=5:5:0.55:5:5:0`
+  — **warm** on purpose: the user wants golden, peachy skin like the original footage, never cooled.),
   frame-for-frame with audio copied, CRF 14. Compare a before/after frame first.
 - **No `c.` seal on reels** - bottom-right sits under Instagram's sound button.
 - **Make a cover for every reel** (`exports/covers/cover-template.html`, rendered with Playwright at
