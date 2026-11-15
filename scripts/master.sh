@@ -11,3 +11,7 @@ ffmpeg -hide_banner -loglevel error -y -i "$out" -c:v libx264 -preset slow -crf 
 ffmpeg -hide_banner -loglevel error -y -i "$out" -c:v libx264 -preset slow -crf 24 -maxrate 2.6M -bufsize 5.2M -pix_fmt yuv420p -profile:v high -c:a copy -movflags +faststart "${out%.mp4}_small.mp4"
 ffmpeg -hide_banner -nostats -i "$out" -af ebur128=peak=true -f null - 2>&1 | grep -E "^\s+(I:|Peak:)"
 ls -la "$out" "$phone"
+# upload copy for Instagram: HEVC (like iPhone footage), ~4 Mbps = near-master quality at ~28 MB per minute.
+# Post THIS (not the light copy, which sits below Instagram's own streaming quality).
+ffmpeg -hide_banner -loglevel error -y -i "$out" -c:v libx265 -preset slow -crf 21 -x265-params "log-level=error:vbv-maxrate=6000:vbv-bufsize=12000" -tag:v hvc1 -pix_fmt yuv420p -c:a copy -movflags +faststart "${out%.mp4}_upload.mp4"
+ls -la "${out%.mp4}_upload.mp4"

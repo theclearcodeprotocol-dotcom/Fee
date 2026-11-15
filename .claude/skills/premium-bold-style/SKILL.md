@@ -127,6 +127,6 @@ about 1 LU low. Verify with `ebur128=peak=true` and report the measured numbers.
 - **Make a cover for every reel** (`exports/covers/cover-template.html`, rendered with Playwright at
   1080x1920): a frame with eyes open and mouth closed/smiling + a premium red panel headline. Keep the
   headline and face inside the grid's 3:4 crop (y 240-1680) so nothing is cut on the profile grid.
-- **Deliver the full-quality master** (not a light copy) for posting; tell the user to turn on
+- **Deliver the HEVC `_upload.mp4` from master.sh** (near-master quality, ~28 MB a minute, downloads through the chat) for posting; the Drive connector caps uploads at 10 MB so use it for covers only; tell the user to turn on
   Instagram's "Upload at highest quality". Light copies are only for previewing.
 - Tell the user, when footage is dim or 1080p: film facing a window or soft light, 4K 30 fps, back camera.
