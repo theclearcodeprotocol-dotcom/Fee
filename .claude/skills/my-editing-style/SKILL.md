@@ -223,3 +223,19 @@ Run all of video-use's self-eval, plus:
 - Cap at 3 fix-and-recheck passes, then report what's left.
 - Tell the user the file name in `exports/`, the length, the loudness numbers, and which
   takes and hook were used.
+
+## Picture quality for Instagram (learned from the live grid, Nov 2026)
+
+- **Zoom by source resolution.** 1080x1920 sources: framing 1.00 / 1.04 only and a push of at most +1%.
+  1440x2560 or 4K: the full punch-in ladder is fine. Never upscale soft phone footage further.
+- **Grade dim indoor footage** before building the composition: light denoise, lift, gentle contrast,
+  clean warmth, light sharpen (`hqdn3d=1.5:1.5:3:3,eq=brightness=0.035:contrast=1.08:saturation=1.06:gamma=1.06,`
+  `curves=master='0/0 0.12/0.10 0.5/0.55 0.85/0.9 1/1',colorbalance=rm=-0.02:bm=0.02:rh=-0.01,unsharp=5:5:0.55:5:5:0`),
+  frame-for-frame with audio copied, CRF 14. Compare a before/after frame first.
+- **No `c.` seal on reels** - bottom-right sits under Instagram's sound button.
+- **Make a cover for every reel** (`exports/covers/cover-template.html`, rendered with Playwright at
+  1080x1920): a frame with eyes open and mouth closed/smiling + a premium red panel headline. Keep the
+  headline and face inside the grid's 3:4 crop (y 240-1680) so nothing is cut on the profile grid.
+- **Deliver the full-quality master** (not a light copy) for posting; tell the user to turn on
+  Instagram's "Upload at highest quality". Light copies are only for previewing.
+- Tell the user, when footage is dim or 1080p: film facing a window or soft light, 4K 30 fps, back camera.

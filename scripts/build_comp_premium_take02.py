@@ -1,4 +1,4 @@
-"""Premium bold restyle of the four reasons reel (take02), crumb removed (assets/footage/take02-cut-clean.mp4).
+"""Premium bold restyle of the four reasons reel (take02), crumb removed (assets/footage/take02-cut-graded.mp4).
 Look and motion follow .claude/skills/premium-bold-style (reference: scripts/build_comp_premium.py).
 Take-end leans toward the phone are hidden behind full-frame premium pages (see my-editing-style)."""
 import html, json, re, sys
@@ -79,7 +79,7 @@ inner = []
 for name, after in inner:
     pass
 changes = sorted(changes)
-cycle = [1.0, 1.1, 1.18, 1.1, 1.0, 1.18] if BOLD else [1.0, 1.06]
+cycle = [1.0, 1.04]  # 1080p source: barely any zoom, so the picture stays sharp
 frame_js = []
 prev = None
 for i, t in enumerate(changes):
@@ -329,7 +329,7 @@ html, body {{ width:1080px; height:1920px; overflow:hidden; background:#000; }}
 <body>
 <div id="root" data-composition-id="main" data-start="0" data-duration="{TOTAL:.3f}" data-width="1080" data-height="1920">
   <div id="cam">
-    <video id="footage" class="clip" src="footage/take02-cut-clean.mp4" data-start="0" data-duration="{TOTAL:.3f}" data-track-index="0"
+    <video id="footage" class="clip" src="footage/take02-cut-graded.mp4" data-start="0" data-duration="{TOTAL:.3f}" data-track-index="0"
       playsinline data-has-audio="true"></video>
   </div>
   <div id="scrim" class="clip" data-start="0" data-duration="{TOTAL:.3f}" data-track-index="1" data-track-kind="graphics" data-layout-allow-overlap></div>
@@ -337,7 +337,7 @@ html, body {{ width:1080px; height:1920px; overflow:hidden; background:#000; }}
   <div id="captions" class="clip" data-start="0" data-duration="{TOTAL:.3f}" data-track-index="2" data-track-kind="captions" data-layout-allow-overlap>
     {"".join(cap_html)}
   </div>
-  <div id="seal" class="clip" data-start="0" data-duration="{TOTAL:.3f}" data-track-index="3" data-track-kind="graphics"><span>c.</span></div>
+  <!-- c. seal dropped on reels: it sat under Instagram's sound button -->
   {"".join(curtains)}
   {"".join(audio)}
 </div>
@@ -346,7 +346,7 @@ window.__timelines = window.__timelines || {{}};
 const tl = gsap.timeline({{ paused: true }});
 tl.set("#cam", {{ scale: 1 }}, 0);
 function shot(a, b, sc) {{  // framing set on the cut, then a slow push for the length of the shot
-  tl.fromTo("#cam", {{ scale: sc }}, {{ scale: sc * 1.025, duration: Math.max(0.05, b - a - 0.001), ease: "none", immediateRender: false }}, a);
+  tl.fromTo("#cam", {{ scale: sc }}, {{ scale: sc * 1.01, duration: Math.max(0.05, b - a - 0.001), ease: "none", immediateRender: false }}, a);
 }}
 function wipe(host, t) {{
   const box = host + " .in";

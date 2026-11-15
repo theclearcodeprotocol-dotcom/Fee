@@ -64,7 +64,7 @@ plain `.card` loses to `.pop .in` specificity.
 - **Accent word** — big italic serif word with a rule that draws in. Strike-through for the
   thing being dismissed ("sales pitch"), underline for the promise ("no brand bias", "trust").
 - **Numeral** — giant italic number + tracked unit, for counts and times ("5 / MINUTE READ").
-- **Seal** — the `c.` lettermark in a 76 px red circle with an inner cream hairline ring,
+- **Seal** (graphics only, NOT on reels — it collides with Instagram's sound button) — the `c.` lettermark in a 76 px red circle with an inner cream hairline ring,
   bottom-right (right 56 px, top 1758 px), on for the whole video.
 - **Scrim** — bottom 900 px gradient, transparent -> `rgba(20,8,6,.5)`, under the captions for
   legibility. It is a graphic overlay, not a grade.
@@ -114,3 +114,19 @@ about 1 LU low. Verify with `ebur128=peak=true` and report the measured numbers.
    burned-in source text showing around or between covers, face and eyes clear.
 5. Render, two-pass loudnorm phone export to `exports/<name>_phone.mp4`, report length and
    measured loudness.
+
+## Picture quality for Instagram (learned from the live grid, Nov 2026)
+
+- **Zoom by source resolution.** 1080x1920 sources: framing 1.00 / 1.04 only and a push of at most +1%.
+  1440x2560 or 4K: the full punch-in ladder is fine. Never upscale soft phone footage further.
+- **Grade dim indoor footage** before building the composition: light denoise, lift, gentle contrast,
+  clean warmth, light sharpen (`hqdn3d=1.5:1.5:3:3,eq=brightness=0.035:contrast=1.08:saturation=1.06:gamma=1.06,`
+  `curves=master='0/0 0.12/0.10 0.5/0.55 0.85/0.9 1/1',colorbalance=rm=-0.02:bm=0.02:rh=-0.01,unsharp=5:5:0.55:5:5:0`),
+  frame-for-frame with audio copied, CRF 14. Compare a before/after frame first.
+- **No `c.` seal on reels** - bottom-right sits under Instagram's sound button.
+- **Make a cover for every reel** (`exports/covers/cover-template.html`, rendered with Playwright at
+  1080x1920): a frame with eyes open and mouth closed/smiling + a premium red panel headline. Keep the
+  headline and face inside the grid's 3:4 crop (y 240-1680) so nothing is cut on the profile grid.
+- **Deliver the full-quality master** (not a light copy) for posting; tell the user to turn on
+  Instagram's "Upload at highest quality". Light copies are only for previewing.
+- Tell the user, when footage is dim or 1080p: film facing a window or soft light, 4K 30 fps, back camera.
