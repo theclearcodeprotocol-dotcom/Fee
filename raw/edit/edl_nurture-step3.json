@@ -1,0 +1,146 @@
+{
+  "version": 1,
+  "sources": {
+    "nurture-step3": "/home/user/Fee/ai-video-editing/nurture-step3/clip.mov"
+  },
+  "ranges": [
+    {
+      "source": "nurture-step3",
+      "start": 5.76,
+      "end": 11.43,
+      "beat": "HOOK",
+      "quote": "Acne clients rarely quit because of one bad week. They quit because they felt alone between appointments.",
+      "output_start": 0.0,
+      "output_duration": 5.7
+    },
+    {
+      "source": "nurture-step3",
+      "start": 16.72,
+      "end": 20.03,
+      "beat": "SETUP",
+      "quote": "That's why step three of the Clear code protocol is nurture.",
+      "output_start": 5.7,
+      "output_duration": 3.333
+    },
+    {
+      "source": "nurture-step3",
+      "start": 24.5,
+      "end": 26.69,
+      "beat": "BODY1",
+      "quote": "You'll be setting expectations from the start",
+      "output_start": 9.033,
+      "output_duration": 2.2
+    },
+    {
+      "source": "nurture-step3",
+      "start": 29.94,
+      "end": 32.05,
+      "beat": "BODY1",
+      "quote": "with what the first weeks may look like",
+      "output_start": 11.233,
+      "output_duration": 2.133
+    },
+    {
+      "source": "nurture-step3",
+      "start": 36.32,
+      "end": 38.81,
+      "beat": "BODY1",
+      "quote": "and how that progress is rarely a straight line.",
+      "output_start": 13.367,
+      "output_duration": 2.5
+    },
+    {
+      "source": "nurture-step3",
+      "start": 43.28,
+      "end": 47.39,
+      "beat": "BODY2",
+      "quote": "You'll be checking in between appointments, so a wobble doesn't become a cancellation.",
+      "output_start": 15.867,
+      "output_duration": 4.133
+    },
+    {
+      "source": "nurture-step3",
+      "start": 50.94,
+      "end": 52.81,
+      "beat": "BODY3",
+      "quote": "And you'll be giving them the education",
+      "output_start": 20.0,
+      "output_duration": 1.9
+    },
+    {
+      "source": "nurture-step3",
+      "start": 55.76,
+      "end": 57.45,
+      "beat": "BODY3",
+      "quote": "that they can go back to at home,",
+      "output_start": 21.9,
+      "output_duration": 1.7
+    },
+    {
+      "source": "nurture-step3",
+      "start": 58.54,
+      "end": 60.47,
+      "beat": "BODY3",
+      "quote": "so they can understand why they're doing",
+      "output_start": 23.6,
+      "output_duration": 1.933
+    },
+    {
+      "source": "nurture-step3",
+      "start": 61.1,
+      "end": 61.87,
+      "beat": "BODY3",
+      "quote": "what they're doing.",
+      "output_start": 25.533,
+      "output_duration": 0.8
+    },
+    {
+      "source": "nurture-step3",
+      "start": 65.14,
+      "end": 68.33,
+      "beat": "BODY4",
+      "quote": "And also you'll be helping your clients to celebrate the small wins",
+      "output_start": 26.333,
+      "output_duration": 3.2
+    },
+    {
+      "source": "nurture-step3",
+      "start": 71.62,
+      "end": 73.17,
+      "beat": "CTA",
+      "quote": "Plan, launch, and nurture,",
+      "output_start": 29.533,
+      "output_duration": 1.567
+    },
+    {
+      "source": "nurture-step3",
+      "start": 73.38,
+      "end": 75.21,
+      "beat": "CTA",
+      "quote": "that is the Clear code protocol.",
+      "output_start": 31.1,
+      "output_duration": 1.833
+    },
+    {
+      "source": "nurture-step3",
+      "start": 78.82,
+      "end": 80.57,
+      "beat": "CTA",
+      "quote": "Our doors open on Black Friday.",
+      "output_start": 32.933,
+      "output_duration": 1.767
+    },
+    {
+      "source": "nurture-step3",
+      "start": 83.38,
+      "end": 85.33,
+      "beat": "CTA",
+      "quote": "To join the waitlist, the link is in our bio.",
+      "output_start": 34.7,
+      "output_duration": 1.967
+    }
+  ],
+  "grade": "eq=contrast=1.04:saturation=1.05:gamma=1.02,colorbalance=rm=0.03:bm=-0.03:rh=0.02:bh=-0.02,scale=1440:2560:flags=lanczos",
+  "overlays": [],
+  "total_duration_s": 36.667
+}
