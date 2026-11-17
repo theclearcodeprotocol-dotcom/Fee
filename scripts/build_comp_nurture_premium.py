@@ -214,7 +214,7 @@ html, body {{ width:1080px; height:1920px; overflow:hidden; background:#000; }}
 
 /* captions: no pill, editorial */
 #captions {{ position:absolute; inset:0; pointer-events:none; }}
-.cap {{ position:absolute; left:90px; right:90px; top:1380px; text-align:center; opacity:0; visibility:hidden; }}
+.cap {{ position:absolute; left:90px; right:90px; top:1500px; text-align:center; opacity:0; visibility:hidden; }}
 .ct {{ font:500 50px/1.22 var(--sans); color:var(--cream); letter-spacing:-0.005em;
   text-shadow:0 2px 3px rgba(0,0,0,.35), 0 6px 24px rgba(0,0,0,.35); }}
 .ct em {{ font:italic 900 56px/1 var(--serif); color:var(--pink); letter-spacing:-0.03em; }}
@@ -239,7 +239,7 @@ html, body {{ width:1080px; height:1920px; overflow:hidden; background:#000; }}
 .pop .in.panel.cover {{ top:236px; width:940px; padding-inline:30px; }}
 .panel.cover .p-main {{ font-size:64px; }}  /* over the source's burned-in title (y≈300-345) */
 .panel.slim .p-main {{ font-size:58px; }}
-.pop .in.card {{ width:800px; }}
+.pop .in.card {{ width:800px; top:1060px; }}  /* cards sit on the chest, inside the 3:4 safe area, clear of the face */
 .card {{ background:var(--cream); color:var(--red); border-radius:6px; padding:34px 44px 38px;
   box-shadow:0 18px 50px rgba(40,6,4,.24); }}
 .card::after {{ border-color:var(--hair-red); }}

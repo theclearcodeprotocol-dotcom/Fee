@@ -85,7 +85,8 @@ python3 scripts/sync_check.py exports/<name>_render.mp4 <clip>  # lip sync vs th
 - **Instagram safe area (learned on the nurture reel, 17 Nov):** Instagram's profile/feed view crops a 9:16 reel to
   about 3:4 (y 240-1680 survives) and lays the username and audio line over the top ~130 px of what's left. Keep every
   pop-up, card and headline between **y 400 and y 1500**, captions no lower than ~1500, and the `c.` seal above y 1600.
-  Nothing important at top:170 any more.
+  Nothing important at top:170 any more. Short panels go at top ~400 (over the hair, above the eyes); taller cards go
+  below the chin (top ~1060, over the chest), captions at ~1500. Check the mouth stays clear at every framing.
 - Place the top-zone pop-ups by the **actual head position**: look at a frame at each
   framing. Pop-ups may overlap hair, never the eyes or mouth.
 
