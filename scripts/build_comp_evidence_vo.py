@@ -195,9 +195,9 @@ html, body {{ width:1080px; height:1920px; overflow:hidden; background:var(--cre
 .scene.red {{ background:var(--red); color:var(--cream); }}
 .frame {{ position:absolute; inset:28px; border:1.5px solid currentColor; opacity:.35; border-radius:4px; }}
 .eyebrow {{ font:600 30px/1 var(--sans); letter-spacing:.24em; text-transform:uppercase; }}
-.eyebrow.top {{ position:absolute; top:150px; left:0; right:0; text-align:center; opacity:.85; }}
-.mid {{ position:absolute; left:100px; right:100px; top:330px; display:flex; flex-direction:column; gap:34px; }}
-.mid.centre {{ align-items:center; text-align:center; top:420px; }}
+.eyebrow.top {{ position:absolute; top:420px; left:0; right:0; text-align:center; opacity:.85; }}
+.mid {{ position:absolute; left:100px; right:100px; top:540px; display:flex; flex-direction:column; gap:34px; }}
+.mid.centre {{ align-items:center; text-align:center; top:560px; }}
 .big {{ font:900 124px/0.98 var(--serif); letter-spacing:-0.05em; }}
 .huge {{ font:italic 900 300px/0.85 var(--serif); letter-spacing:-0.06em; color:var(--pink); }}
 .sub {{ font:900 64px/1.08 var(--serif); letter-spacing:-0.04em; }}
@@ -229,11 +229,11 @@ html, body {{ width:1080px; height:1920px; overflow:hidden; background:var(--cre
   font:900 62px/1.02 var(--serif); letter-spacing:-0.045em; }}
 .pill {{ font:600 46px/1 var(--sans); border:3px solid var(--red); border-radius:999px; padding:24px 54px; }}
 #captions {{ position:absolute; inset:0; pointer-events:none; }}
-.cap {{ position:absolute; left:80px; right:80px; top:1500px; text-align:center; opacity:0; visibility:hidden; }}
+.cap {{ position:absolute; left:80px; right:80px; top:1430px; text-align:center; opacity:0; visibility:hidden; }}
 .ct {{ display:inline; font:500 46px/1.6 var(--sans); color:var(--cream); background:var(--ink); padding:8px 22px; border-radius:12px;
   -webkit-box-decoration-break:clone; box-decoration-break:clone; }}
 .ct em {{ font:italic 900 50px/1 var(--serif); color:var(--pink); letter-spacing:-0.02em; }}
-#seal {{ position:absolute; right:56px; top:1758px; width:76px; height:76px; border-radius:50%; background:var(--red); display:grid; place-items:center;
+#seal {{ position:absolute; right:70px; top:1560px; width:76px; height:76px; border-radius:50%; background:var(--red); display:grid; place-items:center;
   box-shadow:0 6px 18px rgba(0,0,0,.18); }}
 #seal span {{ font:900 44px/1 var(--serif); color:var(--cream); letter-spacing:-0.05em; padding-bottom:6px; }}
 </style>

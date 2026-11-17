@@ -82,6 +82,10 @@ python3 scripts/sync_check.py exports/<name>_render.mp4 <clip>  # lip sync vs th
   frame whose lid gap is under 80% of the local median, then without `--report` it holds the nearest on-lens frames
   over each dip (frame count unchanged). Run it twice, then look at face-tracked eye crops at 10 fps for the whole
   video; narrowed eyes from a smile with the iris on the lens are fine, a closing or lowered lid is not.
+- **Instagram safe area (learned on the nurture reel, 17 Nov):** Instagram's profile/feed view crops a 9:16 reel to
+  about 3:4 (y 240-1680 survives) and lays the username and audio line over the top ~130 px of what's left. Keep every
+  pop-up, card and headline between **y 400 and y 1500**, captions no lower than ~1500, and the `c.` seal above y 1600.
+  Nothing important at top:170 any more.
 - Place the top-zone pop-ups by the **actual head position**: look at a frame at each
   framing. Pop-ups may overlap hair, never the eyes or mouth.
 
