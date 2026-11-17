@@ -50,6 +50,14 @@ CLIPS = {  # (beat, first word start, last word end) in source seconds, in outpu
         ("BODY4", 65.18, 68.86),
         ("CTA", 71.66, 85.26),
     ],
+    "evidence-step": [  # Clear Evidence: one take, long reading pauses removed, the false start "with what," dropped
+        ("HOOK", 1.50, 5.42),
+        ("SETUP", 11.06, 26.46),
+        ("PROBLEM", 32.18, 47.42),
+        ("SOLUTION", 49.38, 67.18),
+        ("COVERS", 76.48, 83.72), ("COVERS", 91.84, 94.76),
+        ("CTA", 101.80, 112.20),
+    ],
 }
 SECTIONS = CLIPS[CLIP]
 GAP = 0.15
@@ -87,7 +95,7 @@ for beat, s, e, run in spans:
     t += e - s
 edl = {"version": 1, "sources": {CLIP: str(Path(f"raw/{CLIP}.mp4").resolve())},
        "ranges": out, "grade": "eq=contrast=1.04:saturation=1.05:gamma=1.02,colorbalance=rm=0.03:bm=-0.03:rh=0.02:bh=-0.02"
-                 + (",scale=1440:2560:flags=lanczos" if CLIP in ("launch-step2", "plan-step1", "nurture-step3") else ""),
+                 + (",scale=1440:2560:flags=lanczos" if CLIP in ("launch-step2", "plan-step1", "nurture-step3", "evidence-step") else ""),
        "overlays": [], "total_duration_s": round(t, 3)}
 json.dump(edl, open(edit / f"edl_{CLIP}.json", "w"), indent=2)
 for r in out:

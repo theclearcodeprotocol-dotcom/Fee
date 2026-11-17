@@ -1,0 +1,203 @@
+{
+  "version": 1,
+  "sources": {
+    "evidence-step": "/home/user/Fee/ai-video-editing/evidence-reel/clip.mov"
+  },
+  "ranges": [
+    {
+      "source": "evidence-step",
+      "start": 1.46,
+      "end": 5.49,
+      "beat": "HOOK",
+      "quote": "Be honest, when was the last time that you read a research paper?",
+      "output_start": 0.0
+    },
+    {
+      "source": "evidence-step",
+      "start": 11.02,
+      "end": 13.21,
+      "beat": "SETUP",
+      "quote": "The skin industry moves fast.",
+      "output_start": 4.03
+    },
+    {
+      "source": "evidence-step",
+      "start": 15.42,
+      "end": 16.69,
+      "beat": "SETUP",
+      "quote": "There's new ingredients,",
+      "output_start": 6.22
+    },
+    {
+      "source": "evidence-step",
+      "start": 16.82,
+      "end": 18.01,
+      "beat": "SETUP",
+      "quote": "new treatments,",
+      "output_start": 7.49
+    },
+    {
+      "source": "evidence-step",
+      "start": 24.12,
+      "end": 24.41,
+      "beat": "SETUP",
+      "quote": "and",
+      "output_start": 8.68
+    },
+    {
+      "source": "evidence-step",
+      "start": 24.56,
+      "end": 26.53,
+      "beat": "SETUP",
+      "quote": "new research every week.",
+      "output_start": 8.97
+    },
+    {
+      "source": "evidence-step",
+      "start": 32.14,
+      "end": 34.09,
+      "beat": "PROBLEM",
+      "quote": "Staying current shouldn't mean",
+      "output_start": 10.94
+    },
+    {
+      "source": "evidence-step",
+      "start": 39.24,
+      "end": 41.65,
+      "beat": "PROBLEM",
+      "quote": "spending hours searching through",
+      "output_start": 12.89
+    },
+    {
+      "source": "evidence-step",
+      "start": 44.5,
+      "end": 45.25,
+      "beat": "PROBLEM",
+      "quote": "papers",
+      "output_start": 15.3
+    },
+    {
+      "source": "evidence-step",
+      "start": 45.4,
+      "end": 47.49,
+      "beat": "PROBLEM",
+      "quote": "after a full day in clinic,",
+      "output_start": 16.05
+    },
+    {
+      "source": "evidence-step",
+      "start": 49.34,
+      "end": 51.23,
+      "beat": "SOLUTION",
+      "quote": "so I built the Clear Evidence.",
+      "output_start": 18.14
+    },
+    {
+      "source": "evidence-step",
+      "start": 53.38,
+      "end": 54.09,
+      "beat": "SOLUTION",
+      "quote": "Every week,",
+      "output_start": 20.03
+    },
+    {
+      "source": "evidence-step",
+      "start": 54.28,
+      "end": 55.83,
+      "beat": "SOLUTION",
+      "quote": "one carefully selected",
+      "output_start": 20.74
+    },
+    {
+      "source": "evidence-step",
+      "start": 57.28,
+      "end": 58.43,
+      "beat": "SOLUTION",
+      "quote": "research paper",
+      "output_start": 22.29
+    },
+    {
+      "source": "evidence-step",
+      "start": 58.62,
+      "end": 60.35,
+      "beat": "SOLUTION",
+      "quote": "that is graded for quality",
+      "output_start": 23.44
+    },
+    {
+      "source": "evidence-step",
+      "start": 63.8,
+      "end": 64.91,
+      "beat": "SOLUTION",
+      "quote": "and broken down",
+      "output_start": 25.17
+    },
+    {
+      "source": "evidence-step",
+      "start": 65.32,
+      "end": 67.25,
+      "beat": "SOLUTION",
+      "quote": "to read in five minutes.",
+      "output_start": 26.28
+    },
+    {
+      "source": "evidence-step",
+      "start": 76.44,
+      "end": 78.81,
+      "beat": "COVERS",
+      "quote": "It covers ingredient science,",
+      "output_start": 28.21
+    },
+    {
+      "source": "evidence-step",
+      "start": 79.52,
+      "end": 80.97,
+      "beat": "COVERS",
+      "quote": "treatment protocols,",
+      "output_start": 30.58
+    },
+    {
+      "source": "evidence-step",
+      "start": 81.46,
+      "end": 83.79,
+      "beat": "COVERS",
+      "quote": "skin conditions, and lifestyle",
+      "output_start": 32.03
+    },
+    {
+      "source": "evidence-step",
+      "start": 91.8,
+      "end": 93.47,
+      "beat": "COVERS",
+      "quote": "with what it means for you",
+      "output_start": 34.36
+    },
+    {
+      "source": "evidence-step",
+      "start": 93.72,
+      "end": 94.83,
+      "beat": "COVERS",
+      "quote": "in your practice.",
+      "output_start": 36.03
+    },
+    {
+      "source": "evidence-step",
+      "start": 101.76,
+      "end": 104.61,
+      "beat": "CTA",
+      "quote": "So consider it your weekly knowledge upgrade.",
+      "output_start": 37.14
+    },
+    {
+      "source": "evidence-step",
+      "start": 110.44,
+      "end": 112.27,
+      "beat": "CTA",
+      "quote": "To join us, the link is in our bio.",
+      "output_start": 39.99
+    }
+  ],
+  "grade": "eq=contrast=1.04:saturation=1.05:gamma=1.02,colorbalance=rm=0.03:bm=-0.03:rh=0.02:bh=-0.02,scale=1440:2560:flags=lanczos",
+  "overlays": [],
+  "total_duration_s": 41.82
+}
