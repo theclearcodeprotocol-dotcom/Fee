@@ -10,7 +10,8 @@
       "end": 5.49,
       "beat": "HOOK",
       "quote": "Be honest, when was the last time that you read a research paper?",
-      "output_start": 0.0
+      "output_start": 0.0,
+      "output_duration": 4.033
     },
     {
       "source": "evidence-step",
@@ -18,7 +19,8 @@
       "end": 13.21,
       "beat": "SETUP",
       "quote": "The skin industry moves fast.",
-      "output_start": 4.03
+      "output_start": 4.033,
+      "output_duration": 2.2
     },
     {
       "source": "evidence-step",
@@ -26,7 +28,8 @@
       "end": 16.69,
       "beat": "SETUP",
       "quote": "There's new ingredients,",
-      "output_start": 6.22
+      "output_start": 6.233,
+      "output_duration": 1.3
     },
     {
       "source": "evidence-step",
@@ -34,7 +37,8 @@
       "end": 18.01,
       "beat": "SETUP",
       "quote": "new treatments,",
-      "output_start": 7.49
+      "output_start": 7.533,
+      "output_duration": 1.2
     },
     {
       "source": "evidence-step",
@@ -42,7 +46,8 @@
       "end": 24.41,
       "beat": "SETUP",
       "quote": "and",
-      "output_start": 8.68
+      "output_start": 8.733,
+      "output_duration": 0.3
     },
     {
       "source": "evidence-step",
@@ -50,7 +55,8 @@
       "end": 26.53,
       "beat": "SETUP",
       "quote": "new research every week.",
-      "output_start": 8.97
+      "output_start": 9.033,
+      "output_duration": 2.0
     },
     {
       "source": "evidence-step",
@@ -58,7 +64,8 @@
       "end": 34.09,
       "beat": "PROBLEM",
       "quote": "Staying current shouldn't mean",
-      "output_start": 10.94
+      "output_start": 11.033,
+      "output_duration": 1.967
     },
     {
       "source": "evidence-step",
@@ -66,7 +73,8 @@
       "end": 41.65,
       "beat": "PROBLEM",
       "quote": "spending hours searching through",
-      "output_start": 12.89
+      "output_start": 13.0,
+      "output_duration": 2.433
     },
     {
       "source": "evidence-step",
@@ -74,7 +82,8 @@
       "end": 45.25,
       "beat": "PROBLEM",
       "quote": "papers",
-      "output_start": 15.3
+      "output_start": 15.433,
+      "output_duration": 0.767
     },
     {
       "source": "evidence-step",
@@ -82,7 +91,8 @@
       "end": 47.49,
       "beat": "PROBLEM",
       "quote": "after a full day in clinic,",
-      "output_start": 16.05
+      "output_start": 16.2,
+      "output_duration": 2.1
     },
     {
       "source": "evidence-step",
@@ -90,7 +100,8 @@
       "end": 51.23,
       "beat": "SOLUTION",
       "quote": "so I built the Clear Evidence.",
-      "output_start": 18.14
+      "output_start": 18.3,
+      "output_duration": 1.9
     },
     {
       "source": "evidence-step",
@@ -98,7 +109,8 @@
       "end": 54.09,
       "beat": "SOLUTION",
       "quote": "Every week,",
-      "output_start": 20.03
+      "output_start": 20.2,
+      "output_duration": 0.733
     },
     {
       "source": "evidence-step",
@@ -106,7 +118,8 @@
       "end": 55.83,
       "beat": "SOLUTION",
       "quote": "one carefully selected",
-      "output_start": 20.74
+      "output_start": 20.933,
+      "output_duration": 1.567
     },
     {
       "source": "evidence-step",
@@ -114,7 +127,8 @@
       "end": 58.43,
       "beat": "SOLUTION",
       "quote": "research paper",
-      "output_start": 22.29
+      "output_start": 22.5,
+      "output_duration": 1.167
     },
     {
       "source": "evidence-step",
@@ -122,7 +136,8 @@
       "end": 60.35,
       "beat": "SOLUTION",
       "quote": "that is graded for quality",
-      "output_start": 23.44
+      "output_start": 23.667,
+      "output_duration": 1.733
     },
     {
       "source": "evidence-step",
@@ -130,7 +145,8 @@
       "end": 64.91,
       "beat": "SOLUTION",
       "quote": "and broken down",
-      "output_start": 25.17
+      "output_start": 25.4,
+      "output_duration": 1.133
     },
     {
       "source": "evidence-step",
@@ -138,7 +154,8 @@
       "end": 67.25,
       "beat": "SOLUTION",
       "quote": "to read in five minutes.",
-      "output_start": 26.28
+      "output_start": 26.533,
+      "output_duration": 1.933
     },
     {
       "source": "evidence-step",
@@ -146,7 +163,8 @@
       "end": 78.81,
       "beat": "COVERS",
       "quote": "It covers ingredient science,",
-      "output_start": 28.21
+      "output_start": 28.467,
+      "output_duration": 2.4
     },
     {
       "source": "evidence-step",
@@ -154,7 +172,8 @@
       "end": 80.97,
       "beat": "COVERS",
       "quote": "treatment protocols,",
-      "output_start": 30.58
+      "output_start": 30.867,
+      "output_duration": 1.467
     },
     {
       "source": "evidence-step",
@@ -162,7 +181,8 @@
       "end": 83.79,
       "beat": "COVERS",
       "quote": "skin conditions, and lifestyle",
-      "output_start": 32.03
+      "output_start": 32.333,
+      "output_duration": 2.333
     },
     {
       "source": "evidence-step",
@@ -170,7 +190,8 @@
       "end": 93.47,
       "beat": "COVERS",
       "quote": "with what it means for you",
-      "output_start": 34.36
+      "output_start": 34.667,
+      "output_duration": 1.7
     },
     {
       "source": "evidence-step",
@@ -178,7 +199,8 @@
       "end": 94.83,
       "beat": "COVERS",
       "quote": "in your practice.",
-      "output_start": 36.03
+      "output_start": 36.367,
+      "output_duration": 1.133
     },
     {
       "source": "evidence-step",
@@ -186,7 +208,8 @@
       "end": 104.61,
       "beat": "CTA",
       "quote": "So consider it your weekly knowledge upgrade.",
-      "output_start": 37.14
+      "output_start": 37.5,
+      "output_duration": 2.867
     },
     {
       "source": "evidence-step",
@@ -194,10 +217,11 @@
       "end": 112.27,
       "beat": "CTA",
       "quote": "To join us, the link is in our bio.",
-      "output_start": 39.99
+      "output_start": 40.367,
+      "output_duration": 1.833
     }
   ],
   "grade": "eq=contrast=1.04:saturation=1.05:gamma=1.02,colorbalance=rm=0.03:bm=-0.03:rh=0.02:bh=-0.02,scale=1440:2560:flags=lanczos",
   "overlays": [],
-  "total_duration_s": 41.82
+  "total_duration_s": 42.2
 }
