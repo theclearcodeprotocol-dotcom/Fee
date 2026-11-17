@@ -63,31 +63,31 @@
   {
    "i": 10,
    "start": 26.333,
-   "end": 29.533,
+   "end": 30.533,
    "beat": "BODY4"
   },
   {
    "i": 11,
-   "start": 29.533,
-   "end": 31.1,
+   "start": 30.533,
+   "end": 32.1,
    "beat": "CTA"
   },
   {
    "i": 12,
-   "start": 31.1,
-   "end": 32.933,
+   "start": 32.1,
+   "end": 33.933,
    "beat": "CTA"
   },
   {
    "i": 13,
-   "start": 32.933,
-   "end": 34.7,
+   "start": 33.933,
+   "end": 35.7,
    "beat": "CTA"
   },
   {
    "i": 14,
-   "start": 34.7,
-   "end": 36.667,
+   "start": 35.7,
+   "end": 37.667,
    "beat": "CTA"
   }
  ],
@@ -808,184 +808,198 @@
   },
   {
    "id": "w102",
-   "text": "Plan,",
-   "start": 29.573,
-   "end": 29.873,
-   "seg": 11
+   "text": "out",
+   "start": 29.553,
+   "end": 29.693,
+   "seg": 10
   },
   {
    "id": "w103",
-   "text": "launch,",
-   "start": 30.073,
-   "end": 30.373,
-   "seg": 11
+   "text": "loud.",
+   "start": 29.733,
+   "end": 30.053,
+   "seg": 10
   },
   {
    "id": "w104",
-   "text": "and",
-   "start": 30.453,
-   "end": 30.553,
+   "text": "Plan,",
+   "start": 30.573,
+   "end": 30.873,
    "seg": 11
   },
   {
    "id": "w105",
-   "text": "nurture,",
-   "start": 30.593,
-   "end": 31.013,
+   "text": "launch,",
+   "start": 31.073,
+   "end": 31.373,
    "seg": 11
   },
   {
    "id": "w106",
-   "text": "that",
-   "start": 31.14,
-   "end": 31.3,
-   "seg": 12
+   "text": "and",
+   "start": 31.453,
+   "end": 31.553,
+   "seg": 11
   },
   {
    "id": "w107",
-   "text": "is",
-   "start": 31.4,
-   "end": 31.66,
-   "seg": 12
+   "text": "nurture,",
+   "start": 31.593,
+   "end": 32.013,
+   "seg": 11
   },
   {
    "id": "w108",
-   "text": "the",
-   "start": 31.7,
-   "end": 31.78,
+   "text": "that",
+   "start": 32.14,
+   "end": 32.3,
    "seg": 12
   },
   {
    "id": "w109",
-   "text": "Clear",
-   "start": 31.82,
-   "end": 31.98,
+   "text": "is",
+   "start": 32.4,
+   "end": 32.66,
    "seg": 12
   },
   {
    "id": "w110",
-   "text": "code",
-   "start": 32.08,
-   "end": 32.24,
+   "text": "the",
+   "start": 32.7,
+   "end": 32.78,
    "seg": 12
   },
   {
    "id": "w111",
-   "text": "protocol.",
-   "start": 32.32,
-   "end": 32.86,
+   "text": "Clear",
+   "start": 32.82,
+   "end": 32.98,
    "seg": 12
   },
   {
    "id": "w112",
-   "text": "Our",
-   "start": 32.973,
-   "end": 33.073,
-   "seg": 13
+   "text": "code",
+   "start": 33.08,
+   "end": 33.24,
+   "seg": 12
   },
   {
    "id": "w113",
-   "text": "doors",
-   "start": 33.113,
-   "end": 33.353,
-   "seg": 13
+   "text": "protocol.",
+   "start": 33.32,
+   "end": 33.86,
+   "seg": 12
   },
   {
    "id": "w114",
-   "text": "open",
-   "start": 33.433,
-   "end": 33.673,
+   "text": "Our",
+   "start": 33.973,
+   "end": 34.073,
    "seg": 13
   },
   {
    "id": "w115",
-   "text": "on",
-   "start": 33.693,
-   "end": 33.793,
+   "text": "doors",
+   "start": 34.113,
+   "end": 34.353,
    "seg": 13
   },
   {
    "id": "w116",
-   "text": "Black",
-   "start": 33.833,
-   "end": 34.033,
+   "text": "open",
+   "start": 34.433,
+   "end": 34.673,
    "seg": 13
   },
   {
    "id": "w117",
-   "text": "Friday.",
-   "start": 34.093,
-   "end": 34.613,
+   "text": "on",
+   "start": 34.693,
+   "end": 34.793,
    "seg": 13
   },
   {
    "id": "w118",
-   "text": "To",
-   "start": 34.74,
-   "end": 34.82,
-   "seg": 14
+   "text": "Black",
+   "start": 34.833,
+   "end": 35.033,
+   "seg": 13
   },
   {
    "id": "w119",
-   "text": "join",
-   "start": 34.86,
-   "end": 35.04,
-   "seg": 14
+   "text": "Friday.",
+   "start": 35.093,
+   "end": 35.613,
+   "seg": 13
   },
   {
    "id": "w120",
-   "text": "the",
-   "start": 35.08,
-   "end": 35.12,
+   "text": "To",
+   "start": 35.74,
+   "end": 35.82,
    "seg": 14
   },
   {
    "id": "w121",
-   "text": "waitlist,",
-   "start": 35.16,
-   "end": 35.54,
+   "text": "join",
+   "start": 35.86,
+   "end": 36.04,
    "seg": 14
   },
   {
    "id": "w122",
    "text": "the",
-   "start": 35.58,
-   "end": 35.64,
+   "start": 36.08,
+   "end": 36.12,
    "seg": 14
   },
   {
    "id": "w123",
-   "text": "link",
-   "start": 35.68,
-   "end": 35.84,
+   "text": "waitlist,",
+   "start": 36.16,
+   "end": 36.54,
    "seg": 14
   },
   {
    "id": "w124",
-   "text": "is",
-   "start": 35.88,
-   "end": 35.96,
+   "text": "the",
+   "start": 36.58,
+   "end": 36.64,
    "seg": 14
   },
   {
    "id": "w125",
-   "text": "in",
-   "start": 36.0,
-   "end": 36.08,
+   "text": "link",
+   "start": 36.68,
+   "end": 36.84,
    "seg": 14
   },
   {
    "id": "w126",
-   "text": "our",
-   "start": 36.1,
-   "end": 36.22,
+   "text": "is",
+   "start": 36.88,
+   "end": 36.96,
    "seg": 14
   },
   {
    "id": "w127",
+   "text": "in",
+   "start": 37.0,
+   "end": 37.08,
+   "seg": 14
+  },
+  {
+   "id": "w128",
+   "text": "our",
+   "start": 37.1,
+   "end": 37.22,
+   "seg": 14
+  },
+  {
+   "id": "w129",
    "text": "bio.",
-   "start": 36.26,
-   "end": 36.58,
+   "start": 37.26,
+   "end": 37.58,
    "seg": 14
   }
  ]

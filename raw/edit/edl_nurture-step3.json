@@ -97,11 +97,11 @@
     {
       "source": "nurture-step3",
       "start": 65.14,
-      "end": 68.33,
+      "end": 69.33,
       "beat": "BODY4",
-      "quote": "And also you'll be helping your clients to celebrate the small wins",
+      "quote": "And also you'll be helping your clients to celebrate the small wins out loud.",
       "output_start": 26.333,
-      "output_duration": 3.2
+      "output_duration": 4.2
     },
     {
       "source": "nurture-step3",
@@ -109,7 +109,7 @@
       "end": 73.17,
       "beat": "CTA",
       "quote": "Plan, launch, and nurture,",
-      "output_start": 29.533,
+      "output_start": 30.533,
       "output_duration": 1.567
     },
     {
@@ -118,7 +118,7 @@
       "end": 75.21,
       "beat": "CTA",
       "quote": "that is the Clear code protocol.",
-      "output_start": 31.1,
+      "output_start": 32.1,
       "output_duration": 1.833
     },
     {
@@ -127,7 +127,7 @@
       "end": 80.57,
       "beat": "CTA",
       "quote": "Our doors open on Black Friday.",
-      "output_start": 32.933,
+      "output_start": 33.933,
       "output_duration": 1.767
     },
     {
@@ -136,11 +136,11 @@
       "end": 85.33,
       "beat": "CTA",
       "quote": "To join the waitlist, the link is in our bio.",
-      "output_start": 34.7,
+      "output_start": 35.7,
       "output_duration": 1.967
     }
   ],
   "grade": "eq=contrast=1.04:saturation=1.05:gamma=1.02,colorbalance=rm=0.03:bm=-0.03:rh=0.02:bh=-0.02,scale=1440:2560:flags=lanczos",
   "overlays": [],
-  "total_duration_s": 36.667
+  "total_duration_s": 37.667
 }

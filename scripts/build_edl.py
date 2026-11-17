@@ -47,7 +47,7 @@ CLIPS = {  # (beat, first word start, last word end) in source seconds, in outpu
         ("BODY1", 24.54, 38.74),
         ("BODY2", 43.32, 47.32),
         ("BODY3", 50.98, 61.80),
-        ("BODY4", 65.18, 68.26),
+        ("BODY4", 65.18, 68.86),
         ("CTA", 71.66, 85.26),
     ],
 }
@@ -73,6 +73,12 @@ for beat, run in ranges:
         spans[-1] = (beat, spans[-1][1], e, spans[-1][3] + run)
     else:
         spans.append((beat, s, e, run))
+# extra breathing room after a section's last word, so the next section doesn't slam in
+TAIL = {"nurture-step3": {"BODY4": 0.40}}.get(CLIP, {})
+for k in range(len(spans)):
+    beat = spans[k][0]
+    if beat in TAIL and (k + 1 == len(spans) or spans[k + 1][0] != beat):
+        spans[k] = (beat, spans[k][1], spans[k][2] + TAIL[beat], spans[k][3])
 out, t = [], 0.0
 for beat, s, e, run in spans:
     # never overlap the next kept word's lead-in within the same continuous source run
