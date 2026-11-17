@@ -25,7 +25,21 @@
     "instagram",
     "tiktok"
   ],
+  "results": {
+    "instagram": {
+      "at": "2026-11-17T16:56:00Z",
+      "id": 431739102,
+      "ok": true,
+      "url": "https://app.metricool.com/planner/calendar?blogId=7976989&openWithPostUuid=2571884034920825474"
+    },
+    "tiktok": {
+      "at": "2026-11-17T18:27:00Z",
+      "id": 431852305,
+      "ok": true,
+      "url": "https://app.metricool.com/planner/calendar?blogId=7976989&openWithPostUuid=-6701770813345807935"
+    }
+  },
   "scheduledFor": "2026-11-20T12:30:00.000Z",
-  "status": "approved",
+  "status": "in_metricool",
   "title": "clear evidence: global acne rates up 64% since 1990"
 }

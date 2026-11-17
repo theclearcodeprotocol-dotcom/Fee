@@ -17,7 +17,21 @@
     "instagram",
     "tiktok"
   ],
+  "results": {
+    "instagram": {
+      "at": "2026-11-17T16:56:00Z",
+      "id": 431738810,
+      "ok": true,
+      "url": "https://app.metricool.com/planner/calendar?blogId=7976989&openWithPostUuid=-6969266241272987019"
+    },
+    "tiktok": {
+      "at": "2026-11-17T16:56:00Z",
+      "id": 431738976,
+      "ok": true,
+      "url": "https://app.metricool.com/planner/calendar?blogId=7976989&openWithPostUuid=-6470306603200069407"
+    }
+  },
   "scheduledFor": "2026-11-17T18:00:00.000Z",
-  "status": "approved",
+  "status": "in_metricool",
   "title": "step 3 of 3: nurture"
 }
