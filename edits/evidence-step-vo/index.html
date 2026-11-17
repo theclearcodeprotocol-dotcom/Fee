@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1080, height=1920" />
+<script src="vendor/gsap-3.15.0.min.js"></script>
+<style>
+@font-face { font-family: "Source Serif 4"; font-weight: 900; font-style: normal; src: url("fonts/source-serif-4-latin-900-normal.woff2") format("woff2"); }
+@font-face { font-family: "Source Serif 4"; font-weight: 900; font-style: italic; src: url("fonts/source-serif-4-latin-900-italic.woff2") format("woff2"); }
+:root { --red:#ae1f14; --cream:#f2f0e0; --pink:#ffd7de; --ink:#5a3a33; --serif:"Source Serif 4", serif; --sans:"Outfit", sans-serif; }
+* { margin:0; padding:0; box-sizing:border-box; }
+html, body { width:1080px; height:1920px; overflow:hidden; background:var(--cream); }
+#root { position:relative; width:1080px; height:1920px; overflow:hidden; background:var(--cream); }
+#footage { position:absolute; left:0; top:0; width:1080px; height:1920px; opacity:0; }
+.scene { position:absolute; inset:0; overflow:hidden; }
+.rv { opacity:0; }
+.scene.cream { background:var(--cream); color:var(--red); }
+.scene.pink { background:var(--pink); color:var(--red); }
+.scene.red { background:var(--red); color:var(--cream); }
+.frame { position:absolute; inset:28px; border:1.5px solid currentColor; opacity:.35; border-radius:4px; }
+.eyebrow { font:600 30px/1 var(--sans); letter-spacing:.24em; text-transform:uppercase; }
+.eyebrow.top { position:absolute; top:150px; left:0; right:0; text-align:center; opacity:.85; }
+.mid { position:absolute; left:100px; right:100px; top:330px; display:flex; flex-direction:column; gap:34px; }
+.mid.centre { align-items:center; text-align:center; top:420px; }
+.big { font:900 124px/0.98 var(--serif); letter-spacing:-0.05em; }
+.huge { font:italic 900 300px/0.85 var(--serif); letter-spacing:-0.06em; color:var(--pink); }
+.sub { font:900 64px/1.08 var(--serif); letter-spacing:-0.04em; }
+.note { font:italic 900 48px/1.2 var(--serif); letter-spacing:-0.02em; opacity:.9; }
+.red .note { color:var(--pink); }
+.hl { background:var(--red); color:var(--pink); padding:0 12px; }
+.mark { font:900 170px/1 var(--serif); letter-spacing:-0.05em; }
+.papers { position:relative; height:420px; margin-top:20px; }
+.sheet { position:absolute; width:300px; height:390px; background:var(--cream); border:2px solid var(--red); border-radius:6px;
+  padding:44px 34px; display:flex; flex-direction:column; gap:22px; box-shadow:0 16px 40px rgba(120,20,10,.18); }
+.sheet i { display:block; height:12px; background:rgba(174,31,20,.28); border-radius:6px; }
+.sheet i:first-child { width:70%; background:var(--red); }
+.sheet.s0 { left:120px; top:20px; transform:rotate(-8deg); }
+.sheet.s1 { left:300px; top:0; transform:rotate(3deg); }
+.sheet.s2 { left:480px; top:30px; transform:rotate(10deg); }
+.list { display:flex; flex-direction:column; margin-top:10px; }
+.li { font:500 58px/1.2 var(--sans); padding:26px 0; border-bottom:2px solid rgba(174,31,20,.25); }
+.li b { display:inline-block; width:100px; font:italic 900 52px var(--serif); color:var(--ink); }
+.stamp { align-self:flex-start; margin-top:30px; font:800 56px/1 var(--sans); letter-spacing:.06em; text-transform:uppercase; color:var(--red);
+  border:7px solid var(--red); padding:18px 30px; border-radius:6px; transform:rotate(-6deg); }
+.card { background:var(--cream); border-radius:8px; padding:20px 50px; box-shadow:0 18px 50px rgba(120,20,10,.18); }
+.row { display:flex; align-items:center; gap:30px; font:500 50px/1.2 var(--sans); padding:36px 0; border-bottom:2px solid rgba(174,31,20,.2); }
+.row:last-child { border-bottom:none; }
+.row span { flex:0 0 96px; height:96px; border-radius:50%; background:var(--red); color:var(--cream); display:grid; place-items:center;
+  font:900 54px/1 var(--serif); }
+.timer { align-self:center; font:italic 900 180px/1 var(--serif); letter-spacing:-0.05em; }
+.tiles { display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:28px; margin-top:40px; }
+.tile { background:var(--red); color:var(--cream); border-radius:8px; height:330px; padding:36px; display:flex; align-items:flex-end;
+  font:900 62px/1.02 var(--serif); letter-spacing:-0.045em; }
+.pill { font:600 46px/1 var(--sans); border:3px solid var(--red); border-radius:999px; padding:24px 54px; }
+#captions { position:absolute; inset:0; pointer-events:none; }
+.cap { position:absolute; left:80px; right:80px; top:1500px; text-align:center; opacity:0; visibility:hidden; }
+.ct { display:inline; font:500 46px/1.6 var(--sans); color:var(--cream); background:var(--ink); padding:8px 22px; border-radius:12px;
+  -webkit-box-decoration-break:clone; box-decoration-break:clone; }
+.ct em { font:italic 900 50px/1 var(--serif); color:var(--pink); letter-spacing:-0.02em; }
+#seal { position:absolute; right:56px; top:1758px; width:76px; height:76px; border-radius:50%; background:var(--red); display:grid; place-items:center;
+  box-shadow:0 6px 18px rgba(0,0,0,.18); }
+#seal span { font:900 44px/1 var(--serif); color:var(--cream); letter-spacing:-0.05em; padding-bottom:6px; }
+</style>
+</head>
+<body>
+<div id="root" data-composition-id="main" data-start="0" data-duration="42.200" data-width="1080" data-height="1920">
+  <video id="footage" class="clip" src="footage/evidence-step-cut-cool.mp4" data-start="0" data-duration="42.200" data-track-index="0"
+    playsinline data-has-audio="true"></video>
+  <div id="sc1" class="clip scene pink" data-start="0.000" data-duration="4.033" data-track-index="11" data-track-kind="graphics" data-layout-allow-overlap><div class="frame"></div>
+  <div class="eyebrow top">clear evidence</div>
+  <div class="mid">
+    <div class="rv big" data-at="0.000">be honest.</div>
+    <div class="rv sub" data-at="0.750">when did you last read a <span class='hl'>research paper</span>?</div>
+    <div class="papers"><div class="rv sheet s0" data-at="1.400"><i></i><i></i><i></i><i></i></div><div class="rv sheet s1" data-at="1.650"><i></i><i></i><i></i><i></i></div><div class="rv sheet s2" data-at="1.900"><i></i><i></i><i></i><i></i></div></div>
+  </div></div><div id="sc2" class="clip scene cream" data-start="4.033" data-duration="7.000" data-track-index="12" data-track-kind="graphics" data-layout-allow-overlap><div class="frame"></div>
+  <div class="eyebrow top">the skin industry</div>
+  <div class="mid">
+    <div class="rv big" data-at="4.413">moves fast.</div>
+    <div class="list">
+      <div class="rv li" data-at="6.563"><b>i.</b> new ingredients</div>
+      <div class="rv li" data-at="7.763"><b>ii.</b> new treatments</div>
+      <div class="rv li" data-at="9.303"><b>iii.</b> new research</div>
+    </div>
+    <div class="rv stamp" data-at="10.143">every week</div>
+  </div></div><div id="sc3" class="clip scene red" data-start="11.033" data-duration="7.267" data-track-index="13" data-track-kind="graphics" data-layout-allow-overlap><div class="frame"></div>
+  <div class="eyebrow top">staying current</div>
+  <div class="mid">
+    <div class="rv sub" data-at="11.023">shouldn't mean</div>
+    <div class="rv huge" data-at="13.570">hours</div>
+    <div class="rv sub" data-at="15.423">searching through papers</div>
+    <div class="rv note" data-at="16.190">after a full day in clinic.</div>
+  </div></div><div id="sc4" class="clip scene cream" data-start="18.300" data-duration="1.900" data-track-index="14" data-track-kind="graphics" data-layout-allow-overlap><div class="frame"></div>
+  <div class="mid centre">
+    <div class="rv mark" data-at="18.300">c.</div>
+    <div class="rv sub" data-at="18.650">so i built</div>
+    <div class="rv big" data-at="19.150">clear evidence.</div>
+  </div></div><div id="sc5" class="clip scene pink" data-start="20.200" data-duration="8.267" data-track-index="15" data-track-kind="graphics" data-layout-allow-overlap><div class="frame"></div>
+  <div class="eyebrow top">every week</div>
+  <div class="mid">
+    <div class="card">
+      <div class="rv row" data-at="20.923"><span>1</span> carefully selected research paper</div>
+      <div class="rv row" data-at="23.977"><span>✓</span> graded for quality</div>
+      <div class="rv row" data-at="27.303"><span>5</span> minute read</div>
+    </div>
+    <div class="rv timer" data-at="27.553">5:00</div>
+  </div></div><div id="sc6" class="clip scene cream" data-start="28.467" data-duration="6.200" data-track-index="16" data-track-kind="graphics" data-layout-allow-overlap><div class="frame"></div>
+  <div class="eyebrow top">it covers</div>
+  <div class="mid">
+    <div class="tiles">
+      <div class="rv tile" data-at="29.217">ingredient science</div>
+      <div class="rv tile" data-at="30.857">treatment protocols</div>
+      <div class="rv tile" data-at="32.323">skin conditions</div>
+      <div class="rv tile" data-at="33.983">lifestyle</div>
+    </div>
+  </div></div><div id="sc7" class="clip scene red" data-start="34.667" data-duration="2.833" data-track-index="17" data-track-kind="graphics" data-layout-allow-overlap><div class="frame"></div>
+  <div class="mid centre">
+    <div class="rv sub" data-at="34.667">what it means for</div>
+    <div class="rv big" data-at="36.667">your practice.</div>
+  </div></div><div id="sc8" class="clip scene red deep" data-start="37.500" data-duration="2.867" data-track-index="18" data-track-kind="graphics" data-layout-allow-overlap><div class="frame"></div>
+  <div class="mid centre">
+    <div class="rv mark" data-at="37.500">c.</div>
+    <div class="rv big" data-at="37.650">your weekly<br>knowledge upgrade.</div>
+    <div class="rv note" data-at="39.700">one paper. five minutes.</div>
+  </div></div><div id="sc9" class="clip scene pink" data-start="40.367" data-duration="1.833" data-track-index="19" data-track-kind="graphics" data-layout-allow-overlap><div class="frame"></div>
+  <div class="mid centre">
+    <div class="rv mark" data-at="40.367">c.</div>
+    <div class="rv big" data-at="40.497">join clear evidence.</div>
+    <div class="rv pill" data-at="40.947">link in bio</div>
+  </div></div>
+  <div id="captions" class="clip" data-start="0" data-duration="42.200" data-track-index="2" data-track-kind="captions" data-layout-allow-overlap>
+    <div class="cap" id="cap0"><span class="ct">Be honest,</span></div><div class="cap" id="cap1"><span class="ct">When was the last time</span></div><div class="cap" id="cap2"><span class="ct">That you read a research</span></div><div class="cap" id="cap3"><span class="ct">Paper?</span></div><div class="cap" id="cap4"><span class="ct">The skin industry moves <em>fast.</em></span></div><div class="cap" id="cap5"><span class="ct">There&#x27;s new ingredients,</span></div><div class="cap" id="cap6"><span class="ct">New treatments,</span></div><div class="cap" id="cap7"><span class="ct">And</span></div><div class="cap" id="cap8"><span class="ct">New research</span></div><div class="cap" id="cap9"><span class="ct"><em>Every week.</em></span></div><div class="cap" id="cap10"><span class="ct">Staying current</span></div><div class="cap" id="cap11"><span class="ct">Shouldn&#x27;t mean</span></div><div class="cap" id="cap12"><span class="ct">Spending</span></div><div class="cap" id="cap13"><span class="ct"><em>Hours</em></span></div><div class="cap" id="cap14"><span class="ct">Searching through</span></div><div class="cap" id="cap15"><span class="ct">Papers</span></div><div class="cap" id="cap16"><span class="ct">After a full day in</span></div><div class="cap" id="cap17"><span class="ct"><em>Clinic,</em></span></div><div class="cap" id="cap18"><span class="ct">So I built the Clear</span></div><div class="cap" id="cap19"><span class="ct">Evidence.</span></div><div class="cap" id="cap20"><span class="ct"><em>Every week,</em></span></div><div class="cap" id="cap21"><span class="ct">One carefully selected</span></div><div class="cap" id="cap22"><span class="ct"><em>Research paper</em></span></div><div class="cap" id="cap23"><span class="ct">That is graded for quality</span></div><div class="cap" id="cap24"><span class="ct">And broken down</span></div><div class="cap" id="cap25"><span class="ct">To read in five</span></div><div class="cap" id="cap26"><span class="ct">Minutes.</span></div><div class="cap" id="cap27"><span class="ct">It covers</span></div><div class="cap" id="cap28"><span class="ct">Ingredient science,</span></div><div class="cap" id="cap29"><span class="ct">Treatment protocols,</span></div><div class="cap" id="cap30"><span class="ct">Skin conditions, and</span></div><div class="cap" id="cap31"><span class="ct">Lifestyle</span></div><div class="cap" id="cap32"><span class="ct">With what it means</span></div><div class="cap" id="cap33"><span class="ct">For you</span></div><div class="cap" id="cap34"><span class="ct">In your <em>practice.</em></span></div><div class="cap" id="cap35"><span class="ct">So consider it your</span></div><div class="cap" id="cap36"><span class="ct">Weekly knowledge <em>upgrade.</em></span></div><div class="cap" id="cap37"><span class="ct">To join us,</span></div><div class="cap" id="cap38"><span class="ct">The link is in our</span></div><div class="cap" id="cap39"><span class="ct"><em>Bio.</em></span></div>
+  </div>
+  <div id="seal" class="clip" data-start="0" data-duration="42.200" data-track-index="3" data-track-kind="graphics"><span>c.</span></div>
+  <audio id="sfx0" class="clip" src="sfx/click-soft.mp3" data-start="6.573" data-duration="0.366" data-volume="0.15" data-track-index="40"></audio><audio id="sfx1" class="clip" src="sfx/click-soft.mp3" data-start="20.933" data-duration="0.366" data-volume="0.15" data-track-index="41"></audio><audio id="sfx2" class="clip" src="sfx/click-soft.mp3" data-start="29.227" data-duration="0.366" data-volume="0.15" data-track-index="42"></audio><audio id="sfx3" class="clip" src="sfx/whoosh-short.mp3" data-start="37.271" data-duration="0.570" data-volume="0.18" data-track-index="43"></audio>
+</div>
+<script>
+window.__timelines = window.__timelines || {};
+const tl = gsap.timeline({ paused: true });
+function enter(host, t) {
+  if (t > 0.01) tl.fromTo(host, { clipPath: "inset(0% 0% 100% 0%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 0.45, ease: "expo.out", immediateRender: false }, t);
+}
+function cap(sel, s, e) {
+  tl.set(sel, { visibility: "visible" }, s);
+  tl.fromTo(sel, { opacity: 0, y: 8 }, { opacity: 1, y: 0, duration: 0.2, ease: "power2.out", immediateRender: false }, s);
+  if (e - s > 0.32) tl.to(sel, { opacity: 0, duration: 0.08, ease: "power1.in" }, e - 0.08);
+  tl.set(sel, { opacity: 0, visibility: "hidden" }, e);
+}
+document.querySelectorAll(".rv").forEach((el) => {
+  const t = parseFloat(el.dataset.at);
+  if (el.classList.contains("stamp")) tl.fromTo(el, { opacity: 0, scale: 1.6 }, { opacity: 1, scale: 1, duration: 0.18, ease: "power3.out", immediateRender: false }, t);
+  else if (el.classList.contains("huge") || el.classList.contains("timer")) tl.fromTo(el, { opacity: 0, scale: 0.85 }, { opacity: 1, scale: 1, duration: 0.5, ease: "back.out(2)", immediateRender: false }, t);
+  else if (t < 0.05) tl.set(el, { opacity: 1 }, 0);
+  else tl.fromTo(el, { opacity: 0, y: 28 }, { opacity: 1, y: 0, duration: 0.55, ease: "expo.out", immediateRender: false }, t);
+});
+enter("#sc1", 0.000);
+enter("#sc2", 4.033);
+enter("#sc3", 11.033);
+enter("#sc4", 18.300);
+enter("#sc5", 20.200);
+enter("#sc6", 28.467);
+enter("#sc7", 34.667);
+enter("#sc8", 37.500);
+enter("#sc9", 40.367);
+cap("#cap0", 0.100, 0.730);
+cap("#cap1", 0.730, 2.210);
+cap("#cap2", 2.210, 3.530);
+cap("#cap3", 3.530, 4.023);
+cap("#cap4", 4.023, 6.223);
+cap("#cap5", 6.223, 7.523);
+cap("#cap6", 7.523, 8.723);
+cap("#cap7", 8.723, 9.023);
+cap("#cap8", 9.023, 10.143);
+cap("#cap9", 10.143, 11.023);
+cap("#cap10", 11.023, 12.083);
+cap("#cap11", 12.083, 12.990);
+cap("#cap12", 12.990, 13.570);
+cap("#cap13", 13.570, 14.270);
+cap("#cap14", 14.270, 15.423);
+cap("#cap15", 15.423, 16.190);
+cap("#cap16", 16.190, 17.670);
+cap("#cap17", 17.670, 18.290);
+cap("#cap18", 18.290, 19.410);
+cap("#cap19", 19.410, 20.190);
+cap("#cap20", 20.190, 20.923);
+cap("#cap21", 20.923, 22.490);
+cap("#cap22", 22.490, 23.657);
+cap("#cap23", 23.657, 25.390);
+cap("#cap24", 25.390, 26.523);
+cap("#cap25", 26.523, 27.823);
+cap("#cap26", 27.823, 28.457);
+cap("#cap27", 28.457, 29.217);
+cap("#cap28", 29.217, 30.857);
+cap("#cap29", 30.857, 32.323);
+cap("#cap30", 32.323, 33.983);
+cap("#cap31", 33.983, 34.657);
+cap("#cap32", 34.657, 35.717);
+cap("#cap33", 35.717, 36.357);
+cap("#cap34", 36.357, 37.490);
+cap("#cap35", 37.490, 38.790);
+cap("#cap36", 38.790, 40.357);
+cap("#cap37", 40.357, 40.957);
+cap("#cap38", 40.957, 41.737);
+cap("#cap39", 41.737, 42.127);
+window.__timelines["main"] = tl;
+tl.seek(0);
+</script>
+</body>
+</html>

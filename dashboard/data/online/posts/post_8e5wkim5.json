@@ -25,7 +25,21 @@
     "instagram",
     "tiktok"
   ],
+  "results": {
+    "instagram": {
+      "at": "2026-11-12T16:07:00Z",
+      "id": 425884175,
+      "ok": true,
+      "url": "https://app.metricool.com/planner/calendar?blogId=7976989&openWithPostUuid=4007028524675452830"
+    },
+    "tiktok": {
+      "at": "2026-11-12T16:07:00Z",
+      "id": 425883951,
+      "ok": true,
+      "url": "https://app.metricool.com/planner/calendar?blogId=7976989&openWithPostUuid=6708297321911634774"
+    }
+  },
   "scheduledFor": "2026-11-15T12:30:00.000Z",
-  "status": "approved",
+  "status": "in_metricool",
   "title": "inside the clear code protocol: every module"
 }
