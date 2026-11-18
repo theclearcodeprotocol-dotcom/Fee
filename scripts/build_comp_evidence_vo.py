@@ -141,10 +141,10 @@ scene(6, B[17], B[20], "cream", f'''
   <div class="eyebrow top">it covers</div>
   <div class="mid">
     <div class="tiles">
-      {rv(t_ig - 0.05, "ingredient science", "tile")}
-      {rv(t_tp - 0.05, "treatment protocols", "tile")}
-      {rv(t_sc - 0.05, "skin conditions", "tile")}
-      {rv(t_ls - 0.05, "lifestyle", "tile")}
+      {rv(t_ig - 0.05, "<div class='ti'><svg viewBox='0 0 200 160' width='250' height='200' fill='none' stroke='#f2f0e0' stroke-width='6' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true'><rect x='40' y='62' width='44' height='80' rx='10'/><path d='M48 62 V48 h28 V62'/><path d='M54 48 V30 q8 -14 16 0 V48'/><path d='M40 100 h44'/><circle cx='140' cy='50' r='12'/><circle cx='172' cy='96' r='12'/><circle cx='120' cy='118' r='12'/><path d='M148 60 L164 86 M160 100 L132 114 M126 106 L136 62'/></svg></div><div class='tl'>ingredient science</div>", "tile")}
+      {rv(t_tp - 0.05, "<div class='ti'><svg viewBox='0 0 200 160' width='250' height='200' fill='none' stroke='#f2f0e0' stroke-width='6' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true'><rect x='52' y='24' width='96' height='124' rx='10'/><rect x='78' y='14' width='44' height='20' rx='6'/><path d='M70 62 l8 8 l14 -16 M104 64 h28 M70 96 l8 8 l14 -16 M104 98 h28 M70 128 h62'/></svg></div><div class='tl'>treatment protocols</div>", "tile")}
+      {rv(t_sc - 0.05, "<div class='ti'><svg viewBox='0 0 200 160' width='250' height='200' fill='none' stroke='#f2f0e0' stroke-width='6' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true'><path d='M20 120 q30 -20 60 0 t60 0 t60 0'/><circle cx='56' cy='104' r='5'/><circle cx='104' cy='112' r='4'/><circle cx='150' cy='104' r='5'/><circle cx='96' cy='60' r='34'/><path d='M120 84 L150 114'/></svg></div><div class='tl'>skin conditions</div>", "tile")}
+      {rv(t_ls - 0.05, "<div class='ti'><svg viewBox='0 0 200 160' width='250' height='200' fill='none' stroke='#f2f0e0' stroke-width='6' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true'><path d='M30 40 h44 l-6 100 h-32 z'/><path d='M34 80 h36'/><path d='M150 28 a34 34 0 1 0 30 50 a28 28 0 0 1 -30 -50 z'/><path d='M110 140 q0 -40 40 -46 q4 40 -40 46 z M110 140 q14 -20 30 -32'/></svg></div><div class='tl'>lifestyle</div>", "tile")}
     </div>
   </div>''')
 scene(7, B[20], B[22], "red", f'''
@@ -225,8 +225,9 @@ html, body {{ width:1080px; height:1920px; overflow:hidden; background:var(--cre
   font:900 54px/1 var(--serif); }}
 .timer {{ align-self:center; font:italic 900 180px/1 var(--serif); letter-spacing:-0.05em; }}
 .tiles {{ display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:28px; margin-top:40px; }}
-.tile {{ background:var(--red); color:var(--cream); border-radius:8px; height:330px; padding:36px; display:flex; align-items:flex-end;
-  font:900 62px/1.02 var(--serif); letter-spacing:-0.045em; }}
+.tile {{ background:var(--red); color:var(--cream); border-radius:8px; height:390px; padding:30px 32px; display:flex; flex-direction:column; justify-content:space-between; }}
+.ti {{ display:flex; justify-content:center; }}
+.tl {{ font:900 54px/1.02 var(--serif); letter-spacing:-0.045em; }}
 .pill {{ font:600 46px/1 var(--sans); border:3px solid var(--red); border-radius:999px; padding:24px 54px; }}
 #captions {{ position:absolute; inset:0; pointer-events:none; }}
 .cap {{ position:absolute; left:80px; right:80px; top:1430px; text-align:center; opacity:0; visibility:hidden; }}
@@ -253,7 +254,7 @@ html, body {{ width:1080px; height:1920px; overflow:hidden; background:var(--cre
 window.__timelines = window.__timelines || {{}};
 const tl = gsap.timeline({{ paused: true }});
 function enter(host, t) {{
-  if (t > 0.01) tl.fromTo(host, {{ clipPath: "inset(0% 0% 100% 0%)" }}, {{ clipPath: "inset(0% 0% 0% 0%)", duration: 0.45, ease: "expo.out", immediateRender: false }}, t);
+  if (t > 0.01) tl.fromTo(host, {{ clipPath: "inset(0% 0% 100% 0%)" }}, {{ clipPath: "inset(0% 0% 0% 0%)", duration: 0.25, ease: "expo.out", immediateRender: false }}, t);
 }}
 function cap(sel, s, e) {{
   tl.set(sel, {{ visibility: "visible" }}, s);
@@ -262,11 +263,11 @@ function cap(sel, s, e) {{
   tl.set(sel, {{ opacity: 0, visibility: "hidden" }}, e);
 }}
 document.querySelectorAll(".rv").forEach((el) => {{
-  const t = parseFloat(el.dataset.at);
+  const t = Math.max(0, parseFloat(el.dataset.at) - 0.15);
   if (el.classList.contains("stamp")) tl.fromTo(el, {{ opacity: 0, scale: 1.6 }}, {{ opacity: 1, scale: 1, duration: 0.18, ease: "power3.out", immediateRender: false }}, t);
-  else if (el.classList.contains("huge") || el.classList.contains("timer")) tl.fromTo(el, {{ opacity: 0, scale: 0.85 }}, {{ opacity: 1, scale: 1, duration: 0.5, ease: "back.out(2)", immediateRender: false }}, t);
+  else if (el.classList.contains("huge") || el.classList.contains("timer")) tl.fromTo(el, {{ opacity: 0, scale: 0.85 }}, {{ opacity: 1, scale: 1, duration: 0.32, ease: "back.out(2)", immediateRender: false }}, t);
   else if (t < 0.05) tl.set(el, {{ opacity: 1 }}, 0);
-  else tl.fromTo(el, {{ opacity: 0, y: 28 }}, {{ opacity: 1, y: 0, duration: 0.55, ease: "expo.out", immediateRender: false }}, t);
+  else tl.fromTo(el, {{ opacity: 0, y: 16 }}, {{ opacity: 1, y: 0, duration: 0.28, ease: "power3.out", immediateRender: false }}, t);
 }});
 {chr(10).join(scene_js)}
 {chr(10).join(cap_js)}
