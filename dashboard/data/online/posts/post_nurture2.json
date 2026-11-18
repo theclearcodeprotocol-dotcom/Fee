@@ -15,7 +15,15 @@
   "platforms": [
     "instagram"
   ],
+  "results": {
+    "instagram": {
+      "at": "2026-11-17T19:44:00Z",
+      "id": 431939895,
+      "ok": true,
+      "url": "https://app.metricool.com/planner/calendar?blogId=7976989&openWithPostUuid=-7701816672478999190"
+    }
+  },
   "scheduledFor": "2026-11-17T20:30:00.000Z",
-  "status": "approved",
+  "status": "in_metricool",
   "title": "step 3 of 3: nurture (repost, graphics fixed)"
 }

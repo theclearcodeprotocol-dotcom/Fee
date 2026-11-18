@@ -1,19 +1,28 @@
 {
+  "approvalKey": "0712b1c1f664aa",
+  "approvedAt": "2026-11-18T12:20:43.489Z",
   "calendarEntryId": "cal_412a16b5",
   "captionSource": "script",
   "captions": {
-    "instagram": "what's new inside phase two of the clear code protocol 👀\n\nevery upgrade was shaped by the skin specialists and acne specialists who joined at launch: more guidance, a purpose-built acne consultation form, acne treatment pathways for each presentation, and more ready-to-use client education for your skin clinic.\n\nswipe →\n\ndoors open black friday, 27 november. join the waitlist, link in bio.",
-    "tiktok": "what's new inside phase two of the clear code protocol 👀 waitlist link on our instagram @theclearcode_ #acnespecialist #skinspecialist #theclearcode"
+    "instagram": "what's new inside phase two of the clear code protocol 👀\n\nevery upgrade was shaped by the skin specialists and acne specialists who joined at launch: a pricing calculator so you can price your acne programme with confidence, treatment pathways so every client starts from a clear route, and more ready-to-use client education for your skin clinic.\n\nswipe →\n\ndoors open black friday, 27 november. join the waitlist, link in bio.",
+    "tiktok": "what's new inside phase two of the clear code protocol 👀 pricing calculator, treatment pathways, client education. waitlist link on our instagram @theclearcode_ #acnespecialist #skinspecialist #theclearcode"
   },
   "createdAt": "2026-11-12T13:20:48.555Z",
   "format": "carousel",
   "id": "post_8acusjeb",
-  "media": [],
+  "media": [
+    "https://drive.usercontent.google.com/download?id=1jJyqXke7sFww9-MwnUMbaXHFWErnKkEL&export=download&confirm=t",
+    "https://drive.usercontent.google.com/download?id=178lfMVH2zAF3si0HejjRk4vInG4pJAXo&export=download&confirm=t",
+    "https://drive.usercontent.google.com/download?id=1QXVULFl1vP0VuoaA9UtiMPdRn2zhjXWq&export=download&confirm=t",
+    "https://drive.usercontent.google.com/download?id=1tOBV8l-E-gK6ggnSexr_Mxp7BMH61-EC&export=download&confirm=t",
+    "https://drive.usercontent.google.com/download?id=1g5ZYJA3Ym9GC29fWeP4iKRjZij5kYBR1&export=download&confirm=t",
+    "https://drive.usercontent.google.com/download?id=1Rf82UTzWn_UH3Hc_LvanKjIpKiFxviYK&export=download&confirm=t"
+  ],
   "platforms": [
     "instagram",
     "tiktok"
   ],
   "scheduledFor": "2026-11-18T12:30:00.000Z",
-  "status": "pending_approval",
+  "status": "approved",
   "title": "what's new inside phase two"
 }
