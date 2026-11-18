@@ -189,7 +189,7 @@ html, body {{ width:1080px; height:1920px; overflow:hidden; background:var(--cre
 #root {{ position:relative; width:1080px; height:1920px; overflow:hidden; background:var(--cream); }}
 #footage {{ position:absolute; left:0; top:0; width:1080px; height:1920px; opacity:0; }}
 .scene {{ position:absolute; inset:0; overflow:hidden; }}
-.rv {{ opacity:0; }}
+.scene .rv {{ opacity:0; }}
 .scene.cream {{ background:var(--cream); color:var(--red); }}
 .scene.pink {{ background:var(--pink); color:var(--red); }}
 .scene.red {{ background:var(--red); color:var(--cream); }}
