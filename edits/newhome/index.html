@@ -30,7 +30,7 @@ html, body { width:1080px; height:1920px; overflow:hidden; background:#000; }
 <div id="root" data-composition-id="main" data-start="0" data-duration="31.600" data-width="1080" data-height="1920">
   <video id="footage" class="clip" src="footage/newhome-comp.mp4" data-start="0" data-duration="31.600" data-track-index="0" playsinline data-has-audio="true"></video>
   <div id="ov" class="clip" data-start="0" data-duration="31.600" data-track-index="1" data-track-kind="graphics" data-layout-allow-overlap style="position:absolute;inset:0">
-    <div class="lab" id="l0"><span>the clear code has a new home</span></div><div class="lab" id="l1"><span>the clear code protocol</span></div><div class="lab" id="l2"><span>a sneak peek inside</span></div><div class="lab" id="l3"><span>clear evidence · one graded paper a week</span></div>
+    
     <div id="endp"><b>c.</b><h2>doors open friday 27 november.</h2><p class="s">the clear code protocol</p><p class="pill">have a look · link in bio</p></div>
     <div class="cap" id="c0"><span class="ct">The Clear Code</span></div><div class="cap" id="c1"><span class="ct">Now</span></div><div class="cap" id="c2"><span class="ct">Has a new home with</span></div><div class="cap" id="c3"><span class="ct">Everything</span></div><div class="cap" id="c4"><span class="ct">In one place.</span></div><div class="cap" id="c5"><span class="ct">This is the Clear Code</span></div><div class="cap" id="c6"><span class="ct">Protocol.</span></div><div class="cap" id="c7"><span class="ct">Plan,</span></div><div class="cap" id="c8"><span class="ct">Launch,</span></div><div class="cap" id="c9"><span class="ct">Nurture.</span></div><div class="cap" id="c10"><span class="ct">Every template and script that</span></div><div class="cap" id="c11"><span class="ct">You&#x27;ll need</span></div><div class="cap" id="c12"><span class="ct">To</span></div><div class="cap" id="c13"><span class="ct">Run a successful acne programme</span></div><div class="cap" id="c14"><span class="ct">Within your clinic.</span></div><div class="cap" id="c15"><span class="ct">Here&#x27;s a little sneak peek</span></div><div class="cap" id="c16"><span class="ct">Inside.</span></div><div class="cap" id="c17"><span class="ct">And this is clear evidence.</span></div><div class="cap" id="c18"><span class="ct">One research paper</span></div><div class="cap" id="c19"><span class="ct">That&#x27;s graded weekly and broken</span></div><div class="cap" id="c20"><span class="ct">Down into a five-minute read.</span></div><div class="cap" id="c21"><span class="ct">Doors open for the protocol</span></div><div class="cap" id="c22"><span class="ct">This</span></div><div class="cap" id="c23"><span class="ct">Friday, the 27th.</span></div><div class="cap" id="c24"><span class="ct">Have a look at our</span></div><div class="cap" id="c25"><span class="ct">New home.</span></div><div class="cap" id="c26"><span class="ct">The link is in our</span></div><div class="cap" id="c27"><span class="ct">Bio</span></div><div class="cap" id="c28"><span class="ct">And join the waitlist while</span></div><div class="cap" id="c29"><span class="ct">You&#x27;re there</span></div>
   </div>
@@ -47,10 +47,7 @@ function cap(sel, s, e) {
   tl.fromTo(sel, { opacity: 0, y: 8 }, { opacity: 1, y: 0, duration: 0.2, ease: "power2.out", immediateRender: false }, s);
   tl.set(sel, { opacity: 0, visibility: "hidden" }, e);
 }
-lab("#l0", 0.050, 4.400);
-lab("#l1", 4.450, 13.700);
-lab("#l2", 13.750, 15.833);
-lab("#l3", 15.883, 22.833);
+
 tl.to("#endp", { clipPath: "inset(0% 0% 0% 0%)", duration: 0.4, ease: "expo.out" }, 22.833);
 tl.to("#endp .s", { opacity: 1, duration: 0.3 }, 23.433);
 tl.to("#endp .pill", { opacity: 1, duration: 0.3 }, 26.867);

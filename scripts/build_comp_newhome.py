@@ -37,15 +37,7 @@ for gi, g in enumerate(groups):
     cap_html.append(f'<div class="cap" id="c{gi}"><span class="ct">{t}</span></div>')
     cap_js.append(f'cap("#c{gi}", {s:.3f}, {min(e, TOTAL - 0.02):.3f});')
 
-LABELS = [("HOOK", "the clear code has a new home"), ("PROTOCOL", "the clear code protocol"),
-          ("SNEAK", "a sneak peek inside"), ("EVIDENCE", "clear evidence · one graded paper a week")]
-lab_html, lab_js = [], []
-for k, (beat, text) in enumerate(LABELS):
-    a, b = span[beat]
-    if k + 1 < len(LABELS):
-        b = span[LABELS[k + 1][0]][0]
-    lab_html.append(f'<div class="lab" id="l{k}"><span>{E(text)}</span></div>')
-    lab_js.append(f'lab("#l{k}", {a + 0.05:.3f}, {b:.3f});')
+lab_html, lab_js = [], []  # no labels over the website: they hid the page (user, 21 Nov)
 ep = span["DOORS"][0]
 
 page = f'''<!doctype html>
