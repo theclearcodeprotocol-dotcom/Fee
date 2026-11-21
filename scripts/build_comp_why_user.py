@@ -149,7 +149,7 @@ pl, ln, nu = at("plan", 25.0), at("launch", 25.0), at("nurture", 25.0)
 st2, im = at("education", 30.0), at("implementation")
 dr = at("doors")
 # hook: on screen from the first frame (no spoken hook in this take)
-pop(0.0, ed - 0.15, panel("You've done the courses.", "So why isn't your acne programme full?", cls="hook"), reveal="none")
+pop(0.0, ed - 0.15, panel("You've done the courses.", "So why isn't your diary full with acne clients?", cls="hook"), reveal="none")
 pop(ed - 0.05, gp - ed - 0.1, card("What education gives you", f'''
   <div class="tx row" data-at="{ed - 0.02:.3f}"><i>i.</i>What acne is</div>
   <div class="tx row" data-at="{dn - 0.02:.3f}"><i>ii.</i><s>A programme clients book, pay for and finish</s></div>'''), sound="click-soft", vol=0.15)
