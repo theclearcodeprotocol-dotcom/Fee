@@ -1,19 +1,24 @@
 {
+  "approvalKey": "074340b0b82d11",
+  "approvedAt": "2026-11-21T17:48:57.271Z",
   "calendarEntryId": "cal_3faf7c7d",
-  "captionSource": "script",
+  "captionSource": "edited",
   "captions": {
-    "instagram": "the clear code has a new home 🏡\n\nthe clear code protocol and clear evidence, our acne programme framework and evidence-based education for skin specialists, now in one place. it's also where doors open next friday.\n\nhave a look, link in bio, and join the waitlist while you're there.",
+    "instagram": "the clear code has a new home 🏡\n\nthe clear code protocol and clear evidence, our acne programme framework and evidence-based education for skin specialists, now in one place. it's also where doors open next friday.\n\nhave a look, link in bio, and join the waitlist for the protocol while you're there.",
     "tiktok": "the clear code has a new home 🏡 link on our instagram @theclearcode_ #acnespecialist #skinspecialist #theclearcode"
   },
   "createdAt": "2026-11-12T13:20:48.065Z",
   "format": "reel",
   "id": "post_t1f85ls2",
-  "media": [],
+  "media": [
+    "https://drive.usercontent.google.com/download?id=1WpHpHVa9a8AEyfZVgWUhEaFFQKASK0sJ&export=download&confirm=t"
+  ],
   "platforms": [
     "instagram",
     "tiktok"
   ],
-  "scheduledFor": "2026-11-20T18:00:00.000Z",
-  "status": "pending_approval",
+  "scheduledFor": "2026-11-22T12:30:00.000Z",
+  "status": "approved",
+  "tiktokTitle": "the clear code has a new home",
   "title": "the new site announcement"
 }

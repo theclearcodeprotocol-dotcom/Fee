@@ -22,7 +22,21 @@
     "instagram",
     "tiktok"
   ],
+  "results": {
+    "instagram": {
+      "at": "2026-11-18T12:21:00Z",
+      "id": 432756844,
+      "ok": true,
+      "url": "https://app.metricool.com/planner/calendar?blogId=7976989&openWithPostUuid=-4267414223389114092"
+    },
+    "tiktok": {
+      "at": "2026-11-18T12:22:00Z",
+      "id": 432757796,
+      "ok": true,
+      "url": "https://app.metricool.com/planner/calendar?blogId=7976989&openWithPostUuid=5218273062299386030"
+    }
+  },
   "scheduledFor": "2026-11-18T12:30:00.000Z",
-  "status": "approved",
+  "status": "in_metricool",
   "title": "what's new inside phase two"
 }
