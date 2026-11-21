@@ -10,7 +10,8 @@
       "end": 5.43,
       "beat": "HOOK",
       "quote": "The Clear Code now has a new home with everything in one place.",
-      "output_start": 0.0
+      "output_start": 0.0,
+      "output_duration": 4.4
     },
     {
       "source": "newhome",
@@ -18,7 +19,8 @@
       "end": 34.59,
       "beat": "PROTOCOL",
       "quote": "This is the Clear Code Protocol. Plan, launch, nurture. Every template and script that you'll need",
-      "output_start": 4.37
+      "output_start": 4.4,
+      "output_duration": 5.6
     },
     {
       "source": "newhome",
@@ -26,7 +28,8 @@
       "end": 35.13,
       "beat": "PROTOCOL",
       "quote": "to",
-      "output_start": 9.96
+      "output_start": 10.0,
+      "output_duration": 0.4
     },
     {
       "source": "newhome",
@@ -34,7 +37,8 @@
       "end": 45.19,
       "beat": "PROTOCOL",
       "quote": "run a successful acne program within your clinic.",
-      "output_start": 10.35
+      "output_start": 10.4,
+      "output_duration": 3.3
     },
     {
       "source": "newhome",
@@ -42,7 +46,8 @@
       "end": 51.39,
       "beat": "SNEAK",
       "quote": "Here's a little sneak peek inside.",
-      "output_start": 13.64
+      "output_start": 13.7,
+      "output_duration": 2.133
     },
     {
       "source": "newhome",
@@ -50,7 +55,8 @@
       "end": 57.79,
       "beat": "EVIDENCE",
       "quote": "And this is clear evidence.",
-      "output_start": 15.75
+      "output_start": 15.833,
+      "output_duration": 1.8
     },
     {
       "source": "newhome",
@@ -58,7 +64,8 @@
       "end": 59.41,
       "beat": "EVIDENCE",
       "quote": "One research paper",
-      "output_start": 17.52
+      "output_start": 17.633,
+      "output_duration": 1.5
     },
     {
       "source": "newhome",
@@ -66,7 +73,8 @@
       "end": 69.19,
       "beat": "EVIDENCE",
       "quote": "that's graded weekly and broken down into a five-minute read.",
-      "output_start": 18.99
+      "output_start": 19.133,
+      "output_duration": 3.7
     },
     {
       "source": "newhome",
@@ -74,7 +82,8 @@
       "end": 103.85,
       "beat": "DOORS",
       "quote": "Doors open for the protocol this Friday, the twenty-seventh.",
-      "output_start": 22.66
+      "output_start": 22.833,
+      "output_duration": 4.033
     },
     {
       "source": "newhome",
@@ -82,7 +91,8 @@
       "end": 116.63,
       "beat": "CTA",
       "quote": "Have a look at our new home. The link is in our bio",
-      "output_start": 26.67
+      "output_start": 26.867,
+      "output_duration": 3.0
     },
     {
       "source": "newhome",
@@ -90,10 +100,11 @@
       "end": 118.67,
       "beat": "CTA",
       "quote": "and join the wait list while you're there",
-      "output_start": 29.66
+      "output_start": 29.867,
+      "output_duration": 1.733
     }
   ],
   "grade": "eq=contrast=1.04:saturation=1.05:gamma=1.02,colorbalance=rm=0.03:bm=-0.03:rh=0.02:bh=-0.02,scale=1440:2560:flags=lanczos",
   "overlays": [],
-  "total_duration_s": 31.39
+  "total_duration_s": 31.6
 }
