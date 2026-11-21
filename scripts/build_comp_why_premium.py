@@ -141,7 +141,7 @@ def word(text, rule="under"):
     return f'<div class="in word"><span class="tx w">{text}</span><span class="rule {rule}"></span></div>'
 
 
-ed, dn = at("education"), at("doesnt")
+ed, dn = at("education"), at("doesn't")
 gp = at("gap")
 cr = at("created")
 tp, sc_, stc = at("templates"), at("scripts"), at("structure")
@@ -224,7 +224,7 @@ html, body {{ width:1080px; height:1920px; overflow:hidden; background:#000; }}
 
 /* pop-ups */
 .pop {{ pointer-events:none; }}
-.pop .in {{ position:absolute; left:0; right:0; margin-inline:auto; width:fit-content; top:400px; }}
+.pop .in {{ position:absolute; left:0; right:0; margin-inline:auto; width:fit-content; top:1080px; }}
 .eyebrow {{ display:flex; align-items:center; justify-content:center; gap:12px; font:600 28px/1 var(--sans);
   letter-spacing:.22em; text-transform:uppercase; }}
 .panel {{ background:var(--red); color:var(--cream); border-radius:6px; padding:30px 56px 36px; text-align:center;
