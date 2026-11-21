@@ -50,6 +50,13 @@ CLIPS = {  # (beat, first word start, last word end) in source seconds, in outpu
         ("BODY4", 65.18, 68.86),
         ("CTA", 71.66, 85.26),
     ],
+    "why-created": [  # Why I created the protocol: the "one appointment at a time" take opens it (no spoken hook; on-screen hook)
+        ("SETUP", 34.66, 42.28),
+        ("BODY1", 47.62, 50.36), ("BODY1", 65.68, 73.20),
+        ("BODY2", 82.12, 87.24),
+        ("BODY3", 91.10, 94.06), ("BODY3", 103.82, 106.88), ("BODY3", 112.64, 114.50), ("BODY3", 117.24, 121.06),
+        ("CTA", 124.02, 129.70), ("CTA", 134.50, 140.26),
+    ],
     "newhome": [  # New site announcement: second Protocol take, "doors open ... twenty-seventh" take for the close
         ("HOOK", 1.10, 4.84),
         ("PROTOCOL", 29.04, 34.90), ("PROTOCOL", 41.94, 44.60),
@@ -103,7 +110,7 @@ for beat, s, e, run in spans:
     t += e - s
 edl = {"version": 1, "sources": {CLIP: str(Path(f"raw/{CLIP}.mp4").resolve())},
        "ranges": out, "grade": "eq=contrast=1.04:saturation=1.05:gamma=1.02,colorbalance=rm=0.03:bm=-0.03:rh=0.02:bh=-0.02"
-                 + (",scale=1440:2560:flags=lanczos" if CLIP in ("launch-step2", "plan-step1", "nurture-step3", "evidence-step", "newhome") else ""),
+                 + (",scale=1440:2560:flags=lanczos" if CLIP in ("launch-step2", "plan-step1", "nurture-step3", "evidence-step", "newhome", "why-created") else ""),
        "overlays": [], "total_duration_s": round(t, 3)}
 json.dump(edl, open(edit / f"edl_{CLIP}.json", "w"), indent=2)
 for r in out:

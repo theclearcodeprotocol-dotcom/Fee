@@ -1,0 +1,182 @@
+{
+  "version": 1,
+  "sources": {
+    "why-created": "/home/user/Fee/raw/why-created.mp4"
+  },
+  "ranges": [
+    {
+      "source": "why-created",
+      "start": 34.62,
+      "end": 36.83,
+      "beat": "SETUP",
+      "quote": "I've been there, certificates on the wall",
+      "output_start": 0.0,
+      "output_duration": 2.233
+    },
+    {
+      "source": "why-created",
+      "start": 37.18,
+      "end": 38.97,
+      "beat": "SETUP",
+      "quote": "and treating acne clients",
+      "output_start": 2.233,
+      "output_duration": 1.8
+    },
+    {
+      "source": "why-created",
+      "start": 40.76,
+      "end": 42.35,
+      "beat": "SETUP",
+      "quote": "one appointment at a time.",
+      "output_start": 4.033,
+      "output_duration": 1.6
+    },
+    {
+      "source": "why-created",
+      "start": 47.58,
+      "end": 50.43,
+      "beat": "BODY1",
+      "quote": "Education tells you what acne is,",
+      "output_start": 5.633,
+      "output_duration": 2.867
+    },
+    {
+      "source": "why-created",
+      "start": 65.64,
+      "end": 69.87,
+      "beat": "BODY1",
+      "quote": "But it doesn't tell you how to turn it into a program that clients will book,",
+      "output_start": 8.5,
+      "output_duration": 4.233
+    },
+    {
+      "source": "why-created",
+      "start": 71.36,
+      "end": 72.05,
+      "beat": "BODY1",
+      "quote": "pay for,",
+      "output_start": 12.733,
+      "output_duration": 0.7
+    },
+    {
+      "source": "why-created",
+      "start": 72.28,
+      "end": 73.27,
+      "beat": "BODY1",
+      "quote": "and finish.",
+      "output_start": 13.433,
+      "output_duration": 1.0
+    },
+    {
+      "source": "why-created",
+      "start": 82.08,
+      "end": 85.21,
+      "beat": "BODY2",
+      "quote": "And the gap between knowing and doing is where most",
+      "output_start": 14.433,
+      "output_duration": 3.133
+    },
+    {
+      "source": "why-created",
+      "start": 85.36,
+      "end": 87.31,
+      "beat": "BODY2",
+      "quote": "skin specialists do get stuck.",
+      "output_start": 17.567,
+      "output_duration": 1.967
+    },
+    {
+      "source": "why-created",
+      "start": 91.06,
+      "end": 94.13,
+      "beat": "BODY3",
+      "quote": "So this is exactly why I created the Clear Code protocol.",
+      "output_start": 19.533,
+      "output_duration": 3.1
+    },
+    {
+      "source": "why-created",
+      "start": 103.78,
+      "end": 106.95,
+      "beat": "BODY3",
+      "quote": "I created the templates, the scripts, and the structure",
+      "output_start": 22.633,
+      "output_duration": 3.2
+    },
+    {
+      "source": "why-created",
+      "start": 112.6,
+      "end": 114.57,
+      "beat": "BODY3",
+      "quote": "to be able to use what you know",
+      "output_start": 25.833,
+      "output_duration": 2.0
+    },
+    {
+      "source": "why-created",
+      "start": 117.2,
+      "end": 118.87,
+      "beat": "BODY3",
+      "quote": "so you can confidently plan it,",
+      "output_start": 27.833,
+      "output_duration": 1.7
+    },
+    {
+      "source": "why-created",
+      "start": 119.1,
+      "end": 119.65,
+      "beat": "BODY3",
+      "quote": "launch it,",
+      "output_start": 29.533,
+      "output_duration": 0.567
+    },
+    {
+      "source": "why-created",
+      "start": 119.86,
+      "end": 121.13,
+      "beat": "BODY3",
+      "quote": "and nurture it.",
+      "output_start": 30.1,
+      "output_duration": 1.3
+    },
+    {
+      "source": "why-created",
+      "start": 123.98,
+      "end": 126.01,
+      "beat": "CTA",
+      "quote": "The education will get you started",
+      "output_start": 31.4,
+      "output_duration": 2.033
+    },
+    {
+      "source": "why-created",
+      "start": 127.52,
+      "end": 129.769,
+      "beat": "CTA",
+      "quote": "and the implementation will get you results.",
+      "output_start": 33.433,
+      "output_duration": 2.267
+    },
+    {
+      "source": "why-created",
+      "start": 134.46,
+      "end": 136.27,
+      "beat": "CTA",
+      "quote": "Our doors open on Black Friday,",
+      "output_start": 35.7,
+      "output_duration": 1.833
+    },
+    {
+      "source": "why-created",
+      "start": 137.8,
+      "end": 140.33,
+      "beat": "CTA",
+      "quote": "so join our wait list. The link is in our bio.",
+      "output_start": 37.533,
+      "output_duration": 2.533
+    }
+  ],
+  "grade": "eq=contrast=1.04:saturation=1.05:gamma=1.02,colorbalance=rm=0.03:bm=-0.03:rh=0.02:bh=-0.02,scale=1440:2560:flags=lanczos",
+  "overlays": [],
+  "total_duration_s": 40.067
+}
