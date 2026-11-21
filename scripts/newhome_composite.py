@@ -30,67 +30,97 @@ for s in segs:
     beat_span[s["beat"]] = (min(a, s["start"]), max(b, s["end"]))
 TOTAL = segs[-1]["end"]
 
-# Stills (no constant scrolling): (beat, [(source, time), ...]); the sneak peek goes on a laptop mock-up.
-PLAN = [("HOOK", [("screen.mp4", 6.5)]), ("PROTOCOL", [("screen.mp4", 10.3), ("screen.mp4", 11.5)]),
-        ("SNEAK", "laptop"), ("EVIDENCE", [("screen.mp4", 21.3), ("screen.mp4", 26.0)]), ("DOORS", None), ("CTA", None)]
+# Everything on a laptop (iPad landscape recording): scroll the homepage and Clear Evidence, a still of the
+# Protocol's plan/launch/nurture, the course page as the sneak peek. Prices, the "what's included" list
+# (group calls) and the Safari tab bar moments are left out.
+PLAN = [("HOOK", [("vid", 1.2, 6.0)]),
+        ("PROTOCOL", [("vid", 8.0, 10.6), ("still", 11.6)]),
+        ("SNEAK", [("course",)]),
+        ("EVIDENCE", [("vid", 29.0, 40.0)]),
+        ("DOORS", None), ("CTA", None)]
 CREAM = np.array((224, 240, 242), np.uint8)  # BGR of #F2F0E0
+PAGE = np.array((217, 231, 236), np.uint8)   # site background
+SW, SH = 940, 556
+LX, LY = (W - SW) // 2, 520
+IPAD = SRC / "ipad.mp4"
 
 
-def still(src, t):
-    tmpf = FOOT / "newhome-still.png"
-    subprocess.run(["ffmpeg", "-y", "-v", "error", "-ss", str(t), "-i", str(SRC / src), "-frames:v", "1", str(tmpf)], check=True)
-    im = cv2.imread(str(tmpf))
-    im = np.vstack([im[170:520], im[950:2480]])  # drop status bar, admin bar, browser bar and badge
-    return im
+def clean_ipad(im):  # drop Safari bar and the "view as" admin bar, keep the site header
+    return np.vstack([im[112:330], im[462:1640]])
 
 
-def page(im):  # website still at full width on cream
-    s = cv2.resize(im, (W, int(im.shape[0] * W / im.shape[1])), interpolation=cv2.INTER_AREA)
+def fit(scr):
+    out = np.empty((SH, SW, 3), np.uint8); out[:] = PAGE
+    r = cv2.resize(scr, (SW, int(scr.shape[0] * SW / scr.shape[1])), interpolation=cv2.INTER_AREA)
+    h = min(SH, r.shape[0]); out[:h] = r[:h]
+    return out
+
+
+def laptop(screen):
     c = np.empty((H, W, 3), np.uint8); c[:] = CREAM
-    h = min(H, s.shape[0]); c[:h] = s[:h]
-    return c
-
-
-def laptop(_unused=None):
-    """Sneak peek on a laptop: the user's iPad screenshot of the course page, with the Safari bar,
-    admin bar, the group-call / 1-1 links and the Lovable badge cropped away."""
-    ip = cv2.imread(str(SRC / "course-ipad.png"))
-    scr = np.vstack([ip[118:342], ip[530:1408]])
-    c = np.empty((H, W, 3), np.uint8); c[:] = CREAM
-    sw = 940; sh = int(scr.shape[0] * sw / scr.shape[1])
-    x0, y0 = (W - sw) // 2, 640
-    cv2.rectangle(c, (x0 - 20, y0 - 20), (x0 + sw + 20, y0 + sh + 20), (19, 20, 29), -1, cv2.LINE_AA)
-    c[y0:y0 + sh, x0:x0 + sw] = cv2.resize(scr, (sw, sh), interpolation=cv2.INTER_AREA)
-    base = np.array([[x0 - 60, y0 + sh + 20], [x0 + sw + 60, y0 + sh + 20], [x0 + sw + 100, y0 + sh + 52], [x0 - 100, y0 + sh + 52]], np.int32)
+    cv2.rectangle(c, (LX - 20, LY - 20), (LX + SW + 20, LY + SH + 20), (19, 20, 29), -1, cv2.LINE_AA)
+    c[LY:LY + SH, LX:LX + SW] = screen
+    base = np.array([[LX - 60, LY + SH + 20], [LX + SW + 60, LY + SH + 20], [LX + SW + 100, LY + SH + 52], [LX - 100, LY + SH + 52]], np.int32)
     cv2.fillPoly(c, [base], (150, 156, 168), cv2.LINE_AA)
-    cv2.rectangle(c, (W // 2 - 70, y0 + sh + 20), (W // 2 + 70, y0 + sh + 30), (110, 116, 128), -1)
+    cv2.rectangle(c, (W // 2 - 70, LY + SH + 20), (W // 2 + 70, LY + SH + 30), (110, 116, 128), -1)
     return c
 
 
-shots = []  # (t0, t1, base image or None)
+def ipad_still(t):
+    tmpf = FOOT / "newhome-still.png"
+    subprocess.run(["ffmpeg", "-y", "-v", "error", "-ss", str(t), "-i", str(IPAD), "-frames:v", "1", str(tmpf)], check=True)
+    return laptop(fit(clean_ipad(cv2.imread(str(tmpf)))))
+
+
+def course():
+    ip = cv2.imread(str(SRC / "course-ipad.png"))
+    return laptop(fit(np.vstack([ip[118:342], ip[530:1408]])))
+
+
+tmpd = FOOT / "newhome-bg-parts"; tmpd.mkdir(exist_ok=True)
+shots = []  # (t0, t1, kind, payload)
 for i, (beat, spec) in enumerate(PLAN):
     t0 = beat_span[beat][0]
     t1 = beat_span[PLAN[i + 1][0]][0] if i + 1 < len(PLAN) else TOTAL
     if spec is None:
-        shots.append((t0, t1, None))
-    elif spec == "laptop":
-        shots.append((t0, t1, laptop()))
-    else:
-        n = len(spec)
-        for k, (src, t) in enumerate(spec):
-            shots.append((t0 + (t1 - t0) * k / n, t0 + (t1 - t0) * (k + 1) / n, page(still(src, t))))
+        shots.append((t0, t1, "red", None)); continue
+    n = len(spec)
+    for k, sp in enumerate(spec):
+        a, b = t0 + (t1 - t0) * k / n, t0 + (t1 - t0) * (k + 1) / n
+        if sp[0] == "vid":
+            out = tmpd / f"v{i}_{k}.mp4"
+            stretch = (b - a) / (sp[2] - sp[1])
+            vf = (f"trim={sp[1]}:{sp[2]},setpts=(PTS-STARTPTS)*{stretch:.5f},fps={FPS},"
+                  f"split[x][y];[x]crop=2360:218:0:112[t];[y]crop=2360:1178:0:462[c];[t][c]vstack,scale={SW}:-2")
+            subprocess.run(["ffmpeg", "-y", "-v", "error", "-i", str(IPAD), "-filter_complex", vf, "-an", "-c:v", "libx264",
+                            "-crf", "14", "-pix_fmt", "yuv420p", str(out)], check=True)
+            shots.append((a, b, "vid", cv2.VideoCapture(str(out))))
+        elif sp[0] == "still":
+            shots.append((a, b, "img", ipad_still(sp[1])))
+        else:
+            shots.append((a, b, "img", course()))
 RED_IMG = np.empty((H, W, 3), np.uint8); RED_IMG[:] = RED
+_last = {}
 
 
 def bg_at(t):
-    for a, b, im in shots:
+    for a, b, kind, pl in shots:
         if a <= t < b:
-            if im is None:
+            if kind == "red":
                 return RED_IMG.copy()
-            z = 1.0 + 0.04 * (t - a) / max(0.01, b - a)  # slow push, no scrolling
-            m = cv2.getRotationMatrix2D((W / 2, H * 0.3), 0, z)
-            return cv2.warpAffine(im, m, (W, H), flags=cv2.INTER_LINEAR, borderMode=cv2.BORDER_REPLICATE)
+            if kind == "img":
+                return pl.copy()
+            ok, fr = pl.read()
+            if ok:
+                _last[id(pl)] = laptop(fit_frame(fr))
+            return _last[id(pl)].copy()
     return RED_IMG.copy()
+
+
+def fit_frame(fr):
+    out = np.empty((SH, SW, 3), np.uint8); out[:] = PAGE
+    h = min(SH, fr.shape[0]); out[:h] = fr[:h]
+    return out
 
 
 # ---- foreground: cooler grade first
