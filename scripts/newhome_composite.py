@@ -36,7 +36,7 @@ TOTAL = segs[-1]["end"]
 PLAN = [("HOOK", [("vid", 1.2, 6.0)]),
         ("PROTOCOL", [("vid", 8.0, 10.6), ("still", 11.6)]),
         ("SNEAK", [("course",)]),
-        ("EVIDENCE", [("vid", 29.0, 40.0)]),
+        ("EVIDENCE", [("vid", 31.2, 40.0)]),  # before 30.6 the Safari tab bar shifts the page
         ("DOORS", None), ("CTA", None)]
 CREAM = np.array((224, 240, 242), np.uint8)  # BGR of #F2F0E0
 PAGE = np.array((217, 231, 236), np.uint8)   # site background
@@ -69,7 +69,9 @@ def laptop(screen):
 def ipad_still(t):
     tmpf = FOOT / "newhome-still.png"
     subprocess.run(["ffmpeg", "-y", "-v", "error", "-ss", str(t), "-i", str(IPAD), "-frames:v", "1", str(tmpf)], check=True)
-    return laptop(fit(clean_ipad(cv2.imread(str(tmpf)))))
+    scr = fit(clean_ipad(cv2.imread(str(tmpf))))
+    scr[445:] = PAGE  # hide the "What's included" heading under the cards (group calls live there)
+    return laptop(scr)
 
 
 def course():
