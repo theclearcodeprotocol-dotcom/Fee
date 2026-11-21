@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1080, height=1920" />
+<script src="vendor/gsap-3.15.0.min.js"></script>
+<style>
+@font-face { font-family: "Source Serif 4"; font-weight: 900; font-style: normal; src: url("fonts/source-serif-4-latin-900-normal.woff2") format("woff2"); }
+@font-face { font-family: "Source Serif 4"; font-weight: 900; font-style: italic; src: url("fonts/source-serif-4-latin-900-italic.woff2") format("woff2"); }
+:root { --red:#ae1f14; --cream:#f2f0e0; --pink:#ffd7de; --ink:#5a3a33; --serif:"Source Serif 4", serif; --sans:"Outfit", sans-serif; }
+* { margin:0; padding:0; box-sizing:border-box; }
+html, body { width:1080px; height:1920px; overflow:hidden; background:var(--cream); }
+#root { position:relative; width:1080px; height:1920px; overflow:hidden; background:var(--cream); }
+.clip { position:absolute; }
+/* headline slot */
+.hl { position:absolute; left:80px; right:80px; top:400px; height:130px; display:flex; align-items:center; justify-content:center; text-align:center; opacity:0; }
+.hl span { font:900 60px/1.05 var(--serif); letter-spacing:-0.045em; color:var(--red); }
+.hl.small span { font-size:50px; }
+/* phone */
+#phone { position:absolute; left:310px; top:560px; width:460px; height:800px; border-radius:58px; background:#1d1413; padding:16px;
+  box-shadow:0 30px 70px rgba(90,20,10,.25); }
+#screen { position:relative; width:100%; height:100%; border-radius:44px; overflow:hidden; background:#fff; }
+.url { position:absolute; left:20px; right:20px; top:44px; height:56px; border-radius:16px; background:#ece9e2; font:500 24px/56px var(--sans);
+  color:#3a2a27; padding:0 22px; white-space:nowrap; overflow:hidden; z-index:5; }
+.url .caret { display:inline-block; width:2px; height:26px; background:var(--red); vertical-align:middle; margin-left:2px; }
+.page { position:absolute; left:0; right:0; top:116px; bottom:0; opacity:0; }
+.page .inner { position:absolute; left:0; right:0; top:0; }
+.hdr { height:86px; background:var(--red); display:flex; align-items:center; padding:0 26px; font:900 30px/1 var(--serif); color:var(--cream); letter-spacing:-0.04em; }
+.pad { padding:26px; display:flex; flex-direction:column; gap:18px; }
+.h1 { font:900 40px/1.04 var(--serif); letter-spacing:-0.045em; color:var(--red); }
+.ln { height:12px; border-radius:6px; background:#e6e1d6; }
+.card { border-radius:14px; padding:22px; font:900 28px/1.1 var(--serif); letter-spacing:-0.03em; }
+.card.r { background:var(--red); color:var(--cream); } .card.p { background:var(--pink); color:var(--red); } .card.c { background:var(--cream); color:var(--red); }
+.card small { display:block; margin-top:10px; font:500 18px/1.3 var(--sans); letter-spacing:0; opacity:.85; }
+.row { display:flex; align-items:center; gap:14px; padding:16px 0; border-bottom:2px solid #eee8de; font:500 24px/1.2 var(--sans); color:#3a2a27; }
+.row i { width:34px; height:40px; border:2px solid var(--red); border-radius:6px; flex:0 0 auto; }
+.badge { align-self:flex-start; background:var(--red); color:var(--cream); border-radius:999px; padding:8px 18px; font:600 20px/1 var(--sans); }
+.ph { position:absolute; left:0; right:0; bottom:22px; text-align:center; font:600 18px/1 var(--sans); letter-spacing:.14em; text-transform:uppercase; color:#5a3a33; background:rgba(255,255,255,.9); padding:8px 0; z-index:6; }
+/* you, talking (picture-in-picture placeholder) */
+#you { position:absolute; left:700px; top:1110px; width:240px; height:240px; border-radius:50%; background:var(--pink); border:6px solid var(--cream);
+  box-shadow:0 14px 34px rgba(90,20,10,.25); display:grid; place-items:center; text-align:center; opacity:0; }
+#you span { font:600 22px/1.25 var(--sans); color:var(--red); }
+/* captions */
+.cap { z-index:10; position:absolute; left:80px; right:80px; top:1430px; text-align:center; opacity:0; visibility:hidden; }
+.ct { display:inline; font:500 42px/1.6 var(--sans); color:var(--cream); background:var(--ink); padding:8px 20px; border-radius:12px;
+  -webkit-box-decoration-break:clone; box-decoration-break:clone; }
+#tag { position:absolute; left:0; right:0; top:1560px; text-align:center; font:600 22px/1 var(--sans); letter-spacing:.2em; text-transform:uppercase; color:#ae1f14; z-index:9; }
+
+#endc { position:absolute; inset:0; z-index:8; background:var(--red); color:var(--cream); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:30px; text-align:center; clip-path:inset(0% 100% 0% 0%); }
+#endc b { font:900 170px/1 var(--serif); letter-spacing:-0.05em; }
+#endc p { font:900 76px/1.05 var(--serif); letter-spacing:-0.045em; padding:0 90px; }
+#endc em { font:italic 900 44px/1.2 var(--serif); color:var(--pink); }
+</style>
+</head>
+<body>
+<div id="root" data-composition-id="main" data-start="0" data-duration="27" data-width="1080" data-height="1920">
+  <div id="stage" class="clip" data-start="0" data-duration="27" data-track-index="1" data-track-kind="graphics" data-layout-allow-overlap style="inset:0">
+    <div class="hl" id="h0"><span>the clear code has a new home.</span></div>
+    <div class="hl" id="h1"><span>one home for both</span></div>
+    <div class="hl small" id="h2"><span>the clear code protocol · plan, launch, nurture</span></div>
+    <div class="hl" id="h3"><span>a sneak peek inside</span></div>
+    <div class="hl small" id="h4"><span>clear evidence · one graded paper a week</span></div>
+
+    <div id="phone"><div id="screen">
+      <div class="url"><span id="urltext"></span><span class="caret"></span></div>
+      <div class="page" id="pg0"><div class="inner">
+        <div class="hdr">the clear code.</div>
+        <div class="pad">
+          <div class="h1">evidence-based tools for acne specialists.</div>
+          <div class="ln" style="width:90%"></div><div class="ln" style="width:70%"></div>
+          <div class="card r">the clear code protocol<small>plan · launch · nurture</small></div>
+          <div class="card p">clear evidence<small>one graded paper a week</small></div>
+          <div class="ln" style="width:80%"></div><div class="ln" style="width:60%"></div><div class="ln" style="width:85%"></div>
+        </div>
+      </div></div>
+      <div class="page" id="pg1"><div class="inner">
+        <div class="hdr">the clear code protocol</div>
+        <div class="pad">
+          <div class="card r">1 · plan<small>build your acne programme</small></div>
+          <div class="card p">2 · launch<small>fill it with clients</small></div>
+          <div class="card c">3 · nurture<small>keep them to the end</small></div>
+          <div class="ln" style="width:80%"></div><div class="ln" style="width:65%"></div>
+        </div>
+      </div></div>
+      <div class="page" id="pg2"><div class="inner">
+        <div class="hdr">my course · documents</div>
+        <div class="pad">
+          <div class="h1">plan</div>
+          <div class="row"><i></i>roadmap</div>
+          <div class="row"><i></i>treatment pathways</div>
+          <div class="row"><i></i>pricing workbook</div>
+          <div class="row"><i></i>consultation form</div>
+        </div>
+      </div></div>
+      <div class="page" id="pg3"><div class="inner">
+        <div class="hdr">clear evidence</div>
+        <div class="pad">
+          <div class="badge">evidence grade</div>
+          <div class="h1">this week's paper</div>
+          <div class="ln" style="width:95%"></div><div class="ln" style="width:88%"></div><div class="ln" style="width:70%"></div>
+          <div class="card p">5-minute read<small>what it means in clinic</small></div>
+          <div class="ln" style="width:90%"></div><div class="ln" style="width:75%"></div>
+        </div>
+      </div></div>
+      <div class="ph">your screen recording</div>
+    </div></div>
+    <div id="you"><span>you, talking<br>to camera</span></div>
+
+    <div class="cap" id="c0"><span class="ct">The Clear Code has a new home.</span></div>
+    <div class="cap" id="c1"><span class="ct">Everything now lives in one place.</span></div>
+    <div class="cap" id="c2"><span class="ct">This is the Clear Code Protocol: plan, launch and nurture,</span></div>
+    <div class="cap" id="c3"><span class="ct">every template and script you need.</span></div>
+    <div class="cap" id="c4"><span class="ct">Here's a little sneak peek inside.</span></div>
+    <div class="cap" id="c5"><span class="ct">And this is Clear Evidence:</span></div>
+    <div class="cap" id="c6"><span class="ct">one graded paper a week, a five-minute read.</span></div>
+    <div id="endc"><b>c.</b><p>doors open friday 27 november.</p><em>have a look · waitlist link in bio</em></div>
+    <div id="tag">sample mock-up · not the final edit</div>
+    <div class="cap" id="c7"><span class="ct">Have a look, link in bio, and join the waitlist.</span></div>
+  </div>
+</div>
+<script>
+window.__timelines = window.__timelines || {};
+const tl = gsap.timeline({ paused: true });
+// hook: typing the address
+const url = "theclearcode.co.uk"; const ut = document.getElementById("urltext");
+const st = { n: 0 };
+tl.to(st, { n: url.length, duration: 1.3, ease: "none", onUpdate: () => { ut.textContent = url.slice(0, Math.round(st.n)); } }, 0.2);
+tl.set(ut, { textContent: "" }, 0);
+function show(sel, a, b) {
+  tl.fromTo(sel, { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.25, ease: "power3.out", immediateRender: false }, a);
+  tl.to(sel, { opacity: 0, duration: 0.15 }, b - 0.15);
+}
+function page(sel, a, b, scroll) {
+  tl.fromTo(sel, { opacity: 0 }, { opacity: 1, duration: 0.2, immediateRender: false }, a);
+  if (scroll) tl.fromTo(sel + " .inner", { y: 0 }, { y: -scroll, duration: b - a - 0.4, ease: "power1.inOut", immediateRender: false }, a + 0.3);
+  tl.to(sel, { opacity: 0, duration: 0.15 }, b - 0.15);
+}
+function cap(sel, s, e) {
+  tl.set(sel, { visibility: "visible" }, s);
+  tl.fromTo(sel, { opacity: 0, y: 8 }, { opacity: 1, y: 0, duration: 0.2, ease: "power2.out", immediateRender: false }, s);
+  tl.set(sel, { opacity: 0, visibility: "hidden" }, e);
+}
+show("#h0", 0.05, 2.9); show("#h1", 2.9, 5.6); show("#h2", 5.6, 11.6); show("#h3", 11.6, 15.6); show("#h4", 15.6, 22.0);
+page("#pg0", 1.7, 5.6, 120); page("#pg1", 5.6, 11.6, 140); page("#pg2", 11.6, 15.6, 60); page("#pg3", 15.6, 22.0, 160);
+tl.fromTo("#you", { opacity: 0, scale: 0.8 }, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(2)", immediateRender: false }, 2.9);
+tl.to("#you", { opacity: 0, duration: 0.2 }, 21.8);
+cap("#c0", 0.1, 2.85); cap("#c1", 2.9, 5.55); cap("#c2", 5.6, 8.5); cap("#c3", 8.5, 11.55); cap("#c4", 11.6, 15.55);
+cap("#c5", 15.6, 19.0); cap("#c6", 19.0, 21.95);
+tl.to("#endc", { clipPath: "inset(0% 0% 0% 0%)", duration: 0.45, ease: "expo.out" }, 22.0);
+cap("#c7", 23.6, 26.95);
+tl.set("#tag", { color: "#ffd7de" }, 22.0);
+window.__timelines["main"] = tl;
+tl.seek(0);
+</script>
+</body>
+</html>
