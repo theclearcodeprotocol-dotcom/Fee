@@ -147,625 +147,595 @@
   {
    "text": "doesn't",
    "start": 9.04,
-   "end": 9.34,
+   "end": 9.26,
    "seg": 0
   },
   {
    "text": "tell",
-   "start": 9.42,
-   "end": 9.68,
+   "start": 9.32,
+   "end": 9.54,
    "seg": 0
   },
   {
    "text": "you",
-   "start": 9.8,
+   "start": 9.68,
+   "end": 9.82,
+   "seg": 0
+  },
+  {
+   "text": "how",
+   "start": 9.9,
    "end": 10.08,
    "seg": 0
   },
   {
-   "text": "how",
-   "start": 10.22,
-   "end": 10.48,
-   "seg": 0
-  },
-  {
-   "text": "to--",
-   "start": 10.56,
-   "end": 10.72,
-   "seg": 0
-  },
-  {
-   "text": "doesn't",
-   "start": 10.78,
-   "end": 11,
-   "seg": 0
-  },
-  {
-   "text": "tell",
-   "start": 11.06,
-   "end": 11.28,
-   "seg": 0
-  },
-  {
-   "text": "you",
-   "start": 11.42,
-   "end": 11.56,
-   "seg": 0
-  },
-  {
-   "text": "how",
-   "start": 11.64,
-   "end": 11.82,
-   "seg": 0
-  },
-  {
    "text": "to",
-   "start": 11.86,
-   "end": 11.94,
+   "start": 10.12,
+   "end": 10.2,
    "seg": 0
   },
   {
    "text": "turn",
-   "start": 12.02,
-   "end": 12.22,
+   "start": 10.28,
+   "end": 10.48,
    "seg": 0
   },
   {
    "text": "it",
-   "start": 12.24,
-   "end": 12.3,
+   "start": 10.5,
+   "end": 10.56,
    "seg": 0
   },
   {
    "text": "into",
-   "start": 12.36,
-   "end": 12.62,
+   "start": 10.62,
+   "end": 10.88,
    "seg": 0
   },
   {
    "text": "a",
-   "start": 12.68,
-   "end": 12.76,
+   "start": 10.94,
+   "end": 11.02,
    "seg": 0
   },
   {
    "text": "program",
-   "start": 12.82,
-   "end": 13.38,
+   "start": 11.08,
+   "end": 11.64,
    "seg": 0
   },
   {
    "text": "that",
-   "start": 13.46,
-   "end": 13.58,
+   "start": 11.72,
+   "end": 11.84,
    "seg": 0
   },
   {
    "text": "clients",
-   "start": 13.64,
-   "end": 13.98,
+   "start": 11.9,
+   "end": 12.24,
    "seg": 0
   },
   {
    "text": "will",
-   "start": 14,
-   "end": 14.18,
+   "start": 12.26,
+   "end": 12.44,
    "seg": 0
   },
   {
    "text": "book,",
-   "start": 14.22,
-   "end": 14.4,
+   "start": 12.48,
+   "end": 12.66,
    "seg": 0
   },
   {
    "text": "pay",
-   "start": 14.58,
-   "end": 14.78,
+   "start": 12.84,
+   "end": 13.04,
    "seg": 0
   },
   {
    "text": "for,",
-   "start": 14.94,
-   "end": 15.14,
+   "start": 13.2,
+   "end": 13.4,
    "seg": 0
   },
   {
    "text": "and",
-   "start": 15.48,
-   "end": 15.74,
+   "start": 13.74,
+   "end": 14.0,
    "seg": 0
   },
   {
    "text": "finish.",
-   "start": 15.84,
-   "end": 16.34,
+   "start": 14.1,
+   "end": 14.6,
    "seg": 0
   },
   {
    "text": "And",
-   "start": 16.64,
-   "end": 16.74,
+   "start": 14.9,
+   "end": 15.0,
    "seg": 0
   },
   {
    "text": "the",
-   "start": 16.78,
-   "end": 16.84,
+   "start": 15.04,
+   "end": 15.1,
    "seg": 0
   },
   {
    "text": "gap",
-   "start": 16.9,
-   "end": 17.14,
+   "start": 15.16,
+   "end": 15.4,
    "seg": 0
   },
   {
    "text": "between",
-   "start": 17.26,
-   "end": 17.68,
+   "start": 15.52,
+   "end": 15.94,
    "seg": 0
   },
   {
    "text": "knowing",
-   "start": 17.74,
-   "end": 18.04,
+   "start": 16.0,
+   "end": 16.3,
    "seg": 0
   },
   {
    "text": "and",
-   "start": 18.1,
-   "end": 18.18,
+   "start": 16.36,
+   "end": 16.44,
    "seg": 0
   },
   {
    "text": "doing",
-   "start": 18.28,
-   "end": 18.76,
+   "start": 16.54,
+   "end": 17.02,
    "seg": 0
   },
   {
    "text": "is",
-   "start": 18.82,
-   "end": 18.98,
+   "start": 17.08,
+   "end": 17.24,
    "seg": 0
   },
   {
    "text": "where",
-   "start": 19.02,
-   "end": 19.18,
+   "start": 17.28,
+   "end": 17.44,
    "seg": 0
   },
   {
    "text": "most",
-   "start": 19.32,
-   "end": 19.66,
+   "start": 17.58,
+   "end": 17.92,
    "seg": 0
   },
   {
    "text": "skin",
-   "start": 19.94,
-   "end": 20.16,
+   "start": 18.2,
+   "end": 18.42,
    "seg": 0
   },
   {
    "text": "specialists",
-   "start": 20.3,
-   "end": 20.92,
+   "start": 18.56,
+   "end": 19.18,
    "seg": 0
   },
   {
    "text": "do",
-   "start": 20.98,
-   "end": 21.1,
+   "start": 19.24,
+   "end": 19.36,
    "seg": 0
   },
   {
    "text": "get",
-   "start": 21.14,
-   "end": 21.3,
+   "start": 19.4,
+   "end": 19.56,
    "seg": 0
   },
   {
    "text": "stuck.",
-   "start": 21.38,
-   "end": 21.64,
+   "start": 19.64,
+   "end": 19.9,
    "seg": 0
   },
   {
    "text": "This",
-   "start": 21.68,
-   "end": 21.76,
+   "start": 19.94,
+   "end": 20.02,
    "seg": 0
   },
   {
    "text": "is",
-   "start": 21.82,
-   "end": 21.92,
+   "start": 20.08,
+   "end": 20.18,
    "seg": 0
   },
   {
    "text": "exactly",
-   "start": 21.98,
-   "end": 22.44,
+   "start": 20.24,
+   "end": 20.7,
    "seg": 0
   },
   {
    "text": "why",
-   "start": 22.48,
-   "end": 22.6,
+   "start": 20.74,
+   "end": 20.86,
    "seg": 0
   },
   {
    "text": "I",
-   "start": 22.66,
-   "end": 22.72,
+   "start": 20.92,
+   "end": 20.98,
    "seg": 0
   },
   {
    "text": "created",
-   "start": 22.8,
-   "end": 23.2,
+   "start": 21.06,
+   "end": 21.46,
    "seg": 0
   },
   {
    "text": "the",
-   "start": 23.26,
-   "end": 23.32,
+   "start": 21.52,
+   "end": 21.58,
    "seg": 0
   },
   {
    "text": "Clear",
-   "start": 23.36,
-   "end": 23.54,
+   "start": 21.62,
+   "end": 21.8,
    "seg": 0
   },
   {
    "text": "Code",
-   "start": 23.64,
-   "end": 23.84,
+   "start": 21.9,
+   "end": 22.1,
    "seg": 0
   },
   {
    "text": "protocol.",
-   "start": 23.92,
-   "end": 24.46,
+   "start": 22.18,
+   "end": 22.72,
    "seg": 0
   },
   {
    "text": "I",
-   "start": 24.7,
-   "end": 24.74,
+   "start": 22.96,
+   "end": 23.0,
    "seg": 0
   },
   {
    "text": "created",
-   "start": 24.8,
-   "end": 25.1,
+   "start": 23.06,
+   "end": 23.36,
    "seg": 0
   },
   {
    "text": "the",
-   "start": 25.14,
-   "end": 25.22,
+   "start": 23.4,
+   "end": 23.48,
    "seg": 0
   },
   {
    "text": "templates,",
-   "start": 25.3,
-   "end": 26.04,
+   "start": 23.56,
+   "end": 24.3,
    "seg": 0
   },
   {
    "text": "the",
-   "start": 26.2,
-   "end": 26.28,
+   "start": 24.46,
+   "end": 24.54,
    "seg": 0
   },
   {
    "text": "scripts,",
-   "start": 26.36,
-   "end": 26.78,
+   "start": 24.62,
+   "end": 25.04,
    "seg": 0
   },
   {
    "text": "and",
-   "start": 26.94,
-   "end": 27.04,
+   "start": 25.2,
+   "end": 25.3,
    "seg": 0
   },
   {
    "text": "the",
-   "start": 27.08,
-   "end": 27.16,
+   "start": 25.34,
+   "end": 25.42,
    "seg": 0
   },
   {
    "text": "structure",
-   "start": 27.2,
-   "end": 27.72,
+   "start": 25.46,
+   "end": 25.98,
    "seg": 0
   },
   {
    "text": "to",
-   "start": 28.56,
-   "end": 28.64,
+   "start": 26.82,
+   "end": 26.9,
    "seg": 0
   },
   {
    "text": "be",
-   "start": 28.68,
-   "end": 28.8,
+   "start": 26.94,
+   "end": 27.06,
    "seg": 0
   },
   {
    "text": "able",
-   "start": 28.9,
-   "end": 29.1,
+   "start": 27.16,
+   "end": 27.36,
    "seg": 0
   },
   {
    "text": "to",
-   "start": 29.16,
-   "end": 29.3,
+   "start": 27.42,
+   "end": 27.56,
    "seg": 0
   },
   {
    "text": "use",
-   "start": 29.42,
-   "end": 29.58,
+   "start": 27.68,
+   "end": 27.84,
    "seg": 0
   },
   {
    "text": "what",
-   "start": 29.74,
-   "end": 29.88,
+   "start": 28.0,
+   "end": 28.14,
    "seg": 0
   },
   {
    "text": "you",
-   "start": 30.02,
-   "end": 30.12,
+   "start": 28.28,
+   "end": 28.38,
    "seg": 0
   },
   {
    "text": "know.",
-   "start": 30.16,
-   "end": 30.4,
+   "start": 28.42,
+   "end": 28.66,
    "seg": 0
   },
   {
    "text": "You",
-   "start": 30.5,
-   "end": 30.56,
+   "start": 28.76,
+   "end": 28.82,
    "seg": 0
   },
   {
    "text": "can",
-   "start": 30.6,
-   "end": 30.76,
+   "start": 28.86,
+   "end": 29.02,
    "seg": 0
   },
   {
    "text": "confidently",
-   "start": 30.82,
-   "end": 31.5,
+   "start": 29.08,
+   "end": 29.76,
    "seg": 0
   },
   {
    "text": "plan",
-   "start": 31.56,
-   "end": 31.76,
+   "start": 29.82,
+   "end": 30.02,
    "seg": 0
   },
   {
    "text": "it,",
-   "start": 31.8,
-   "end": 31.88,
+   "start": 30.06,
+   "end": 30.14,
    "seg": 0
   },
   {
    "text": "launch",
-   "start": 32.22,
-   "end": 32.5,
+   "start": 30.48,
+   "end": 30.76,
    "seg": 0
   },
   {
    "text": "it,",
-   "start": 32.58,
-   "end": 32.659,
+   "start": 30.84,
+   "end": 30.919,
    "seg": 0
   },
   {
    "text": "and",
-   "start": 33,
-   "end": 33.24,
+   "start": 31.26,
+   "end": 31.5,
    "seg": 0
   },
   {
    "text": "nurture",
-   "start": 33.44,
-   "end": 33.84,
+   "start": 31.7,
+   "end": 32.1,
    "seg": 0
   },
   {
    "text": "it.",
-   "start": 33.88,
-   "end": 34,
+   "start": 32.14,
+   "end": 32.26,
    "seg": 0
   },
   {
    "text": "Education",
-   "start": 34.04,
-   "end": 34.56,
+   "start": 32.3,
+   "end": 32.82,
    "seg": 0
   },
   {
    "text": "will",
-   "start": 34.6,
-   "end": 34.7,
+   "start": 32.86,
+   "end": 32.96,
    "seg": 0
   },
   {
    "text": "get",
-   "start": 34.74,
-   "end": 34.9,
+   "start": 33.0,
+   "end": 33.16,
    "seg": 0
   },
   {
    "text": "you",
-   "start": 34.94,
-   "end": 35.04,
+   "start": 33.2,
+   "end": 33.3,
    "seg": 0
   },
   {
    "text": "started,",
-   "start": 35.08,
-   "end": 35.62,
+   "start": 33.34,
+   "end": 33.88,
    "seg": 0
   },
   {
    "text": "and",
-   "start": 35.88,
-   "end": 35.94,
+   "start": 34.14,
+   "end": 34.2,
    "seg": 0
   },
   {
    "text": "the",
-   "start": 35.98,
-   "end": 36.08,
+   "start": 34.24,
+   "end": 34.34,
    "seg": 0
   },
   {
    "text": "implementation",
-   "start": 36.14,
-   "end": 36.9,
+   "start": 34.4,
+   "end": 35.16,
    "seg": 0
   },
   {
    "text": "will",
-   "start": 36.92,
-   "end": 37.04,
+   "start": 35.18,
+   "end": 35.3,
    "seg": 0
   },
   {
    "text": "get",
-   "start": 37.08,
-   "end": 37.24,
+   "start": 35.34,
+   "end": 35.5,
    "seg": 0
   },
   {
    "text": "you",
-   "start": 37.28,
-   "end": 37.36,
+   "start": 35.54,
+   "end": 35.62,
    "seg": 0
   },
   {
    "text": "results.",
-   "start": 37.42,
-   "end": 38.02,
+   "start": 35.68,
+   "end": 36.28,
    "seg": 0
   },
   {
    "text": "Our",
-   "start": 38.88,
-   "end": 39,
+   "start": 37.14,
+   "end": 37.26,
    "seg": 0
   },
   {
    "text": "doors",
-   "start": 39.04,
-   "end": 39.28,
+   "start": 37.3,
+   "end": 37.54,
    "seg": 0
   },
   {
    "text": "open",
-   "start": 39.38,
-   "end": 39.6,
+   "start": 37.64,
+   "end": 37.86,
    "seg": 0
   },
   {
    "text": "on",
-   "start": 39.64,
-   "end": 39.74,
+   "start": 37.9,
+   "end": 38.0,
    "seg": 0
   },
   {
    "text": "Black",
-   "start": 39.76,
-   "end": 39.96,
+   "start": 38.02,
+   "end": 38.22,
    "seg": 0
   },
   {
    "text": "Friday,",
-   "start": 40.06,
-   "end": 40.56,
+   "start": 38.32,
+   "end": 38.82,
    "seg": 0
   },
   {
    "text": "so",
-   "start": 40.82,
-   "end": 40.98,
+   "start": 39.08,
+   "end": 39.24,
    "seg": 0
   },
   {
    "text": "join",
-   "start": 41.04,
-   "end": 41.26,
+   "start": 39.3,
+   "end": 39.52,
    "seg": 0
   },
   {
    "text": "our",
-   "start": 41.3,
-   "end": 41.4,
+   "start": 39.56,
+   "end": 39.66,
    "seg": 0
   },
   {
    "text": "wait",
-   "start": 41.44,
-   "end": 41.62,
+   "start": 39.7,
+   "end": 39.88,
    "seg": 0
   },
   {
    "text": "list.",
-   "start": 41.68,
-   "end": 41.98,
+   "start": 39.94,
+   "end": 40.24,
    "seg": 0
   },
   {
    "text": "The",
-   "start": 42.14,
-   "end": 42.22,
+   "start": 40.4,
+   "end": 40.48,
    "seg": 0
   },
   {
    "text": "link",
-   "start": 42.26,
-   "end": 42.48,
+   "start": 40.52,
+   "end": 40.74,
    "seg": 0
   },
   {
    "text": "is",
-   "start": 42.52,
-   "end": 42.62,
+   "start": 40.78,
+   "end": 40.88,
    "seg": 0
   },
   {
    "text": "in",
-   "start": 42.68,
-   "end": 42.76,
+   "start": 40.94,
+   "end": 41.02,
    "seg": 0
   },
   {
    "text": "our",
-   "start": 42.78,
-   "end": 42.9,
+   "start": 41.04,
+   "end": 41.16,
    "seg": 0
   },
   {
    "text": "bio.",
-   "start": 42.94,
-   "end": 43.24,
+   "start": 41.2,
+   "end": 41.5,
    "seg": 0
   }
  ],
@@ -783,42 +753,47 @@
   {
    "start": 5.9,
    "beat": "S2",
-   "end": 16.34
+   "end": 9.02
   },
   {
-   "start": 16.64,
+   "start": 9.02,
+   "end": 14.6,
+   "beat": "S2b"
+  },
+  {
+   "start": 14.9,
    "beat": "S3",
-   "end": 21.64
+   "end": 19.9
   },
   {
-   "start": 21.68,
+   "start": 19.94,
    "beat": "S4",
-   "end": 24.46
+   "end": 22.72
   },
   {
-   "start": 24.7,
+   "start": 22.96,
    "beat": "S5",
-   "end": 30.4
+   "end": 28.66
   },
   {
-   "start": 30.5,
+   "start": 28.76,
    "beat": "S6",
-   "end": 34
+   "end": 32.26
   },
   {
-   "start": 34.04,
+   "start": 32.3,
    "beat": "S7",
-   "end": 38.02
+   "end": 36.28
   },
   {
-   "start": 38.88,
+   "start": 37.14,
    "beat": "S8",
-   "end": 41.98
+   "end": 40.24
   },
   {
-   "start": 42.14,
+   "start": 40.4,
    "beat": "S9",
-   "end": 43.38
+   "end": 41.64
   }
  ]
 }
