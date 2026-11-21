@@ -50,6 +50,14 @@ CLIPS = {  # (beat, first word start, last word end) in source seconds, in outpu
         ("BODY4", 65.18, 68.86),
         ("CTA", 71.66, 85.26),
     ],
+    "newhome": [  # New site announcement: second Protocol take, "doors open ... twenty-seventh" take for the close
+        ("HOOK", 1.10, 4.84),
+        ("PROTOCOL", 29.04, 34.90), ("PROTOCOL", 41.94, 44.60),
+        ("SNEAK", 49.32, 50.70),
+        ("EVIDENCE", 56.06, 57.12), ("EVIDENCE", 57.98, 58.88), ("EVIDENCE", 65.56, 68.80),
+        ("DOORS", 99.88, 102.78),
+        ("CTA", 113.68, 118.42),
+    ],
     "evidence-step": [  # Clear Evidence: one take, long reading pauses removed, the false start "with what," dropped
         ("HOOK", 1.50, 5.42),
         ("SETUP", 11.06, 26.46),
@@ -95,7 +103,7 @@ for beat, s, e, run in spans:
     t += e - s
 edl = {"version": 1, "sources": {CLIP: str(Path(f"raw/{CLIP}.mp4").resolve())},
        "ranges": out, "grade": "eq=contrast=1.04:saturation=1.05:gamma=1.02,colorbalance=rm=0.03:bm=-0.03:rh=0.02:bh=-0.02"
-                 + (",scale=1440:2560:flags=lanczos" if CLIP in ("launch-step2", "plan-step1", "nurture-step3", "evidence-step") else ""),
+                 + (",scale=1440:2560:flags=lanczos" if CLIP in ("launch-step2", "plan-step1", "nurture-step3", "evidence-step", "newhome") else ""),
        "overlays": [], "total_duration_s": round(t, 3)}
 json.dump(edl, open(edit / f"edl_{CLIP}.json", "w"), indent=2)
 for r in out:

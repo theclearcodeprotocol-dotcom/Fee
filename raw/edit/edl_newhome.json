@@ -1,0 +1,99 @@
+{
+  "version": 1,
+  "sources": {
+    "newhome": "/home/user/Fee/ai-video-editing/new-home/talk.mov"
+  },
+  "ranges": [
+    {
+      "source": "newhome",
+      "start": 1.06,
+      "end": 5.43,
+      "beat": "HOOK",
+      "quote": "The Clear Code now has a new home with everything in one place.",
+      "output_start": 0.0
+    },
+    {
+      "source": "newhome",
+      "start": 29.0,
+      "end": 34.59,
+      "beat": "PROTOCOL",
+      "quote": "This is the Clear Code Protocol. Plan, launch, nurture. Every template and script that you'll need",
+      "output_start": 4.37
+    },
+    {
+      "source": "newhome",
+      "start": 34.74,
+      "end": 35.13,
+      "beat": "PROTOCOL",
+      "quote": "to",
+      "output_start": 9.96
+    },
+    {
+      "source": "newhome",
+      "start": 41.9,
+      "end": 45.19,
+      "beat": "PROTOCOL",
+      "quote": "run a successful acne program within your clinic.",
+      "output_start": 10.35
+    },
+    {
+      "source": "newhome",
+      "start": 49.28,
+      "end": 51.39,
+      "beat": "SNEAK",
+      "quote": "Here's a little sneak peek inside.",
+      "output_start": 13.64
+    },
+    {
+      "source": "newhome",
+      "start": 56.02,
+      "end": 57.79,
+      "beat": "EVIDENCE",
+      "quote": "And this is clear evidence.",
+      "output_start": 15.75
+    },
+    {
+      "source": "newhome",
+      "start": 57.94,
+      "end": 59.41,
+      "beat": "EVIDENCE",
+      "quote": "One research paper",
+      "output_start": 17.52
+    },
+    {
+      "source": "newhome",
+      "start": 65.52,
+      "end": 69.19,
+      "beat": "EVIDENCE",
+      "quote": "that's graded weekly and broken down into a five-minute read.",
+      "output_start": 18.99
+    },
+    {
+      "source": "newhome",
+      "start": 99.84,
+      "end": 103.85,
+      "beat": "DOORS",
+      "quote": "Doors open for the protocol this Friday, the twenty-seventh.",
+      "output_start": 22.66
+    },
+    {
+      "source": "newhome",
+      "start": 113.64,
+      "end": 116.63,
+      "beat": "CTA",
+      "quote": "Have a look at our new home. The link is in our bio",
+      "output_start": 26.67
+    },
+    {
+      "source": "newhome",
+      "start": 116.94,
+      "end": 118.67,
+      "beat": "CTA",
+      "quote": "and join the wait list while you're there",
+      "output_start": 29.66
+    }
+  ],
+  "grade": "eq=contrast=1.04:saturation=1.05:gamma=1.02,colorbalance=rm=0.03:bm=-0.03:rh=0.02:bh=-0.02,scale=1440:2560:flags=lanczos",
+  "overlays": [],
+  "total_duration_s": 31.39
+}
