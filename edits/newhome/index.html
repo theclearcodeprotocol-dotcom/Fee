@@ -18,6 +18,8 @@ html, body { width:1080px; height:1920px; overflow:hidden; background:#000; }
 .cap { position:absolute; left:80px; right:80px; top:400px; text-align:center; opacity:0; visibility:hidden; z-index:5; }
 .ct { display:inline; font:500 42px/1.6 var(--sans); color:var(--cream); background:var(--ink); padding:8px 20px; border-radius:12px;
   -webkit-box-decoration-break:clone; box-decoration-break:clone; }
+#hook { position:absolute; left:70px; right:70px; top:352px; text-align:center; z-index:5; opacity:0; }
+#hook span { font:900 72px/1.0 var(--serif); letter-spacing:-0.05em; color:var(--red); }
 #endp { position:absolute; inset:0; background:var(--red); color:var(--cream); z-index:3; clip-path:inset(0% 100% 0% 0%);
   display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; gap:34px; padding:0 100px; }
 #endp b { font:900 170px/1 var(--serif); letter-spacing:-0.05em; }
@@ -31,8 +33,9 @@ html, body { width:1080px; height:1920px; overflow:hidden; background:#000; }
   <video id="footage" class="clip" src="footage/newhome-comp.mp4" data-start="0" data-duration="31.600" data-track-index="0" playsinline data-has-audio="true"></video>
   <div id="ov" class="clip" data-start="0" data-duration="31.600" data-track-index="1" data-track-kind="graphics" data-layout-allow-overlap style="position:absolute;inset:0">
     
+    <div id="hook"><span>the clear code has a new home.</span></div>
     <div id="endp"><b>c.</b><h2>doors open friday 27 november.</h2><p class="s">the clear code protocol</p><p class="pill">have a look · link in bio</p></div>
-    <div class="cap" id="c0"><span class="ct">The Clear Code</span></div><div class="cap" id="c1"><span class="ct">Now</span></div><div class="cap" id="c2"><span class="ct">Has a new home with</span></div><div class="cap" id="c3"><span class="ct">Everything</span></div><div class="cap" id="c4"><span class="ct">In one place.</span></div><div class="cap" id="c5"><span class="ct">This is the Clear Code</span></div><div class="cap" id="c6"><span class="ct">Protocol.</span></div><div class="cap" id="c7"><span class="ct">Plan,</span></div><div class="cap" id="c8"><span class="ct">Launch,</span></div><div class="cap" id="c9"><span class="ct">Nurture.</span></div><div class="cap" id="c10"><span class="ct">Every template and script that</span></div><div class="cap" id="c11"><span class="ct">You&#x27;ll need</span></div><div class="cap" id="c12"><span class="ct">To</span></div><div class="cap" id="c13"><span class="ct">Run a successful acne programme</span></div><div class="cap" id="c14"><span class="ct">Within your clinic.</span></div><div class="cap" id="c15"><span class="ct">Here&#x27;s a little sneak peek</span></div><div class="cap" id="c16"><span class="ct">Inside.</span></div><div class="cap" id="c17"><span class="ct">And this is clear evidence.</span></div><div class="cap" id="c18"><span class="ct">One research paper</span></div><div class="cap" id="c19"><span class="ct">That&#x27;s graded weekly and broken</span></div><div class="cap" id="c20"><span class="ct">Down into a five-minute read.</span></div><div class="cap" id="c21"><span class="ct">Doors open for the protocol</span></div><div class="cap" id="c22"><span class="ct">This</span></div><div class="cap" id="c23"><span class="ct">Friday, the 27th.</span></div><div class="cap" id="c24"><span class="ct">Have a look at our</span></div><div class="cap" id="c25"><span class="ct">New home.</span></div><div class="cap" id="c26"><span class="ct">The link is in our</span></div><div class="cap" id="c27"><span class="ct">Bio</span></div><div class="cap" id="c28"><span class="ct">And join the waitlist while</span></div><div class="cap" id="c29"><span class="ct">You&#x27;re there</span></div>
+    <div class="cap" id="c3"><span class="ct">Everything</span></div><div class="cap" id="c4"><span class="ct">In one place.</span></div><div class="cap" id="c5"><span class="ct">This is the Clear Code</span></div><div class="cap" id="c6"><span class="ct">Protocol.</span></div><div class="cap" id="c7"><span class="ct">Plan,</span></div><div class="cap" id="c8"><span class="ct">Launch,</span></div><div class="cap" id="c9"><span class="ct">Nurture.</span></div><div class="cap" id="c10"><span class="ct">Every template and script that</span></div><div class="cap" id="c11"><span class="ct">You&#x27;ll need</span></div><div class="cap" id="c12"><span class="ct">To</span></div><div class="cap" id="c13"><span class="ct">Run a successful acne programme</span></div><div class="cap" id="c14"><span class="ct">Within your clinic.</span></div><div class="cap" id="c15"><span class="ct">Here&#x27;s a little sneak peek</span></div><div class="cap" id="c16"><span class="ct">Inside.</span></div><div class="cap" id="c17"><span class="ct">And this is clear evidence.</span></div><div class="cap" id="c18"><span class="ct">One research paper</span></div><div class="cap" id="c19"><span class="ct">That&#x27;s graded weekly and broken</span></div><div class="cap" id="c20"><span class="ct">Down into a five-minute read.</span></div><div class="cap" id="c21"><span class="ct">Doors open for the protocol</span></div><div class="cap" id="c22"><span class="ct">This</span></div><div class="cap" id="c23"><span class="ct">Friday, the 27th.</span></div><div class="cap" id="c24"><span class="ct">Have a look at our</span></div><div class="cap" id="c25"><span class="ct">New home.</span></div><div class="cap" id="c26"><span class="ct">The link is in our</span></div><div class="cap" id="c27"><span class="ct">Bio</span></div><div class="cap" id="c28"><span class="ct">And join the waitlist while</span></div><div class="cap" id="c29"><span class="ct">You&#x27;re there</span></div>
   </div>
 </div>
 <script>
@@ -48,12 +51,11 @@ function cap(sel, s, e) {
   tl.set(sel, { opacity: 0, visibility: "hidden" }, e);
 }
 
+tl.fromTo("#hook", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.35, ease: "power3.out", immediateRender: false }, 0.05);
+tl.to("#hook", { opacity: 0, y: -10, duration: 0.25, ease: "power2.in" }, 2.380);
 tl.to("#endp", { clipPath: "inset(0% 0% 0% 0%)", duration: 0.4, ease: "expo.out" }, 22.833);
 tl.to("#endp .s", { opacity: 1, duration: 0.3 }, 23.433);
 tl.to("#endp .pill", { opacity: 1, duration: 0.3 }, 26.867);
-cap("#c0", 0.100, 0.850);
-cap("#c1", 0.850, 1.230);
-cap("#c2", 1.230, 2.630);
 cap("#c3", 2.630, 3.350);
 cap("#c4", 3.350, 4.390);
 cap("#c5", 4.390, 5.430);

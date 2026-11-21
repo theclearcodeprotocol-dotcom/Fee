@@ -28,8 +28,11 @@ for i, w in enumerate(words):
     cur.append(w); n = words[i + 1] if i + 1 < len(words) else None
     if n is None or n["seg"] != w["seg"] or n["start"] - w["end"] >= 0.15 or len(cur) >= 5 or (w["text"][-1] in ".,?!" and len(cur) >= 2):
         groups.append(cur); cur = []
+HOOK_END = 2.63  # on-screen hook for the first few seconds (user, 21 Nov); captions take over after it
 cap_html, cap_js = [], []
 for gi, g in enumerate(groups):
+    if g[-1]["end"] <= HOOK_END + 0.05:
+        continue
     s = max(0.1, g[0]["start"] - 0.05); e = g[-1]["end"]
     if gi + 1 < len(groups) and groups[gi + 1][0]["start"] - 0.05 - e < 0.35:
         e = groups[gi + 1][0]["start"] - 0.05
@@ -60,6 +63,8 @@ html, body {{ width:1080px; height:1920px; overflow:hidden; background:#000; }}
 .cap {{ position:absolute; left:80px; right:80px; top:400px; text-align:center; opacity:0; visibility:hidden; z-index:5; }}
 .ct {{ display:inline; font:500 42px/1.6 var(--sans); color:var(--cream); background:var(--ink); padding:8px 20px; border-radius:12px;
   -webkit-box-decoration-break:clone; box-decoration-break:clone; }}
+#hook {{ position:absolute; left:70px; right:70px; top:352px; text-align:center; z-index:5; opacity:0; }}
+#hook span {{ font:900 72px/1.0 var(--serif); letter-spacing:-0.05em; color:var(--red); }}
 #endp {{ position:absolute; inset:0; background:var(--red); color:var(--cream); z-index:3; clip-path:inset(0% 100% 0% 0%);
   display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; gap:34px; padding:0 100px; }}
 #endp b {{ font:900 170px/1 var(--serif); letter-spacing:-0.05em; }}
@@ -73,6 +78,7 @@ html, body {{ width:1080px; height:1920px; overflow:hidden; background:#000; }}
   <video id="footage" class="clip" src="footage/newhome-comp.mp4" data-start="0" data-duration="{TOTAL:.3f}" data-track-index="0" playsinline data-has-audio="true"></video>
   <div id="ov" class="clip" data-start="0" data-duration="{TOTAL:.3f}" data-track-index="1" data-track-kind="graphics" data-layout-allow-overlap style="position:absolute;inset:0">
     {"".join(lab_html)}
+    <div id="hook"><span>the clear code has a new home.</span></div>
     <div id="endp"><b>c.</b><h2>doors open friday 27 november.</h2><p class="s">the clear code protocol</p><p class="pill">have a look · link in bio</p></div>
     {"".join(cap_html)}
   </div>
@@ -90,6 +96,8 @@ function cap(sel, s, e) {{
   tl.set(sel, {{ opacity: 0, visibility: "hidden" }}, e);
 }}
 {chr(10).join(lab_js)}
+tl.fromTo("#hook", {{ opacity: 0, y: 16 }}, {{ opacity: 1, y: 0, duration: 0.35, ease: "power3.out", immediateRender: false }}, 0.05);
+tl.to("#hook", {{ opacity: 0, y: -10, duration: 0.25, ease: "power2.in" }}, {HOOK_END - 0.25:.3f});
 tl.to("#endp", {{ clipPath: "inset(0% 0% 0% 0%)", duration: 0.4, ease: "expo.out" }}, {ep:.3f});
 tl.to("#endp .s", {{ opacity: 1, duration: 0.3 }}, {ep + 0.6:.3f});
 tl.to("#endp .pill", {{ opacity: 1, duration: 0.3 }}, {span["CTA"][0]:.3f});
