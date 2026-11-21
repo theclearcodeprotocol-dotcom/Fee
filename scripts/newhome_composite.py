@@ -51,16 +51,19 @@ def page(im):  # website still at full width on cream
     return c
 
 
-def laptop(im):
+def laptop(_unused=None):
+    """Sneak peek on a laptop: the user's iPad screenshot of the course page, with the Safari bar,
+    admin bar, the group-call / 1-1 links and the Lovable badge cropped away."""
+    ip = cv2.imread(str(SRC / "course-ipad.png"))
+    scr = np.vstack([ip[118:342], ip[530:1408]])
     c = np.empty((H, W, 3), np.uint8); c[:] = CREAM
-    sw, sh = 880, 550
-    x0, y0 = (W - sw) // 2, 600
-    cv2.rectangle(c, (x0 - 22, y0 - 22), (x0 + sw + 22, y0 + sh + 22), (19, 20, 29), -1, cv2.LINE_AA)
-    scr = im[0:int(1320 * sh / sw)]
+    sw = 940; sh = int(scr.shape[0] * sw / scr.shape[1])
+    x0, y0 = (W - sw) // 2, 640
+    cv2.rectangle(c, (x0 - 20, y0 - 20), (x0 + sw + 20, y0 + sh + 20), (19, 20, 29), -1, cv2.LINE_AA)
     c[y0:y0 + sh, x0:x0 + sw] = cv2.resize(scr, (sw, sh), interpolation=cv2.INTER_AREA)
-    base = np.array([[x0 - 90, y0 + sh + 22], [x0 + sw + 90, y0 + sh + 22], [x0 + sw + 130, y0 + sh + 58], [x0 - 130, y0 + sh + 58]], np.int32)
+    base = np.array([[x0 - 60, y0 + sh + 20], [x0 + sw + 60, y0 + sh + 20], [x0 + sw + 100, y0 + sh + 52], [x0 - 100, y0 + sh + 52]], np.int32)
     cv2.fillPoly(c, [base], (150, 156, 168), cv2.LINE_AA)
-    cv2.rectangle(c, (W // 2 - 70, y0 + sh + 22), (W // 2 + 70, y0 + sh + 32), (110, 116, 128), -1)
+    cv2.rectangle(c, (W // 2 - 70, y0 + sh + 20), (W // 2 + 70, y0 + sh + 30), (110, 116, 128), -1)
     return c
 
 
@@ -71,7 +74,7 @@ for i, (beat, spec) in enumerate(PLAN):
     if spec is None:
         shots.append((t0, t1, None))
     elif spec == "laptop":
-        shots.append((t0, t1, laptop(still("screen2.mp4", 0.2))))
+        shots.append((t0, t1, laptop()))
     else:
         n = len(spec)
         for k, (src, t) in enumerate(spec):
