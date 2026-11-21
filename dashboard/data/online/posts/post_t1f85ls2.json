@@ -17,8 +17,22 @@
     "instagram",
     "tiktok"
   ],
+  "results": {
+    "instagram": {
+      "at": "2026-11-21T17:51:00Z",
+      "id": 436883092,
+      "ok": true,
+      "url": "https://app.metricool.com/planner/calendar?blogId=7976989&openWithPostUuid=5431694291896910433"
+    },
+    "tiktok": {
+      "at": "2026-11-21T17:51:00Z",
+      "id": 436883141,
+      "ok": true,
+      "url": "https://app.metricool.com/planner/calendar?blogId=7976989&openWithPostUuid=1417701419626481863"
+    }
+  },
   "scheduledFor": "2026-11-22T12:30:00.000Z",
-  "status": "approved",
+  "status": "in_metricool",
   "tiktokTitle": "the clear code has a new home",
   "title": "the new site announcement"
 }

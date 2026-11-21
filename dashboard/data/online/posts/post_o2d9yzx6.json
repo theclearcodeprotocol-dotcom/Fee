@@ -1,20 +1,24 @@
 {
+  "approvalKey": "0a480f94ae0c23",
+  "approvedAt": "2026-11-21T21:06:17.021Z",
   "calendarEntryId": "cal_d85da6bc",
-  "captionSource": "script",
+  "captionSource": "edited",
   "captions": {
-    "instagram": "you've done the courses. so why isn't your acne programme full?\n\nmost skin specialists and acne specialists aren't short of education. they're short of a way to put it into practice: a programme clients book, pay for and finish.\n\nthat gap between knowing and doing is exactly why i created the clear code protocol. the templates, scripts and structure to plan, launch and nurture an acne programme in your skin clinic.\n\neducation gets you started. implementation gets results.\n\ndoors open black friday, 27 november. join the waitlist, link in bio.",
+    "instagram": "you've done the courses. so why isn't your diary full with acne clients?\n\nmost skin specialists and acne specialists aren't short of education. they're short of a way to put it into practice: a programme clients book, pay for and finish.\n\nthat gap between knowing and doing is exactly why i created the clear code protocol. the templates, scripts and structure to plan, launch and nurture an acne programme in your skin clinic.\n\neducation gets you started. implementation gets results.\n\ndoors open black friday, 27 november. join the waitlist, link in bio.",
     "tiktok": "education gets you started. implementation gets results 🤍 waitlist link on our instagram @theclearcode_ #acnespecialist #skinspecialist #theclearcode"
   },
   "createdAt": "2026-11-12T13:20:50.493Z",
   "format": "reel",
   "id": "post_o2d9yzx6",
-  "media": [],
+  "media": [
+    "https://drive.usercontent.google.com/download?id=1qDDHmk2N3u-yNWp4YDkLNM_3qdz3KwUg&export=download&confirm=t"
+  ],
   "platforms": [
     "instagram",
     "tiktok"
   ],
-  "scheduledFor": "2026-11-21T18:00:00.000Z",
-  "status": "pending_approval",
+  "scheduledFor": "2026-11-23T12:30:00.000Z",
+  "status": "approved",
   "tiktokTitle": "you've done the courses. so why isn't your acne programme full?",
   "title": "why i created the clear code protocol"
 }
