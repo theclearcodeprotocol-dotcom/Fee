@@ -70,6 +70,8 @@ subprocess.run(["ffmpeg", "-y", "-v", "error", "-i", str(cut), "-vf",
 seg = vision.ImageSegmenter.create_from_options(vision.ImageSegmenterOptions(
     base_options=BaseOptions(model_asset_path=MODEL), running_mode=vision.RunningMode.VIDEO, output_confidence_masks=True))
 SC = 0.72
+# moments the eyes drop to the notes: cut away to the website alone (from DOORS on, a red end page covers it)
+HIDE = [(6.25, 6.85)] + [(beat_span["DOORS"][0], TOTAL + 1)]
 pw, ph = int(W * SC), int(H * SC)
 px, py = (W - pw) // 2, H - ph
 cf, cb = cv2.VideoCapture(str(cool)), cv2.VideoCapture(str(bg))
@@ -94,6 +96,9 @@ while True:
     prev = a
     a = np.clip((a - 0.15) / 0.7, 0, 1)
     a = cv2.GaussianBlur(a, (0, 0), 2.5)
+    t = i / FPS
+    if any(h0 <= t < h1 for h0, h1 in HIDE):
+        p.stdin.write(b.tobytes()); i += 1; continue
     small = cv2.resize(fr, (pw, ph), interpolation=cv2.INTER_AREA)
     sa = cv2.resize(a, (pw, ph))[..., None]
     roi = b[py:py + ph, px:px + pw].astype(np.float32)

@@ -1,0 +1,716 @@
+{
+ "segments": [
+  {
+   "i": 0,
+   "start": 0.0,
+   "end": 4.4,
+   "beat": "HOOK"
+  },
+  {
+   "i": 1,
+   "start": 4.4,
+   "end": 10.0,
+   "beat": "PROTOCOL"
+  },
+  {
+   "i": 2,
+   "start": 10.0,
+   "end": 10.4,
+   "beat": "PROTOCOL"
+  },
+  {
+   "i": 3,
+   "start": 10.4,
+   "end": 13.7,
+   "beat": "PROTOCOL"
+  },
+  {
+   "i": 4,
+   "start": 13.7,
+   "end": 15.833,
+   "beat": "SNEAK"
+  },
+  {
+   "i": 5,
+   "start": 15.833,
+   "end": 17.633,
+   "beat": "EVIDENCE"
+  },
+  {
+   "i": 6,
+   "start": 17.633,
+   "end": 19.133,
+   "beat": "EVIDENCE"
+  },
+  {
+   "i": 7,
+   "start": 19.133,
+   "end": 22.833,
+   "beat": "EVIDENCE"
+  },
+  {
+   "i": 8,
+   "start": 22.833,
+   "end": 26.867,
+   "beat": "DOORS"
+  },
+  {
+   "i": 9,
+   "start": 26.867,
+   "end": 29.867,
+   "beat": "CTA"
+  },
+  {
+   "i": 10,
+   "start": 29.867,
+   "end": 31.6,
+   "beat": "CTA"
+  }
+ ],
+ "words": [
+  {
+   "id": "w0",
+   "text": "The",
+   "start": 0.04,
+   "end": 0.1,
+   "seg": 0
+  },
+  {
+   "id": "w1",
+   "text": "Clear",
+   "start": 0.16,
+   "end": 0.38,
+   "seg": 0
+  },
+  {
+   "id": "w2",
+   "text": "Code",
+   "start": 0.48,
+   "end": 0.74,
+   "seg": 0
+  },
+  {
+   "id": "w3",
+   "text": "now",
+   "start": 0.9,
+   "end": 1.12,
+   "seg": 0
+  },
+  {
+   "id": "w4",
+   "text": "has",
+   "start": 1.28,
+   "end": 1.5,
+   "seg": 0
+  },
+  {
+   "id": "w5",
+   "text": "a",
+   "start": 1.56,
+   "end": 1.64,
+   "seg": 0
+  },
+  {
+   "id": "w6",
+   "text": "new",
+   "start": 1.68,
+   "end": 1.88,
+   "seg": 0
+  },
+  {
+   "id": "w7",
+   "text": "home",
+   "start": 1.96,
+   "end": 2.34,
+   "seg": 0
+  },
+  {
+   "id": "w8",
+   "text": "with",
+   "start": 2.4,
+   "end": 2.6,
+   "seg": 0
+  },
+  {
+   "id": "w9",
+   "text": "everything",
+   "start": 2.68,
+   "end": 3.24,
+   "seg": 0
+  },
+  {
+   "id": "w10",
+   "text": "in",
+   "start": 3.4,
+   "end": 3.52,
+   "seg": 0
+  },
+  {
+   "id": "w11",
+   "text": "one",
+   "start": 3.58,
+   "end": 3.72,
+   "seg": 0
+  },
+  {
+   "id": "w12",
+   "text": "place.",
+   "start": 3.78,
+   "end": 4.3,
+   "seg": 0
+  },
+  {
+   "id": "w13",
+   "text": "This",
+   "start": 4.44,
+   "end": 4.56,
+   "seg": 1
+  },
+  {
+   "id": "w14",
+   "text": "is",
+   "start": 4.64,
+   "end": 4.76,
+   "seg": 1
+  },
+  {
+   "id": "w15",
+   "text": "the",
+   "start": 4.82,
+   "end": 4.88,
+   "seg": 1
+  },
+  {
+   "id": "w16",
+   "text": "Clear",
+   "start": 4.92,
+   "end": 5.12,
+   "seg": 1
+  },
+  {
+   "id": "w17",
+   "text": "Code",
+   "start": 5.22,
+   "end": 5.4,
+   "seg": 1
+  },
+  {
+   "id": "w18",
+   "text": "Protocol.",
+   "start": 5.48,
+   "end": 6.02,
+   "seg": 1
+  },
+  {
+   "id": "w19",
+   "text": "Plan,",
+   "start": 6.18,
+   "end": 6.5,
+   "seg": 1
+  },
+  {
+   "id": "w20",
+   "text": "launch,",
+   "start": 6.7,
+   "end": 7.06,
+   "seg": 1
+  },
+  {
+   "id": "w21",
+   "text": "nurture.",
+   "start": 7.26,
+   "end": 7.8,
+   "seg": 1
+  },
+  {
+   "id": "w22",
+   "text": "Every",
+   "start": 7.98,
+   "end": 8.18,
+   "seg": 1
+  },
+  {
+   "id": "w23",
+   "text": "template",
+   "start": 8.24,
+   "end": 8.62,
+   "seg": 1
+  },
+  {
+   "id": "w24",
+   "text": "and",
+   "start": 8.64,
+   "end": 8.7,
+   "seg": 1
+  },
+  {
+   "id": "w25",
+   "text": "script",
+   "start": 8.8,
+   "end": 9.12,
+   "seg": 1
+  },
+  {
+   "id": "w26",
+   "text": "that",
+   "start": 9.16,
+   "end": 9.3,
+   "seg": 1
+  },
+  {
+   "id": "w27",
+   "text": "you'll",
+   "start": 9.34,
+   "end": 9.56,
+   "seg": 1
+  },
+  {
+   "id": "w28",
+   "text": "need",
+   "start": 9.62,
+   "end": 9.92,
+   "seg": 1
+  },
+  {
+   "id": "w29",
+   "text": "to",
+   "start": 10.04,
+   "end": 10.32,
+   "seg": 2
+  },
+  {
+   "id": "w30",
+   "text": "run",
+   "start": 10.44,
+   "end": 10.62,
+   "seg": 3
+  },
+  {
+   "id": "w31",
+   "text": "a",
+   "start": 10.64,
+   "end": 10.8,
+   "seg": 3
+  },
+  {
+   "id": "w32",
+   "text": "successful",
+   "start": 10.84,
+   "end": 11.54,
+   "seg": 3
+  },
+  {
+   "id": "w33",
+   "text": "acne",
+   "start": 11.62,
+   "end": 11.9,
+   "seg": 3
+  },
+  {
+   "id": "w34",
+   "text": "program",
+   "start": 12.0,
+   "end": 12.46,
+   "seg": 3
+  },
+  {
+   "id": "w35",
+   "text": "within",
+   "start": 12.5,
+   "end": 12.88,
+   "seg": 3
+  },
+  {
+   "id": "w36",
+   "text": "your",
+   "start": 12.94,
+   "end": 13.08,
+   "seg": 3
+  },
+  {
+   "id": "w37",
+   "text": "clinic.",
+   "start": 13.1,
+   "end": 13.62,
+   "seg": 3
+  },
+  {
+   "id": "w38",
+   "text": "Here's",
+   "start": 13.74,
+   "end": 14.02,
+   "seg": 4
+  },
+  {
+   "id": "w39",
+   "text": "a",
+   "start": 14.08,
+   "end": 14.1,
+   "seg": 4
+  },
+  {
+   "id": "w40",
+   "text": "little",
+   "start": 14.16,
+   "end": 14.34,
+   "seg": 4
+  },
+  {
+   "id": "w41",
+   "text": "sneak",
+   "start": 14.44,
+   "end": 14.68,
+   "seg": 4
+  },
+  {
+   "id": "w42",
+   "text": "peek",
+   "start": 14.78,
+   "end": 14.98,
+   "seg": 4
+  },
+  {
+   "id": "w43",
+   "text": "inside.",
+   "start": 15.12,
+   "end": 15.74,
+   "seg": 4
+  },
+  {
+   "id": "w44",
+   "text": "And",
+   "start": 15.873,
+   "end": 15.993,
+   "seg": 5
+  },
+  {
+   "id": "w45",
+   "text": "this",
+   "start": 16.073,
+   "end": 16.333,
+   "seg": 5
+  },
+  {
+   "id": "w46",
+   "text": "is",
+   "start": 16.473,
+   "end": 16.593,
+   "seg": 5
+  },
+  {
+   "id": "w47",
+   "text": "clear",
+   "start": 16.633,
+   "end": 16.873,
+   "seg": 5
+  },
+  {
+   "id": "w48",
+   "text": "evidence.",
+   "start": 16.933,
+   "end": 17.533,
+   "seg": 5
+  },
+  {
+   "id": "w49",
+   "text": "One",
+   "start": 17.673,
+   "end": 17.853,
+   "seg": 6
+  },
+  {
+   "id": "w50",
+   "text": "research",
+   "start": 17.973,
+   "end": 18.453,
+   "seg": 6
+  },
+  {
+   "id": "w51",
+   "text": "paper",
+   "start": 18.573,
+   "end": 19.033,
+   "seg": 6
+  },
+  {
+   "id": "w52",
+   "text": "that's",
+   "start": 19.173,
+   "end": 19.393,
+   "seg": 7
+  },
+  {
+   "id": "w53",
+   "text": "graded",
+   "start": 19.413,
+   "end": 19.813,
+   "seg": 7
+  },
+  {
+   "id": "w54",
+   "text": "weekly",
+   "start": 19.893,
+   "end": 20.413,
+   "seg": 7
+  },
+  {
+   "id": "w55",
+   "text": "and",
+   "start": 20.433,
+   "end": 20.553,
+   "seg": 7
+  },
+  {
+   "id": "w56",
+   "text": "broken",
+   "start": 20.613,
+   "end": 20.973,
+   "seg": 7
+  },
+  {
+   "id": "w57",
+   "text": "down",
+   "start": 21.053,
+   "end": 21.313,
+   "seg": 7
+  },
+  {
+   "id": "w58",
+   "text": "into",
+   "start": 21.393,
+   "end": 21.633,
+   "seg": 7
+  },
+  {
+   "id": "w59",
+   "text": "a",
+   "start": 21.693,
+   "end": 21.753,
+   "seg": 7
+  },
+  {
+   "id": "w60",
+   "text": "five-minute",
+   "start": 21.813,
+   "end": 22.373,
+   "seg": 7
+  },
+  {
+   "id": "w61",
+   "text": "read.",
+   "start": 22.413,
+   "end": 22.733,
+   "seg": 7
+  },
+  {
+   "id": "w62",
+   "text": "Doors",
+   "start": 22.873,
+   "end": 23.193,
+   "seg": 8
+  },
+  {
+   "id": "w63",
+   "text": "open",
+   "start": 23.273,
+   "end": 23.633,
+   "seg": 8
+  },
+  {
+   "id": "w64",
+   "text": "for",
+   "start": 23.733,
+   "end": 23.833,
+   "seg": 8
+  },
+  {
+   "id": "w65",
+   "text": "the",
+   "start": 23.873,
+   "end": 23.953,
+   "seg": 8
+  },
+  {
+   "id": "w66",
+   "text": "protocol",
+   "start": 23.993,
+   "end": 24.493,
+   "seg": 8
+  },
+  {
+   "id": "w67",
+   "text": "this",
+   "start": 24.673,
+   "end": 24.873,
+   "seg": 8
+  },
+  {
+   "id": "w68",
+   "text": "Friday,",
+   "start": 25.033,
+   "end": 25.553,
+   "seg": 8
+  },
+  {
+   "id": "w69",
+   "text": "the",
+   "start": 25.653,
+   "end": 25.733,
+   "seg": 8
+  },
+  {
+   "id": "w70",
+   "text": "twenty-seventh.",
+   "start": 25.773,
+   "end": 26.773,
+   "seg": 8
+  },
+  {
+   "id": "w71",
+   "text": "Have",
+   "start": 26.907,
+   "end": 27.027,
+   "seg": 9
+  },
+  {
+   "id": "w72",
+   "text": "a",
+   "start": 27.067,
+   "end": 27.087,
+   "seg": 9
+  },
+  {
+   "id": "w73",
+   "text": "look",
+   "start": 27.147,
+   "end": 27.307,
+   "seg": 9
+  },
+  {
+   "id": "w74",
+   "text": "at",
+   "start": 27.327,
+   "end": 27.407,
+   "seg": 9
+  },
+  {
+   "id": "w75",
+   "text": "our",
+   "start": 27.447,
+   "end": 27.607,
+   "seg": 9
+  },
+  {
+   "id": "w76",
+   "text": "new",
+   "start": 27.667,
+   "end": 27.867,
+   "seg": 9
+  },
+  {
+   "id": "w77",
+   "text": "home.",
+   "start": 27.927,
+   "end": 28.207,
+   "seg": 9
+  },
+  {
+   "id": "w78",
+   "text": "The",
+   "start": 28.327,
+   "end": 28.427,
+   "seg": 9
+  },
+  {
+   "id": "w79",
+   "text": "link",
+   "start": 28.507,
+   "end": 28.727,
+   "seg": 9
+  },
+  {
+   "id": "w80",
+   "text": "is",
+   "start": 28.807,
+   "end": 28.927,
+   "seg": 9
+  },
+  {
+   "id": "w81",
+   "text": "in",
+   "start": 28.987,
+   "end": 29.067,
+   "seg": 9
+  },
+  {
+   "id": "w82",
+   "text": "our",
+   "start": 29.127,
+   "end": 29.247,
+   "seg": 9
+  },
+  {
+   "id": "w83",
+   "text": "bio",
+   "start": 29.287,
+   "end": 29.787,
+   "seg": 9
+  },
+  {
+   "id": "w84",
+   "text": "and",
+   "start": 29.907,
+   "end": 29.987,
+   "seg": 10
+  },
+  {
+   "id": "w85",
+   "text": "join",
+   "start": 30.067,
+   "end": 30.247,
+   "seg": 10
+  },
+  {
+   "id": "w86",
+   "text": "the",
+   "start": 30.287,
+   "end": 30.347,
+   "seg": 10
+  },
+  {
+   "id": "w87",
+   "text": "wait",
+   "start": 30.387,
+   "end": 30.567,
+   "seg": 10
+  },
+  {
+   "id": "w88",
+   "text": "list",
+   "start": 30.627,
+   "end": 30.887,
+   "seg": 10
+  },
+  {
+   "id": "w89",
+   "text": "while",
+   "start": 30.987,
+   "end": 31.147,
+   "seg": 10
+  },
+  {
+   "id": "w90",
+   "text": "you're",
+   "start": 31.167,
+   "end": 31.287,
+   "seg": 10
+  },
+  {
+   "id": "w91",
+   "text": "there",
+   "start": 31.347,
+   "end": 31.527,
+   "seg": 10
+  }
+ ]
+}

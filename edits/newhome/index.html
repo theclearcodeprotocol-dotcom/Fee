@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1080, height=1920" />
+<script src="vendor/gsap-3.15.0.min.js"></script>
+<style>
+@font-face { font-family: "Source Serif 4"; font-weight: 900; font-style: normal; src: url("fonts/source-serif-4-latin-900-normal.woff2") format("woff2"); }
+@font-face { font-family: "Source Serif 4"; font-weight: 900; font-style: italic; src: url("fonts/source-serif-4-latin-900-italic.woff2") format("woff2"); }
+:root { --red:#ae1f14; --cream:#f2f0e0; --pink:#ffd7de; --ink:#5a3a33; --serif:"Source Serif 4", serif; --sans:"Outfit", sans-serif; }
+* { margin:0; padding:0; box-sizing:border-box; }
+html, body { width:1080px; height:1920px; overflow:hidden; background:#000; }
+#root { position:relative; width:1080px; height:1920px; overflow:hidden; }
+#footage { position:absolute; inset:0; width:1080px; height:1920px; object-fit:cover; }
+.lab { position:absolute; left:0; right:0; top:420px; text-align:center; opacity:0; z-index:4; }
+.lab span { display:inline-block; background:var(--red); color:var(--cream); font:900 46px/1.1 var(--serif); letter-spacing:-0.04em;
+  padding:16px 30px; border-radius:6px; box-shadow:0 14px 34px rgba(60,10,6,.25); }
+.cap { position:absolute; left:80px; right:80px; top:1540px; text-align:center; opacity:0; visibility:hidden; z-index:5; }
+.ct { display:inline; font:500 42px/1.6 var(--sans); color:var(--cream); background:var(--ink); padding:8px 20px; border-radius:12px;
+  -webkit-box-decoration-break:clone; box-decoration-break:clone; }
+#endp { position:absolute; inset:0; background:var(--red); color:var(--cream); z-index:3; clip-path:inset(0% 100% 0% 0%);
+  display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; gap:34px; padding:0 100px; }
+#endp b { font:900 170px/1 var(--serif); letter-spacing:-0.05em; }
+#endp h2 { font:900 92px/1.02 var(--serif); letter-spacing:-0.05em; }
+#endp .s { font:italic 900 48px/1.2 var(--serif); color:var(--pink); opacity:0; }
+#endp .pill { font:600 40px/1 var(--sans); border:3px solid var(--cream); border-radius:999px; padding:22px 48px; opacity:0; }
+</style>
+</head>
+<body>
+<div id="root" data-composition-id="main" data-start="0" data-duration="31.600" data-width="1080" data-height="1920">
+  <video id="footage" class="clip" src="footage/newhome-comp.mp4" data-start="0" data-duration="31.600" data-track-index="0" playsinline data-has-audio="true"></video>
+  <div id="ov" class="clip" data-start="0" data-duration="31.600" data-track-index="1" data-track-kind="graphics" data-layout-allow-overlap style="position:absolute;inset:0">
+    <div class="lab" id="l0"><span>the clear code has a new home</span></div><div class="lab" id="l1"><span>the clear code protocol</span></div><div class="lab" id="l2"><span>a sneak peek inside</span></div><div class="lab" id="l3"><span>clear evidence · one graded paper a week</span></div>
+    <div id="endp"><b>c.</b><h2>doors open friday 27 november.</h2><p class="s">the clear code protocol</p><p class="pill">have a look · link in bio</p></div>
+    <div class="cap" id="c0"><span class="ct">The Clear Code</span></div><div class="cap" id="c1"><span class="ct">Now</span></div><div class="cap" id="c2"><span class="ct">Has a new home with</span></div><div class="cap" id="c3"><span class="ct">Everything</span></div><div class="cap" id="c4"><span class="ct">In one place.</span></div><div class="cap" id="c5"><span class="ct">This is the Clear Code</span></div><div class="cap" id="c6"><span class="ct">Protocol.</span></div><div class="cap" id="c7"><span class="ct">Plan,</span></div><div class="cap" id="c8"><span class="ct">Launch,</span></div><div class="cap" id="c9"><span class="ct">Nurture.</span></div><div class="cap" id="c10"><span class="ct">Every template and script that</span></div><div class="cap" id="c11"><span class="ct">You&#x27;ll need</span></div><div class="cap" id="c12"><span class="ct">To</span></div><div class="cap" id="c13"><span class="ct">Run a successful acne programme</span></div><div class="cap" id="c14"><span class="ct">Within your clinic.</span></div><div class="cap" id="c15"><span class="ct">Here&#x27;s a little sneak peek</span></div><div class="cap" id="c16"><span class="ct">Inside.</span></div><div class="cap" id="c17"><span class="ct">And this is clear evidence.</span></div><div class="cap" id="c18"><span class="ct">One research paper</span></div><div class="cap" id="c19"><span class="ct">That&#x27;s graded weekly and broken</span></div><div class="cap" id="c20"><span class="ct">Down into a five-minute read.</span></div><div class="cap" id="c21"><span class="ct">Doors open for the protocol</span></div><div class="cap" id="c22"><span class="ct">This</span></div><div class="cap" id="c23"><span class="ct">Friday, the 27th.</span></div><div class="cap" id="c24"><span class="ct">Have a look at our</span></div><div class="cap" id="c25"><span class="ct">New home.</span></div><div class="cap" id="c26"><span class="ct">The link is in our</span></div><div class="cap" id="c27"><span class="ct">Bio</span></div><div class="cap" id="c28"><span class="ct">And join the waitlist while</span></div><div class="cap" id="c29"><span class="ct">You&#x27;re there</span></div>
+  </div>
+</div>
+<script>
+window.__timelines = window.__timelines || {};
+const tl = gsap.timeline({ paused: true });
+function lab(sel, a, b) {
+  tl.fromTo(sel, { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.28, ease: "power3.out", immediateRender: false }, a);
+  tl.to(sel, { opacity: 0, duration: 0.15 }, b - 0.15);
+}
+function cap(sel, s, e) {
+  tl.set(sel, { visibility: "visible" }, s);
+  tl.fromTo(sel, { opacity: 0, y: 8 }, { opacity: 1, y: 0, duration: 0.2, ease: "power2.out", immediateRender: false }, s);
+  tl.set(sel, { opacity: 0, visibility: "hidden" }, e);
+}
+lab("#l0", 0.050, 4.400);
+lab("#l1", 4.450, 13.700);
+lab("#l2", 13.750, 15.833);
+lab("#l3", 15.883, 22.833);
+tl.to("#endp", { clipPath: "inset(0% 0% 0% 0%)", duration: 0.4, ease: "expo.out" }, 22.833);
+tl.to("#endp .s", { opacity: 1, duration: 0.3 }, 23.433);
+tl.to("#endp .pill", { opacity: 1, duration: 0.3 }, 26.867);
+cap("#c0", 0.100, 0.850);
+cap("#c1", 0.850, 1.230);
+cap("#c2", 1.230, 2.630);
+cap("#c3", 2.630, 3.350);
+cap("#c4", 3.350, 4.390);
+cap("#c5", 4.390, 5.430);
+cap("#c6", 5.430, 6.130);
+cap("#c7", 6.130, 6.650);
+cap("#c8", 6.650, 7.210);
+cap("#c9", 7.210, 7.930);
+cap("#c10", 7.930, 9.290);
+cap("#c11", 9.290, 9.990);
+cap("#c12", 9.990, 10.390);
+cap("#c13", 10.390, 12.450);
+cap("#c14", 12.450, 13.690);
+cap("#c15", 13.690, 15.070);
+cap("#c16", 15.070, 15.823);
+cap("#c17", 15.823, 17.623);
+cap("#c18", 17.623, 19.123);
+cap("#c19", 19.123, 21.003);
+cap("#c20", 21.003, 22.823);
+cap("#c21", 22.823, 24.623);
+cap("#c22", 24.623, 24.983);
+cap("#c23", 24.983, 26.857);
+cap("#c24", 26.857, 27.617);
+cap("#c25", 27.617, 28.277);
+cap("#c26", 28.277, 29.237);
+cap("#c27", 29.237, 29.857);
+cap("#c28", 29.857, 31.117);
+cap("#c29", 31.117, 31.527);
+window.__timelines["main"] = tl;
+tl.seek(0);
+</script>
+</body>
+</html>
