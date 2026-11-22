@@ -2,7 +2,7 @@
 and replace it with the nearest frame where the eyes are on the lens. The first half of each dip holds
 the frame before it, the second half the frame after it, so the mouth jumps as little as possible.
 Frame count, timing and audio are untouched, so lip sync stays exact.
-Usage: <venv>/python scripts/eye_hold.py <in.mp4> <out.mp4> <face_landmarker.task> [ratio] [--from S] [--to S] [--report]
+Usage: <venv>/python scripts/eye_hold.py <in.mp4> <out.mp4> <face_landmarker.task> [ratio] [--from S] [--to S] [--max FRAMES] [--report]
 A frame drops when its lid gap is below `ratio` (default 0.80) x the median gap of the surrounding 3 s."""
 import subprocess, sys
 import cv2, numpy as np, mediapipe as mp
@@ -12,6 +12,7 @@ RATIO = float(sys.argv[4]) if len(sys.argv) > 4 and not sys.argv[4].startswith("
 def arg(name, d):
     return float(sys.argv[sys.argv.index(name) + 1]) if name in sys.argv else d
 T0, T1 = arg("--from", 0.0), arg("--to", 1e9)
+MAXF = int(arg("--max", 1e9))  # only hold dips up to this many frames (longer holds read as a freeze)
 lm = vision.FaceLandmarker.create_from_options(vision.FaceLandmarkerOptions(base_options=BaseOptions(model_asset_path=model),
      running_mode=vision.RunningMode.VIDEO, num_faces=1))
 cap = cv2.VideoCapture(src); fps = cap.get(cv2.CAP_PROP_FPS)
@@ -47,6 +48,7 @@ while i < n:
         runs.append((i, j)); i = j + 1
     else:
         i += 1
+runs = [(a, b) for a, b in runs if b - a + 1 <= MAXF]
 for a, b in runs:
     print(f"dip {a / fps:6.2f}-{(b + 1) / fps:6.2f}s  {b - a + 1} frames  min gap {g[a:b + 1].min():.2f} (normal {np.median(g[max(0, a - win):b + win]):.2f})")
 if "--report" in sys.argv: sys.exit(0)
