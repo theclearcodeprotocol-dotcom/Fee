@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1080, height=1920" />
+<script src="vendor/gsap-3.15.0.min.js"></script>
+<style>
+@font-face { font-family: "Source Serif 4"; font-weight: 900; font-style: normal; src: url("fonts/source-serif-4-latin-900-normal.woff2") format("woff2"); }
+@font-face { font-family: "Source Serif 4"; font-weight: 900; font-style: italic; src: url("fonts/source-serif-4-latin-900-italic.woff2") format("woff2"); }
+:root { --red:#ae1f14; --cream:#f2f0e0; --pink:#ffd7de; --ink:#5a3a33; --serif:"Source Serif 4", serif; --sans:"Outfit", sans-serif; }
+* { margin:0; padding:0; box-sizing:border-box; }
+html, body { width:1080px; height:1920px; overflow:hidden; background:#000; }
+#root { position:relative; width:1080px; height:1920px; overflow:hidden; }
+#footage { position:absolute; inset:0; width:1080px; height:1920px; object-fit:cover; }
+.lab { position:absolute; left:0; right:0; top:420px; text-align:center; opacity:0; z-index:4; }
+.lab span { display:inline-block; background:var(--red); color:var(--cream); font:900 46px/1.1 var(--serif); letter-spacing:-0.04em;
+  padding:16px 30px; border-radius:6px; box-shadow:0 14px 34px rgba(60,10,6,.25); }
+.cap { position:absolute; left:80px; right:80px; top:1500px; text-align:center; opacity:0; visibility:hidden; z-index:5; }
+.ct { display:inline; font:500 42px/1.6 var(--sans); color:var(--cream); background:var(--ink); padding:8px 20px; border-radius:12px;
+  -webkit-box-decoration-break:clone; box-decoration-break:clone; }
+#hook { position:absolute; left:70px; right:70px; top:360px; text-align:center; z-index:5; opacity:0; }
+#hook span { display:inline-block; background:var(--red); color:var(--cream); font:900 92px/1.0 var(--serif); letter-spacing:-0.05em; padding:22px 40px 30px; border-radius:6px; box-shadow:0 18px 50px rgba(40,6,4,.3); }
+.offer { position:absolute; left:36px; top:1180px; width:520px; background:var(--cream); color:var(--red); border-radius:8px; padding:30px 36px 32px;
+  box-shadow:0 18px 50px rgba(40,6,4,.24); z-index:5; opacity:0; }
+.offer .ey { font:600 24px/1 var(--sans); letter-spacing:.16em; text-transform:uppercase; color:var(--ink); padding-bottom:16px; border-bottom:1.5px solid rgba(174,31,20,.28); }
+.offer .row { display:flex; justify-content:space-between; align-items:baseline; margin-top:18px; }
+.offer .row b { font:900 46px/1 var(--serif); letter-spacing:-0.04em; }
+.offer .row i { font:italic 900 52px/1 var(--serif); letter-spacing:-0.03em; }
+.offer .sm { font:500 26px/1.3 var(--sans); color:var(--ink); margin-top:6px; }
+.offer .big { font:italic 900 110px/1 var(--serif); letter-spacing:-0.04em; margin-top:16px; }
+.offer .big span { font:500 34px var(--sans); font-style:normal; letter-spacing:0; color:var(--ink); }
+#endp { position:absolute; inset:0; background:var(--red); color:var(--cream); z-index:3; clip-path:inset(0% 100% 0% 0%);
+  display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; gap:34px; padding:0 100px; }
+#endp b { font:900 170px/1 var(--serif); letter-spacing:-0.05em; }
+#endp h2 { font:900 92px/1.02 var(--serif); letter-spacing:-0.05em; }
+#endp .s { font:italic 900 48px/1.2 var(--serif); color:var(--pink); opacity:0; }
+#endp .pill { font:600 40px/1 var(--sans); border:3px solid var(--cream); border-radius:999px; padding:22px 48px; opacity:0; }
+</style>
+</head>
+<body>
+<div id="root" data-composition-id="main" data-start="0" data-duration="52.067" data-width="1080" data-height="1920">
+  <video id="footage" class="clip" src="footage/black-friday-bg-only.mp4" data-start="0" data-duration="52.067" data-track-index="0" playsinline muted></video>
+  <div id="ov" class="clip" data-start="0" data-duration="52.067" data-track-index="1" data-track-kind="graphics" data-layout-allow-overlap style="position:absolute;inset:0">
+    
+    <div id="hook"><span>doors are open.</span></div>
+    <div class="offer" id="o1"><div class="ey">black friday · the clear code protocol</div><div class="row"><b>core</b><i>£397</i></div><div class="sm">or 3 × £139</div><div class="row"><b>advanced</b><i>£697</i></div><div class="sm">+ three 1-1 calls · only 5 places</div></div>
+    <div class="offer" id="o2"><div class="ey">black friday · clear evidence</div><div class="big">£19<span> a month</span></div><div class="sm">for your first 3 months</div></div>
+    <div id="endp"><b>c.</b><h2>black friday prices end cyber monday.</h2><p class="s">the clear code protocol · clear evidence</p><p class="pill">link in bio</p></div>
+    
+  </div>
+</div>
+<script>
+window.__timelines = window.__timelines || {};
+const tl = gsap.timeline({ paused: true });
+function lab(sel, a, b) {
+  tl.fromTo(sel, { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.28, ease: "power3.out", immediateRender: false }, a);
+  tl.to(sel, { opacity: 0, duration: 0.15 }, b - 0.15);
+}
+function cap(sel, s, e) {
+  tl.set(sel, { visibility: "visible" }, s);
+  tl.fromTo(sel, { opacity: 0, y: 8 }, { opacity: 1, y: 0, duration: 0.2, ease: "power2.out", immediateRender: false }, s);
+  tl.set(sel, { opacity: 0, visibility: "hidden" }, e);
+}
+
+tl.fromTo("#hook", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.35, ease: "power3.out", immediateRender: false }, 0.05);
+tl.to("#hook", { opacity: 0, y: -10, duration: 0.25, ease: "power2.in" }, 3.183);
+tl.fromTo("#o1", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.45, ease: "expo.out", immediateRender: false }, 17.667);
+tl.to("#o1", { opacity: 0, duration: 0.25 }, 28.983);
+tl.fromTo("#o2", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.45, ease: "expo.out", immediateRender: false }, 40.910);
+tl.to("#o2", { opacity: 0, duration: 0.25 }, 45.317);
+tl.to("#endp", { clipPath: "inset(0% 0% 0% 0%)", duration: 0.4, ease: "expo.out" }, 45.567);
+tl.to("#endp .s", { opacity: 1, duration: 0.3 }, 46.167);
+tl.to("#endp .pill", { opacity: 1, duration: 0.3 }, 45.567);
+
+window.__timelines["main"] = tl;
+tl.seek(0);
+</script>
+</body>
+</html>
