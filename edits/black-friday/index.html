@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1080, height=1920" />
+<script src="vendor/gsap-3.15.0.min.js"></script>
+<style>
+@font-face { font-family: "Source Serif 4"; font-weight: 900; font-style: normal; src: url("fonts/source-serif-4-latin-900-normal.woff2") format("woff2"); }
+@font-face { font-family: "Source Serif 4"; font-weight: 900; font-style: italic; src: url("fonts/source-serif-4-latin-900-italic.woff2") format("woff2"); }
+:root { --red:#ae1f14; --cream:#f2f0e0; --pink:#ffd7de; --ink:#5a3a33; --serif:"Source Serif 4", serif; --sans:"Outfit", sans-serif; }
+* { margin:0; padding:0; box-sizing:border-box; }
+html, body { width:1080px; height:1920px; overflow:hidden; background:#000; }
+#root { position:relative; width:1080px; height:1920px; overflow:hidden; }
+#footage { position:absolute; inset:0; width:1080px; height:1920px; object-fit:cover; }
+.lab { position:absolute; left:0; right:0; top:420px; text-align:center; opacity:0; z-index:4; }
+.lab span { display:inline-block; background:var(--red); color:var(--cream); font:900 46px/1.1 var(--serif); letter-spacing:-0.04em;
+  padding:16px 30px; border-radius:6px; box-shadow:0 14px 34px rgba(60,10,6,.25); }
+.cap { position:absolute; left:80px; right:80px; top:400px; text-align:center; opacity:0; visibility:hidden; z-index:5; }
+.ct { display:inline; font:500 42px/1.6 var(--sans); color:var(--cream); background:var(--ink); padding:8px 20px; border-radius:12px;
+  -webkit-box-decoration-break:clone; box-decoration-break:clone; }
+#hook { position:absolute; left:70px; right:70px; top:352px; text-align:center; z-index:5; opacity:0; }
+#hook span { font:900 96px/1.0 var(--serif); letter-spacing:-0.05em; color:var(--red); }
+.offer { position:absolute; left:36px; top:1180px; width:520px; background:var(--cream); color:var(--red); border-radius:8px; padding:30px 36px 32px;
+  box-shadow:0 18px 50px rgba(40,6,4,.24); z-index:5; opacity:0; }
+.offer .ey { font:600 24px/1 var(--sans); letter-spacing:.16em; text-transform:uppercase; color:var(--ink); padding-bottom:16px; border-bottom:1.5px solid rgba(174,31,20,.28); }
+.offer .row { display:flex; justify-content:space-between; align-items:baseline; margin-top:18px; }
+.offer .row b { font:900 46px/1 var(--serif); letter-spacing:-0.04em; }
+.offer .row i { font:italic 900 52px/1 var(--serif); letter-spacing:-0.03em; }
+.offer .sm { font:500 26px/1.3 var(--sans); color:var(--ink); margin-top:6px; }
+.offer .big { font:italic 900 110px/1 var(--serif); letter-spacing:-0.04em; margin-top:16px; }
+.offer .big span { font:500 34px var(--sans); font-style:normal; letter-spacing:0; color:var(--ink); }
+#endp { position:absolute; inset:0; background:var(--red); color:var(--cream); z-index:3; clip-path:inset(0% 100% 0% 0%);
+  display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; gap:34px; padding:0 100px; }
+#endp b { font:900 170px/1 var(--serif); letter-spacing:-0.05em; }
+#endp h2 { font:900 92px/1.02 var(--serif); letter-spacing:-0.05em; }
+#endp .s { font:italic 900 48px/1.2 var(--serif); color:var(--pink); opacity:0; }
+#endp .pill { font:600 40px/1 var(--sans); border:3px solid var(--cream); border-radius:999px; padding:22px 48px; opacity:0; }
+</style>
+</head>
+<body>
+<div id="root" data-composition-id="main" data-start="0" data-duration="52.067" data-width="1080" data-height="1920">
+  <video id="footage" class="clip" src="footage/black-friday-comp.mp4" data-start="0" data-duration="52.067" data-track-index="0" playsinline data-has-audio="true"></video>
+  <div id="ov" class="clip" data-start="0" data-duration="52.067" data-track-index="1" data-track-kind="graphics" data-layout-allow-overlap style="position:absolute;inset:0">
+    
+    <div id="hook"><span>doors are open.</span></div>
+    <div class="offer" id="o1"><div class="ey">black friday · the clear code protocol</div><div class="row"><b>core</b><i>£397</i></div><div class="sm">or 3 × £139</div><div class="row"><b>advanced</b><i>£697</i></div><div class="sm">+ three 1-1 calls · only 5 places</div></div>
+    <div class="offer" id="o2"><div class="ey">black friday · clear evidence</div><div class="big">£19<span> a month</span></div><div class="sm">for your first 3 months</div></div>
+    <div id="endp"><b>c.</b><h2>black friday prices end cyber monday.</h2><p class="s">the clear code protocol · clear evidence</p><p class="pill">link in bio</p></div>
+    <div class="cap" id="c3"><span class="ct">It&#x27;s Black Friday,</span></div><div class="cap" id="c4"><span class="ct">And the Clear Code Protocol</span></div><div class="cap" id="c5"><span class="ct">Has opened its doors today.</span></div><div class="cap" id="c6"><span class="ct">This is our protocol,</span></div><div class="cap" id="c7"><span class="ct">Where we plan,</span></div><div class="cap" id="c8"><span class="ct">Launch, and nurture</span></div><div class="cap" id="c9"><span class="ct">Every template,</span></div><div class="cap" id="c10"><span class="ct">Script,</span></div><div class="cap" id="c11"><span class="ct">And treatment pathway</span></div><div class="cap" id="c12"><span class="ct">That you need to build</span></div><div class="cap" id="c13"><span class="ct">Your own acne programme</span></div><div class="cap" id="c14"><span class="ct">Done</span></div><div class="cap" id="c15"><span class="ct">For you.</span></div><div class="cap" id="c16"><span class="ct">For Black Friday,</span></div><div class="cap" id="c17"><span class="ct">Our core is</span></div><div class="cap" id="c18"><span class="ct">£397,</span></div><div class="cap" id="c19"><span class="ct">And our advanced,</span></div><div class="cap" id="c20"><span class="ct">Which adds on</span></div><div class="cap" id="c21"><span class="ct">Three</span></div><div class="cap" id="c22"><span class="ct">One-to-one calls with me</span></div><div class="cap" id="c23"><span class="ct">For</span></div><div class="cap" id="c24"><span class="ct">£697.</span></div><div class="cap" id="c25"><span class="ct">But</span></div><div class="cap" id="c26"><span class="ct">There are only</span></div><div class="cap" id="c27"><span class="ct">Five slots available.</span></div><div class="cap" id="c28"><span class="ct">And this is clear evidence,</span></div><div class="cap" id="c29"><span class="ct">One</span></div><div class="cap" id="c30"><span class="ct">Graded research paper</span></div><div class="cap" id="c31"><span class="ct">Each week,</span></div><div class="cap" id="c32"><span class="ct">Broken down into a five-minute</span></div><div class="cap" id="c33"><span class="ct">Read,</span></div><div class="cap" id="c34"><span class="ct">So</span></div><div class="cap" id="c35"><span class="ct">You can treat and explain</span></div><div class="cap" id="c36"><span class="ct">With confidence.</span></div><div class="cap" id="c37"><span class="ct">For Black Friday,</span></div><div class="cap" id="c38"><span class="ct">Our monthly membership is £19</span></div><div class="cap" id="c39"><span class="ct">A month for the first</span></div><div class="cap" id="c40"><span class="ct">Three</span></div><div class="cap" id="c41"><span class="ct">Months.</span></div><div class="cap" id="c42"><span class="ct">Our Black Friday prices end</span></div><div class="cap" id="c43"><span class="ct">On Monday,</span></div><div class="cap" id="c44"><span class="ct">So the link is in</span></div><div class="cap" id="c45"><span class="ct">Our bio to claim them.</span></div><div class="cap" id="c46"><span class="ct">Happy Black Friday.</span></div>
+  </div>
+</div>
+<script>
+window.__timelines = window.__timelines || {};
+const tl = gsap.timeline({ paused: true });
+function lab(sel, a, b) {
+  tl.fromTo(sel, { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.28, ease: "power3.out", immediateRender: false }, a);
+  tl.to(sel, { opacity: 0, duration: 0.15 }, b - 0.15);
+}
+function cap(sel, s, e) {
+  tl.set(sel, { visibility: "visible" }, s);
+  tl.fromTo(sel, { opacity: 0, y: 8 }, { opacity: 1, y: 0, duration: 0.2, ease: "power2.out", immediateRender: false }, s);
+  tl.set(sel, { opacity: 0, visibility: "hidden" }, e);
+}
+
+tl.fromTo("#hook", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.35, ease: "power3.out", immediateRender: false }, 0.05);
+tl.to("#hook", { opacity: 0, y: -10, duration: 0.25, ease: "power2.in" }, 3.183);
+tl.fromTo("#o1", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.45, ease: "expo.out", immediateRender: false }, 17.667);
+tl.to("#o1", { opacity: 0, duration: 0.25 }, 28.983);
+tl.fromTo("#o2", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.45, ease: "expo.out", immediateRender: false }, 40.910);
+tl.to("#o2", { opacity: 0, duration: 0.25 }, 45.317);
+tl.to("#endp", { clipPath: "inset(0% 0% 0% 0%)", duration: 0.4, ease: "expo.out" }, 45.567);
+tl.to("#endp .s", { opacity: 1, duration: 0.3 }, 46.167);
+tl.to("#endp .pill", { opacity: 1, duration: 0.3 }, 45.567);
+cap("#c3", 3.423, 4.723);
+cap("#c4", 4.723, 6.023);
+cap("#c5", 6.023, 7.657);
+cap("#c6", 7.657, 8.790);
+cap("#c7", 8.790, 9.590);
+cap("#c8", 9.590, 10.923);
+cap("#c9", 10.923, 11.823);
+cap("#c10", 11.823, 12.563);
+cap("#c11", 12.563, 13.957);
+cap("#c12", 13.957, 15.057);
+cap("#c13", 15.057, 16.590);
+cap("#c14", 16.590, 16.957);
+cap("#c15", 16.957, 17.557);
+cap("#c16", 17.557, 18.577);
+cap("#c17", 18.577, 19.857);
+cap("#c18", 19.857, 20.957);
+cap("#c19", 20.957, 21.957);
+cap("#c20", 21.957, 22.937);
+cap("#c21", 22.937, 23.437);
+cap("#c22", 23.437, 24.957);
+cap("#c23", 24.957, 25.357);
+cap("#c24", 25.357, 26.423);
+cap("#c25", 26.423, 26.923);
+cap("#c26", 26.923, 27.863);
+cap("#c27", 27.863, 29.223);
+cap("#c28", 29.223, 30.623);
+cap("#c29", 30.623, 30.963);
+cap("#c30", 30.963, 32.523);
+cap("#c31", 32.523, 33.357);
+cap("#c32", 33.357, 35.297);
+cap("#c33", 35.297, 35.757);
+cap("#c34", 35.757, 36.117);
+cap("#c35", 36.117, 38.123);
+cap("#c36", 38.123, 39.390);
+cap("#c37", 39.390, 40.590);
+cap("#c38", 40.590, 43.270);
+cap("#c39", 43.270, 44.410);
+cap("#c40", 44.410, 44.910);
+cap("#c41", 44.910, 45.557);
+cap("#c42", 45.557, 47.497);
+cap("#c43", 47.497, 48.357);
+cap("#c44", 48.357, 49.337);
+cap("#c45", 49.337, 50.790);
+cap("#c46", 50.790, 51.980);
+window.__timelines["main"] = tl;
+tl.seek(0);
+</script>
+</body>
+</html>

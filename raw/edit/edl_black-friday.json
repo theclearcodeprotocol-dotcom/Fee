@@ -1,0 +1,263 @@
+{
+  "version": 1,
+  "sources": {
+    "black-friday": "/home/user/Fee/raw/black-friday.mp4"
+  },
+  "ranges": [
+    {
+      "source": "black-friday",
+      "start": 0.8,
+      "end": 4.21,
+      "beat": "HOOK",
+      "quote": "The doors are finally open, so let's show you what's inside.",
+      "output_start": 0.0,
+      "output_duration": 3.433
+    },
+    {
+      "source": "black-friday",
+      "start": 5.26,
+      "end": 6.55,
+      "beat": "SETUP",
+      "quote": "It's Black Friday,",
+      "output_start": 3.433,
+      "output_duration": 1.3
+    },
+    {
+      "source": "black-friday",
+      "start": 9.42,
+      "end": 12.35,
+      "beat": "SETUP",
+      "quote": "and the Clear Code Protocol has opened its doors today.",
+      "output_start": 4.733,
+      "output_duration": 2.933
+    },
+    {
+      "source": "black-friday",
+      "start": 14.28,
+      "end": 15.41,
+      "beat": "PROTOCOL",
+      "quote": "This is our protocol,",
+      "output_start": 7.667,
+      "output_duration": 1.133
+    },
+    {
+      "source": "black-friday",
+      "start": 15.62,
+      "end": 16.39,
+      "beat": "PROTOCOL",
+      "quote": "where we plan,",
+      "output_start": 8.8,
+      "output_duration": 0.8
+    },
+    {
+      "source": "black-friday",
+      "start": 16.52,
+      "end": 17.83,
+      "beat": "PROTOCOL",
+      "quote": "launch, and nurture",
+      "output_start": 9.6,
+      "output_duration": 1.333
+    },
+    {
+      "source": "black-friday",
+      "start": 19.4,
+      "end": 20.27,
+      "beat": "PROTOCOL",
+      "quote": "every template,",
+      "output_start": 10.933,
+      "output_duration": 0.9
+    },
+    {
+      "source": "black-friday",
+      "start": 20.5,
+      "end": 22.63,
+      "beat": "PROTOCOL",
+      "quote": "script, and treatment pathway",
+      "output_start": 11.833,
+      "output_duration": 2.133
+    },
+    {
+      "source": "black-friday",
+      "start": 23.6,
+      "end": 26.21,
+      "beat": "PROTOCOL",
+      "quote": "that you need to build your own acne program",
+      "output_start": 13.967,
+      "output_duration": 2.633
+    },
+    {
+      "source": "black-friday",
+      "start": 26.36,
+      "end": 26.71,
+      "beat": "PROTOCOL",
+      "quote": "done",
+      "output_start": 16.6,
+      "output_duration": 0.367
+    },
+    {
+      "source": "black-friday",
+      "start": 26.88,
+      "end": 27.45,
+      "beat": "PROTOCOL",
+      "quote": "for you.",
+      "output_start": 16.967,
+      "output_duration": 0.6
+    },
+    {
+      "source": "black-friday",
+      "start": 29.34,
+      "end": 32.729,
+      "beat": "PRICES",
+      "quote": "For Black Friday, our core is 397,",
+      "output_start": 17.567,
+      "output_duration": 3.4
+    },
+    {
+      "source": "black-friday",
+      "start": 34.42,
+      "end": 38.41,
+      "beat": "PRICES",
+      "quote": "and our advanced, which adds on three one-to-one calls with me",
+      "output_start": 20.967,
+      "output_duration": 4.0
+    },
+    {
+      "source": "black-friday",
+      "start": 38.9,
+      "end": 39.29,
+      "beat": "PRICES",
+      "quote": "for",
+      "output_start": 24.967,
+      "output_duration": 0.4
+    },
+    {
+      "source": "black-friday",
+      "start": 39.68,
+      "end": 40.73,
+      "beat": "PRICES",
+      "quote": "697.",
+      "output_start": 25.367,
+      "output_duration": 1.067
+    },
+    {
+      "source": "black-friday",
+      "start": 42.02,
+      "end": 42.49,
+      "beat": "PRICES",
+      "quote": "But",
+      "output_start": 26.433,
+      "output_duration": 0.5
+    },
+    {
+      "source": "black-friday",
+      "start": 42.76,
+      "end": 45.05,
+      "beat": "PRICES",
+      "quote": "there are only five slots available.",
+      "output_start": 26.933,
+      "output_duration": 2.3
+    },
+    {
+      "source": "black-friday",
+      "start": 54.18,
+      "end": 55.55,
+      "beat": "EVIDENCE",
+      "quote": "And this is clear evidence,",
+      "output_start": 29.233,
+      "output_duration": 1.4
+    },
+    {
+      "source": "black-friday",
+      "start": 55.8,
+      "end": 57.67,
+      "beat": "EVIDENCE",
+      "quote": "one graded research paper",
+      "output_start": 30.633,
+      "output_duration": 1.9
+    },
+    {
+      "source": "black-friday",
+      "start": 58.04,
+      "end": 58.85,
+      "beat": "EVIDENCE",
+      "quote": "each week,",
+      "output_start": 32.533,
+      "output_duration": 0.833
+    },
+    {
+      "source": "black-friday",
+      "start": 60.44,
+      "end": 62.81,
+      "beat": "EVIDENCE",
+      "quote": "broken down into a five-minute read,",
+      "output_start": 33.367,
+      "output_duration": 2.4
+    },
+    {
+      "source": "black-friday",
+      "start": 64.3,
+      "end": 66.65,
+      "beat": "EVIDENCE",
+      "quote": "so you can treat and explain",
+      "output_start": 35.767,
+      "output_duration": 2.367
+    },
+    {
+      "source": "black-friday",
+      "start": 66.86,
+      "end": 68.11,
+      "beat": "EVIDENCE",
+      "quote": "with confidence.",
+      "output_start": 38.133,
+      "output_duration": 1.267
+    },
+    {
+      "source": "black-friday",
+      "start": 69.92,
+      "end": 71.11,
+      "beat": "EVIDENCE",
+      "quote": "For Black Friday,",
+      "output_start": 39.4,
+      "output_duration": 1.2
+    },
+    {
+      "source": "black-friday",
+      "start": 71.3,
+      "end": 76.25,
+      "beat": "EVIDENCE",
+      "quote": "our monthly membership is 19 pounds a month for the first three months.",
+      "output_start": 40.6,
+      "output_duration": 4.967
+    },
+    {
+      "source": "black-friday",
+      "start": 77.76,
+      "end": 80.55,
+      "beat": "CTA",
+      "quote": "Our Black Friday prices end on Monday,",
+      "output_start": 45.567,
+      "output_duration": 2.8
+    },
+    {
+      "source": "black-friday",
+      "start": 80.82,
+      "end": 83.23,
+      "beat": "CTA",
+      "quote": "so the link is in our bio to claim them.",
+      "output_start": 48.367,
+      "output_duration": 2.433
+    },
+    {
+      "source": "black-friday",
+      "start": 85.38,
+      "end": 86.63,
+      "beat": "CTA",
+      "quote": "Happy Black Friday.",
+      "output_start": 50.8,
+      "output_duration": 1.267
+    }
+  ],
+  "grade": "eq=contrast=1.04:saturation=1.05:gamma=1.02,colorbalance=rm=0.03:bm=-0.03:rh=0.02:bh=-0.02",
+  "overlays": [],
+  "total_duration_s": 52.067
+}

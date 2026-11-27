@@ -50,6 +50,14 @@ CLIPS = {  # (beat, first word start, last word end) in source seconds, in outpu
         ("BODY4", 65.18, 68.86),
         ("CTA", 71.66, 85.26),
     ],
+    "black-friday": [  # Black Friday doors open (27 Nov): stumbles cut ("the Clear Code do--", "one research...")
+        ("HOOK", 0.84, 4.14),
+        ("SETUP", 5.30, 6.48), ("SETUP", 9.46, 12.28),
+        ("PROTOCOL", 14.32, 27.38),
+        ("PRICES", 29.38, 44.98),
+        ("EVIDENCE", 54.22, 76.18),
+        ("CTA", 77.80, 83.16), ("CTA", 85.42, 86.56),
+    ],
     "why-created": [  # Why I created the protocol: the "one appointment at a time" take opens it (no spoken hook; on-screen hook)
         ("SETUP", 34.66, 42.28),
         ("BODY1", 47.62, 50.36), ("BODY1", 65.68, 73.20),
