@@ -22,8 +22,7 @@ SAY: It's Black Friday, and the Clear Code Protocol is open from today.
 2. VISUAL: stay on the Plan, Launch, Nurture still (prices go up as on-screen text, not from the site).
    SAY: For Black Friday, Core is £397, or three payments of £139. Advanced adds three 1-1 calls with me, for £697, and there are only five places.
 3. VISUAL: Clear Evidence library, then open one paper (e.g. vitamin C) and scroll slowly past the evidence grade.
-   SAY: And this is Clear Evidence. One graded research paper a week, broken down into a five-minute read, so you can treat with confidence.
-   [If Clear Evidence has its own Black Friday offer, add one line here with it. If not, leave this as is.]
+   SAY: And this is Clear Evidence. One graded research paper a week, broken down into a five-minute read, so you can treat with confidence. For Black Friday, it's £19 for your first three months.
 
 ## cta (last 3s)
 VISUAL: red end page.
@@ -33,7 +32,7 @@ SAY: Black Friday prices end at midnight on Cyber Monday. Link in bio.
 - hook (first frame, big, above the laptop): doors are open 🖤
 - protocol: the clear code protocol · plan, launch, nurture
 - prices: core £397 · advanced £697 (5 places)
-- evidence: clear evidence · one graded paper a week
+- evidence: clear evidence · one graded paper a week · £19 for your first 3 months
 - end page: black friday prices end cyber monday · link in bio
 
 ## b-roll / visuals
