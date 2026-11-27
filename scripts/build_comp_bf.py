@@ -69,12 +69,12 @@ html, body {{ width:1080px; height:1920px; overflow:hidden; background:#000; }}
 .lab {{ position:absolute; left:0; right:0; top:420px; text-align:center; opacity:0; z-index:4; }}
 .lab span {{ display:inline-block; background:var(--red); color:var(--cream); font:900 46px/1.1 var(--serif); letter-spacing:-0.04em;
   padding:16px 30px; border-radius:6px; box-shadow:0 14px 34px rgba(60,10,6,.25); }}
-.cap {{ position:absolute; left:80px; right:80px; top:400px; text-align:center; opacity:0; visibility:hidden; z-index:5; }}
+.cap {{ position:absolute; left:80px; right:80px; top:1500px; text-align:center; opacity:0; visibility:hidden; z-index:5; }}
 .ct {{ display:inline; font:500 42px/1.6 var(--sans); color:var(--cream); background:var(--ink); padding:8px 20px; border-radius:12px;
   -webkit-box-decoration-break:clone; box-decoration-break:clone; }}
-#hook {{ position:absolute; left:70px; right:70px; top:352px; text-align:center; z-index:5; opacity:0; }}
-#hook span {{ font:900 96px/1.0 var(--serif); letter-spacing:-0.05em; color:var(--red); }}
-.offer {{ position:absolute; left:36px; top:1180px; width:520px; background:var(--cream); color:var(--red); border-radius:8px; padding:30px 36px 32px;
+#hook {{ position:absolute; left:70px; right:70px; top:1400px; text-align:center; z-index:5; opacity:0; }}
+#hook span {{ display:inline-block; background:var(--red); color:var(--cream); font:900 92px/1.0 var(--serif); letter-spacing:-0.05em; padding:22px 40px 30px; border-radius:6px; box-shadow:0 18px 50px rgba(40,6,4,.3); }}
+.offer {{ position:absolute; left:270px; top:290px; width:540px; background:var(--cream); color:var(--red); border-radius:8px; padding:30px 36px 32px;
   box-shadow:0 18px 50px rgba(40,6,4,.24); z-index:5; opacity:0; }}
 .offer .ey {{ font:600 24px/1 var(--sans); letter-spacing:.16em; text-transform:uppercase; color:var(--ink); padding-bottom:16px; border-bottom:1.5px solid rgba(174,31,20,.28); }}
 .offer .row {{ display:flex; justify-content:space-between; align-items:baseline; margin-top:18px; }}

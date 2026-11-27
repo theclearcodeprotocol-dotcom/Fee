@@ -1,4 +1,5 @@
-"""Black Friday doors-open reel (27 Nov): the user cut out small in the corner over a laptop showing
+"""Black Friday doors-open reel (27 Nov): the user full-frame in their own room (they asked for their real
+background, to break up a feed of flat colour blocks), with a laptop floating above their head showing
 the website (homepage + Protocol from the 21 Nov iPad recording, course pages and a Clear Evidence
 paper from the 27 Nov recording). Same method as newhome_composite.py.
 
@@ -47,8 +48,8 @@ CROP = {"ipad": (112, 330, 462), "scr": (108, 338, 468)}  # header rows a:b, con
 SRCS = {"ipad": IPAD, "scr": SCR}
 CREAM = np.array((224, 240, 242), np.uint8)  # BGR of #F2F0E0
 PAGE = np.array((217, 231, 236), np.uint8)   # site background
-SW, SH = 940, 556
-LX, LY = (W - SW) // 2, 520
+SW, SH = 760, 450
+LX, LY = (W - SW) // 2, 270
 
 
 def clean(im, src):  # drop Safari bar and the "view as" admin bar, keep the site header
@@ -73,11 +74,18 @@ def laptop(screen):
     return c
 
 
+LMASK = np.zeros((H, W), np.uint8)
+cv2.rectangle(LMASK, (LX - 20, LY - 20), (LX + SW + 20, LY + SH + 20), 255, -1)
+cv2.fillPoly(LMASK, [np.array([[LX - 60, LY + SH + 20], [LX + SW + 60, LY + SH + 20], [LX + SW + 100, LY + SH + 52], [LX - 100, LY + SH + 52]], np.int32)], 255, cv2.LINE_AA)
+LM = (cv2.GaussianBlur(LMASK, (0, 0), 1.0).astype(np.float32) / 255)[..., None]
+SHADOW = (cv2.GaussianBlur(np.roll(LMASK, 18, axis=0), (0, 0), 22).astype(np.float32) / 255 * 0.35)[..., None]
+
+
 def ipad_still(src, t):
     tmpf = FOOT / "bf-still.png"
     subprocess.run(["ffmpeg", "-y", "-v", "error", "-ss", str(t), "-i", str(SRCS[src]), "-frames:v", "1", str(tmpf)], check=True)
     scr = fit(clean(cv2.imread(str(tmpf)), src))
-    scr[445:] = PAGE  # hide the "What's included" heading under the cards (group calls live there)
+    scr[int(SH * 0.8):] = PAGE  # hide the "What's included" heading under the cards (group calls live there)
     return laptop(scr)
 
 
@@ -140,39 +148,23 @@ subprocess.run(["ffmpeg", "-y", "-v", "error", "-i", str(cut), "-vf",
                 "colorbalance=rs=-0.08:gs=-0.01:bs=0.06:rm=-0.10:gm=-0.01:bm=0.07:rh=-0.05:bh=0.04,eq=saturation=0.82:gamma=1.02,"
                 f"scale={W}:{H}", "-c:v", "libx264", "-crf", "14", "-pix_fmt", "yuv420p", "-c:a", "copy", str(cool)], check=True)
 
-seg = vision.ImageSegmenter.create_from_options(vision.ImageSegmenterOptions(
-    base_options=BaseOptions(model_asset_path=MODEL), running_mode=vision.RunningMode.VIDEO, output_confidence_masks=True))
-SC = 0.42
-# moments the eyes drop to the notes: cut away to the website alone (from DOORS on, a red end page covers it)
-HIDE = [(beat_span["CTA"][0], TOTAL + 1)]  # red end page from the doors line on
-pw, ph = int(W * SC), int(H * SC)
-px, py = W - pw - 24, H - ph
+HIDE = [(beat_span["CTA"][0], TOTAL + 1)]  # red end page from the CTA on
 cf = cv2.VideoCapture(str(cool))
 outp = FOOT / "black-friday-comp.mp4"
 p = subprocess.Popen(["ffmpeg", "-y", "-v", "error", "-f", "rawvideo", "-pix_fmt", "bgr24", "-s", f"{W}x{H}", "-r", str(FPS), "-i", "-",
                       "-i", str(cool), "-map", "0:v", "-map", "1:a", "-c:v", "libx264", "-crf", "16", "-pix_fmt", "yuv420p",
                       "-g", "30", "-c:a", "copy", "-movflags", "+faststart", str(outp)], stdin=subprocess.PIPE)
-prev, i, last_bg = None, 0, None
+i = 0
 while True:
     ok, fr = cf.read()
     if not ok:
         break
-    b = bg_at(i / FPS)
-    r = seg.segment_for_video(mp.Image(image_format=mp.ImageFormat.SRGB, data=cv2.cvtColor(fr, cv2.COLOR_BGR2RGB)), int(i * 1000 / FPS))
-    a = 1.0 - r.confidence_masks[0].numpy_view().astype(np.float32)
-    a = cv2.resize(a, (W, H))
-    if prev is not None:
-        a = 0.6 * a + 0.4 * prev
-    prev = a
-    a = np.clip((a - 0.15) / 0.7, 0, 1)
-    a = cv2.GaussianBlur(a, (0, 0), 2.5)
     t = i / FPS
+    b = bg_at(t)
     if any(h0 <= t < h1 for h0, h1 in HIDE):
         p.stdin.write(b.tobytes()); i += 1; continue
-    small = cv2.resize(fr, (pw, ph), interpolation=cv2.INTER_AREA)
-    sa = cv2.resize(a, (pw, ph))[..., None]
-    roi = b[py:py + ph, px:px + pw].astype(np.float32)
-    b[py:py + ph, px:px + pw] = (small * sa + roi * (1 - sa)).astype(np.uint8)
-    p.stdin.write(b.tobytes()); i += 1
+    f = fr.astype(np.float32) * (1 - SHADOW)  # soft drop shadow under the laptop
+    out = f * (1 - LM) + b.astype(np.float32) * LM
+    p.stdin.write(out.astype(np.uint8).tobytes()); i += 1
 p.stdin.close(); p.wait()
 print(f"wrote {outp.relative_to(ROOT)}: {i} frames, beats {beat_span}")
