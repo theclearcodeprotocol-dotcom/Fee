@@ -51,8 +51,8 @@ CROP = {"ipad": (112, 330, 462), "scr": (108, 338, 468)}  # header rows a:b, con
 SRCS = {"ipad": IPAD, "scr": SCR}
 CREAM = np.array((224, 240, 242), np.uint8)  # BGR of #F2F0E0
 PAGE = np.array((217, 231, 236), np.uint8)   # site background
-SW, SH = 940, 556
-LX, LY = (W - SW) // 2, 520
+SW, SH = 780, 462
+LX, LY = (W - SW) // 2, 440
 
 
 def clean(im, src):  # drop Safari bar and the "view as" admin bar, keep the site header
